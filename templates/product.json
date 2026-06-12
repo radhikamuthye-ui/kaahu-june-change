@@ -58,11 +58,11 @@
           "settings": {
             "price_size": "price--large",
             "show_discounts": true,
-            "show_discount_badge": true,
+            "show_discount_badge": false,
             "show_savings_amount": true,
             "discount_suffix": "off",
             "savings_prefix": "You save",
-            "discount_badge_height": 24,
+            "discount_badge_height": 20,
             "use_theme_price_color": false,
             "current_price_color": "#c86632",
             "compare_price_color": "#8c8984",
@@ -70,20 +70,20 @@
             "savings_color": "#b95d7b",
             "savings_badge_text_color": "#ffffff",
             "current_price_size_mobile": 24,
-            "current_price_size_desktop": 28,
+            "current_price_size_desktop": 24,
             "compare_price_size_mobile": 16,
             "compare_price_size_desktop": 16,
             "savings_text_size_mobile": 13,
-            "savings_text_size_desktop": 13,
-            "price_row_spacing": 9,
-            "show_promo_message": false,
+            "savings_text_size_desktop": 14,
+            "price_row_spacing": 4,
+            "show_promo_message": true,
             "promo_text": "Summer Sale - Get additional 20% off.",
             "promo_helper_text": "Applied at checkout.",
             "promo_percent": 20,
             "show_promo_estimate": true,
             "promo_estimate_label": "Estimated final price",
             "promo_background_color": "#ffffff",
-            "promo_text_color": "#b43a3a",
+            "promo_text_color": "#BE774C",
             "price_show_taxes": false,
             "price_taxes_position": "below",
             "show_shoppay_banner": false
@@ -118,7 +118,7 @@
             "border_radius": 0,
             "border_width": 0,
             "text_size_mobile": 16,
-            "text_size_desktop": 17,
+            "text_size_desktop": 18,
             "text_weight": "500",
             "line_height": 150,
             "text_color": "#444444",
@@ -173,6 +173,39 @@
             "show_gift_card_recipient": false
           }
         },
+        "service_highlights": {
+          "type": "service_highlights",
+          "settings": {
+            "row_1_icon": "truck",
+            "row_1_title": "Free carbon-neutral shipping",
+            "row_1_text": "",
+            "row_2_icon": "box",
+            "row_2_title": "90-day easy returns",
+            "row_2_text": "",
+            "row_3_icon": "chat",
+            "row_3_title": "",
+            "row_3_text": "",
+            "margin_top": 14,
+            "margin_bottom": 12,
+            "row_padding_vertical": 10,
+            "row_padding_horizontal": 12,
+            "row_gap": 9,
+            "corner_radius": 0,
+            "border_width": 0,
+            "icon_size": 18,
+            "title_size_mobile": 14,
+            "title_size_desktop": 14,
+            "title_weight": "500",
+            "body_size_mobile": 14,
+            "body_size_desktop": 14,
+            "background_color": "rgba(0,0,0,0)",
+            "border_color": "rgba(0,0,0,0)",
+            "divider_color": "rgba(0,0,0,0)",
+            "icon_color": "#414a29",
+            "title_color": "#666666",
+            "body_color": "#65615a"
+          }
+        },
         "sustainability_card_D9cbXH": {
           "type": "sustainability_card",
           "settings": {
@@ -210,19 +243,20 @@
             "footer_gap": 10,
             "logo_width": 32,
             "footer_text_size": 14,
-            "background_color": "#414A29",
+            "background_color": "#414a29",
             "heading_color": "#ffffff",
             "text_color": "#f3f1e6",
             "accent_color": "#e6b13a",
             "border_color": "#6f7755",
             "divider_color": "#6f7755",
-            "badge_background_color": "#414A29",
+            "badge_background_color": "#414a29",
             "badge_text_color": "#ffffff",
             "badge_border_color": "#6f7755"
           }
         },
         "why_we_love_this": {
           "type": "why_we_love_this",
+          "disabled": true,
           "settings": {
             "heading": "WHY WE LOVE THIS",
             "metafield_namespace": "custom",
@@ -247,11 +281,11 @@
             "body_color": "#65615a",
             "icon_color": "#b43a3a",
             "border_color": "#ece8e0"
-          },
-          "disabled": true
+          }
         },
         "materials": {
           "type": "materials",
+          "disabled": true,
           "settings": {
             "heading": "MATERIALS",
             "body": "<p>Woven from organic cotton and sustainably sourced jute — one of Earth’s most carbon-negative fibres — using Bengali textile craft passed down through generations.</p>",
@@ -276,11 +310,11 @@
             "icon_color": "#b43a3a",
             "tick_color": "#b43a3a",
             "border_color": "#ece8e0"
-          },
-          "disabled": true
+          }
         },
         "fit_dimensions": {
           "type": "fit_dimensions",
+          "disabled": true,
           "settings": {
             "heading": "FIT & DIMENSIONS",
             "metafield_namespace": "custom",
@@ -325,11 +359,11 @@
             "table_border_color": "#ece8e0",
             "label_color": "#938e84",
             "value_color": "#444444"
-          },
-          "disabled": true
+          }
         },
         "care_instructions": {
           "type": "care_instructions",
+          "disabled": true,
           "settings": {
             "heading": "CARE INSTRUCTIONS",
             "body": "<p>Made from natural fibres, so a little love keeps it beautiful for years.</p>",
@@ -355,11 +389,11 @@
             "icon_color": "#b43a3a",
             "tick_color": "#b43a3a",
             "border_color": "#ece8e0"
-          },
-          "disabled": true
+          }
         },
         "sustainability_details": {
           "type": "sustainability_details",
+          "disabled": true,
           "settings": {
             "heading": "SUSTAINABILITY",
             "intro": "<p>Every Kaahu piece is made to give back — to the planet and to the craft that raised us.</p>",
@@ -403,15 +437,15 @@
             "custom_icon_close": "-",
             "title_color": "#1d1b17",
             "body_color": "#65615a",
-            "item_title_color": "#414A29",
+            "item_title_color": "#414a29",
             "icon_color": "#b43a3a",
             "badge_background_color": "#ffffff",
             "border_color": "#ece8e0"
-          },
-          "disabled": true
+          }
         },
         "shipping_returns": {
           "type": "shipping_returns",
+          "disabled": true,
           "settings": {
             "heading": "SHIPPING & RETURNS",
             "body": "<p>Free carbon-neutral shipping on all U.S. orders — typically 5–8 business days. Changed your mind? You have <strong>90 days</strong> for a hassle-free return.</p>",
@@ -434,40 +468,6 @@
             "body_color": "#65615a",
             "icon_color": "#b43a3a",
             "border_color": "#ece8e0"
-          },
-          "disabled": true
-        },
-        "service_highlights": {
-          "type": "service_highlights",
-          "settings": {
-            "row_1_icon": "truck",
-            "row_1_title": "Free carbon-neutral shipping",
-            "row_1_text": "",
-            "row_2_icon": "box",
-            "row_2_title": "90-day easy returns",
-            "row_2_text": "",
-            "row_3_icon": "chat",
-            "row_3_title": "",
-            "row_3_text": "",
-            "margin_top": 14,
-            "margin_bottom": 12,
-            "row_padding_vertical": 10,
-            "row_padding_horizontal": 12,
-            "row_gap": 9,
-            "corner_radius": 0,
-            "border_width": 0,
-            "icon_size": 18,
-            "title_size_mobile": 14,
-            "title_size_desktop": 14,
-            "title_weight": "500",
-            "body_size_mobile": 14,
-            "body_size_desktop": 14,
-            "background_color": "rgba(0,0,0,0)",
-            "border_color": "rgba(0,0,0,0)",
-            "divider_color": "rgba(0,0,0,0)",
-            "icon_color": "#414A29",
-            "title_color": "#666666",
-            "body_color": "#65615a"
           }
         },
         "description": {
@@ -534,8 +534,8 @@
         "sticky_buttons_shadow": 0,
         "sticky_buttons_mobile_summary": true,
         "sticky_buttons_label": "ADD TO BAG",
-        "sticky_buttons_button_height": 48,
-        "sticky_buttons_button_radius": 28,
+        "sticky_buttons_button_height": 56,
+        "sticky_buttons_button_radius": 10,
         "sticky_buttons_button_text_size": 15,
         "sticky_buttons_dynamic_checkout_gap": 6,
         "sticky_buttons_more_options_size": 14,
@@ -604,99 +604,6 @@
         "bottom_border": false,
         "border_width": "full",
         "border_color": "dark"
-      }
-    },
-    "section_product_collection_links_Uc944h": {
-      "type": "section-product-collection-links",
-      "disabled": true,
-      "settings": {
-        "heading": "Browse more",
-        "heading_size": "h2",
-        "alignment": "center",
-        "list_layout": "vertical",
-        "link_style": "text",
-        "max_links": 4,
-        "text_color": "fg-body",
-        "bg_color": "bg-body",
-        "padding_top": 60,
-        "padding_bottom": 0,
-        "top_border": false,
-        "bottom_border": false,
-        "border_width": "normal",
-        "border_color": "dark"
-      }
-    },
-    "1771038837e7706440": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_PF7CMy": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "real_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_PF7CMy"
-      ],
-      "settings": {
-        "include_margins": true
-      },
-      "disabled": true
-    },
-    "complementary-products": {
-      "type": "complementary-products",
-      "disabled": true,
-      "settings": {
-        "heading": "Pair it with",
-        "heading_size": "h2",
-        "heading_alignment": "left",
-        "products_to_show": 6,
-        "arrow_style": "solid-inverted",
-        "card_image_display": "second_image_hover",
-        "pagination_color_scheme": "body",
-        "show_price": true,
-        "show_vendor": false,
-        "show_swatches": false,
-        "show_color_count": false,
-        "text_color": "fg-body",
-        "bg_color": "bg-body",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "top_border": false,
-        "bottom_border": false,
-        "border_width": "normal",
-        "border_color": "dark"
-      }
-    },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "You May Also Like",
-        "heading_size": "h3",
-        "heading_alignment": "left",
-        "products_to_show": 9,
-        "columns_tablet": 4,
-        "columns_desktop": 4,
-        "arrow_style": "minimal",
-        "card_image_display": "second_image_hover",
-        "pagination_color_scheme": "body",
-        "show_price": true,
-        "show_vendor": false,
-        "show_swatches": false,
-        "show_color_count": false,
-        "show_rating": false,
-        "enable_quick_add": true,
-        "text_color": "fg-body",
-        "bg_color": "bg-body",
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "top_border": false,
-        "border_width": "full",
-        "border_color": "light"
       }
     },
     "kaahu_product_details": {
@@ -845,7 +752,7 @@
         "heading_size_mobile": 34,
         "text_size_desktop": 17,
         "text_size_mobile": 15,
-        "panel_background_color": "#414A29",
+        "panel_background_color": "#414a29",
         "heading_color": "#ffffff",
         "text_color": "#d8d7cb",
         "accent_color": "#e6b13a",
@@ -856,7 +763,7 @@
         "service_border_color": "#ece8e0",
         "service_heading_color": "#1d1b17",
         "service_text_color": "#65615a",
-        "service_icon_color": "#414A29"
+        "service_icon_color": "#414a29"
       }
     },
     "kaahu_product_reviews": {
@@ -917,7 +824,7 @@
         "text_color": "#65615a",
         "muted_color": "#938e84",
         "star_color": "#e0a52a",
-        "olive_color": "#414A29",
+        "olive_color": "#414a29",
         "border_color": "#ece8e0",
         "card_background_color": "#fffdf9",
         "button_text_color": "#1d1b17",
@@ -930,10 +837,15 @@
         "pdp_comm_1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
+            "caption": "@maya.wears",
+            "alt_text": "Kaahu bag styled by customer",
             "card_link": "https://www.instagram.com/houseofkaahu/",
             "link_to_instagram_profile": true,
             "open_new_tab": true,
             "show_pin_dot": false,
+            "pin_color": "#b46483",
             "card_background_color": "#ffffff",
             "caption_color": "#ffffff",
             "rotation_desktop": 0,
@@ -943,20 +855,21 @@
             "image_aspect_ratio": "4 / 5",
             "image_object_fit": "cover",
             "card_shadow_strength": 0,
-            "card_border_radius": 18,
-            "image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
-            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
-            "caption": "@maya.wears",
-            "alt_text": "Kaahu bag styled by customer"
+            "card_border_radius": 18
           }
         },
         "pdp_comm_2": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
+            "caption": "@studio.noor",
+            "alt_text": "Kaahu bag lifestyle moment",
             "card_link": "https://www.instagram.com/houseofkaahu/",
             "link_to_instagram_profile": true,
             "open_new_tab": true,
             "show_pin_dot": false,
+            "pin_color": "#b46483",
             "card_background_color": "#ffffff",
             "caption_color": "#ffffff",
             "rotation_desktop": 0,
@@ -966,20 +879,21 @@
             "image_aspect_ratio": "4 / 5",
             "image_object_fit": "cover",
             "card_shadow_strength": 0,
-            "card_border_radius": 18,
-            "image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
-            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
-            "caption": "@studio.noor",
-            "alt_text": "Kaahu bag lifestyle moment"
+            "card_border_radius": 18
           }
         },
         "pdp_comm_3": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
+            "caption": "@everyday.edit",
+            "alt_text": "Kaahu tote product moment",
             "card_link": "https://www.instagram.com/houseofkaahu/",
             "link_to_instagram_profile": true,
             "open_new_tab": true,
             "show_pin_dot": false,
+            "pin_color": "#b46483",
             "card_background_color": "#ffffff",
             "caption_color": "#ffffff",
             "rotation_desktop": 0,
@@ -989,20 +903,21 @@
             "image_aspect_ratio": "4 / 5",
             "image_object_fit": "cover",
             "card_shadow_strength": 0,
-            "card_border_radius": 18,
-            "image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
-            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
-            "caption": "@everyday.edit",
-            "alt_text": "Kaahu tote product moment"
+            "card_border_radius": 18
           }
         },
         "pdp_comm_4": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
+            "caption": "@the.carryall",
+            "alt_text": "Kaahu carryall product moment",
             "card_link": "https://www.instagram.com/houseofkaahu/",
             "link_to_instagram_profile": true,
             "open_new_tab": true,
             "show_pin_dot": false,
+            "pin_color": "#b46483",
             "card_background_color": "#ffffff",
             "caption_color": "#ffffff",
             "rotation_desktop": 0,
@@ -1012,11 +927,7 @@
             "image_aspect_ratio": "4 / 5",
             "image_object_fit": "cover",
             "card_shadow_strength": 0,
-            "card_border_radius": 18,
-            "image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
-            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
-            "caption": "@the.carryall",
-            "alt_text": "Kaahu carryall product moment"
+            "card_border_radius": 18
           }
         }
       },
@@ -1032,11 +943,11 @@
         "background_gradient": "",
         "section_max_width": 1320,
         "content_max_width": 620,
+        "full_width": false,
         "padding_top_desktop": 56,
         "padding_bottom_desktop": 76,
         "padding_top_mobile": 44,
         "padding_bottom_mobile": 56,
-        "full_width": false,
         "show_handle": false,
         "instagram_handle": "@HOUSEOFKAAHU",
         "instagram_handle_link": "https://www.instagram.com/houseofkaahu/",
@@ -1056,15 +967,19 @@
         "columns_desktop": 4,
         "columns_tablet": 2,
         "columns_mobile": "1",
+        "mobile_layout": "scroll",
         "gap_desktop": 24,
         "gap_mobile": 16,
         "card_alignment": "center",
-        "card_width_desktop": 300,
-        "card_width_mobile": 280,
+        "enable_staggered_layout": false,
+        "stagger_offset": 0,
+        "enable_card_rotation": false,
         "card_background_color": "#ffffff",
         "card_padding": 8,
         "card_border_radius": 18,
         "card_shadow_strength": 0,
+        "card_width_desktop": 300,
+        "card_width_mobile": 280,
         "caption_font": "assistant_n4",
         "caption_size_desktop": 14,
         "caption_size_mobile": 13,
@@ -1072,13 +987,9 @@
         "caption_alignment": "left",
         "caption_color": "#ffffff",
         "show_pin_dots": false,
-        "default_pin_color": "#e0a52a",
         "pin_size": 20,
         "pin_shadow_strength": 0,
-        "enable_card_rotation": false,
-        "enable_staggered_layout": false,
-        "stagger_offset": 0,
-        "mobile_layout": "scroll",
+        "default_pin_color": "#e0a52a",
         "show_cta_area": true,
         "cta_headline": "",
         "cta_headline_size_desktop": 18,
@@ -1086,6 +997,12 @@
         "cta_headline_color": "#1d1b17",
         "cta_gap_desktop": 40,
         "cta_gap_mobile": 32,
+        "button_one_text": "",
+        "button_one_link": "",
+        "button_one_show_icon": true,
+        "button_two_text": "Follow @houseofkaahu",
+        "button_two_link": "https://www.instagram.com/houseofkaahu/",
+        "button_two_show_icon": true,
         "button_style": "outline",
         "button_border_radius": 60,
         "button_text_color": "#1d1b17",
@@ -1094,12 +1011,6 @@
         "button_hover_text_color": "#ffffff",
         "button_hover_background_color": "#1d1b17",
         "button_hover_border_color": "#1d1b17",
-        "button_one_text": "",
-        "button_one_link": "",
-        "button_one_show_icon": true,
-        "button_two_text": "Follow @houseofkaahu",
-        "button_two_link": "https://www.instagram.com/houseofkaahu/",
-        "button_two_show_icon": true,
         "show_instagram_icon": true
       }
     },
@@ -1156,6 +1067,99 @@
         "logo_size_mobile": 24,
         "tagline_size_desktop": 19,
         "tagline_size_mobile": 17
+      }
+    },
+    "section_product_collection_links_Uc944h": {
+      "type": "section-product-collection-links",
+      "disabled": true,
+      "settings": {
+        "heading": "Browse more",
+        "heading_size": "h2",
+        "alignment": "center",
+        "list_layout": "vertical",
+        "link_style": "text",
+        "max_links": 4,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "1771038837e7706440": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_PF7CMy": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_PF7CMy"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "complementary-products": {
+      "type": "complementary-products",
+      "disabled": true,
+      "settings": {
+        "heading": "Pair it with",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "products_to_show": 6,
+        "arrow_style": "solid-inverted",
+        "card_image_display": "second_image_hover",
+        "pagination_color_scheme": "body",
+        "show_price": true,
+        "show_vendor": false,
+        "show_swatches": false,
+        "show_color_count": false,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You May Also Like",
+        "heading_size": "h3",
+        "heading_alignment": "left",
+        "products_to_show": 9,
+        "columns_tablet": 4,
+        "columns_desktop": 4,
+        "arrow_style": "minimal",
+        "card_image_display": "second_image_hover",
+        "pagination_color_scheme": "body",
+        "show_price": true,
+        "show_vendor": false,
+        "show_swatches": false,
+        "show_color_count": false,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "top_border": false,
+        "border_width": "full",
+        "border_color": "light"
       }
     }
   },
