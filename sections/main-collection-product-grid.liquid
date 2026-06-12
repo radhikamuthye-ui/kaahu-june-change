@@ -13,12 +13,28 @@
 .section-{{ section.id }}-padding {
   padding-top: {{ section.settings.padding_top | times: 0.8 | round: 0 }}px;
   padding-bottom: {{ section.settings.padding_bottom | times: 0.8 | round: 0 }}px;
+  --kaahu-collection-bg: {{ section.settings.collection_background_color }};
+  --kaahu-collection-max-width: {{ section.settings.collection_max_width }}px;
+  --kaahu-collection-grid-row-gap: {{ section.settings.grid_row_gap_mobile }}px;
+  --kaahu-collection-grid-column-gap: {{ section.settings.grid_column_gap_mobile }}px;
+  --kaahu-collection-card-radius: {{ section.settings.card_image_radius }}px;
+  --kaahu-collection-image-bg: {{ section.settings.card_image_background_color }};
+  --kaahu-collection-title-size: {{ section.settings.product_title_size_mobile }}px;
+  --kaahu-collection-price-size: {{ section.settings.product_price_size_mobile }}px;
+  --kaahu-collection-title-color: {{ section.settings.product_title_color }};
+  --kaahu-collection-price-color: {{ section.settings.product_price_color }};
+  --kaahu-collection-sale-color: {{ section.settings.sale_price_color }};
+  --kaahu-collection-compare-color: {{ section.settings.compare_price_color }};
 }
 
 @media screen and (min-width: 750px) {
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    --kaahu-collection-grid-row-gap: {{ section.settings.grid_row_gap_desktop }}px;
+    --kaahu-collection-grid-column-gap: {{ section.settings.grid_column_gap_desktop }}px;
+    --kaahu-collection-title-size: {{ section.settings.product_title_size_desktop }}px;
+    --kaahu-collection-price-size: {{ section.settings.product_price_size_desktop }}px;
   }
 }
   
@@ -48,7 +64,7 @@
   <script src="{{ 'component-facets.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-<div class="mcpg{% if settings.filter_type == 'vertical' and section.settings.enable_filtering %} filter-layout--vertical{% endif %} section-{{ section.id }}-padding">
+<div class="mcpg collection-template-{{ template.suffix | default: template.name | handle }}{% if settings.filter_type == 'vertical' and section.settings.enable_filtering %} filter-layout--vertical{% endif %} section-{{ section.id }}-padding">
   {%- paginate collection.products by section.settings.products_per_page -%}
 
   {% if settings.filter_type == 'vertical' and section.settings.enable_filtering and section.settings.enable_sorting %}
@@ -449,6 +465,146 @@
       "id": "enable_quick_add",
       "default": false,
       "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
+    },
+    {
+      "type": "header",
+      "content": "All of Kaahu styling"
+    },
+    {
+      "type": "color",
+      "id": "collection_background_color",
+      "label": "Section background",
+      "default": "#fbfaf7"
+    },
+    {
+      "type": "range",
+      "id": "collection_max_width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Grid max width",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "grid_column_gap_desktop",
+      "min": 8,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop column gap",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "grid_row_gap_desktop",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop row gap",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "grid_column_gap_mobile",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile column gap",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "grid_row_gap_mobile",
+      "min": 14,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile row gap",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "card_image_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Product image border radius",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "card_image_background_color",
+      "label": "Product image background",
+      "default": "#f4efe8"
+    },
+    {
+      "type": "range",
+      "id": "product_title_size_desktop",
+      "min": 14,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title size desktop",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "product_title_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title size mobile",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "product_price_size_desktop",
+      "min": 12,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size desktop",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_price_size_mobile",
+      "min": 11,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size mobile",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title color",
+      "default": "#24221e"
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Product price color",
+      "default": "#24221e"
+    },
+    {
+      "type": "color",
+      "id": "sale_price_color",
+      "label": "Sale price color",
+      "default": "#b05f7d"
+    },
+    {
+      "type": "color",
+      "id": "compare_price_color",
+      "label": "Compare-at price color",
+      "default": "#817b72"
     },
     {
       "type": "header",

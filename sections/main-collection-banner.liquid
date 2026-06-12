@@ -26,6 +26,14 @@
   margin-bottom: {{ section.settings.title_margin }}px;
 }
 
+.section-{{ section.id }} {
+  --kaahu-collection-hero-title-size-mobile: {{ section.settings.kaahu_title_size_mobile }}px;
+  --kaahu-collection-hero-title-size-desktop: {{ section.settings.kaahu_title_size_desktop }}px;
+  --kaahu-collection-hero-description-size-mobile: {{ section.settings.kaahu_description_size_mobile }}px;
+  --kaahu-collection-hero-description-size-desktop: {{ section.settings.kaahu_description_size_desktop }}px;
+  --kaahu-collection-hero-overlay-opacity: {{ section.settings.kaahu_overlay_opacity | divided_by: 100.0 }};
+}
+
 {% if section.settings.cards_img_position == 'left' %}
 @media only screen and (min-width: 900px) {
   .collection-card-banner--image-card {
@@ -63,7 +71,7 @@
 
 {% endstyle %}
 
-<div class="collection-banner-wrapper collection-banner-{{ section.settings.banner_layout }} cbw-image-ratio--{{ section.settings.stacked_img_ratio }} text-width--{{ section.settings.text_width }}">
+<div class="collection-banner-wrapper collection-template-{{ template.suffix | default: template.name | handle }} collection-banner-{{ section.settings.banner_layout }} cbw-image-ratio--{{ section.settings.stacked_img_ratio }} text-width--{{ section.settings.text_width }}">
 
 {% if section.settings.banner_layout == 'split_banner' and collection.image %}
 
@@ -531,6 +539,60 @@
       "type": "color",
       "id": "bg_col",
       "label": "t:sections.all.colors.background_color.label"
+    },
+    {
+      "type": "header",
+      "content": "All of Kaahu hero styling"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_title_size_desktop",
+      "min": 32,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "kaahu_title_size_mobile",
+      "min": 28,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "kaahu_description_size_desktop",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size desktop",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "kaahu_description_size_mobile",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "kaahu_overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "default": 35
     },
     {
       "type": "header",

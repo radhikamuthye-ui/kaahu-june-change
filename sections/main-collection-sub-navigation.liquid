@@ -2,6 +2,11 @@
 .section-{{ section.id }} .csn-inner {
   margin-top: {{ section.settings.padding_top | times: 0.5 }}px;
   margin-bottom: {{ section.settings.padding_bottom | times: 0.5 }}px;
+  --kaahu-cat-size-mobile: {{ section.settings.image_size_mobile }}px;
+  --kaahu-cat-size-desktop: {{ section.settings.image_size_desktop }}px;
+  --kaahu-cat-gap: {{ section.settings.item_gap }}px;
+  --kaahu-cat-label-color: {{ section.settings.label_color }};
+  --kaahu-cat-label-hover-color: {{ section.settings.label_hover_color }};
 }
   
 @media only screen and (min-width: 750px) {
@@ -19,8 +24,13 @@
   
 {% endstyle %}
 
-{% if section.settings.menu != blank %}
-<div class="collection-sub-navigation section-{{ section.id }}{% if section.settings.menu_style == 'images' %} csn-images{% else %} page-width{% endif %} align-{{ section.settings.alignment }} menu-style-{{ section.settings.menu_style }}">
+{% assign has_block_navigation = false %}
+{% if section.blocks.size > 0 %}
+  {% assign has_block_navigation = true %}
+{% endif %}
+
+{% if section.settings.menu != blank or has_block_navigation %}
+<div class="collection-sub-navigation collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}{% if section.settings.menu_style == 'images' %} csn-images{% else %} page-width{% endif %} align-{{ section.settings.alignment }} menu-style-{{ section.settings.menu_style }}">
 <div class="csn-inner">
 {% if section.settings.menu_style == 'images' and section.settings.menu.links.size > 6 %}
 <div class="csn-arrows">
@@ -29,22 +39,43 @@
 </div>
 {% endif %}
   <ul class="csn-ul">
-    {% for link in section.settings.menu.links %}
-      <li>
-        <a href="{{ link.url }}"{% if collection.url == link.url %} class="current-link"{% endif %}>
-          {% if link.url contains '/collections/' and section.settings.menu_style == 'images' %}
-            {% assign collection_handle_no_child = link.url | split: '/' | last %}
-            {% assign collection_no_child = collections[collection_handle_no_child] %}
-            <div class="collection-sub-navigation-image csn-image-ratio-{{ section.settings.image_ratio }}">
-            {% if collection_no_child.featured_image %}
-            {{ collection_no_child.featured_image | image_url: width: 280 | image_tag: loading: 'lazy' }}
+    {% if section.settings.menu != blank %}
+      {% for link in section.settings.menu.links %}
+        <li>
+          <a href="{{ link.url }}"{% if collection.url == link.url %} class="current-link"{% endif %}>
+            {% if link.url contains '/collections/' and section.settings.menu_style == 'images' %}
+              {% assign collection_handle_no_child = link.url | split: '/' | last %}
+              {% assign collection_no_child = collections[collection_handle_no_child] %}
+              <div class="collection-sub-navigation-image csn-image-ratio-{{ section.settings.image_ratio }}">
+              {% if collection_no_child.featured_image %}
+              {{ collection_no_child.featured_image | image_url: width: 360 | image_tag: loading: 'lazy' }}
+              {% endif %}
+              </div>
             {% endif %}
-            </div>
-          {% endif %}
-          <span class="link-label">{{ link.title }}</span>
-        </a>
-      </li>
-    {% endfor %}
+            <span class="link-label">{{ link.title }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    {% else %}
+      {% for block in section.blocks %}
+        {% assign block_collection = block.settings.collection %}
+        {% assign block_image = block.settings.image | default: block_collection.featured_image %}
+        {% assign block_label = block.settings.label | default: block_collection.title %}
+        {% assign block_url = block.settings.link | default: block_collection.url %}
+        <li {{ block.shopify_attributes }}>
+          <a href="{{ block_url }}"{% if collection.url == block_url %} class="current-link"{% endif %}>
+            {% if section.settings.menu_style == 'images' %}
+              <div class="collection-sub-navigation-image csn-image-ratio-{{ section.settings.image_ratio }}">
+                {% if block_image %}
+                  {{ block_image | image_url: width: 360 | image_tag: loading: 'lazy', alt: block_label }}
+                {% endif %}
+              </div>
+            {% endif %}
+            <span class="link-label">{{ block_label }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    {% endif %}
   </ul>
 </div>
 </div>
@@ -201,6 +232,48 @@ window.addEventListener('resize', positionArrows);
         "label": "t:sections.all.ratio.image_ratio"
       },
       {
+        "type": "range",
+        "id": "image_size_desktop",
+        "min": 64,
+        "max": 140,
+        "step": 2,
+        "unit": "px",
+        "label": "Image size desktop",
+        "default": 92
+      },
+      {
+        "type": "range",
+        "id": "image_size_mobile",
+        "min": 54,
+        "max": 110,
+        "step": 2,
+        "unit": "px",
+        "label": "Image size mobile",
+        "default": 76
+      },
+      {
+        "type": "range",
+        "id": "item_gap",
+        "min": 8,
+        "max": 72,
+        "step": 2,
+        "unit": "px",
+        "label": "Gap between categories",
+        "default": 42
+      },
+      {
+        "type": "color",
+        "id": "label_color",
+        "label": "Label color",
+        "default": "#6f6a62"
+      },
+      {
+        "type": "color",
+        "id": "label_hover_color",
+        "label": "Label hover color",
+        "default": "#d9a73e"
+      },
+      {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -219,6 +292,34 @@ window.addEventListener('resize', positionArrows);
       "unit": "px",
       "default": 40,
       "label": "t:sections.all.padding.padding_bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection_link",
+        "name": "Collection link",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Custom label"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Custom image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Custom link"
+          }
+        ]
       }
     ]
 }
