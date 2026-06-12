@@ -1,0 +1,205 @@
+.kaahu-impact-membership {
+  background: var(--kim-section-bg);
+}
+
+.kaahu-impact-membership__inner {
+  width: min(calc(100% - 36px), var(--kim-max-width));
+  margin: 0 auto;
+  padding-top: calc(var(--kim-section-padding-top) * 0.68);
+  padding-bottom: calc(var(--kim-section-padding-bottom) * 0.72);
+}
+
+.kaahu-impact-membership__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kim-gap-mobile);
+  padding: var(--kim-container-padding-mobile);
+  border-radius: var(--kim-radius);
+  background: var(--kim-container-bg);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.kaahu-impact-membership__media {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--kim-media-radius);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.kaahu-impact-membership__image,
+.kaahu-impact-membership__video,
+.kaahu-impact-membership__placeholder,
+.kaahu-impact-membership__media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.kaahu-impact-membership__image,
+.kaahu-impact-membership__video,
+.kaahu-impact-membership__media video {
+  object-fit: var(--kim-media-fit);
+  object-position: var(--kim-media-position);
+}
+
+.kaahu-impact-membership__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.64);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.kaahu-impact-membership__content {
+  width: 100%;
+  min-width: 0;
+  padding: 4px 2px 2px;
+  color: var(--kim-body-color);
+  background: var(--kim-content-bg);
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.kaahu-impact-membership__container--mobile-center .kaahu-impact-membership__content {
+  text-align: center;
+}
+
+.kaahu-impact-membership__eyebrow {
+  margin-bottom: 18px;
+  color: var(--kim-eyebrow-color);
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: var(--kim-eyebrow-size);
+  font-style: var(--font-accent-style, normal);
+  font-weight: var(--kim-eyebrow-weight);
+  letter-spacing: var(--kim-eyebrow-letter-spacing);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.kaahu-impact-membership__heading {
+  max-width: 760px;
+  margin: 0;
+  color: var(--kim-heading-color);
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: var(--kim-heading-size-mobile);
+  font-style: var(--font-heading-style, normal);
+  font-weight: var(--kim-heading-weight);
+  line-height: var(--kim-heading-line-height);
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.kaahu-impact-membership__body {
+  max-width: 660px;
+  margin-top: 22px;
+  color: var(--kim-body-color);
+  font-family: var(--font-body-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: var(--kim-body-size-mobile);
+  font-style: var(--font-body-style, normal);
+  font-weight: var(--kim-body-weight);
+  line-height: var(--kim-body-line-height);
+  overflow-wrap: anywhere;
+}
+
+.kaahu-impact-membership__body p {
+  margin: 0;
+}
+
+.kaahu-impact-membership__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 34px;
+  padding: 0 28px;
+  border: 1px solid var(--kim-button-border);
+  border-radius: 999px;
+  color: var(--kim-button-text);
+  background: var(--kim-button-bg);
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.kaahu-impact-membership__button--outline {
+  background: transparent;
+}
+
+.kaahu-impact-membership__button:hover {
+  border-color: var(--kim-button-hover-border);
+  color: var(--kim-button-hover-text);
+  background: var(--kim-button-hover-bg);
+}
+
+@media only screen and (min-width: 750px) {
+  .kaahu-impact-membership__inner {
+    width: min(calc(100% - 64px), var(--kim-max-width));
+  }
+
+  .kaahu-impact-membership__container {
+    padding: calc(var(--kim-container-padding-desktop) * 0.72);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .kaahu-impact-membership__inner {
+    width: min(calc(100% - 96px), var(--kim-max-width));
+  }
+}
+
+@media only screen and (min-width: 990px) {
+  .kaahu-impact-membership__inner {
+    padding-top: var(--kim-section-padding-top);
+    padding-bottom: var(--kim-section-padding-bottom);
+  }
+
+  .kaahu-impact-membership__container {
+    display: grid;
+    grid-template-columns: minmax(0, var(--kim-media-width)) minmax(0, var(--kim-content-width));
+    gap: var(--kim-gap-desktop);
+    justify-content: space-between;
+    padding: var(--kim-container-padding-desktop);
+  }
+
+  .kaahu-impact-membership__container--desktop-center {
+    align-items: center;
+  }
+
+  .kaahu-impact-membership__container--desktop-top {
+    align-items: start;
+  }
+
+  .kaahu-impact-membership__container--desktop-bottom {
+    align-items: end;
+  }
+
+  .kaahu-impact-membership__content {
+    padding: 0;
+    text-align: left;
+  }
+
+  .kaahu-impact-membership__heading {
+    font-size: var(--kim-heading-size-desktop);
+  }
+
+  .kaahu-impact-membership__body {
+    font-size: var(--kim-body-size-desktop);
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .kaahu-impact-membership__container {
+    border-radius: min(var(--kim-radius), 26px);
+  }
+}

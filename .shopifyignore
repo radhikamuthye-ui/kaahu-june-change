@@ -1,0 +1,10 @@
+.git/*
+.tools/*
+node_modules/*
+.env
+.DS_Store
+README.md
+shopify-theme
+package.json
+package-lock.json
+npm-debug.log*

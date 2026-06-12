@@ -1,0 +1,373 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "page-width-medium",
+        "hdr_alignment": "center",
+        "heading_hide": false,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "image_banner_KepbXG": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_VxVXYC": {
+          "type": "heading",
+          "settings": {
+            "heading": "In Celebration of Women",
+            "heading_size": "h0",
+            "txt_alignment": "left"
+          }
+        },
+        "text_i9RhpF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>25% of Sitewide</p>",
+            "text_size": "text-xl"
+          }
+        },
+        "buttons_AdCjDW": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "btn_one_show": false,
+            "btn_one_txt": "Button label",
+            "btn_one_link": "",
+            "btn_one_style": "button--solid",
+            "btn_two_show": false,
+            "btn_two_txt": "Button label",
+            "btn_two_link": "",
+            "btn_two_style": "link--underlined",
+            "btn_layout": "inline",
+            "btn_alignment": "auto",
+            "btn_width_mobile": "auto",
+            "btn_color_scheme": "default",
+            "padding_top": 20,
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "heading_VxVXYC",
+        "text_i9RhpF",
+        "buttons_AdCjDW"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "banner_size": "banner-style-medium",
+        "banner_full_link": "shopify://products/blush-flame-messenger-handbag",
+        "image": "shopify://shop_images/20250107-DSC01492_ee592e48-8829-4fc6-abd8-5780a0a41a91.jpg",
+        "primary_image_size": "dt-full-bleed",
+        "image_padding": 0,
+        "main_image_animation": "none",
+        "image_blur": 0,
+        "primary_image_mobile_show": false,
+        "image_secondary": "shopify://shop_images/20250107-DSC01492.jpg",
+        "secondary_image_size": "dt-full-bleed",
+        "secondary_image_padding": 0,
+        "secondary_image_animation": "none",
+        "secondary_image_blur": 0,
+        "secondary_image_mobile_show": true,
+        "txt_alignment": "left",
+        "txt_position": "middle_left",
+        "content_width": 45,
+        "text_vertical_spacing": 10,
+        "top_padding": 0,
+        "bottom_padding": 0,
+        "fade_in_text": true,
+        "scroll_fade_effect": false,
+        "text_blend_effect": "none",
+        "text_color": "fg-white",
+        "bg_color": "rgba(0,0,0,0)",
+        "overlay_level": 10
+      }
+    },
+    "rich_text_knrDMH": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_peEK4K": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "alignment": "left",
+            "opacity": 100
+          }
+        },
+        "heading_ch7b8n": {
+          "type": "heading",
+          "settings": {
+            "heading": "In Celebration of Women",
+            "heading_size": "h3",
+            "alignment": "left"
+          }
+        },
+        "text_yP8kab": {
+          "type": "text",
+          "settings": {
+            "text": "<p>25% off sitewide</p>",
+            "text_size": "text-xl",
+            "alignment": "left",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "caption_peEK4K",
+        "heading_ch7b8n",
+        "text_yP8kab"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 10,
+        "bg_image_blur": 10,
+        "text_color": "fg-03",
+        "bg_color": "bg-body",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "featured_collection_VW7LRq": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.name",
+      "settings": {
+        "collection": "sale",
+        "content_alignment": "center",
+        "section_label": "25% of All of Kaahu",
+        "heading": "Women' Day Sale",
+        "heading_size": "h2",
+        "description": "",
+        "btn_enable": false,
+        "btn_label": "",
+        "btn_style": "solid",
+        "btn_position_mobile": "bottom",
+        "btn_position_desktop": "bottom",
+        "products_layout": "carousel",
+        "arrow_style": "solid",
+        "content_width": "page-width",
+        "no_items": 8,
+        "mobile_grid": "1",
+        "tablet_grid": "3",
+        "dt_grid": "4",
+        "card_image_display": "second_image_hover",
+        "pagination_color_scheme": "body",
+        "show_prices": true,
+        "show_vendor": false,
+        "show_swatches": false,
+        "show_color_count": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "rollover_titles": false,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "btn_color_scheme": "default",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "featured_product_xPAnQq": {
+      "type": "featured-product",
+      "blocks": {
+        "judge_me_reviews_preview_badge_homepage_pELpqB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "product": "blush-flame-messenger-handbag"
+          }
+        },
+        "title_eTbGUz": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_pDnWFj": {
+          "type": "price",
+          "settings": {
+            "price_show_discount": true,
+            "price_show_taxes": true,
+            "block_padding_top": 10,
+            "block_padding_bottom": 10
+          }
+        },
+        "button_DB3iX3": {
+          "type": "button",
+          "settings": {
+            "button_type": "buy",
+            "button_text": "Shop now",
+            "button_style": "link",
+            "button_width_mobile": "full-width",
+            "button_width_desktop": "default"
+          }
+        },
+        "description_z3Tne7": {
+          "type": "description",
+          "settings": {
+            "description": "<p>Why should your bag follow trends, when you don't. For the women who stopped chasing trends and started choosing herself.</p><p>Made from Kaahu's proprietary blend of Jute and Cotton. </p><p>Bold. Functional. Sustainable.</p><p>Free Shipping & Returns for 90 Days. </p>",
+            "block_padding_top": 20,
+            "block_padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_preview_badge_homepage_pELpqB",
+        "title_eTbGUz",
+        "price_pDnWFj",
+        "button_DB3iX3",
+        "description_z3Tne7"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "blush-flame-messenger-handbag",
+        "show_tag": false,
+        "image": "shopify://shop_images/20250107-DSC01509.jpg",
+        "image_ratio": "square",
+        "main_media_width": 50,
+        "secondary_image_scale": "large",
+        "text_color": "fg-03",
+        "bg_color": "bg-body",
+        "btn_color_scheme": "default",
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark",
+        "txt_alignment": "left",
+        "txt_vertical_alignment": "middle",
+        "txt_vertical_padding": 0,
+        "content_width": "page-width-full-grid",
+        "image_alignment": "left",
+        "card_spacing": 0,
+        "top_padding": 20,
+        "bottom_padding": 50
+      }
+    },
+    "rich_text_fGzgX4": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_a6qa8q": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "alignment": "left",
+            "opacity": 100
+          }
+        },
+        "heading_fzfHbB": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h2",
+            "alignment": "left"
+          }
+        },
+        "text_VGMtYY": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_size": "text-std",
+            "alignment": "left",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "caption_a6qa8q",
+        "heading_fzfHbB",
+        "text_VGMtYY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 0,
+        "bg_image_blur": 0,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "1772175941f681983b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d91b591_weY66R": {
+          "type": "ai_gen_block_d91b591",
+          "settings": {
+            "heading": "You may also like",
+            "heading_alignment": "center",
+            "product_list": [
+              "guiding-glow-messenger-handbag",
+              "purely-rose-tote",
+              "radiant-voyage-messenger-handbag",
+              "pocketful-of-sun-shopper-bag"
+            ],
+            "products_to_show": 4,
+            "columns_mobile": "2",
+            "columns_desktop": 4,
+            "grid_gap": 20,
+            "desktop_width_percent": 100,
+            "card_padding": 12,
+            "card_border_radius": 0,
+            "card_background": "#ffffff",
+            "image_background": "#f4f4f4",
+            "heading_size": 24,
+            "product_title_size": 14,
+            "price_size": 14,
+            "header_spacing": 28,
+            "heading_color": "#999999",
+            "text_color": "#666666",
+            "sale_color": "#d2672c",
+            "show_price": true,
+            "show_button": true,
+            "button_text": "Shop Now",
+            "button_background": "#eae9e7",
+            "button_hover_background": "#999999",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d91b591_weY66R"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_KepbXG",
+    "rich_text_knrDMH",
+    "featured_collection_VW7LRq",
+    "featured_product_xPAnQq",
+    "rich_text_fGzgX4",
+    "1772175941f681983b"
+  ]
+}

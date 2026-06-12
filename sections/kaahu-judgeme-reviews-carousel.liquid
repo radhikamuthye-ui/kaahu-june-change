@@ -1,0 +1,495 @@
+{{ 'section-kaahu-judgeme-reviews-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-kaahu-judgeme-reviews-carousel.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign app_block_count = 0
+  assign fallback_block_count = 0
+  for block in section.blocks
+    if block.type == '@app'
+      assign app_block_count = app_block_count | plus: 1
+    elsif block.type == 'review'
+      assign fallback_block_count = fallback_block_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    --kjrc-bg: {{ section.settings.section_background_color }};
+    --kjrc-card-bg: {{ section.settings.card_background_color }};
+    --kjrc-card-border: {{ section.settings.card_border_color }};
+    --kjrc-card-shadow: {{ section.settings.card_shadow_intensity | divided_by: 100.0 }};
+    --kjrc-star-color: {{ section.settings.star_color }};
+    --kjrc-avatar-bg: {{ section.settings.avatar_background_color }};
+    --kjrc-avatar-text: {{ section.settings.avatar_text_color }};
+    --kjrc-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --kjrc-heading-color: {{ section.settings.heading_color }};
+    --kjrc-review-color: {{ section.settings.review_text_color }};
+    --kjrc-name-color: {{ section.settings.customer_name_color }};
+    --kjrc-meta-color: {{ section.settings.metadata_color }};
+    --kjrc-padding-top: {{ section.settings.padding_top }}px;
+    --kjrc-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --kjrc-card-width-mobile: {{ section.settings.card_width_mobile }}px;
+    --kjrc-card-width-tablet: {{ section.settings.card_width_tablet }}px;
+    --kjrc-card-width-desktop: {{ section.settings.card_width_desktop }}px;
+    --kjrc-card-radius: {{ section.settings.card_border_radius }}px;
+    --kjrc-gap: {{ section.settings.card_gap }}px;
+  }
+{%- endstyle -%}
+
+{%- if section.settings.show_section -%}
+  <kaahu-reviews-carousel class="kaahu-judgeme-reviews section-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-pause-hover="{{ section.settings.pause_on_hover }}" data-drag="{{ section.settings.enable_drag }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
+    <div class="kaahu-judgeme-reviews__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="kaahu-judgeme-reviews__eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 id="KaahuReviewsHeading-{{ section.id }}" class="kaahu-judgeme-reviews__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.review_source == 'judgeme' and app_block_count > 0 -%}
+      <div class="kaahu-judgeme-reviews__app" aria-label="Customer reviews from Judge.me">
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}
+            <div class="kaahu-judgeme-reviews__app-block" {{ block.shopify_attributes }}>
+              {% render block %}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="kaahu-judgeme-reviews__carousel-wrap">
+        {%- if section.settings.show_arrows -%}
+          <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--prev" type="button" aria-label="Previous reviews" data-reviews-prev>
+            {% render 'icon-arrow-slider' %}
+          </button>
+        {%- endif -%}
+
+        <div class="kaahu-judgeme-reviews__track" tabindex="0" role="region" aria-label="Customer reviews carousel" data-reviews-track>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              <article class="kaahu-judgeme-reviews__card" {{ block.shopify_attributes }}>
+                {%- if section.settings.show_customer_photo -%}
+                  <div class="kaahu-judgeme-reviews__media">
+                    {%- if block.settings.image != blank -%}
+                      {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: block.settings.name | escape }}
+                    {%- else -%}
+                      <div class="kaahu-judgeme-reviews__media-placeholder" aria-hidden="true"></div>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                <div class="kaahu-judgeme-reviews__card-body">
+                  {%- if section.settings.show_stars -%}
+                    <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                      {%- for index in (1..5) -%}
+                        <span class="{% if index <= block.settings.rating %}is-filled{% endif %}" aria-hidden="true">★</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.text != blank -%}
+                    <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
+                  {%- endif -%}
+
+                  <div class="kaahu-judgeme-reviews__customer">
+                    {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
+                    <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
+                    <span class="kaahu-judgeme-reviews__customer-copy">
+                      {%- if section.settings.show_customer_name and block.settings.name != blank -%}
+                        <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
+                      {%- endif -%}
+                      {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
+                        <span class="kaahu-judgeme-reviews__meta">{{ block.settings.metadata }}</span>
+                      {%- endif -%}
+                    </span>
+                  </div>
+                </div>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.show_arrows -%}
+          <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--next" type="button" aria-label="Next reviews" data-reviews-next>
+            {% render 'icon-arrow-slider' %}
+          </button>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_dots and fallback_block_count > 1 -%}
+        <div class="kaahu-judgeme-reviews__dots" aria-label="Review carousel pagination" data-reviews-dots>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              <button type="button" aria-label="Go to review {{ forloop.index }}" data-reviews-dot></button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </kaahu-reviews-carousel>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Kaahu Judge.me reviews",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["password", "cart"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "review_source",
+      "label": "Review source",
+      "options": [
+        {
+          "value": "judgeme",
+          "label": "Judge.me app block"
+        },
+        {
+          "value": "fallback",
+          "label": "Fallback cards"
+        }
+      ],
+      "default": "judgeme",
+      "info": "Use fallback cards for local preview or if Judge.me data is unavailable."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "KIND WORDS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What our customers say"
+    },
+    {
+      "type": "header",
+      "content": "Review display"
+    },
+    {
+      "type": "range",
+      "id": "reviews_to_display",
+      "min": 3,
+      "max": 20,
+      "step": 1,
+      "label": "Number of reviews to display",
+      "default": 8,
+      "info": "Judge.me app blocks may manage this inside Judge.me. Fallback cards display all cards added below."
+    },
+    {
+      "type": "range",
+      "id": "minimum_rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Minimum star rating",
+      "default": 4,
+      "info": "Use this in Judge.me admin for app-block data. Fallback cards are manually controlled below."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_customer_photo",
+      "label": "Show customer photo",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Show stars",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_customer_name",
+      "label": "Show customer name",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_metadata",
+      "label": "Show verified/location/product metadata",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay fallback carousel",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay speed",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover/focus",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_drag",
+      "label": "Enable drag/swipe",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dots",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 24,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 24,
+      "max": 180,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "min": 240,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Card width on mobile",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_width_tablet",
+      "min": 280,
+      "max": 480,
+      "step": 4,
+      "unit": "px",
+      "label": "Card width on tablet",
+      "default": 380
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "min": 320,
+      "max": 620,
+      "step": 4,
+      "unit": "px",
+      "label": "Card width on desktop",
+      "default": 432
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#fbfaf7"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background",
+      "default": "#fffdf9"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#eee5d8"
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_intensity",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "%",
+      "label": "Card shadow intensity",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star color",
+      "default": "#d7a53b"
+    },
+    {
+      "type": "color",
+      "id": "avatar_background_color",
+      "label": "Avatar background",
+      "default": "#414A29"
+    },
+    {
+      "type": "color",
+      "id": "avatar_text_color",
+      "label": "Avatar text",
+      "default": "#fffdf6"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#b46483"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#24221f"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Review text",
+      "default": "#5d5852"
+    },
+    {
+      "type": "color",
+      "id": "customer_name_color",
+      "label": "Customer name",
+      "default": "#302d29"
+    },
+    {
+      "type": "color",
+      "id": "metadata_color",
+      "label": "Metadata/location",
+      "default": "#8a837b"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "review",
+      "name": "Fallback review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer or product image"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Review text",
+          "default": "<p>This is placeholder review copy for theme preview. Real review content should come from the Judge.me app block.</p>"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Kaahu Customer"
+        },
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Initials",
+          "default": "KC"
+        },
+        {
+          "type": "text",
+          "id": "metadata",
+          "label": "Metadata",
+          "default": "Verified buyer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kaahu Judge.me reviews",
+      "blocks": [
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        },
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

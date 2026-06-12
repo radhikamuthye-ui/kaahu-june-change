@@ -1,0 +1,91 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-header": {
+      "type": "main-cart-header",
+      "settings": {
+        "text_alignment": "center",
+        "heading_size": "h1",
+        "padding_top": 80,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_3ahwyW": {
+      "type": "rich-text",
+      "blocks": {
+        "text_9LGCNd": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>1% of every purchase supports environmental causes.</strong></p><p>Free shipping &  returns for 90 days. No questions asked.</p>",
+            "text_size": "text-small",
+            "alignment": "center",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "text_9LGCNd"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 0,
+        "bg_image_blur": 0,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {}
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "show_dynamic_checkout": true,
+        "summary_background": "border",
+        "cart_footer_corner_radius": 0,
+        "sticky_mobile": false,
+        "totals_font_size": "medium",
+        "totals_font_weight": "normal",
+        "show_summary_title": true,
+        "summary_title_font_size": "text-medium"
+      }
+    }
+  },
+  "order": [
+    "cart-header",
+    "rich_text_3ahwyW",
+    "cart-items",
+    "cart-footer"
+  ]
+}

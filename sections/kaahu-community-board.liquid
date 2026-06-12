@@ -1,0 +1,981 @@
+{{ 'section-kaahu-community-board.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading_font = section.settings.heading_font
+  assign caption_font = section.settings.caption_font
+  assign bg_gradient = section.settings.background_gradient
+  if bg_gradient == blank
+    assign bg_gradient = 'none'
+  endif
+-%}
+
+{%- style -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ caption_font | font_face: font_display: 'swap' }}
+
+  .section-{{ section.id }} {
+    --kcb-bg: {{ section.settings.background_color }};
+    --kcb-bg-gradient: {{ bg_gradient }};
+    --kcb-text: {{ section.settings.description_color }};
+    --kcb-max-width: {{ section.settings.section_max_width }}px;
+    --kcb-content-max-width: {{ section.settings.content_max_width }}px;
+    --kcb-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --kcb-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --kcb-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --kcb-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --kcb-header-align: {{ section.settings.header_alignment }};
+    --kcb-header-gap-desktop: {{ section.settings.header_gap_desktop }}px;
+    --kcb-header-gap-mobile: {{ section.settings.header_gap_mobile }}px;
+    --kcb-handle-color: {{ section.settings.handle_color }};
+    --kcb-heading-color: {{ section.settings.heading_color }};
+    --kcb-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+    --kcb-heading-font-style: {{ heading_font.style }};
+    --kcb-heading-font-weight: {{ heading_font.weight }};
+    --kcb-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --kcb-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --kcb-description-color: {{ section.settings.description_color }};
+    --kcb-description-size-desktop: {{ section.settings.description_size_desktop }}px;
+    --kcb-description-size-mobile: {{ section.settings.description_size_mobile }}px;
+    --kcb-columns-desktop: {{ section.settings.columns_desktop }};
+    --kcb-columns-tablet: {{ section.settings.columns_tablet }};
+    --kcb-columns-mobile: {{ section.settings.columns_mobile }};
+    --kcb-gap-desktop: {{ section.settings.gap_desktop }}px;
+    --kcb-gap-mobile: {{ section.settings.gap_mobile }}px;
+    --kcb-card-align: {{ section.settings.card_alignment }};
+    --kcb-card-width-desktop: {{ section.settings.card_width_desktop }}px;
+    --kcb-card-width-mobile: {{ section.settings.card_width_mobile }}px;
+    --kcb-card-bg: {{ section.settings.card_background_color }};
+    --kcb-card-padding: {{ section.settings.card_padding }}px;
+    --kcb-card-radius: {{ section.settings.card_border_radius }}px;
+    --kcb-card-shadow: {{ section.settings.card_shadow_strength | divided_by: 100.0 }};
+    --kcb-caption-color: {{ section.settings.caption_color }};
+    --kcb-caption-font-family: {{ caption_font.family }}, {{ caption_font.fallback_families }};
+    --kcb-caption-font-style: {{ caption_font.style }};
+    --kcb-caption-font-weight: {{ caption_font.weight }};
+    --kcb-caption-size-desktop: {{ section.settings.caption_size_desktop }}px;
+    --kcb-caption-size-mobile: {{ section.settings.caption_size_mobile }}px;
+    --kcb-caption-line-height: {{ section.settings.caption_line_height | divided_by: 100.0 }};
+    --kcb-caption-align: {{ section.settings.caption_alignment }};
+    --kcb-pin-size: {{ section.settings.pin_size }}px;
+    --kcb-pin-shadow: {{ section.settings.pin_shadow_strength | divided_by: 100.0 }};
+    --kcb-pin-color: {{ section.settings.default_pin_color }};
+    --kcb-stagger-offset: {{ section.settings.stagger_offset }}px;
+    --kcb-cta-gap-desktop: {{ section.settings.cta_gap_desktop }}px;
+    --kcb-cta-gap-mobile: {{ section.settings.cta_gap_mobile }}px;
+    --kcb-cta-color: {{ section.settings.cta_headline_color }};
+    --kcb-cta-size-desktop: {{ section.settings.cta_headline_size_desktop }}px;
+    --kcb-cta-size-mobile: {{ section.settings.cta_headline_size_mobile }}px;
+    --kcb-button-radius: {{ section.settings.button_border_radius }}px;
+    --kcb-button-color: {{ section.settings.button_text_color }};
+    --kcb-button-bg: {{ section.settings.button_background_color }};
+    --kcb-button-border: {{ section.settings.button_border_color }};
+    --kcb-button-hover-color: {{ section.settings.button_hover_text_color }};
+    --kcb-button-hover-bg: {{ section.settings.button_hover_background_color }};
+    --kcb-button-hover-border: {{ section.settings.button_hover_border_color }};
+  }
+{%- endstyle -%}
+
+<section class="kaahu-community-board section-{{ section.id }}{% if section.settings.full_width %} kaahu-community-board--full{% endif %}{% if section.settings.enable_staggered_layout %} kaahu-community-board--staggered{% endif %}{% if section.settings.mobile_layout == 'scroll' or section.settings.mobile_layout == 'carousel' %} kaahu-community-board--mobile-scroll{% endif %}">
+  <div class="kaahu-community-board__inner">
+    <div class="kaahu-community-board__header">
+      {%- if section.settings.show_handle and section.settings.instagram_handle != blank -%}
+        <a class="kaahu-community-board__handle" href="{{ section.settings.instagram_handle_link | default: section.settings.section_instagram_link }}" target="_blank" rel="noopener">
+          {{ section.settings.instagram_handle }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="kaahu-community-board__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="kaahu-community-board__description rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="kaahu-community-board__cards" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_tag = 'div'
+            assign card_href = ''
+            if block.settings.card_link != blank
+              assign card_tag = 'a'
+              assign card_href = block.settings.card_link
+            elsif section.settings.section_instagram_link != blank and block.settings.link_to_instagram_profile
+              assign card_tag = 'a'
+              assign card_href = section.settings.section_instagram_link
+            endif
+            assign card_image = block.settings.image
+            if card_image == blank
+              assign card_image = block.settings.mobile_image
+            endif
+            assign card_alt = block.settings.alt_text | default: block.settings.caption | strip_html | escape
+          -%}
+          <li class="kaahu-community-board__item" {{ block.shopify_attributes }} style="--card-width-desktop: {{ block.settings.card_width_desktop }}px; --card-width-mobile: {{ block.settings.card_width_mobile }}px;">
+            <{{ card_tag }}
+              class="kaahu-community-board__card"
+              {% if card_href != blank %}href="{{ card_href }}"{% if block.settings.open_new_tab %} target="_blank" rel="noopener"{% endif %}{% endif %}
+              style="
+                --card-rotation-desktop: {% if section.settings.enable_card_rotation %}{{ block.settings.rotation_desktop }}deg{% else %}0deg{% endif %};
+                --card-rotation-mobile: {% if section.settings.enable_card_rotation %}{{ block.settings.rotation_mobile }}deg{% else %}0deg{% endif %};
+                --card-bg: {{ block.settings.card_background_color | default: section.settings.card_background_color }};
+                --caption-color: {{ block.settings.caption_color | default: section.settings.caption_color }};
+                --pin-color: {{ block.settings.pin_color | default: section.settings.default_pin_color }};
+                --card-radius: {{ block.settings.card_border_radius }}px;
+                --card-ratio: {{ block.settings.image_aspect_ratio }};
+                --card-fit: {{ block.settings.image_object_fit }};
+                --card-shadow-opacity: {{ block.settings.card_shadow_strength | divided_by: 100.0 }};
+                --card-shadow-y: {{ block.settings.card_shadow_strength | times: 0.32 | round | plus: 10 }}px;
+                --card-shadow-blur: {{ block.settings.card_shadow_strength | times: 0.62 | round | plus: 28 }}px;
+              "
+            >
+              {%- if section.settings.show_pin_dots and block.settings.show_pin_dot -%}
+                <span class="kaahu-community-board__pin" aria-hidden="true"></span>
+              {%- endif -%}
+
+              <div class="kaahu-community-board__image-wrap">
+                {%- if card_image != blank -%}
+                  <picture>
+                    {%- if block.settings.mobile_image != blank -%}
+                      <source media="(max-width: 749px)" srcset="{{ block.settings.mobile_image | image_url: width: 420 }} 420w, {{ block.settings.mobile_image | image_url: width: 640 }} 640w">
+                    {%- endif -%}
+                    {{ card_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', alt: card_alt, class: 'kaahu-community-board__image' }}
+                  </picture>
+                {%- else -%}
+                  <div class="kaahu-community-board__placeholder">
+                    {% render 'media-placeholder-lifestyle', style: forloop.index %}
+                  </div>
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.caption != blank -%}
+                <div class="kaahu-community-board__caption">{{ block.settings.caption }}</div>
+              {%- endif -%}
+            </{{ card_tag }}>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.show_cta_area -%}
+      <div class="kaahu-community-board__cta">
+        {%- if section.settings.cta_headline != blank -%}
+          <div class="kaahu-community-board__cta-headline">{{ section.settings.cta_headline }}</div>
+        {%- endif -%}
+
+        <div class="kaahu-community-board__buttons">
+          {%- if section.settings.button_one_text != blank -%}
+            <a class="kaahu-community-board__button kaahu-community-board__button--{{ section.settings.button_style }}" href="{{ section.settings.button_one_link | default: section.settings.section_instagram_link }}" target="_blank" rel="noopener">
+              {%- if section.settings.show_instagram_icon and section.settings.button_one_show_icon -%}<span class="kaahu-community-board__button-icon">{% render 'icon-instagram' %}</span>{%- endif -%}
+              <span>{{ section.settings.button_one_text }}</span>
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.button_two_text != blank -%}
+            <a class="kaahu-community-board__button kaahu-community-board__button--{{ section.settings.button_style }}" href="{{ section.settings.button_two_link | default: section.settings.section_instagram_link }}" target="_blank" rel="noopener">
+              {%- if section.settings.show_instagram_icon and section.settings.button_two_show_icon -%}<span class="kaahu-community-board__button-icon">{% render 'icon-instagram' %}</span>{%- endif -%}
+              <span>{{ section.settings.button_two_text }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kaahu community board",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "url",
+      "id": "section_instagram_link",
+      "label": "Instagram link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#eee8dd"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "min": 960,
+      "max": 2200,
+      "step": 20,
+      "unit": "px",
+      "label": "Section max width",
+      "default": 1880
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 360,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 620
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop top padding",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop bottom padding",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile top padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile bottom padding",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_handle",
+      "label": "Show Instagram handle",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "instagram_handle",
+      "label": "Instagram handle text",
+      "default": "@HOUSEOFKAAHU"
+    },
+    {
+      "type": "url",
+      "id": "instagram_handle_link",
+      "label": "Instagram handle link"
+    },
+    {
+      "type": "color",
+      "id": "handle_color",
+      "label": "Instagram handle color",
+      "default": "#b46483"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading text",
+      "default": "Styled by Kaahu Women"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font family",
+      "default": "libre_baskerville_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 28,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 34
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#24221f"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Real women, real moments. Tag <strong>#YouAreMyKaahu</strong> for a chance to be featured.</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "min": 14,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size desktop",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size mobile",
+      "default": 17
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#77716b"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "header_gap_desktop",
+      "min": 24,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Header gap desktop",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "header_gap_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Header gap mobile",
+      "default": 44
+    },
+    {
+      "type": "header",
+      "content": "Cards layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Cards per row desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Cards per row tablet",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Cards per row mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "scroll", "label": "Horizontal swipe" },
+        { "value": "carousel", "label": "Carousel-style swipe" },
+        { "value": "grid", "label": "Grid" },
+        { "value": "stack", "label": "Stacked" }
+      ],
+      "default": "scroll"
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 16,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between cards desktop",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between cards mobile",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "card_alignment",
+      "label": "Card alignment",
+      "options": [
+        { "value": "start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_staggered_layout",
+      "label": "Enable staggered layout",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "stagger_offset",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Stagger offset",
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_card_rotation",
+      "label": "Enable individual card rotation",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Card styling"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 8,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_strength",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "label": "Card shadow",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "min": 180,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "label": "Default card width desktop",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "min": 220,
+      "max": 360,
+      "step": 10,
+      "unit": "px",
+      "label": "Default card width mobile",
+      "default": 280
+    },
+    {
+      "type": "font_picker",
+      "id": "caption_font",
+      "label": "Caption font family",
+      "default": "libre_baskerville_n4"
+    },
+    {
+      "type": "range",
+      "id": "caption_size_desktop",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption font size desktop",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "caption_size_mobile",
+      "min": 13,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption font size mobile",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "caption_line_height",
+      "min": 110,
+      "max": 180,
+      "step": 2,
+      "unit": "%",
+      "label": "Caption line height",
+      "default": 132
+    },
+    {
+      "type": "select",
+      "id": "caption_alignment",
+      "label": "Caption alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#2b2926"
+    },
+    {
+      "type": "header",
+      "content": "Pin dots"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pin_dots",
+      "label": "Show pin dots globally",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "pin_size",
+      "min": 12,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Pin dot size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "pin_shadow_strength",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "label": "Pin dot shadow",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "default_pin_color",
+      "label": "Default pin color",
+      "default": "#b46483"
+    },
+    {
+      "type": "header",
+      "content": "CTA area"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_area",
+      "label": "Show bottom CTA area",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_headline",
+      "label": "CTA headline text",
+      "default": "Join our community and get featured ->"
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_desktop",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA headline size desktop",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "cta_headline_size_mobile",
+      "min": 15,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA headline size mobile",
+      "default": 19
+    },
+    {
+      "type": "color",
+      "id": "cta_headline_color",
+      "label": "CTA headline color",
+      "default": "#24221f"
+    },
+    {
+      "type": "range",
+      "id": "cta_gap_desktop",
+      "min": 24,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Space above CTA desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "cta_gap_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Space above CTA mobile",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "button_one_text",
+      "label": "First button text",
+      "default": "Tag Us @houseofkaahu"
+    },
+    {
+      "type": "url",
+      "id": "button_one_link",
+      "label": "First button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_one_show_icon",
+      "label": "First button icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_two_text",
+      "label": "Second button text",
+      "default": "Follow @houseofkaahu"
+    },
+    {
+      "type": "url",
+      "id": "button_two_link",
+      "label": "Second button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_two_show_icon",
+      "label": "Second button icon",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        { "value": "outline", "label": "Outline" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "text", "label": "Text" }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#24221f"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#24221f"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#24221f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button hover background color",
+      "default": "#24221f"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Button hover border color",
+      "default": "#24221f"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_instagram_icon",
+      "label": "Show Instagram icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Image card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "Caption text",
+          "default": "Some roads. Some playlists. Some Kaahu."
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card link"
+        },
+        {
+          "type": "checkbox",
+          "id": "link_to_instagram_profile",
+          "label": "Link to Instagram profile if card link is empty",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_pin_dot",
+          "label": "Show pin dot",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "pin_color",
+          "label": "Pin color",
+          "default": "#b46483"
+        },
+        {
+          "type": "color",
+          "id": "card_background_color",
+          "label": "Card background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "caption_color",
+          "label": "Caption text color",
+          "default": "#2b2926"
+        },
+        {
+          "type": "range",
+          "id": "rotation_desktop",
+          "min": -8,
+          "max": 8,
+          "step": 1,
+          "unit": "deg",
+          "label": "Card rotation desktop",
+          "default": -2
+        },
+        {
+          "type": "range",
+          "id": "rotation_mobile",
+          "min": -6,
+          "max": 6,
+          "step": 1,
+          "unit": "deg",
+          "label": "Card rotation mobile",
+          "default": -1
+        },
+        {
+          "type": "range",
+          "id": "card_width_desktop",
+          "min": 180,
+          "max": 420,
+          "step": 10,
+          "unit": "px",
+          "label": "Card width desktop",
+          "default": 260
+        },
+        {
+          "type": "range",
+          "id": "card_width_mobile",
+          "min": 220,
+          "max": 360,
+          "step": 10,
+          "unit": "px",
+          "label": "Card width mobile",
+          "default": 280
+        },
+        {
+          "type": "select",
+          "id": "image_aspect_ratio",
+          "label": "Image aspect ratio",
+          "options": [
+            { "value": "1 / 1", "label": "Square" },
+            { "value": "4 / 5", "label": "Portrait" },
+            { "value": "3 / 4", "label": "Tall portrait" },
+            { "value": "3 / 2", "label": "Landscape" }
+          ],
+          "default": "4 / 5"
+        },
+        {
+          "type": "select",
+          "id": "image_object_fit",
+          "label": "Image object fit",
+          "options": [
+            { "value": "cover", "label": "Cover" },
+            { "value": "contain", "label": "Contain" }
+          ],
+          "default": "cover"
+        },
+        {
+          "type": "range",
+          "id": "card_shadow_strength",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "label": "Card shadow strength",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "card_border_radius",
+          "min": 0,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Card border radius",
+          "default": 4
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kaahu community board",
+      "blocks": [
+        { "type": "card", "settings": { "caption": "Meet the shade of the season - Maroon.", "pin_color": "#d85f48", "rotation_desktop": -3 } },
+        { "type": "card", "settings": { "caption": "Room for everything that moves you.", "pin_color": "#477ed4", "rotation_desktop": 2 } },
+        { "type": "card", "settings": { "caption": "Coffee runs, creative plans, and my Kaahu.", "pin_color": "#4da363", "rotation_desktop": -1 } },
+        { "type": "card", "settings": { "caption": "Bold straps. Bigger dreams. The Kaahu way.", "pin_color": "#e0b23c", "rotation_desktop": 3 } },
+        { "type": "card", "settings": { "caption": "Some roads. Some playlists. Some Kaahu.", "pin_color": "#805ac7", "rotation_desktop": -2 } },
+        { "type": "card", "settings": { "caption": "Slow days call for soft knits and softer things.", "pin_color": "#c9538c", "rotation_desktop": 1 } },
+        { "type": "card", "settings": { "caption": "Wander often. Wonder always.", "pin_color": "#bf6e37", "rotation_desktop": -1 } },
+        { "type": "card", "settings": { "caption": "Carry kindness. Carry Kaahu.", "pin_color": "#4eb4af", "rotation_desktop": 2 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

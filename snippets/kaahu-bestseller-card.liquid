@@ -1,0 +1,227 @@
+{%- liquid
+  assign card_url = '#'
+  assign card_title = 'Be Your Own Light Tote'
+  assign card_price = 15900
+  assign card_compare_price = 19900
+  assign card_available = true
+  assign family_text = 'Fading Footprints'
+  assign material_text = 'Organic Cotton'
+  assign card_image = blank
+  assign custom_desktop_image = blank
+  assign custom_mobile_image = blank
+  assign display_image = blank
+  assign display_image_alt = blank
+  assign use_image_override = false
+  assign image_fit = section.settings.image_object_fit
+  assign image_position = section.settings.image_object_position
+  assign image_ratio = section.settings.image_ratio
+  assign image_radius = section.settings.image_radius
+  assign rating_value = 5
+  assign rating_max = 5
+  assign has_rating = true
+
+  if product != blank
+    assign card_url = product.url
+    assign card_title = product.title
+    assign card_price = product.price
+    assign card_compare_price = product.compare_at_price_max
+    assign card_available = product.available
+    assign family_metafield = product.metafields[section.settings.family_namespace][section.settings.family_key]
+    assign material_metafield = product.metafields[section.settings.material_namespace][section.settings.material_key]
+    assign family_text = family_metafield.value | default: family_metafield | default: product.type
+    assign material_text = material_metafield.value | default: material_metafield
+    assign image_alt_key = section.settings.image_alt_key | downcase | strip
+
+    if image_alt_key != blank
+      for media in product.media
+        if media.media_type == 'image'
+          assign media_alt = media.alt | downcase
+          if card_image == blank and media_alt contains image_alt_key
+            assign card_image = media.preview_image
+          endif
+        endif
+      endfor
+    endif
+
+    if card_image == blank and product.featured_media != blank
+      assign card_image = product.featured_media.preview_image
+    endif
+
+    assign has_rating = false
+    if product.metafields.reviews.rating.value != blank
+      assign rating_value = product.metafields.reviews.rating.value.rating
+      assign rating_max = product.metafields.reviews.rating.value.scale_max
+      assign has_rating = true
+    endif
+  endif
+
+  assign display_image = card_image
+  if card_image != blank
+    assign display_image_alt = card_image.alt
+  endif
+
+  if section.settings.enable_lifestyle_image_override and image_override_block != blank and image_override_block.settings.show_image_override
+    assign custom_desktop_image = image_override_block.settings.custom_desktop_image
+    assign custom_mobile_image = image_override_block.settings.custom_mobile_image
+    if custom_desktop_image != blank or custom_mobile_image != blank
+      assign use_image_override = true
+      if custom_desktop_image != blank
+        assign display_image = custom_desktop_image
+        assign display_image_alt = custom_desktop_image.alt
+      endif
+      if custom_mobile_image != blank and custom_desktop_image == blank
+        assign display_image = custom_mobile_image
+        assign display_image_alt = custom_mobile_image.alt
+      endif
+      if image_override_block.settings.custom_image_alt != blank
+        assign display_image_alt = image_override_block.settings.custom_image_alt
+      endif
+      assign image_fit = image_override_block.settings.image_object_fit | default: image_fit
+      assign image_position = image_override_block.settings.image_object_position | default: image_position
+      if image_override_block.settings.image_aspect_ratio != 'default'
+        assign image_ratio = image_override_block.settings.image_aspect_ratio
+      endif
+      assign image_radius = image_override_block.settings.image_border_radius
+    endif
+  endif
+
+  assign has_compare_discount = false
+  assign saving = 0
+  assign saving_percent = 0
+  if card_compare_price > card_price
+    assign has_compare_discount = true
+    assign saving = card_compare_price | minus: card_price
+    assign saving_percent = saving | times: 100 | divided_by: card_compare_price
+  endif
+
+  assign show_bestseller_badge = false
+  assign bestseller_tag_downcase = section.settings.bestseller_tag | downcase | strip
+  if placeholder and index == 1
+    assign show_bestseller_badge = true
+  elsif product != blank and bestseller_tag_downcase != blank
+    assign bestseller_badge_tag = 'badge: ' | append: bestseller_tag_downcase
+    for tag in product.tags
+      assign tag_downcase = tag | downcase | strip
+      if tag_downcase == bestseller_tag_downcase or tag_downcase == bestseller_badge_tag
+        assign show_bestseller_badge = true
+      endif
+    endfor
+  endif
+-%}
+
+<li class="kaahu-bestseller-card">
+  <a
+    class="kaahu-bestseller-card__media"
+    href="{{ card_url }}"
+    aria-label="{{ card_title | escape }}"
+    style="--kb-card-image-ratio: {{ image_ratio }}; --kb-card-image-radius: {{ image_radius }}px; --kb-card-image-fit: {{ image_fit }}; --kb-card-image-position: {{ image_position }};"
+  >
+    {%- if display_image != blank -%}
+      {%- if use_image_override and section.settings.enable_separate_mobile_images and custom_mobile_image != blank -%}
+        <picture>
+          <source
+            media="(max-width: 749px)"
+            srcset="
+              {{ custom_mobile_image | image_url: width: 360 }} 360w,
+              {{ custom_mobile_image | image_url: width: 540 }} 540w,
+              {{ custom_mobile_image | image_url: width: 720 }} 720w,
+              {{ custom_mobile_image | image_url: width: 900 }} 900w
+            "
+            sizes="(max-width: 749px) calc(100vw - 44px), 25vw"
+          >
+          {{
+            display_image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '360, 540, 720, 900, 1200',
+              sizes: '(min-width: 990px) 25vw, calc(100vw - 44px)',
+              alt: display_image_alt
+          }}
+        </picture>
+      {%- else -%}
+        {{
+          display_image
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            widths: '360, 540, 720, 900, 1200',
+            sizes: '(min-width: 990px) 25vw, calc(100vw - 44px)',
+            alt: display_image_alt
+        }}
+      {%- endif -%}
+    {%- else -%}
+      <span class="kaahu-bestseller-card__placeholder">
+        {% render 'media-placeholder-product', sequence_number: index %}
+      </span>
+    {%- endif -%}
+
+    {%- if section.settings.show_badges -%}
+      <span class="kaahu-bestseller-card__badges">
+        {%- if show_bestseller_badge -%}
+          <span class="kaahu-bestseller-card__badge">{{ section.settings.bestseller_tag }}</span>
+        {%- endif -%}
+        {%- if has_compare_discount -%}
+          <span class="kaahu-bestseller-card__badge">{{ section.settings.sale_badge_label }}</span>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+
+    {%- if section.settings.show_favorite_icon -%}
+      <span class="kaahu-bestseller-card__favorite" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M20.5 5.8c-1.8-1.8-4.7-1.8-6.5 0L12 7.8 10 5.8c-1.8-1.8-4.7-1.8-6.5 0s-1.8 4.7 0 6.5L12 20.8l8.5-8.5c1.8-1.8 1.8-4.7 0-6.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    {%- endif -%}
+
+    {%- if section.settings.show_quick_button and section.settings.quick_button_label != blank -%}
+      <span class="kaahu-bestseller-card__quick-view">
+        <span>{{ section.settings.quick_button_label }}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    {%- endif -%}
+  </a>
+
+  <div class="kaahu-bestseller-card__body">
+    {%- if section.settings.show_family and family_text != blank -%}
+      <p class="kaahu-bestseller-card__family">{{ family_text }}</p>
+    {%- endif -%}
+
+    <h3 class="kaahu-bestseller-card__title">
+      <a href="{{ card_url }}">{{ card_title }}</a>
+    </h3>
+
+    {%- if section.settings.show_material and material_text != blank -%}
+      <p class="kaahu-bestseller-card__material">{{ material_text }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.show_price -%}
+      <div class="kaahu-bestseller-card__price-row">
+        <div class="kaahu-bestseller-card__price">
+          <span>{{ card_price | money_without_trailing_zeros }}</span>
+          {%- if has_compare_discount -%}
+            <s class="kaahu-bestseller-card__compare">{{ card_compare_price | money_without_trailing_zeros }}</s>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.show_rating and has_rating -%}
+          <div class="kaahu-bestseller-card__rating" aria-label="{{ rating_value }} out of {{ rating_max }} stars">
+            {%- for star in (1..5) -%}
+              {% render 'icon-star-filled' %}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_sale_summary and has_compare_discount -%}
+      <div class="kaahu-bestseller-card__sale-summary">
+        <span class="kaahu-bestseller-card__discount">{{ saving_percent | round }}% off</span>
+        <span>{{ section.settings.saving_prefix }} {{ saving | money_without_trailing_zeros }}</span>
+      </div>
+    {%- endif -%}
+  </div>
+</li>

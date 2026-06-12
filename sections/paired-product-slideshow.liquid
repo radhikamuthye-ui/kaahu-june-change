@@ -1,0 +1,1148 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+{{ 'section-paired-product-slideshow.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'section-paired-product-slideshow.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  {%- liquid
+    assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+    assign overlay_strong = section.settings.overlay_opacity | plus: 18 | at_most: 98 | divided_by: 100.0
+    assign overlay_soft = section.settings.overlay_opacity | times: 0.55 | divided_by: 100.0
+    assign overlay_mobile = section.settings.overlay_opacity | plus: 28 | at_most: 98 | divided_by: 100.0
+    assign overlay_mobile_soft = section.settings.overlay_opacity | times: 0.42 | divided_by: 100.0
+    assign lifestyle_zoom = section.settings.lifestyle_image_zoom | divided_by: 100.0
+    assign product_zoom = section.settings.product_image_zoom | divided_by: 100.0
+    assign fade_zoom_amount = section.settings.fade_zoom_amount | divided_by: 100.0
+    assign lifestyle_zoom_in_start = lifestyle_zoom | minus: fade_zoom_amount | at_least: 1.0
+    assign lifestyle_zoom_out_start = lifestyle_zoom | plus: fade_zoom_amount
+    assign product_zoom_in_start = product_zoom | minus: fade_zoom_amount | at_least: 1.0
+    assign product_zoom_out_start = product_zoom | plus: fade_zoom_amount
+    assign breadcrumb_font = section.settings.breadcrumb_font_family
+    assign heading_font = section.settings.heading_font_family
+    assign body_text_font = section.settings.body_text_font_family
+    assign event_font = section.settings.event_font_family
+    assign button_font = section.settings.button_font_family
+  -%}
+  {{ breadcrumb_font | font_face: font_display: 'swap' }}
+  {{ heading_font | font_face: font_display: 'swap' }}
+  {{ body_text_font | font_face: font_display: 'swap' }}
+  {{ event_font | font_face: font_display: 'swap' }}
+  {{ button_font | font_face: font_display: 'swap' }}
+
+  .section-{{ section.id }} {
+    --pps-overlay: {{ overlay }};
+    --pps-overlay-strong: {{ overlay_strong }};
+    --pps-overlay-soft: {{ overlay_soft }};
+    --pps-overlay-mobile: {{ overlay_mobile }};
+    --pps-overlay-mobile-soft: {{ overlay_mobile_soft }};
+    --pps-accent: {{ section.settings.accent_color }};
+    --pps-divider: {{ section.settings.divider_color }};
+    --pps-product-bg: {{ section.settings.product_background }};
+    --pps-image-fade-duration: {{ section.settings.image_fade_duration }}ms;
+    --pps-lifestyle-zoom: {{ lifestyle_zoom }};
+    --pps-lifestyle-zoom-in-start: {{ lifestyle_zoom_in_start }};
+    --pps-lifestyle-zoom-out-start: {{ lifestyle_zoom_out_start }};
+    --pps-product-zoom: {{ product_zoom }};
+    --pps-product-zoom-in-start: {{ product_zoom_in_start }};
+    --pps-product-zoom-out-start: {{ product_zoom_out_start }};
+    --pps-content-left-mobile: {{ section.settings.content_horizontal_padding_mobile }}px;
+    --pps-content-right-mobile: {{ section.settings.content_horizontal_padding_mobile }}px;
+    --pps-content-top-mobile: {{ section.settings.content_top_padding_mobile }}px;
+    --pps-content-bottom-mobile: {{ section.settings.content_bottom_padding_mobile }}px;
+    --pps-content-left-desktop: {{ section.settings.content_horizontal_padding_desktop }}px;
+    --pps-content-right-desktop: {{ section.settings.content_horizontal_padding_desktop }}px;
+    --pps-content-top-desktop: {{ section.settings.content_top_padding_desktop }}px;
+    --pps-content-bottom-desktop: {{ section.settings.content_bottom_padding_desktop }}px;
+    --pps-content-max-width: {{ section.settings.content_max_width }}px;
+    --pps-heading-margin-bottom: {{ section.settings.heading_bottom_spacing }}px;
+    --pps-copy-margin-bottom: {{ section.settings.copy_bottom_spacing }}px;
+    --pps-event-margin-top: {{ section.settings.event_top_spacing }}px;
+    --pps-buttons-margin-top: {{ section.settings.buttons_top_spacing }}px;
+    --pps-breadcrumb-font-family: {{ breadcrumb_font.family }}, {{ breadcrumb_font.fallback_families }};
+    --pps-breadcrumb-font-style: {{ breadcrumb_font.style }};
+    --pps-breadcrumb-font-weight: {{ breadcrumb_font.weight }};
+    --pps-breadcrumb-size-mobile: {{ section.settings.breadcrumb_size_mobile }}px;
+    --pps-breadcrumb-size-desktop: {{ section.settings.breadcrumb_size_desktop }}px;
+    {% case section.settings.heading_font_source %}
+      {% when 'theme_body' %}
+        --pps-heading-font-family: var(--font-body-family);
+        --pps-heading-font-style: var(--font-body-style);
+      {% when 'theme_accent' %}
+        --pps-heading-font-family: var(--font-accent-family);
+        --pps-heading-font-style: var(--font-accent-style);
+      {% when 'custom' %}
+        --pps-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --pps-heading-font-style: {{ heading_font.style }};
+      {% else %}
+        --pps-heading-font-family: var(--font-heading-family);
+        --pps-heading-font-style: var(--font-heading-style);
+    {% endcase %}
+    --pps-heading-font-weight: {{ section.settings.heading_font_weight }};
+    --pps-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --pps-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --pps-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --pps-heading-letter-spacing: {{ section.settings.heading_letter_spacing | divided_by: 100.0 }}em;
+    --pps-heading-color: {{ section.settings.heading_color }};
+    {% case section.settings.body_text_font_source %}
+      {% when 'theme_heading' %}
+        --pps-text-font-family: var(--font-heading-family);
+        --pps-text-font-style: var(--font-heading-style);
+      {% when 'theme_accent' %}
+        --pps-text-font-family: var(--font-accent-family);
+        --pps-text-font-style: var(--font-accent-style);
+      {% when 'custom' %}
+        --pps-text-font-family: {{ body_text_font.family }}, {{ body_text_font.fallback_families }};
+        --pps-text-font-style: {{ body_text_font.style }};
+      {% else %}
+        --pps-text-font-family: var(--font-body-family);
+        --pps-text-font-style: var(--font-body-style);
+    {% endcase %}
+    --pps-text-font-weight: {{ section.settings.body_text_font_weight }};
+    --pps-text-size-mobile: {{ section.settings.body_text_size_mobile }}px;
+    --pps-text-size-desktop: {{ section.settings.body_text_size_desktop }}px;
+    --pps-text-line-height: {{ section.settings.body_text_line_height | divided_by: 100.0 }};
+    --pps-text-color: {{ section.settings.body_text_color }};
+    --pps-event-font-family: {{ event_font.family }}, {{ event_font.fallback_families }};
+    --pps-event-font-style: {{ event_font.style }};
+    --pps-event-font-weight: {{ event_font.weight }};
+    --pps-event-label-size-mobile: {{ section.settings.event_label_size_mobile }}px;
+    --pps-event-label-size-desktop: {{ section.settings.event_label_size_desktop }}px;
+    --pps-event-text-size-mobile: {{ section.settings.event_text_size_mobile }}px;
+    --pps-event-text-size-desktop: {{ section.settings.event_text_size_desktop }}px;
+    --pps-button-font-family: {{ button_font.family }}, {{ button_font.fallback_families }};
+    --pps-button-font-style: {{ button_font.style }};
+    --pps-button-font-weight: {{ button_font.weight }};
+    --pps-button-size-mobile: {{ section.settings.button_size_mobile }}px;
+    --pps-button-size-desktop: {{ section.settings.button_size_desktop }}px;
+  }
+{%- endstyle -%}
+
+<div class="paired-product-slideshow section-{{ section.id }} color-scheme-{{ section.settings.text_color }}">
+  <div
+    class="swiper pps-swiper"
+    data-interval="{{ section.settings.autoplay_interval | times: 1000 }}"
+    data-speed="{{ section.settings.transition_speed }}"
+    data-autoplay="{{ section.settings.enable_autoplay }}"
+    data-effect="{{ section.settings.transition_effect }}"
+  >
+    <div class="swiper-wrapper">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign slide_product = block.settings.product
+            assign product_url = '#'
+            if slide_product != blank
+              assign product_url = slide_product.url
+            endif
+
+            assign lifestyle_alt_key = block.settings.lifestyle_alt_key | default: section.settings.lifestyle_alt_key | downcase | strip
+            assign product_alt_key = block.settings.product_alt_key | default: section.settings.product_alt_key | downcase | strip
+            assign lifestyle_media = blank
+            assign product_media = blank
+            assign breadcrumb_type = blank
+            assign breadcrumb_name = blank
+            assign breadcrumb_material = blank
+
+            if slide_product != blank
+              assign breadcrumb_type_metafield = slide_product.metafields[section.settings.breadcrumb_type_namespace][section.settings.breadcrumb_type_key]
+              assign breadcrumb_name_metafield = slide_product.metafields[section.settings.breadcrumb_name_namespace][section.settings.breadcrumb_name_key]
+              assign breadcrumb_material_metafield = slide_product.metafields[section.settings.breadcrumb_material_namespace][section.settings.breadcrumb_material_key]
+
+              if breadcrumb_type_metafield != blank
+                assign breadcrumb_type = breadcrumb_type_metafield.value | default: breadcrumb_type_metafield
+              endif
+              if breadcrumb_name_metafield != blank
+                assign breadcrumb_name = breadcrumb_name_metafield.value | default: breadcrumb_name_metafield
+              endif
+              if breadcrumb_material_metafield != blank
+                assign breadcrumb_material = breadcrumb_material_metafield.value | default: breadcrumb_material_metafield
+              endif
+
+              assign breadcrumb_type = breadcrumb_type | default: slide_product.type
+              assign breadcrumb_name = breadcrumb_name | default: slide_product.title
+
+              for media in slide_product.media
+                if media.media_type == 'image'
+                  assign media_alt = media.alt | downcase
+                  if lifestyle_media == blank and lifestyle_alt_key != blank and media_alt contains lifestyle_alt_key
+                    assign lifestyle_media = media
+                  endif
+                  if product_media == blank and product_alt_key != blank and media_alt contains product_alt_key
+                    assign product_media = media
+                  endif
+                endif
+              endfor
+
+              if lifestyle_media == blank
+                assign lifestyle_media = slide_product.featured_media
+              endif
+              if product_media == blank
+                assign product_media = slide_product.featured_media
+              endif
+            endif
+
+            assign primary_link = block.settings.primary_link | default: product_url
+            assign secondary_link = block.settings.secondary_link | default: product_url
+            assign image_fade_class = 'pps-image--fade-in'
+            assign slide_remainder = forloop.index | modulo: 2
+            if slide_remainder == 0
+              assign image_fade_class = 'pps-image--fade-out'
+            endif
+          -%}
+
+          <div class="swiper-slide pps-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="pps-panel pps-lifestyle">
+              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: block.settings.heading | escape }}">
+                {%- if block.settings.lifestyle_image != blank -%}
+                  {{ block.settings.lifestyle_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: image_fade_class }}
+                {%- elsif lifestyle_media != blank and lifestyle_media.preview_image != blank -%}
+                  {{ lifestyle_media.preview_image | image_url: width: 1800 | image_tag: loading: 'lazy', alt: lifestyle_media.alt, class: image_fade_class }}
+                {%- else -%}
+                  <span class="pps-placeholder">{% render 'media-placeholder-lifestyle', style: 7 %}</span>
+                {%- endif -%}
+              </a>
+
+              <div class="pps-content">
+                {%- if section.settings.show_breadcrumb and slide_product != blank -%}
+                  {%- capture breadcrumb_text -%}
+                    {%- if breadcrumb_type != blank -%}{{ breadcrumb_type }}{%- endif -%}
+                    {%- if breadcrumb_name != blank -%}{% if breadcrumb_type != blank %} {{ section.settings.breadcrumb_separator }} {% endif %}{{ breadcrumb_name }}{%- endif -%}
+                    {%- if breadcrumb_material != blank -%}{% if breadcrumb_type != blank or breadcrumb_name != blank %} {{ section.settings.breadcrumb_separator }} {% endif %}{{ breadcrumb_material }}{%- endif -%}
+                  {%- endcapture -%}
+                  {%- assign breadcrumb_text = breadcrumb_text | strip -%}
+                  {%- if breadcrumb_text != blank -%}
+                    <span class="pps-breadcrumb">{{ breadcrumb_text }}</span>
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- if block.settings.heading != blank -%}
+                  {%- if section.index == 1 and forloop.first -%}
+                    <h1 class="pps-heading">{{ block.settings.heading }}</h1>
+                  {%- else -%}
+                    <h2 class="pps-heading">{{ block.settings.heading }}</h2>
+                  {%- endif -%}
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  <div class="pps-copy rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+
+                {%- unless block.settings.event_label == blank and block.settings.event_text == blank -%}
+                  <div class="pps-event">
+                    {%- if block.settings.event_label != blank -%}
+                      <span class="pps-event-label">{{ block.settings.event_label }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.event_text != blank -%}
+                      <span class="pps-event-text">{{ block.settings.event_text }}</span>
+                    {%- endif -%}
+                  </div>
+                {%- endunless -%}
+
+                {%- unless block.settings.primary_label == blank and block.settings.secondary_label == blank -%}
+                  <div class="pps-buttons">
+                    {%- if block.settings.primary_label != blank -%}
+                      <a
+                        href="{{ primary_link }}"
+                        class="button button--{{ block.settings.primary_style }} pps-button pps-button--{{ block.settings.primary_style }} pps-button--primary"
+                        style="--pps-button-bg: {{ block.settings.primary_background_color }}; --pps-button-text: {{ block.settings.primary_text_color }}; --pps-button-border: {{ block.settings.primary_border_color }}; --pps-button-hover-bg: {{ block.settings.primary_hover_background_color }}; --pps-button-hover-text: {{ block.settings.primary_hover_text_color }}; --pps-button-hover-border: {{ block.settings.primary_hover_border_color }};"
+                      >
+                        {{ block.settings.primary_label }}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.secondary_label != blank -%}
+                      <a
+                        href="{{ secondary_link }}"
+                        class="button button--{{ block.settings.secondary_style }} pps-button pps-button--{{ block.settings.secondary_style }} pps-button--secondary"
+                        style="--pps-button-bg: {{ block.settings.secondary_background_color }}; --pps-button-text: {{ block.settings.secondary_text_color }}; --pps-button-border: {{ block.settings.secondary_border_color }}; --pps-button-hover-bg: {{ block.settings.secondary_hover_background_color }}; --pps-button-hover-text: {{ block.settings.secondary_hover_text_color }}; --pps-button-hover-border: {{ block.settings.secondary_hover_border_color }};"
+                      >
+                        {{ block.settings.secondary_label }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endunless -%}
+              </div>
+            </div>
+
+            <div class="pps-panel pps-product">
+              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: block.settings.heading | escape }}">
+                {%- if block.settings.product_image != blank -%}
+                  {{ block.settings.product_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: image_fade_class }}
+                {%- elsif product_media != blank and product_media.preview_image != blank -%}
+                  {{ product_media.preview_image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: product_media.alt, class: image_fade_class }}
+                {%- else -%}
+                  <span class="pps-placeholder">{% render 'media-placeholder-product', sequence_number: 2 %}</span>
+                {%- endif -%}
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="swiper-slide pps-slide">
+          <div class="pps-panel pps-lifestyle">
+            <span class="pps-placeholder">{% render 'media-placeholder-lifestyle', style: 7 %}</span>
+            <div class="pps-content">
+              <span class="pps-breadcrumb">The Tote</span>
+              <h2 class="pps-heading">Carry what you truly value.</h2>
+              <div class="pps-copy"><p>Add product slides to customize this section.</p></div>
+            </div>
+          </div>
+          <div class="pps-panel pps-product">
+            <span class="pps-placeholder">{% render 'media-placeholder-product', sequence_number: 2 %}</span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_controls and section.blocks.size > 1 -%}
+    <div class="pps-controls">
+      <div class="pps-progress" aria-hidden="true"><span></span></div>
+      <button class="pps-toggle" type="button" aria-label="Pause slideshow" aria-pressed="false">
+        <svg class="pps-pause-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M5 3h2v10H5V3Zm4 0h2v10H9V3Z" fill="currentColor"/>
+        </svg>
+        <svg class="pps-play-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M5 3.5 12 8l-7 4.5v-9Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Paired product slideshow",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["password", "cart"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media matching"
+    },
+    {
+      "type": "text",
+      "id": "lifestyle_alt_key",
+      "label": "Default lifestyle image alt keyword",
+      "default": "lifestyle",
+      "info": "The first image in the selected product whose alt text contains this keyword is used on the left."
+    },
+    {
+      "type": "text",
+      "id": "product_alt_key",
+      "label": "Default product image alt keyword",
+      "default": "product image",
+      "info": "The first image in the selected product whose alt text contains this keyword is used on the right. Use a specific phrase like front, product image, or packshot."
+    },
+    {
+      "type": "header",
+      "content": "Breadcrumb"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show product breadcrumb",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_separator",
+      "label": "Separator",
+      "default": "•"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_type_namespace",
+      "label": "Bag type metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_type_key",
+      "label": "Bag type metafield key",
+      "default": "bag_type"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_name_namespace",
+      "label": "Name metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_name_key",
+      "label": "Name metafield key",
+      "default": "display_name"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_material_namespace",
+      "label": "Material metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_material_key",
+      "label": "Material metafield key",
+      "default": "material"
+    },
+    {
+      "type": "header",
+      "content": "Slideshow"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay interval",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "min": 200,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "label": "Transition speed",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "image_fade_duration",
+      "min": 500,
+      "max": 3000,
+      "step": 100,
+      "unit": "ms",
+      "label": "Image fade duration",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "lifestyle_image_zoom",
+      "min": 100,
+      "max": 140,
+      "step": 1,
+      "unit": "%",
+      "label": "Lifestyle image zoom",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "product_image_zoom",
+      "min": 100,
+      "max": 160,
+      "step": 1,
+      "unit": "%",
+      "label": "Product image zoom",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "fade_zoom_amount",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "%",
+      "label": "Fade zoom amount",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "transition_effect",
+      "label": "Transition effect",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "slide",
+          "label": "Slide"
+        }
+      ],
+      "default": "fade"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show progress and pause control",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Lifestyle overlay opacity",
+      "default": 45
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Primary button color",
+      "default": "#e5712a"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider and event color",
+      "default": "#e89aba"
+    },
+    {
+      "type": "color",
+      "id": "product_background",
+      "label": "Product side background",
+      "default": "#f4f1ed"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "fg-white",
+          "label": "White"
+        },
+        {
+          "value": "fg-body",
+          "label": "Body"
+        }
+      ],
+      "default": "fg-white"
+    },
+    {
+      "type": "header",
+      "content": "Content spacing"
+    },
+    {
+      "type": "range",
+      "id": "content_horizontal_padding_mobile",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding on mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "content_horizontal_padding_desktop",
+      "min": 24,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding on desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "content_top_padding_mobile",
+      "min": 16,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding on mobile",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "content_top_padding_desktop",
+      "min": 24,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding on desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "content_bottom_padding_mobile",
+      "min": 16,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding on mobile",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "content_bottom_padding_desktop",
+      "min": 24,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding on desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 320,
+      "max": 760,
+      "step": 10,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "min": 0,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Space below heading",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "copy_bottom_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Space below text",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "event_top_spacing",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Space above event",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "buttons_top_spacing",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Space above buttons",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "breadcrumb_font_family",
+      "label": "Breadcrumb font",
+      "default": "jost_n4"
+    },
+    {
+      "type": "range",
+      "id": "breadcrumb_size_mobile",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Breadcrumb size on mobile",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "breadcrumb_size_desktop",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Breadcrumb size on desktop",
+      "default": 11
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font_family",
+      "label": "Custom heading font",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_source",
+      "label": "Heading font source",
+      "options": [
+        {
+          "value": "theme_heading",
+          "label": "Theme heading font"
+        },
+        {
+          "value": "theme_body",
+          "label": "Theme body font"
+        },
+        {
+          "value": "theme_accent",
+          "label": "Theme accent font"
+        },
+        {
+          "value": "custom",
+          "label": "Custom font above"
+        }
+      ],
+      "default": "theme_heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 24,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size on mobile",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size on desktop",
+      "default": 62
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 90,
+      "max": 150,
+      "step": 1,
+      "unit": "%",
+      "label": "Heading line height",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "label": "Heading letter spacing",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "font_picker",
+      "id": "body_text_font_family",
+      "label": "Custom text font",
+      "default": "cormorant_i5"
+    },
+    {
+      "type": "select",
+      "id": "body_text_font_source",
+      "label": "Text font source",
+      "options": [
+        {
+          "value": "theme_body",
+          "label": "Theme body font"
+        },
+        {
+          "value": "theme_heading",
+          "label": "Theme heading font"
+        },
+        {
+          "value": "theme_accent",
+          "label": "Theme accent font"
+        },
+        {
+          "value": "custom",
+          "label": "Custom font above"
+        }
+      ],
+      "default": "theme_body"
+    },
+    {
+      "type": "range",
+      "id": "body_text_size_mobile",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size on mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "body_text_size_desktop",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size on desktop",
+      "default": 21
+    },
+    {
+      "type": "select",
+      "id": "body_text_font_weight",
+      "label": "Text font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "body_text_line_height",
+      "min": 110,
+      "max": 180,
+      "step": 1,
+      "unit": "%",
+      "label": "Text line height",
+      "default": 145
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "font_picker",
+      "id": "event_font_family",
+      "label": "Event font",
+      "default": "cormorant_i5"
+    },
+    {
+      "type": "range",
+      "id": "event_label_size_mobile",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Event label size on mobile",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "event_label_size_desktop",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Event label size on desktop",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "event_text_size_mobile",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Event text size on mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "event_text_size_desktop",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Event text size on desktop",
+      "default": 20
+    },
+    {
+      "type": "font_picker",
+      "id": "button_font_family",
+      "label": "Button font",
+      "default": "jost_n4"
+    },
+    {
+      "type": "range",
+      "id": "button_size_mobile",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button size on mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_size_desktop",
+      "min": 9,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button size on desktop",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Product slide",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "lifestyle_alt_key",
+          "label": "Lifestyle image alt keyword override"
+        },
+        {
+          "type": "text",
+          "id": "product_alt_key",
+          "label": "Product image alt keyword override"
+        },
+        {
+          "type": "image_picker",
+          "id": "lifestyle_image",
+          "label": "Lifestyle image override"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image override"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Carry what you truly value."
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Bold, functional bags made to carry everything that matters, and built to last.</p>"
+        },
+        {
+          "type": "text",
+          "id": "event_label",
+          "label": "Event label",
+          "default": "Summer event"
+        },
+        {
+          "type": "text",
+          "id": "event_text",
+          "label": "Event text",
+          "default": "20% off your first order"
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "primary_label",
+          "label": "Primary button label",
+          "default": "Shop the product"
+        },
+        {
+          "type": "url",
+          "id": "primary_link",
+          "label": "Primary button link",
+          "info": "Leave blank to link to the selected product."
+        },
+        {
+          "type": "select",
+          "id": "primary_style",
+          "label": "Primary button style",
+          "options": [
+            {
+              "value": "solid",
+              "label": "Solid"
+            },
+            {
+              "value": "outline",
+              "label": "Outlined"
+            }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "color",
+          "id": "primary_background_color",
+          "label": "Primary background color",
+          "default": "#e5712a"
+        },
+        {
+          "type": "color",
+          "id": "primary_text_color",
+          "label": "Primary text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "primary_border_color",
+          "label": "Primary border color",
+          "default": "#e5712a"
+        },
+        {
+          "type": "color",
+          "id": "primary_hover_background_color",
+          "label": "Primary hover background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "primary_hover_text_color",
+          "label": "Primary hover text color",
+          "default": "#e5712a"
+        },
+        {
+          "type": "color",
+          "id": "primary_hover_border_color",
+          "label": "Primary hover border color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "secondary_label",
+          "label": "Secondary button label",
+          "default": "Shop by style"
+        },
+        {
+          "type": "url",
+          "id": "secondary_link",
+          "label": "Secondary button link",
+          "info": "Leave blank to link to the selected product."
+        },
+        {
+          "type": "select",
+          "id": "secondary_style",
+          "label": "Secondary button style",
+          "options": [
+            {
+              "value": "solid",
+              "label": "Solid"
+            },
+            {
+              "value": "outline",
+              "label": "Outlined"
+            }
+          ],
+          "default": "outline"
+        },
+        {
+          "type": "color",
+          "id": "secondary_background_color",
+          "label": "Secondary background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "secondary_text_color",
+          "label": "Secondary text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "secondary_border_color",
+          "label": "Secondary border color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "secondary_hover_background_color",
+          "label": "Secondary hover background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "secondary_hover_text_color",
+          "label": "Secondary hover text color",
+          "default": "#242424"
+        },
+        {
+          "type": "color",
+          "id": "secondary_hover_border_color",
+          "label": "Secondary hover border color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paired product slideshow",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

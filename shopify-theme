@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+ROOT_DIR="${0:A:h}"
+NODE_BIN="$ROOT_DIR/.tools/node-v24.16.0-darwin-arm64/bin"
+
+export PATH="$NODE_BIN:$PATH"
+
+STORE="d68c2f-18.myshopify.com"
+THEME_ID="162157330651"
+
+case "${1:-}" in
+  list)
+    exec npx @shopify/cli@latest theme list --store "$STORE"
+    ;;
+  pull)
+    exec npx @shopify/cli@latest theme pull --store "$STORE" --theme "$THEME_ID" --path "$ROOT_DIR"
+    ;;
+  push)
+    exec npx @shopify/cli@latest theme push --store "$STORE" --theme "$THEME_ID" --path "$ROOT_DIR"
+    ;;
+  dev)
+    exec npx @shopify/cli@latest theme dev --store "$STORE" --theme "$THEME_ID" --path "$ROOT_DIR"
+    ;;
+  open)
+    printf '%s\n' "Preview: https://$STORE?preview_theme_id=$THEME_ID"
+    printf '%s\n' "Editor:  https://$STORE/admin/themes/$THEME_ID/editor"
+    ;;
+  *)
+    cat <<'USAGE'
+Usage: ./shopify-theme <command>
+
+Commands:
+  dev    Start local development against the June 3 draft theme.
+  pull   Pull the June 3 draft theme into this folder.
+  push   Push local changes to the June 3 draft theme only.
+  list   List store themes.
+  open   Print preview and editor links for the June 3 draft theme.
+USAGE
+    ;;
+esac

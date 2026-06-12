@@ -1,0 +1,386 @@
+.kaahu-bestsellers {
+  color: var(--kb-text);
+  background: var(--kb-bg);
+}
+
+.kaahu-bestsellers__inner {
+  box-sizing: border-box;
+  width: min(100%, var(--kb-page-width));
+  margin: 0 auto;
+  padding: var(--kb-padding-top-mobile) var(--kb-side-padding-mobile) var(--kb-padding-bottom-mobile);
+}
+
+.kaahu-bestsellers__header {
+  display: grid;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: var(--kb-header-gap-mobile);
+}
+
+.kaahu-bestsellers__eyebrow {
+  margin: 0 0 12px;
+  color: var(--kb-eyebrow-color);
+  font-family: var(--kb-eyebrow-font-family);
+  font-size: var(--kb-eyebrow-size-mobile);
+  font-style: var(--kb-eyebrow-font-style);
+  font-weight: var(--kb-eyebrow-font-weight);
+  line-height: 1.2;
+  letter-spacing: var(--kb-eyebrow-letter-spacing);
+  text-transform: var(--kb-eyebrow-case);
+}
+
+.kaahu-bestsellers__heading {
+  margin: 0;
+  color: var(--kb-heading-color);
+  font-family: var(--kb-heading-font-family);
+  font-size: var(--kb-heading-size-mobile);
+  font-style: var(--kb-heading-font-style);
+  font-weight: var(--kb-heading-font-weight);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.kaahu-bestsellers__button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: var(--kb-button-height);
+  padding: 0 var(--kb-button-x-padding);
+  border: var(--kb-button-border-width) solid var(--kb-button-border);
+  border-radius: var(--kb-button-radius);
+  color: var(--kb-button-text);
+  background: var(--kb-button-bg);
+  font-family: var(--kb-button-font-family);
+  font-size: var(--kb-button-size-mobile);
+  font-style: var(--kb-button-font-style);
+  font-weight: var(--kb-button-font-weight);
+  line-height: 1;
+  letter-spacing: var(--kb-button-letter-spacing);
+  text-decoration: none;
+  text-transform: var(--kb-button-case);
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.kaahu-bestsellers__button:hover {
+  color: var(--kb-button-hover-text);
+  border-color: var(--kb-button-hover-border);
+  background: var(--kb-button-hover-bg);
+}
+
+.kaahu-bestsellers__button svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.kaahu-bestsellers__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--kb-columns-mobile), minmax(0, 1fr));
+  gap: var(--kb-row-gap-mobile) var(--kb-column-gap-mobile);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kaahu-bestseller-card {
+  min-width: 0;
+}
+
+.kaahu-bestseller-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kaahu-bestseller-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: var(--kb-card-image-ratio, var(--kb-image-ratio));
+  border-radius: var(--kb-card-image-radius, var(--kb-image-radius));
+  background: var(--kb-image-bg);
+}
+
+.kaahu-bestseller-card__media img,
+.kaahu-bestseller-card__media picture,
+.kaahu-bestseller-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.kaahu-bestseller-card__media img {
+  object-fit: var(--kb-card-image-fit, var(--kb-image-fit));
+  object-position: var(--kb-card-image-position, var(--kb-image-position));
+  transform: scale(var(--kb-image-zoom));
+  transition: transform 420ms ease;
+}
+
+.kaahu-bestseller-card__media:hover img {
+  transform: scale(var(--kb-image-hover-zoom));
+}
+
+.kaahu-bestseller-card__placeholder {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.kaahu-bestseller-card__badges {
+  position: absolute;
+  top: var(--kb-badge-offset);
+  left: var(--kb-badge-offset);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.kaahu-bestseller-card__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--kb-badge-height);
+  padding: 0 var(--kb-badge-x-padding);
+  border-radius: var(--kb-badge-radius);
+  color: var(--kb-badge-text);
+  background: var(--kb-badge-bg);
+  font-family: var(--kb-badge-font-family);
+  font-size: var(--kb-badge-size-mobile);
+  font-style: var(--kb-badge-font-style);
+  font-weight: var(--kb-badge-font-weight);
+  line-height: 1;
+  letter-spacing: var(--kb-badge-letter-spacing);
+  text-transform: var(--kb-badge-case);
+}
+
+.kaahu-bestseller-card__favorite {
+  position: absolute;
+  top: var(--kb-favorite-offset);
+  right: var(--kb-favorite-offset);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--kb-favorite-size);
+  height: var(--kb-favorite-size);
+  border: 0;
+  border-radius: 50%;
+  color: var(--kb-favorite-icon);
+  background: var(--kb-favorite-bg);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+.kaahu-bestseller-card__favorite svg {
+  width: 45%;
+  height: 45%;
+}
+
+.kaahu-bestseller-card__quick-view {
+  position: absolute;
+  right: var(--kb-quick-offset);
+  bottom: var(--kb-quick-offset);
+  left: var(--kb-quick-offset);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: var(--kb-quick-height);
+  padding: 0 22px;
+  border-radius: var(--kb-quick-radius);
+  color: var(--kb-quick-text);
+  background: var(--kb-quick-bg);
+  font-family: var(--kb-quick-font-family);
+  font-size: var(--kb-quick-size-mobile);
+  font-style: var(--kb-quick-font-style);
+  font-weight: var(--kb-quick-font-weight);
+  line-height: 1;
+  letter-spacing: var(--kb-quick-letter-spacing);
+  text-transform: var(--kb-quick-case);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.kaahu-bestseller-card__media:hover .kaahu-bestseller-card__quick-view,
+.kaahu-bestseller-card__media:focus-within .kaahu-bestseller-card__quick-view,
+.kaahu-bestseller-card__quick-view:focus-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.kaahu-bestseller-card__quick-view svg {
+  width: 18px;
+  height: 18px;
+}
+
+.kaahu-bestseller-card__body {
+  padding-top: var(--kb-card-text-gap);
+}
+
+.kaahu-bestseller-card__family,
+.kaahu-bestseller-card__material {
+  margin: 0;
+}
+
+.kaahu-bestseller-card__family {
+  color: var(--kb-family-color);
+  font-family: var(--kb-family-font-family);
+  font-size: var(--kb-family-size-mobile);
+  font-style: var(--kb-family-font-style);
+  font-weight: var(--kb-family-font-weight);
+  line-height: 1.2;
+  letter-spacing: var(--kb-family-letter-spacing);
+  text-transform: var(--kb-family-case);
+}
+
+.kaahu-bestseller-card__title {
+  margin: var(--kb-title-margin-top) 0 0;
+  color: var(--kb-title-color);
+  font-family: var(--kb-title-font-family);
+  font-size: var(--kb-title-size-mobile);
+  font-style: var(--kb-title-font-style);
+  font-weight: var(--kb-title-font-weight);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.kaahu-bestseller-card__material {
+  margin-top: var(--kb-material-margin-top);
+  color: var(--kb-material-color);
+  font-family: var(--kb-material-font-family);
+  font-size: var(--kb-material-size-mobile);
+  font-style: var(--kb-material-font-style);
+  font-weight: var(--kb-material-font-weight);
+  line-height: 1.25;
+}
+
+.kaahu-bestseller-card__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: var(--kb-price-margin-top);
+  color: var(--kb-price-color);
+  font-family: var(--kb-price-font-family);
+  font-size: var(--kb-price-size-mobile);
+  font-style: var(--kb-price-font-style);
+  font-weight: var(--kb-price-font-weight);
+  line-height: 1.15;
+}
+
+.kaahu-bestseller-card__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.kaahu-bestseller-card__compare {
+  color: var(--kb-compare-color);
+  font-size: 0.82em;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.kaahu-bestseller-card__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--kb-star-color);
+}
+
+.kaahu-bestseller-card__rating svg {
+  width: var(--kb-star-size);
+  height: var(--kb-star-size);
+}
+
+.kaahu-bestseller-card__sale-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--kb-sale-margin-top);
+  color: var(--kb-saving-color);
+  font-family: var(--kb-sale-font-family);
+  font-size: var(--kb-sale-size-mobile);
+  font-style: var(--kb-sale-font-style);
+  font-weight: var(--kb-sale-font-weight);
+  line-height: 1.1;
+}
+
+.kaahu-bestseller-card__discount {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--kb-discount-height);
+  padding: 0 var(--kb-discount-x-padding);
+  border-radius: var(--kb-discount-radius);
+  color: var(--kb-discount-text);
+  background: var(--kb-discount-bg);
+  letter-spacing: var(--kb-discount-letter-spacing);
+  text-transform: var(--kb-discount-case);
+}
+
+@media screen and (min-width: 750px) {
+  .kaahu-bestsellers__inner {
+    padding: var(--kb-padding-top-desktop) var(--kb-side-padding-desktop) var(--kb-padding-bottom-desktop);
+  }
+
+  .kaahu-bestsellers__header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    margin-bottom: var(--kb-header-gap-desktop);
+  }
+
+  .kaahu-bestsellers__button {
+    justify-self: end;
+    font-size: var(--kb-button-size-desktop);
+  }
+
+  .kaahu-bestsellers__eyebrow {
+    font-size: var(--kb-eyebrow-size-desktop);
+  }
+
+  .kaahu-bestsellers__heading {
+    font-size: var(--kb-heading-size-desktop);
+  }
+
+  .kaahu-bestsellers__grid {
+    grid-template-columns: repeat(var(--kb-columns-desktop), minmax(0, 1fr));
+    gap: var(--kb-row-gap-desktop) var(--kb-column-gap-desktop);
+  }
+
+  .kaahu-bestseller-card__badge {
+    font-size: var(--kb-badge-size-desktop);
+  }
+
+  .kaahu-bestseller-card__quick-view {
+    font-size: var(--kb-quick-size-desktop);
+  }
+
+  .kaahu-bestseller-card__family {
+    font-size: var(--kb-family-size-desktop);
+  }
+
+  .kaahu-bestseller-card__title {
+    font-size: var(--kb-title-size-desktop);
+  }
+
+  .kaahu-bestseller-card__material {
+    font-size: var(--kb-material-size-desktop);
+  }
+
+  .kaahu-bestseller-card__price-row {
+    font-size: var(--kb-price-size-desktop);
+  }
+
+  .kaahu-bestseller-card__sale-summary {
+    font-size: var(--kb-sale-size-desktop);
+  }
+}
+
+@media (hover: none) {
+  .kaahu-bestseller-card__quick-view {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "content_width": "page-width-medium",
+        "hdr_alignment": "center",
+        "heading_hide": false,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "rich_text_knrDMH": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_peEK4K": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "alignment": "left",
+            "opacity": 100
+          }
+        },
+        "heading_ch7b8n": {
+          "type": "heading",
+          "settings": {
+            "heading": "Kaahu Celebrates All Women!",
+            "heading_size": "h2",
+            "alignment": "left"
+          }
+        },
+        "text_yP8kab": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_size": "text-std",
+            "alignment": "left",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "caption_peEK4K",
+        "heading_ch7b8n",
+        "text_yP8kab"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 0,
+        "bg_image_blur": 0,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "featured_collection_VW7LRq": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.name",
+      "settings": {
+        "collection": "sale",
+        "content_alignment": "center",
+        "section_label": "25% of All of Kaahu",
+        "heading": "Women' Day Sale",
+        "heading_size": "h2",
+        "description": "",
+        "btn_enable": false,
+        "btn_label": "",
+        "btn_style": "solid",
+        "btn_position_mobile": "bottom",
+        "btn_position_desktop": "bottom",
+        "products_layout": "carousel",
+        "arrow_style": "solid",
+        "content_width": "page-width",
+        "no_items": 8,
+        "mobile_grid": "1",
+        "tablet_grid": "3",
+        "dt_grid": "4",
+        "card_image_display": "second_image_hover",
+        "pagination_color_scheme": "body",
+        "show_prices": true,
+        "show_vendor": false,
+        "show_swatches": false,
+        "show_color_count": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "rollover_titles": false,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "btn_color_scheme": "default",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_knrDMH",
+    "featured_collection_VW7LRq"
+  ]
+}

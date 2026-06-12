@@ -1,0 +1,702 @@
+{{ 'section-kaahu-impact-membership.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign image_width = section.settings.media_width | times: 20
+  assign heading_tag = 'h2'
+  if section.index == 1
+    assign heading_tag = 'h1'
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    --kim-section-bg: {{ section.settings.section_background_color }};
+    --kim-container-bg: {{ section.settings.container_background_color }};
+    --kim-content-bg: {{ section.settings.content_background_color }};
+    --kim-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --kim-heading-color: {{ section.settings.heading_color }};
+    --kim-body-color: {{ section.settings.body_color }};
+    --kim-button-bg: {{ section.settings.button_background_color }};
+    --kim-button-text: {{ section.settings.button_text_color }};
+    --kim-button-border: {{ section.settings.button_border_color }};
+    --kim-button-hover-bg: {{ section.settings.button_hover_background_color }};
+    --kim-button-hover-text: {{ section.settings.button_hover_text_color }};
+    --kim-button-hover-border: {{ section.settings.button_hover_border_color }};
+    --kim-max-width: {{ section.settings.container_max_width }}px;
+    --kim-section-padding-top: {{ section.settings.padding_top }}px;
+    --kim-section-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --kim-container-padding-mobile: {{ section.settings.container_padding_mobile }}px;
+    --kim-container-padding-desktop: {{ section.settings.container_padding_desktop }}px;
+    --kim-gap-mobile: {{ section.settings.gap_mobile }}px;
+    --kim-gap-desktop: {{ section.settings.gap_desktop }}px;
+    --kim-radius: {{ section.settings.border_radius }}px;
+    --kim-media-width: {{ section.settings.media_width }}%;
+    --kim-content-width: {{ section.settings.content_width }}%;
+    --kim-media-radius: {{ section.settings.media_border_radius }}px;
+    --kim-media-fit: {{ section.settings.image_fit }};
+    --kim-media-position: {{ section.settings.image_position }};
+    --kim-eyebrow-size: {{ section.settings.eyebrow_font_size }}px;
+    --kim-eyebrow-weight: {{ section.settings.eyebrow_font_weight }};
+    --kim-eyebrow-letter-spacing: {{ section.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
+    --kim-heading-size-mobile: {{ section.settings.heading_font_size_mobile }}px;
+    --kim-heading-size-desktop: {{ section.settings.heading_font_size_desktop }}px;
+    --kim-heading-weight: {{ section.settings.heading_font_weight }};
+    --kim-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    --kim-body-size-mobile: {{ section.settings.body_font_size_mobile }}px;
+    --kim-body-size-desktop: {{ section.settings.body_font_size_desktop }}px;
+    --kim-body-weight: {{ section.settings.body_font_weight }};
+    --kim-body-line-height: {{ section.settings.body_line_height | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<section class="kaahu-impact-membership section-{{ section.id }}">
+  <div class="kaahu-impact-membership__inner">
+    <div class="kaahu-impact-membership__container kaahu-impact-membership__container--desktop-{{ section.settings.desktop_alignment }} kaahu-impact-membership__container--mobile-{{ section.settings.mobile_alignment }}">
+      <div class="kaahu-impact-membership__media" style="aspect-ratio: {{ section.settings.media_aspect_ratio }};">
+        {%- if section.settings.media_type == 'video' -%}
+          {%- if section.settings.video != blank -%}
+            {{
+              section.settings.video
+              | video_tag:
+                image_size: '1400x',
+                autoplay: section.settings.video_autoplay,
+                loop: section.settings.video_loop,
+                muted: section.settings.video_muted,
+                controls: section.settings.video_controls,
+                class: 'kaahu-impact-membership__video'
+            }}
+          {%- elsif section.settings.mp4_url != blank -%}
+            <video
+              class="kaahu-impact-membership__video"
+              {% if section.settings.video_autoplay %}autoplay{% endif %}
+              {% if section.settings.video_loop %}loop{% endif %}
+              {% if section.settings.video_muted %}muted{% endif %}
+              {% if section.settings.video_controls %}controls{% endif %}
+              {% if section.settings.poster_image != blank %}poster="{{ section.settings.poster_image | image_url: width: 1400 }}"{% endif %}
+              playsinline
+            >
+              <source src="{{ section.settings.mp4_url }}" type="video/mp4">
+            </video>
+          {%- elsif section.settings.poster_image != blank -%}
+            {{ section.settings.poster_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'kaahu-impact-membership__image' }}
+          {%- else -%}
+            <div class="kaahu-impact-membership__placeholder">
+              {% render 'media-placeholder-lifestyle', style: 3 %}
+            </div>
+          {%- endif -%}
+        {%- elsif section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: image_width | image_tag: loading: 'lazy', class: 'kaahu-impact-membership__image' }}
+        {%- else -%}
+          <div class="kaahu-impact-membership__placeholder">
+            {% render 'media-placeholder-lifestyle', style: 3 %}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="kaahu-impact-membership__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="kaahu-impact-membership__eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="kaahu-impact-membership__heading">{{ section.settings.heading }}</{{ heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.body != blank -%}
+          <div class="kaahu-impact-membership__body rte">{{ section.settings.body }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.show_button and section.settings.button_text != blank -%}
+          <a class="kaahu-impact-membership__button kaahu-impact-membership__button--{{ section.settings.button_style }}" href="{{ section.settings.button_link | default: '#' }}">
+            {{ section.settings.button_text }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kaahu impact membership",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["password", "cart"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "1% OF SALES FOR THE PLANET"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A proud member of 1% for the Planet."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>1% of all sales goes straight to environmental nonprofits — restoring ecosystems, protecting waterways, and supporting the communities that grow our fibres.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify-hosted video"
+    },
+    {
+      "type": "url",
+      "id": "mp4_url",
+      "label": "MP4 URL",
+      "info": "Optional fallback for an MP4 file URL if you are not using a Shopify-hosted video."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster image"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Show video controls",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "media_aspect_ratio",
+      "label": "Media aspect ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait"
+        },
+        {
+          "value": "3 / 2",
+          "label": "Landscape"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Widescreen"
+        }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Media fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Media position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Container max width",
+      "default": 1440
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "container_padding_mobile",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Container padding on mobile",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "container_padding_desktop",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Container padding on desktop",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap on mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "min": 24,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap on desktop",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Container border radius",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "min": 0,
+      "max": 44,
+      "step": 2,
+      "unit": "px",
+      "label": "Media border radius",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "media_width",
+      "min": 35,
+      "max": 65,
+      "step": 1,
+      "unit": "%",
+      "label": "Media width on desktop",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "unit": "%",
+      "label": "Content width on desktop",
+      "default": 42
+    },
+    {
+      "type": "select",
+      "id": "desktop_alignment",
+      "label": "Desktop vertical alignment",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "Mobile text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size",
+      "min": 9,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Eyebrow font size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_font_weight",
+      "label": "Eyebrow font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "min": 0,
+      "max": 35,
+      "step": 1,
+      "unit": "%",
+      "label": "Eyebrow letter spacing",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 28,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size on mobile",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "min": 34,
+      "max": 92,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size on desktop",
+      "default": 58
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading font weight",
+      "options": [
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 90,
+      "max": 130,
+      "step": 1,
+      "unit": "%",
+      "label": "Heading line height",
+      "default": 98
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_mobile",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Body font size on mobile",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "body_font_size_desktop",
+      "min": 15,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Body font size on desktop",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "body_font_weight",
+      "label": "Body font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "min": 120,
+      "max": 180,
+      "step": 1,
+      "unit": "%",
+      "label": "Body line height",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outlined"
+        }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background",
+      "default": "#f6efe2"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#2f3d24"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border",
+      "default": "#f6efe2"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background_color",
+      "label": "Button hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text",
+      "default": "#2f3d24"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Button hover border",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section background",
+      "default": "#fbfaf7"
+    },
+    {
+      "type": "color",
+      "id": "container_background_color",
+      "label": "Container background",
+      "default": "#2f3d24"
+    },
+    {
+      "type": "color",
+      "id": "content_background_color",
+      "label": "Content background",
+      "default": "#2f3d24"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow",
+      "default": "#d6c9ac"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#fbf4e8"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body",
+      "default": "#e7ddc8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kaahu impact membership"
+    }
+  ]
+}
+{% endschema %}

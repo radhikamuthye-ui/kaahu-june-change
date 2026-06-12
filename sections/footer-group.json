@@ -1,0 +1,412 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer_shopping_info_PrGcJA": {
+      "type": "footer-shopping-info",
+      "blocks": {
+        "column_Vxi4pU": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "title": "Feature heading",
+            "text": "<p>Talk about a service such as free shipping</p>"
+          }
+        },
+        "column_VMH6pt": {
+          "type": "column",
+          "settings": {
+            "icon": "return",
+            "title": "Free Shipping & Free Returns",
+            "text": ""
+          }
+        },
+        "column_73RftU": {
+          "type": "column",
+          "settings": {
+            "icon": "payment",
+            "title": "Secure Payment",
+            "text": "<p>Flexible and simple</p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_Vxi4pU",
+        "column_VMH6pt",
+        "column_73RftU"
+      ],
+      "disabled": true,
+      "settings": {
+        "text_alignment": "center",
+        "content_width": "page-width",
+        "icon_size": "normal",
+        "block_heading_size": "h5",
+        "top_border": true,
+        "bottom_border": true,
+        "grid_column_gap": 0,
+        "keylines_show_mobile": false,
+        "keylines_show": true,
+        "keylines_to_edge": false,
+        "keyline_colour": "0",
+        "text_color": "fg-03",
+        "bg_color": "bg-body",
+        "top_padding": 20,
+        "bottom_padding": 20
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "kaahu_footer_shop": {
+          "type": "kaahu_footer_column",
+          "settings": {
+            "heading": "SHOP",
+            "link_1_label": "All Products",
+            "link_1_url": "/collections/all",
+            "link_1_new_tab": false,
+            "link_2_label": "Best Sellers",
+            "link_2_url": "/collections/best-sellers",
+            "link_2_new_tab": false,
+            "link_3_label": "Totes",
+            "link_3_url": "/collections/totes",
+            "link_3_new_tab": false,
+            "link_4_label": "Messengers",
+            "link_4_url": "/collections/messengers",
+            "link_4_new_tab": false,
+            "link_5_label": "Hobos",
+            "link_5_url": "/collections/hobos",
+            "link_5_new_tab": false,
+            "link_6_label": "Shoppers",
+            "link_6_url": "/collections/shoppers",
+            "link_6_new_tab": false,
+            "link_7_label": "",
+            "link_7_url": "",
+            "link_7_new_tab": false,
+            "link_8_label": "",
+            "link_8_url": "",
+            "link_8_new_tab": false
+          }
+        },
+        "kaahu_footer_collection": {
+          "type": "kaahu_footer_column",
+          "settings": {
+            "heading": "COLLECTION",
+            "link_1_label": "Golden Fibre",
+            "link_1_url": "/collections/golden-fibre",
+            "link_1_new_tab": false,
+            "link_2_label": "Marshmallow Thread",
+            "link_2_url": "/collections/marshmallow-thread",
+            "link_2_new_tab": false,
+            "link_3_label": "Fading Footprints",
+            "link_3_url": "/collections/fading-footprints",
+            "link_3_new_tab": false,
+            "link_4_label": "Soulful Satchels",
+            "link_4_url": "/collections/soulful-satchels",
+            "link_4_new_tab": false,
+            "link_5_label": "YOLO",
+            "link_5_url": "/collections/yolo",
+            "link_5_new_tab": false,
+            "link_6_label": "",
+            "link_6_url": "",
+            "link_6_new_tab": false,
+            "link_7_label": "",
+            "link_7_url": "",
+            "link_7_new_tab": false,
+            "link_8_label": "",
+            "link_8_url": "",
+            "link_8_new_tab": false
+          }
+        },
+        "kaahu_footer_story": {
+          "type": "kaahu_footer_column",
+          "settings": {
+            "heading": "OUR STORY",
+            "link_1_label": "Kaahu's Story",
+            "link_1_url": "/pages/kaahus-story",
+            "link_1_new_tab": false,
+            "link_2_label": "Philosophy & Ethos",
+            "link_2_url": "/pages/philosophy-ethos",
+            "link_2_new_tab": false,
+            "link_3_label": "Blog",
+            "link_3_url": "/blogs/news",
+            "link_3_new_tab": false,
+            "link_4_label": "Care",
+            "link_4_url": "/pages/care",
+            "link_4_new_tab": false,
+            "link_5_label": "FAQs",
+            "link_5_url": "/pages/faqs",
+            "link_5_new_tab": false,
+            "link_6_label": "Contact Us",
+            "link_6_url": "/pages/contact",
+            "link_6_new_tab": false,
+            "link_7_label": "",
+            "link_7_url": "",
+            "link_7_new_tab": false,
+            "link_8_label": "",
+            "link_8_url": "",
+            "link_8_new_tab": false
+          }
+        },
+        "kaahu_footer_sustainability": {
+          "type": "kaahu_footer_column",
+          "settings": {
+            "heading": "SUSTAINABILITY",
+            "link_1_label": "Kaahu's Promise",
+            "link_1_url": "/pages/kaahus-promise",
+            "link_1_new_tab": false,
+            "link_2_label": "1% for the Planet",
+            "link_2_url": "/pages/1-for-the-planet",
+            "link_2_new_tab": false,
+            "link_3_label": "Our Materials",
+            "link_3_url": "/pages/our-materials",
+            "link_3_new_tab": false,
+            "link_4_label": "Shipping & Returns",
+            "link_4_url": "/pages/shipping-returns",
+            "link_4_new_tab": false,
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_5_new_tab": false,
+            "link_6_label": "",
+            "link_6_url": "",
+            "link_6_new_tab": false,
+            "link_7_label": "",
+            "link_7_url": "",
+            "link_7_new_tab": false,
+            "link_8_label": "",
+            "link_8_url": "",
+            "link_8_new_tab": false
+          }
+        },
+        "newsletter_footer_block": {
+          "type": "newsletter_signup",
+          "settings": {
+            "heading": "Subscribe",
+            "heading_size": "fbh-large",
+            "heading_style": "normal",
+            "subheading": "<p>Be the first to know about our new products</p>",
+            "disclaimer_show": false,
+            "disclaimer": "",
+            "newsletter_form_width": "normal",
+            "newsletter_style": "minimal",
+            "border_opacity": 60,
+            "newsletter_submit_style": "icon",
+            "padding_top": 20,
+            "padding_bottom": 30,
+            "alignment": "center",
+            "block_width": "full_width"
+          }
+        },
+        "footer_social_media_block": {
+          "type": "social_media",
+          "settings": {
+            "heading": "Follow us on",
+            "alignment": "center",
+            "block_width": "full_width",
+            "link_style": "icons"
+          }
+        },
+        "logo_B6PCPJ": {
+          "type": "logo",
+          "disabled": true,
+          "settings": {
+            "logo": "shopify://shop_images/transp_KAAHU_logo_only_birds.png",
+            "logo_size": 500,
+            "logo_full_width": false,
+            "logo_opacity": 100,
+            "alignment": "center",
+            "logo_padding_top": 20,
+            "logo_padding_bottom": 20,
+            "block_width": "column_width"
+          }
+        },
+        "link_list_YbfEkc": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Explore",
+            "list_type_mobile": "accordion",
+            "block_width": "column_width",
+            "alignment": "left",
+            "list_layout": "vertical",
+            "list_layout_mobile": "vertical",
+            "menu": "main-menu"
+          }
+        },
+        "link_list_t4mNyf": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Know Us",
+            "list_type_mobile": "accordion",
+            "block_width": "full_width",
+            "alignment": "center",
+            "list_layout": "horizontal",
+            "list_layout_mobile": "vertical",
+            "menu": "footer2"
+          }
+        },
+        "link_list_dbBaDw": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "list_type_mobile": "accordion",
+            "block_width": "column_width",
+            "alignment": "left",
+            "list_layout": "vertical",
+            "list_layout_mobile": "vertical",
+            "menu": ""
+          }
+        },
+        "link_list_B6bDcU": {
+          "type": "link_list",
+          "settings": {
+            "heading": "May We Help You",
+            "list_type_mobile": "accordion",
+            "block_width": "full_width",
+            "alignment": "center",
+            "list_layout": "horizontal",
+            "list_layout_mobile": "vertical",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "kaahu_footer_shop",
+        "kaahu_footer_collection",
+        "kaahu_footer_story",
+        "kaahu_footer_sustainability",
+        "newsletter_footer_block",
+        "footer_social_media_block",
+        "logo_B6PCPJ",
+        "link_list_YbfEkc",
+        "link_list_t4mNyf",
+        "link_list_dbBaDw",
+        "link_list_B6bDcU"
+      ],
+      "settings": {
+        "kaahu_footer_enable": true,
+        "kaahu_footer_background": "#ffffff",
+        "kaahu_footer_text": "#9a948c",
+        "kaahu_footer_link": "#77716b",
+        "kaahu_footer_link_hover": "#24221f",
+        "kaahu_footer_divider": "#e8e1d6",
+        "kaahu_footer_full_width": false,
+        "kaahu_footer_max_width": 1460,
+        "kaahu_footer_padding_top_desktop": 52,
+        "kaahu_footer_padding_bottom_desktop": 44,
+        "kaahu_footer_padding_top_mobile": 56,
+        "kaahu_footer_padding_bottom_mobile": 36,
+        "kaahu_footer_column_gap_desktop": 68,
+        "kaahu_footer_column_gap_tablet": 40,
+        "kaahu_footer_row_gap_mobile": 20,
+        "kaahu_footer_heading_font": "accent",
+        "kaahu_footer_heading_size": 13,
+        "kaahu_footer_heading_weight": "700",
+        "kaahu_footer_heading_letter_spacing": 18,
+        "kaahu_footer_heading_transform": "uppercase",
+        "kaahu_footer_heading_link_gap": 18,
+        "kaahu_footer_link_font": "body",
+        "kaahu_footer_link_size_desktop": 18,
+        "kaahu_footer_link_size_mobile": 17,
+        "kaahu_footer_link_weight": "400",
+        "kaahu_footer_link_line_height": 145,
+        "kaahu_footer_link_spacing": 10,
+        "kaahu_newsletter_show": true,
+        "kaahu_newsletter_heading": "Sign up to receive 10% off your first order.",
+        "kaahu_newsletter_heading_font": "heading",
+        "kaahu_newsletter_heading_size_desktop": 24,
+        "kaahu_newsletter_heading_size_mobile": 24,
+        "kaahu_newsletter_heading_weight": "400",
+        "kaahu_newsletter_heading_line_height": 110,
+        "kaahu_newsletter_heading_form_gap": 24,
+        "kaahu_newsletter_heading_color": "#24221f",
+        "kaahu_newsletter_placeholder": "EMAIL ADDRESS",
+        "kaahu_newsletter_form_width": 360,
+        "kaahu_newsletter_input_height": 58,
+        "kaahu_newsletter_submit_label": "Subscribe",
+        "kaahu_newsletter_submit_text": "",
+        "kaahu_newsletter_button_background": "#24221f",
+        "kaahu_newsletter_button_color": "#ffffff",
+        "kaahu_newsletter_button_hover_background": "#414a29",
+        "kaahu_newsletter_form_border": "#e8e1d6",
+        "kaahu_newsletter_form_background": "#ffffff",
+        "kaahu_newsletter_form_radius": 12,
+        "kaahu_newsletter_consent_before": "By providing your email, you agree to receive marketing emails and accept our",
+        "kaahu_newsletter_privacy_label": "Privacy Policy",
+        "kaahu_newsletter_privacy_link": "/policies/privacy-policy",
+        "kaahu_newsletter_consent_between": "and",
+        "kaahu_newsletter_terms_label": "Terms",
+        "kaahu_newsletter_terms_link": "/policies/terms-of-service",
+        "kaahu_newsletter_consent_after": ".",
+        "kaahu_footer_show_logo": true,
+        "kaahu_footer_logo": "shopify://shop_images/logo_kaahu.png",
+        "kaahu_footer_logo_text": "KAAHU",
+        "kaahu_footer_logo_size": 130,
+        "kaahu_footer_logo_font_size": 26,
+        "kaahu_footer_brand_gap": 26,
+        "kaahu_footer_tagline": "Be Kind · Be Pure · Be Whole",
+        "kaahu_footer_tagline_size": 14,
+        "kaahu_footer_tagline_color": "#b2aca4",
+        "kaahu_footer_show_instagram": true,
+        "kaahu_footer_instagram_link": "https://www.instagram.com/houseofkaahu",
+        "kaahu_footer_instagram_size": 18,
+        "kaahu_footer_instagram_color": "#77716b",
+        "kaahu_footer_copyright": "© Kaahu · Sustainable jute & organic cotton handbags · San Francisco",
+        "kaahu_footer_copyright_size": 13,
+        "kaahu_footer_copyright_color": "#aaa39a",
+        "kaahu_footer_bottom_gap_desktop": 64,
+        "kaahu_footer_bottom_gap_mobile": 64,
+        "kaahu_footer_bottom_padding_top": 28,
+        "kaahu_footer_bottom_row_gap": 24,
+        "footer_font_family": "body",
+        "footer_font_size": "small",
+        "footer_font_case": "normal",
+        "footer_heading_font_family": "heading",
+        "footer_heading_size": "normal",
+        "footer_heading_style": "normal",
+        "footer_heading_margin": 10,
+        "footer_heading_opacity": 60,
+        "footer_link_vertical_spacing": 4,
+        "footer_horizontal_spacing_desktop": 20,
+        "footer_padding_vertical": 15,
+        "footer_padding_bottom": 15,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "main_footer_border": 0,
+        "main_footer_border_color": "dark",
+        "sub_footer_font_size": "small",
+        "sub_footer_border": true,
+        "sub_footer_border_color": "dark",
+        "sub_footer_border_width": "full",
+        "sub_footer_layout": "single",
+        "sub_footer_alignment": "align-center",
+        "sub_footer_linklist": "",
+        "sub_footer_single_link": "",
+        "sub_footer_single_link_label": "",
+        "show_policies": true,
+        "show_powered_by": false,
+        "payment_enable": true,
+        "location_enable": false,
+        "location_format": "code",
+        "show_currency_symbol": true,
+        "language_enable": true,
+        "show_location_labels": true,
+        "follow_shop_enable": true
+      }
+    }
+  },
+  "order": [
+    "footer_shopping_info_PrGcJA",
+    "footer"
+  ]
+}

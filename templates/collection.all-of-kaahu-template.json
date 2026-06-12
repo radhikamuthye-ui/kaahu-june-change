@@ -1,0 +1,345 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "banner_layout": "split_banner",
+        "banner_height_mobile": "default",
+        "banner_height": "default",
+        "stacked_img_ratio": "landscape_16x9",
+        "banner_width": "none",
+        "txt_alignment": "center",
+        "text_width": "medium",
+        "title_size": "h2",
+        "title_margin": 0,
+        "description_enable": true,
+        "description_size": "text-body",
+        "text_indent": "none",
+        "description_padding": 40,
+        "cards_img_ratio": "fit",
+        "cards_img_position": "left",
+        "image_padding": "none",
+        "grid_spacing": "none",
+        "txt_col": "#999999",
+        "bg_col": "#ffffff",
+        "top_padding": 0,
+        "bottom_padding": 0
+      }
+    },
+    "navigation": {
+      "type": "main-collection-sub-navigation",
+      "settings": {
+        "menu": "",
+        "alignment": "center",
+        "menu_style": "list",
+        "image_ratio": "landscape",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_9hnA4P": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_LTgANa": {
+          "type": "caption",
+          "settings": {
+            "caption": "Regenerative Jute • Certified Organic Cotton • Reduce Waste • Honor Heritage",
+            "alignment": "center",
+            "opacity": 100
+          }
+        },
+        "heading_8Bixfn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Bags That Tell A Better Story",
+            "heading_size": "h1",
+            "alignment": "center"
+          }
+        },
+        "text_Ue9jQV": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Sustainable style that doesn't cost the Earth. Every piece is unique and tells a unique story.  </strong></p>",
+            "text_size": "text-large",
+            "alignment": "center",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "caption_LTgANa",
+        "heading_8Bixfn",
+        "text_Ue9jQV"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 0,
+        "bg_image_blur": 0,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 48,
+        "section_margins": "page-width",
+        "grid_spacing_horizontal": "normal",
+        "grid_spacing_vertical": "none",
+        "columns_mobile": "2",
+        "columns_tablet": 4,
+        "columns_desktop": 4,
+        "enable_creative_layouts": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "card_image_display": "second_image_hover",
+        "pagination_color_scheme": "body",
+        "show_price": true,
+        "show_vendor": false,
+        "show_swatches": false,
+        "show_color_count": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "section_testimonials_qXkqr9": {
+      "type": "section-testimonials",
+      "blocks": {
+        "testimonial_4VGnnN": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "This bag is super spacious and perfect for traveling with kids.",
+            "image": "shopify://shop_images/PHOTO-2024-12-20-09-52-30.jpg",
+            "caption": "Rashi, Seattle WA",
+            "star_rating": 5
+          }
+        },
+        "testimonial_LDiXBd": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "On a spontaneous snowy hike, I was amazed by how incredibly light weight yet tough it felt..",
+            "image": "shopify://shop_images/PHOTO-2025-09-30-20-34-59.jpg",
+            "caption": "Nikita Lohia, Campbell CA",
+            "star_rating": 5
+          }
+        },
+        "testimonial_dwCTna": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Durable material, stays clean and looks very sleek. Used it in the Caribbeans, on the beach, shopping and going out to eat...",
+            "caption": "Kremena Fletcher, West Chester PA",
+            "star_rating": 5
+          }
+        },
+        "testimonial_4CrFDB": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Love it, and can't believe it's made from grass!",
+            "image": "shopify://shop_images/WhatsApp_Image_2025-01-21_at_18.48.53.jpg",
+            "caption": "Yifan Zhang, Franklin TN",
+            "star_rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_4VGnnN",
+        "testimonial_LDiXBd",
+        "testimonial_dwCTna",
+        "testimonial_4CrFDB"
+      ],
+      "name": "t:sections.testimonials.presets.name",
+      "settings": {
+        "section_layout": "slideshow",
+        "section_label": "",
+        "heading": "What our customers say about us...",
+        "subheading": "",
+        "heading_size": "h2",
+        "content_alignment": "center",
+        "show_ratings": true,
+        "show_captions": true,
+        "show_logos": true,
+        "image_size": 140,
+        "quote_font_size": "normal",
+        "btn_enable": false,
+        "btn_txt": "",
+        "btn_url": "",
+        "btn_style": "solid",
+        "btn_color_scheme": "default",
+        "text_color": "fg-03",
+        "bg_color": "bg-05",
+        "top_padding": 20,
+        "bottom_padding": 20,
+        "top_border": true,
+        "bottom_border": true,
+        "border_width": "full",
+        "border_color": "dark"
+      }
+    },
+    "collection_list_AeW6Ti": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_9gf4mY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "totes"
+          }
+        },
+        "featured_collection_DJWLqW": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured_collection_kA6DLY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "messengers"
+          }
+        },
+        "featured_collection_MAaeTt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "totes-1"
+          }
+        },
+        "featured_collection_78hQ7z": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shoppers"
+          }
+        },
+        "featured_collection_NNpKmp": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hobo"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_9gf4mY",
+        "featured_collection_DJWLqW",
+        "featured_collection_kA6DLY",
+        "featured_collection_MAaeTt",
+        "featured_collection_78hQ7z",
+        "featured_collection_NNpKmp"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "header_alignment": "center",
+        "section_label": "",
+        "heading": "",
+        "heading_size": "h2",
+        "sub_heading": "",
+        "link_style": "pill",
+        "list_separator": "none",
+        "list_font_size": "text-normal",
+        "section_layout": "horizontal",
+        "content_alignment": "center",
+        "content_width": "page-width",
+        "list_width": "100",
+        "list_borders": false,
+        "images_enable": true,
+        "rollover_image_position": "center",
+        "show_first_image": true,
+        "show_first_image_mobile": true,
+        "mobile_image_position": "last",
+        "image_ratio": "portrait",
+        "image_size": "medium",
+        "btn_enable": false,
+        "btn_txt": "",
+        "btn_url": "",
+        "btn_style": "solid",
+        "btn_position_mobile": "bottom",
+        "btn_position_desktop": "bottom",
+        "btn_color_scheme": "default",
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "full",
+        "border_color": "dark"
+      }
+    },
+    "rich_text_MLVYxE": {
+      "type": "rich-text",
+      "blocks": {
+        "button_4TXyTL": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "alignment": "center",
+            "btn_layout": "inline",
+            "btn_color_scheme": "default",
+            "btn_one_show": true,
+            "btn_one_txt": "SHOP ALL BAGS",
+            "btn_one_link": "shopify://collections/handbags",
+            "btn_one_style": "button--outline",
+            "btn_two_show": false,
+            "btn_two_txt": "Button text",
+            "btn_two_link": "",
+            "btn_two_style": "button--solid"
+          }
+        },
+        "text_PeBriN": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "text_size": "text-std",
+            "alignment": "left",
+            "text_indent": "noindent"
+          }
+        }
+      },
+      "block_order": [
+        "button_4TXyTL",
+        "text_PeBriN"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "content_width": "page-width",
+        "content_horizontal_position": "center",
+        "bg_image_darken": 0,
+        "bg_image_blur": 0,
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "navigation",
+    "rich_text_9hnA4P",
+    "product-grid",
+    "section_testimonials_qXkqr9",
+    "collection_list_AeW6Ti",
+    "rich_text_MLVYxE"
+  ]
+}
