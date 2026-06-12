@@ -1,0 +1,151 @@
+{{ 'section-kaahu-product-sustainability.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign badges = section.settings.badges | newline_to_br | split: '<br />'
+  assign panel_image = section.settings.image
+  assign panel_alt = section.settings.image_alt | default: section.settings.heading | escape
+-%}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    --kps-page-bg: {{ section.settings.page_background_color }};
+    --kps-max-width: {{ section.settings.max_width }}px;
+    --kps-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --kps-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --kps-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --kps-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --kps-radius: {{ section.settings.panel_radius }}px;
+    --kps-bg: {{ section.settings.panel_background_color }};
+    --kps-heading: {{ section.settings.heading_color }};
+    --kps-text: {{ section.settings.text_color }};
+    --kps-accent: {{ section.settings.accent_color }};
+    --kps-divider: {{ section.settings.divider_color }};
+    --kps-chip-border: {{ section.settings.chip_border_color }};
+    --kps-chip-text: {{ section.settings.chip_text_color }};
+    --kps-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --kps-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --kps-text-size-desktop: {{ section.settings.text_size_desktop }}px;
+    --kps-text-size-mobile: {{ section.settings.text_size_mobile }}px;
+    --kps-service-bg: {{ section.settings.service_background_color }};
+    --kps-service-border: {{ section.settings.service_border_color }};
+    --kps-service-heading: {{ section.settings.service_heading_color }};
+    --kps-service-text: {{ section.settings.service_text_color }};
+    --kps-service-icon: {{ section.settings.service_icon_color }};
+  }
+{%- endstyle -%}
+
+<section class="kaahu-product-sustainability section-{{ section.id }}">
+  <div class="kaahu-product-sustainability__inner">
+    <div class="kaahu-product-sustainability__panel">
+      <div class="kaahu-product-sustainability__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="kaahu-product-sustainability__eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="kaahu-product-sustainability__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="kaahu-product-sustainability__body rte">{{ section.settings.body }}</div>
+        {%- endif -%}
+        {%- if section.settings.badges != blank -%}
+          <ul class="kaahu-product-sustainability__badges" role="list">
+            {%- for badge in badges -%}
+              {%- assign badge_text = badge | strip -%}
+              {%- if badge_text != blank -%}<li>{{ badge_text }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if section.settings.logo != blank or section.settings.give_text != blank -%}
+          <div class="kaahu-product-sustainability__give">
+            <div class="kaahu-product-sustainability__logo">
+              {%- if section.settings.logo != blank -%}
+                {{ section.settings.logo | image_url: width: 160 | image_tag: loading: 'lazy', alt: '1% for the Planet' }}
+              {%- endif -%}
+            </div>
+            <div class="kaahu-product-sustainability__give-text rte">{{ section.settings.give_text }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="kaahu-product-sustainability__media">
+        {%- if panel_image != blank -%}
+          {{ panel_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', alt: panel_alt }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="kaahu-product-sustainability__services">
+        {%- for block in section.blocks -%}
+          <div class="kaahu-product-sustainability__service" {{ block.shopify_attributes }}>
+            <div class="kaahu-product-sustainability__service-icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'box' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m21 8-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+                {%- when 'chat' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/></svg>
+                {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h11v9H3z"/><path d="M14 10h3l4 4v2h-7v-6Z"/><path d="M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M18 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+              {%- endcase -%}
+            </div>
+            <div>
+              {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kaahu sustainability",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "page_background_color", "label": "Page background", "default": "#ffffff" },
+    { "type": "range", "id": "max_width", "label": "Max width", "min": 960, "max": 1600, "step": 20, "unit": "px", "default": 1320 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop top padding", "min": 0, "max": 180, "step": 4, "unit": "px", "default": 36 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop bottom padding", "min": 0, "max": 180, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "panel_radius", "label": "Panel radius", "min": 0, "max": 48, "step": 1, "unit": "px", "default": 24 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made with intention" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Beauty that gives back." },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Organic cotton woven with sustainably sourced jute — one of Earth’s most carbon-negative fibres — using Bengali textile craft passed down through generations.</p>" },
+    { "type": "textarea", "id": "badges", "label": "Badges", "default": "Carbon-negative\nFair trade\nLow-impact dye" },
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "richtext", "id": "give_text", "label": "Give-back text", "default": "<p>We’re a proud member of <strong>1% for the Planet</strong> — 1% of all sales goes straight to environmental nonprofits.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Heading desktop", "min": 28, "max": 72, "step": 1, "unit": "px", "default": 44 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading mobile", "min": 24, "max": 48, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "text_size_desktop", "label": "Text desktop", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 17 },
+    { "type": "range", "id": "text_size_mobile", "label": "Text mobile", "min": 13, "max": 22, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "panel_background_color", "label": "Panel background", "default": "#414A29" },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#d8d7cb" },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#e6b13a" },
+    { "type": "color", "id": "divider_color", "label": "Divider color", "default": "#67704d" },
+    { "type": "color", "id": "chip_border_color", "label": "Chip border", "default": "#78815e" },
+    { "type": "color", "id": "chip_text_color", "label": "Chip text", "default": "#ffffff" },
+    { "type": "color", "id": "service_background_color", "label": "Service card background", "default": "#fffdf9" },
+    { "type": "color", "id": "service_border_color", "label": "Service card border", "default": "#ece8e0" },
+    { "type": "color", "id": "service_heading_color", "label": "Service heading", "default": "#1d1b17" },
+    { "type": "color", "id": "service_text_color", "label": "Service text", "default": "#65615a" },
+    { "type": "color", "id": "service_icon_color", "label": "Service icon", "default": "#414A29" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service card",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [{ "value": "truck", "label": "Truck" }, { "value": "box", "label": "Box" }, { "value": "chat", "label": "Chat" }], "default": "truck" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Free carbon-neutral shipping" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On every U.S. order · 5–8 days." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Kaahu product sustainability" }
+  ]
+}
+{% endschema %}

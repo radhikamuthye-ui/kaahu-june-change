@@ -1,0 +1,61 @@
+.kaahu-product-brand-footer {
+  background: var(--kpbf-page-bg);
+}
+
+.kaahu-product-brand-footer__brand {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: var(--kpbf-padding-mobile) 20px;
+  background: var(--kpbf-bg);
+  color: var(--kpbf-text);
+  text-align: center;
+}
+
+.kaahu-product-brand-footer__logo {
+  color: var(--kpbf-logo);
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: var(--kpbf-logo-size-mobile);
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  line-height: 1;
+}
+
+.kaahu-product-brand-footer__tagline {
+  color: var(--kpbf-accent);
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: var(--kpbf-tagline-size-mobile);
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.kaahu-product-brand-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 30px;
+}
+
+.kaahu-product-brand-footer__links a {
+  color: var(--kpbf-link);
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 950px) {
+  .kaahu-product-brand-footer__brand {
+    padding: var(--kpbf-padding-desktop) 20px;
+  }
+
+  .kaahu-product-brand-footer__logo {
+    font-size: var(--kpbf-logo-size-desktop);
+  }
+
+  .kaahu-product-brand-footer__tagline {
+    font-size: var(--kpbf-tagline-size-desktop);
+  }
+}

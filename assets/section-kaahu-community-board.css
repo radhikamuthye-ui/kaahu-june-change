@@ -239,6 +239,55 @@
   height: 100%;
 }
 
+.template-product .kaahu-community-board {
+  background: #ffffff;
+}
+
+.template-product .kaahu-community-board__card {
+  overflow: hidden;
+  padding: 0;
+  box-shadow: none;
+}
+
+.template-product .kaahu-community-board__image-wrap {
+  border-radius: var(--card-radius, var(--kcb-card-radius));
+}
+
+.template-product .kaahu-community-board__image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(29, 27, 23, 0.48), rgba(29, 27, 23, 0));
+  pointer-events: none;
+}
+
+.template-product .kaahu-community-board__caption {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-body-family);
+  font-size: var(--kcb-caption-size-mobile);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.template-product .kaahu-community-board__button {
+  min-width: 300px;
+}
+
+@media only screen and (min-width: 950px) {
+  .template-product .kaahu-community-board__caption {
+    font-size: var(--kcb-caption-size-desktop);
+  }
+}
+
 @media screen and (min-width: 750px) {
   .kaahu-community-board__inner {
     width: min(calc(100% - 64px), var(--kcb-max-width));

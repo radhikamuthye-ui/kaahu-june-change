@@ -247,7 +247,8 @@
             "body_color": "#65615a",
             "icon_color": "#b43a3a",
             "border_color": "#ece8e0"
-          }
+          },
+          "disabled": true
         },
         "materials": {
           "type": "materials",
@@ -275,7 +276,8 @@
             "icon_color": "#b43a3a",
             "tick_color": "#b43a3a",
             "border_color": "#ece8e0"
-          }
+          },
+          "disabled": true
         },
         "fit_dimensions": {
           "type": "fit_dimensions",
@@ -323,7 +325,8 @@
             "table_border_color": "#ece8e0",
             "label_color": "#938e84",
             "value_color": "#444444"
-          }
+          },
+          "disabled": true
         },
         "care_instructions": {
           "type": "care_instructions",
@@ -352,7 +355,8 @@
             "icon_color": "#b43a3a",
             "tick_color": "#b43a3a",
             "border_color": "#ece8e0"
-          }
+          },
+          "disabled": true
         },
         "sustainability_details": {
           "type": "sustainability_details",
@@ -403,7 +407,8 @@
             "icon_color": "#b43a3a",
             "badge_background_color": "#ffffff",
             "border_color": "#ece8e0"
-          }
+          },
+          "disabled": true
         },
         "shipping_returns": {
           "type": "shipping_returns",
@@ -429,7 +434,8 @@
             "body_color": "#65615a",
             "icon_color": "#b43a3a",
             "border_color": "#ece8e0"
-          }
+          },
+          "disabled": true
         },
         "service_highlights": {
           "type": "service_highlights",
@@ -638,7 +644,8 @@
       ],
       "settings": {
         "include_margins": true
-      }
+      },
+      "disabled": true
     },
     "complementary-products": {
       "type": "complementary-products",
@@ -691,10 +698,474 @@
         "border_width": "full",
         "border_color": "light"
       }
+    },
+    "kaahu_product_details": {
+      "type": "kaahu-product-details",
+      "blocks": {
+        "detail_why": {
+          "type": "accordion",
+          "settings": {
+            "heading": "WHY WE LOVE THIS",
+            "open_by_default": true,
+            "metafield_namespace": "custom",
+            "metafield_key": "short_description",
+            "content": "<p>Its deep black body is a canvas — a silent stage where warm handles bloom like soft strokes of character. Spacious enough for weekend escapes, daily essentials, or life’s gathered moments.</p><p>Not just an accessory, but a canvas for your adventures.</p>"
+          }
+        },
+        "detail_materials": {
+          "type": "accordion",
+          "settings": {
+            "heading": "MATERIALS",
+            "open_by_default": false,
+            "metafield_namespace": "custom",
+            "metafield_key": "materials",
+            "content": "<p>Woven from organic cotton and sustainably sourced jute with low-impact dyes and thoughtful finishing.</p>"
+          }
+        },
+        "detail_fit": {
+          "type": "accordion",
+          "settings": {
+            "heading": "FIT & DIMENSIONS",
+            "open_by_default": false,
+            "metafield_namespace": "custom",
+            "metafield_key": "dimension",
+            "content": "<p>Add dimensions, pocket count, straps and closure details here, or connect this block to a product metafield.</p>"
+          }
+        },
+        "detail_care": {
+          "type": "accordion",
+          "settings": {
+            "heading": "CARE INSTRUCTIONS",
+            "open_by_default": false,
+            "metafield_namespace": "custom",
+            "metafield_key": "care_instructions",
+            "content": "<p>Spot clean with a damp cloth and mild soap. Air dry away from direct sunlight.</p>"
+          }
+        },
+        "detail_sustainability": {
+          "type": "accordion",
+          "settings": {
+            "heading": "SUSTAINABILITY",
+            "open_by_default": false,
+            "metafield_namespace": "custom",
+            "metafield_key": "sustainability_note",
+            "content": "<p>Made with natural fibres, lower-impact packaging and a commitment to giving back through 1% for the Planet.</p>"
+          }
+        },
+        "detail_shipping": {
+          "type": "accordion",
+          "settings": {
+            "heading": "SHIPPING & RETURNS",
+            "open_by_default": false,
+            "metafield_namespace": "custom",
+            "metafield_key": "shipping_returns",
+            "content": "<p>Free carbon-neutral shipping on U.S. orders and 90-day easy returns.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "detail_why",
+        "detail_materials",
+        "detail_fit",
+        "detail_care",
+        "detail_sustainability",
+        "detail_shipping"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "max_width": 1320,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 72,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 44,
+        "heading": "The Details",
+        "intro": "<p>Everything woven into the product — materials, fit, care and the promise behind every piece.</p>",
+        "heading_size_desktop": 42,
+        "heading_size_mobile": 34,
+        "text_size_desktop": 16,
+        "text_size_mobile": 15,
+        "accordion_title_size": 14,
+        "heading_color": "#1d1b17",
+        "text_color": "#65615a",
+        "accordion_title_color": "#1d1b17",
+        "border_color": "#ece8e0",
+        "icon_color": "#cf7436"
+      }
+    },
+    "kaahu_product_sustainability": {
+      "type": "kaahu-product-sustainability",
+      "blocks": {
+        "service_shipping": {
+          "type": "service",
+          "settings": {
+            "icon": "truck",
+            "heading": "Free carbon-neutral shipping",
+            "text": "On every U.S. order · 5–8 days."
+          }
+        },
+        "service_returns": {
+          "type": "service",
+          "settings": {
+            "icon": "box",
+            "heading": "90-day easy returns",
+            "text": "Not in love? Send it back, on us."
+          }
+        },
+        "service_care": {
+          "type": "service",
+          "settings": {
+            "icon": "chat",
+            "heading": "Styling & care advice",
+            "text": "Questions? care@kaahu.us"
+          }
+        }
+      },
+      "block_order": [
+        "service_shipping",
+        "service_returns",
+        "service_care"
+      ],
+      "settings": {
+        "page_background_color": "#ffffff",
+        "max_width": 1320,
+        "padding_top_desktop": 36,
+        "padding_bottom_desktop": 72,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 48,
+        "panel_radius": 24,
+        "eyebrow": "Made with intention",
+        "heading": "Beauty that gives back.",
+        "body": "<p>Organic cotton woven with sustainably sourced jute — one of Earth’s most carbon-negative fibres — using Bengali textile craft passed down through generations.</p>",
+        "badges": "Carbon-negative\nFair trade\nLow-impact dye",
+        "logo": "shopify://shop_images/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png",
+        "give_text": "<p>We’re a proud member of <strong>1% for the Planet</strong> — 1% of all sales goes straight to environmental nonprofits.</p>",
+        "image": "shopify://shop_images/DSC01197.jpg",
+        "image_alt": "Organic cotton",
+        "heading_size_desktop": 44,
+        "heading_size_mobile": 34,
+        "text_size_desktop": 17,
+        "text_size_mobile": 15,
+        "panel_background_color": "#414A29",
+        "heading_color": "#ffffff",
+        "text_color": "#d8d7cb",
+        "accent_color": "#e6b13a",
+        "divider_color": "#67704d",
+        "chip_border_color": "#78815e",
+        "chip_text_color": "#ffffff",
+        "service_background_color": "#fffdf9",
+        "service_border_color": "#ece8e0",
+        "service_heading_color": "#1d1b17",
+        "service_text_color": "#65615a",
+        "service_icon_color": "#414A29"
+      }
+    },
+    "kaahu_product_reviews": {
+      "type": "kaahu-product-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "verified_text": "✓ Verified",
+            "heading": "Sleek, durable, turns heads",
+            "text": "<p>Durable material, stays clean and looks very sleek. Used it on the Caribbean, on the beach, shopping and going out to eat — it does everything.</p>",
+            "byline": "<p><strong>Kremena F.</strong> · West Chester, PA</p>"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "verified_text": "✓ Verified",
+            "heading": "The handles make it",
+            "text": "<p>The mustard and rose straps are even prettier in person. Huge inside — laptop, water bottle, the lot — and the magnetic closure is so handy.</p>",
+            "byline": "<p><strong>Asha R.</strong> · Brooklyn, NY</p>"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "verified_text": "✓ Verified",
+            "heading": "Can’t believe it’s organic cotton",
+            "text": "<p>Beautifully made and I love that it gives back. Roomier than I expected, and the build quality feels genuinely premium. Reach for it almost every day.</p>",
+            "byline": "<p><strong>Dani M.</strong> · Austin, TX</p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "max_width": 1320,
+        "padding_top_desktop": 56,
+        "padding_bottom_desktop": 72,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 52,
+        "heading": "What Our Customers Say",
+        "heading_size_desktop": 42,
+        "heading_size_mobile": 34,
+        "show_summary": true,
+        "rating": "5.0",
+        "review_count_text": "5 reviews",
+        "button_text": "Read all 5 reviews",
+        "button_link": "",
+        "heading_color": "#1d1b17",
+        "text_color": "#65615a",
+        "muted_color": "#938e84",
+        "star_color": "#e0a52a",
+        "olive_color": "#414A29",
+        "border_color": "#ece8e0",
+        "card_background_color": "#fffdf9",
+        "button_text_color": "#1d1b17",
+        "button_border_color": "#1d1b17"
+      }
+    },
+    "kaahu_product_community": {
+      "type": "kaahu-community-board",
+      "blocks": {
+        "pdp_comm_1": {
+          "type": "card",
+          "settings": {
+            "card_link": "https://www.instagram.com/houseofkaahu/",
+            "link_to_instagram_profile": true,
+            "open_new_tab": true,
+            "show_pin_dot": false,
+            "card_background_color": "#ffffff",
+            "caption_color": "#ffffff",
+            "rotation_desktop": 0,
+            "rotation_mobile": 0,
+            "card_width_desktop": 300,
+            "card_width_mobile": 280,
+            "image_aspect_ratio": "4 / 5",
+            "image_object_fit": "cover",
+            "card_shadow_strength": 0,
+            "card_border_radius": 18,
+            "image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-05-25_at_00.07.06.jpg",
+            "caption": "@maya.wears",
+            "alt_text": "Kaahu bag styled by customer"
+          }
+        },
+        "pdp_comm_2": {
+          "type": "card",
+          "settings": {
+            "card_link": "https://www.instagram.com/houseofkaahu/",
+            "link_to_instagram_profile": true,
+            "open_new_tab": true,
+            "show_pin_dot": false,
+            "card_background_color": "#ffffff",
+            "caption_color": "#ffffff",
+            "rotation_desktop": 0,
+            "rotation_mobile": 0,
+            "card_width_desktop": 300,
+            "card_width_mobile": 280,
+            "image_aspect_ratio": "4 / 5",
+            "image_object_fit": "cover",
+            "card_shadow_strength": 0,
+            "card_border_radius": 18,
+            "image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-19_at_01.45.06.jpg",
+            "caption": "@studio.noor",
+            "alt_text": "Kaahu bag lifestyle moment"
+          }
+        },
+        "pdp_comm_3": {
+          "type": "card",
+          "settings": {
+            "card_link": "https://www.instagram.com/houseofkaahu/",
+            "link_to_instagram_profile": true,
+            "open_new_tab": true,
+            "show_pin_dot": false,
+            "card_background_color": "#ffffff",
+            "caption_color": "#ffffff",
+            "rotation_desktop": 0,
+            "rotation_mobile": 0,
+            "card_width_desktop": 300,
+            "card_width_mobile": 280,
+            "image_aspect_ratio": "4 / 5",
+            "image_object_fit": "cover",
+            "card_shadow_strength": 0,
+            "card_border_radius": 18,
+            "image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-03-13_at_05.12.42.jpg",
+            "caption": "@everyday.edit",
+            "alt_text": "Kaahu tote product moment"
+          }
+        },
+        "pdp_comm_4": {
+          "type": "card",
+          "settings": {
+            "card_link": "https://www.instagram.com/houseofkaahu/",
+            "link_to_instagram_profile": true,
+            "open_new_tab": true,
+            "show_pin_dot": false,
+            "card_background_color": "#ffffff",
+            "caption_color": "#ffffff",
+            "rotation_desktop": 0,
+            "rotation_mobile": 0,
+            "card_width_desktop": 300,
+            "card_width_mobile": 280,
+            "image_aspect_ratio": "4 / 5",
+            "image_object_fit": "cover",
+            "card_shadow_strength": 0,
+            "card_border_radius": 18,
+            "image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
+            "mobile_image": "shopify://shop_images/WhatsApp_Image_2026-01-22_at_02.59.17.jpg",
+            "caption": "@the.carryall",
+            "alt_text": "Kaahu carryall product moment"
+          }
+        }
+      },
+      "block_order": [
+        "pdp_comm_1",
+        "pdp_comm_2",
+        "pdp_comm_3",
+        "pdp_comm_4"
+      ],
+      "settings": {
+        "section_instagram_link": "https://www.instagram.com/houseofkaahu/",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "section_max_width": 1320,
+        "content_max_width": 620,
+        "padding_top_desktop": 56,
+        "padding_bottom_desktop": 76,
+        "padding_top_mobile": 44,
+        "padding_bottom_mobile": 56,
+        "full_width": false,
+        "show_handle": false,
+        "instagram_handle": "@HOUSEOFKAAHU",
+        "instagram_handle_link": "https://www.instagram.com/houseofkaahu/",
+        "handle_color": "#aa627d",
+        "heading": "Styled by Kaahu Women",
+        "heading_font": "cormorant_n4",
+        "heading_size_desktop": 44,
+        "heading_size_mobile": 34,
+        "heading_color": "#1d1b17",
+        "description": "<p>Real women, real moments. Tag <strong>#YouAreMyKaahu</strong> for a chance to be featured.</p>",
+        "description_size_desktop": 16,
+        "description_size_mobile": 15,
+        "description_color": "#65615a",
+        "header_alignment": "center",
+        "header_gap_desktop": 40,
+        "header_gap_mobile": 32,
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "columns_mobile": "1",
+        "gap_desktop": 24,
+        "gap_mobile": 16,
+        "card_alignment": "center",
+        "card_width_desktop": 300,
+        "card_width_mobile": 280,
+        "card_background_color": "#ffffff",
+        "card_padding": 8,
+        "card_border_radius": 18,
+        "card_shadow_strength": 0,
+        "caption_font": "assistant_n4",
+        "caption_size_desktop": 14,
+        "caption_size_mobile": 13,
+        "caption_line_height": 120,
+        "caption_alignment": "left",
+        "caption_color": "#ffffff",
+        "show_pin_dots": false,
+        "default_pin_color": "#e0a52a",
+        "pin_size": 20,
+        "pin_shadow_strength": 0,
+        "enable_card_rotation": false,
+        "enable_staggered_layout": false,
+        "stagger_offset": 0,
+        "mobile_layout": "scroll",
+        "show_cta_area": true,
+        "cta_headline": "",
+        "cta_headline_size_desktop": 18,
+        "cta_headline_size_mobile": 16,
+        "cta_headline_color": "#1d1b17",
+        "cta_gap_desktop": 40,
+        "cta_gap_mobile": 32,
+        "button_style": "outline",
+        "button_border_radius": 60,
+        "button_text_color": "#1d1b17",
+        "button_background_color": "rgba(0,0,0,0)",
+        "button_border_color": "#ece8e0",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_background_color": "#1d1b17",
+        "button_hover_border_color": "#1d1b17",
+        "button_one_text": "",
+        "button_one_link": "",
+        "button_one_show_icon": true,
+        "button_two_text": "Follow @houseofkaahu",
+        "button_two_link": "https://www.instagram.com/houseofkaahu/",
+        "button_two_show_icon": true,
+        "show_instagram_icon": true
+      }
+    },
+    "kaahu_product_brand_footer": {
+      "type": "kaahu-product-brand-footer",
+      "blocks": {
+        "link_1": {
+          "type": "link",
+          "settings": {
+            "text": "Our Promise",
+            "link": "/pages/kaahus-promise"
+          }
+        },
+        "link_2": {
+          "type": "link",
+          "settings": {
+            "text": "Sustainability",
+            "link": "/pages/sustainability"
+          }
+        },
+        "link_3": {
+          "type": "link",
+          "settings": {
+            "text": "FAQ",
+            "link": "/pages/faqs"
+          }
+        },
+        "link_4": {
+          "type": "link",
+          "settings": {
+            "text": "Contact",
+            "link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "link_1",
+        "link_2",
+        "link_3",
+        "link_4"
+      ],
+      "settings": {
+        "page_background_color": "#ffffff",
+        "background_color": "#aa627d",
+        "logo_color": "#ffffff",
+        "text_color": "#ffffff",
+        "accent_color": "#e6b13a",
+        "link_color": "#f4dce6",
+        "logo_text": "KAAHU",
+        "tagline": "Be Kind · Be Pure · Be Whole",
+        "padding_desktop": 80,
+        "padding_mobile": 56,
+        "logo_size_desktop": 28,
+        "logo_size_mobile": 24,
+        "tagline_size_desktop": 19,
+        "tagline_size_mobile": 17
+      }
     }
   },
   "order": [
     "main",
+    "kaahu_product_details",
+    "kaahu_product_sustainability",
+    "kaahu_product_reviews",
+    "kaahu_product_community",
+    "kaahu_product_brand_footer",
     "section_product_collection_links_Uc944h",
     "1771038837e7706440",
     "complementary-products",

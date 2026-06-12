@@ -1,0 +1,179 @@
+.kaahu-product-reviews {
+  background: var(--kpr-bg);
+  color: var(--kpr-text);
+}
+
+.kaahu-product-reviews__inner {
+  width: min(calc(100% - 40px), var(--kpr-max-width));
+  margin: 0 auto;
+  padding: var(--kpr-padding-top-mobile) 0 var(--kpr-padding-bottom-mobile);
+}
+
+.kaahu-product-reviews__heading {
+  margin: 0 0 32px;
+  color: var(--kpr-heading);
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: var(--kpr-heading-size-mobile);
+  font-weight: var(--font-heading-weight);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.kaahu-product-reviews__summary {
+  display: grid;
+  gap: 24px;
+  max-width: 660px;
+  padding: 28px;
+  border: 1px solid var(--kpr-border);
+  border-radius: 20px;
+  background: var(--kpr-card-bg);
+}
+
+.kaahu-product-reviews__score {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.kaahu-product-reviews__score strong {
+  color: var(--kpr-heading);
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: 48px;
+  font-weight: var(--font-heading-weight);
+  line-height: 1;
+}
+
+.kaahu-product-reviews__stars {
+  color: var(--kpr-star);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.kaahu-product-reviews__count {
+  color: var(--kpr-muted);
+  font-size: 13px;
+}
+
+.kaahu-product-reviews__bars {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+}
+
+.kaahu-product-reviews__bar {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  color: var(--kpr-muted);
+  font-size: 13px;
+}
+
+.kaahu-product-reviews__track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eeece6;
+}
+
+.kaahu-product-reviews__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--kpr-star);
+}
+
+.kaahu-product-reviews__cards {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.kaahu-product-reviews__card {
+  padding: 28px;
+  border: 1px solid var(--kpr-border);
+  border-radius: 18px;
+  background: var(--kpr-card-bg);
+}
+
+.kaahu-product-reviews__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.kaahu-product-reviews__verified {
+  color: var(--kpr-olive);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kaahu-product-reviews__card h3 {
+  margin: 0 0 14px;
+  color: var(--kpr-heading);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.kaahu-product-reviews__quote {
+  color: var(--kpr-text);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.kaahu-product-reviews__quote p {
+  margin: 0;
+}
+
+.kaahu-product-reviews__byline {
+  margin-top: 26px;
+  color: var(--kpr-muted);
+  font-size: 13px;
+}
+
+.kaahu-product-reviews__byline strong {
+  color: var(--kpr-heading);
+}
+
+.kaahu-product-reviews__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin-top: 32px;
+  padding: 0 36px;
+  border: 1px solid var(--kpr-button-border);
+  border-radius: 999px;
+  color: var(--kpr-button-text);
+  background: transparent;
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 750px) {
+  .kaahu-product-reviews__summary {
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .kaahu-product-reviews__inner {
+    padding: var(--kpr-padding-top-desktop) 0 var(--kpr-padding-bottom-desktop);
+  }
+
+  .kaahu-product-reviews__heading {
+    font-size: var(--kpr-heading-size-desktop);
+  }
+
+  .kaahu-product-reviews__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

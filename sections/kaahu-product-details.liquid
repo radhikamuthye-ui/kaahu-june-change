@@ -1,0 +1,104 @@
+{{ 'section-kaahu-product-details.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }} {
+    --kpd-bg: {{ section.settings.background_color }};
+    --kpd-max-width: {{ section.settings.max_width }}px;
+    --kpd-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --kpd-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --kpd-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --kpd-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --kpd-heading-color: {{ section.settings.heading_color }};
+    --kpd-text: {{ section.settings.text_color }};
+    --kpd-title-color: {{ section.settings.accordion_title_color }};
+    --kpd-border: {{ section.settings.border_color }};
+    --kpd-icon-color: {{ section.settings.icon_color }};
+    --kpd-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --kpd-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --kpd-text-size-desktop: {{ section.settings.text_size_desktop }}px;
+    --kpd-text-size-mobile: {{ section.settings.text_size_mobile }}px;
+    --kpd-title-size: {{ section.settings.accordion_title_size }}px;
+  }
+{%- endstyle -%}
+
+<section class="kaahu-product-details section-{{ section.id }}">
+  <div class="kaahu-product-details__inner">
+    <div class="kaahu-product-details__copy">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="kaahu-product-details__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="kaahu-product-details__intro rte">{{ section.settings.intro }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="kaahu-product-details__items">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign panel_content = block.settings.content
+          if block.settings.metafield_key != blank
+            assign product_metafield = product.metafields[block.settings.metafield_namespace][block.settings.metafield_key]
+            if product_metafield != blank
+              capture panel_content
+                echo product_metafield | metafield_tag
+              endcapture
+            endif
+          endif
+        -%}
+        {%- if block.settings.heading != blank and panel_content != blank -%}
+          <details class="kaahu-product-details__item" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary class="kaahu-product-details__summary">
+              <span>{{ block.settings.heading }}</span>
+              <span class="kaahu-product-details__icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="kaahu-product-details__panel rte">{{ panel_content }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kaahu product details",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "max_width", "label": "Max width", "min": 960, "max": 1600, "step": 20, "unit": "px", "default": 1320 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop top padding", "min": 0, "max": 180, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop bottom padding", "min": 0, "max": 180, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 44 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The Details" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Everything woven into each piece — materials, fit, care and the promise behind every piece.</p>" },
+    { "type": "range", "id": "heading_size_desktop", "label": "Heading size desktop", "min": 28, "max": 72, "step": 1, "unit": "px", "default": 42 },
+    { "type": "range", "id": "heading_size_mobile", "label": "Heading size mobile", "min": 24, "max": 48, "step": 1, "unit": "px", "default": 34 },
+    { "type": "range", "id": "text_size_desktop", "label": "Body size desktop", "min": 13, "max": 24, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "text_size_mobile", "label": "Body size mobile", "min": 13, "max": 22, "step": 1, "unit": "px", "default": 15 },
+    { "type": "range", "id": "accordion_title_size", "label": "Accordion title size", "min": 11, "max": 20, "step": 1, "unit": "px", "default": 14 },
+    { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#1d1b17" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#65615a" },
+    { "type": "color", "id": "accordion_title_color", "label": "Accordion title color", "default": "#1d1b17" },
+    { "type": "color", "id": "border_color", "label": "Border color", "default": "#ece8e0" },
+    { "type": "color", "id": "icon_color", "label": "Icon color", "default": "#cf7436" }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Detail accordion",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "WHY WE LOVE THIS" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false },
+        { "type": "text", "id": "metafield_namespace", "label": "Metafield namespace", "default": "custom" },
+        { "type": "text", "id": "metafield_key", "label": "Metafield key" },
+        { "type": "richtext", "id": "content", "label": "Fallback content", "default": "<p>Add product detail copy here, or connect this block to a product metafield.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Kaahu product details" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,106 @@
+.kaahu-product-details {
+  background: var(--kpd-bg);
+  color: var(--kpd-text);
+}
+
+.kaahu-product-details__inner {
+  display: grid;
+  width: min(calc(100% - 40px), var(--kpd-max-width));
+  margin: 0 auto;
+  padding: var(--kpd-padding-top-mobile) 0 var(--kpd-padding-bottom-mobile);
+  gap: 34px;
+}
+
+.kaahu-product-details__heading {
+  margin: 0;
+  color: var(--kpd-heading-color);
+  font-family: var(--font-heading-family, Georgia, serif);
+  font-size: var(--kpd-heading-size-mobile);
+  font-weight: var(--font-heading-weight);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.kaahu-product-details__intro {
+  max-width: 390px;
+  margin-top: 20px;
+  color: var(--kpd-text);
+  font-size: var(--kpd-text-size-mobile);
+  line-height: 1.55;
+}
+
+.kaahu-product-details__intro p {
+  margin: 0;
+}
+
+.kaahu-product-details__items {
+  border-top: 1px solid var(--kpd-border);
+}
+
+.kaahu-product-details__item {
+  border-bottom: 1px solid var(--kpd-border);
+}
+
+.kaahu-product-details__summary {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  border: 0;
+  background: transparent;
+  color: var(--kpd-title-color);
+  cursor: pointer;
+  font-family: var(--font-accent-family, var(--font-body-family));
+  font-size: var(--kpd-title-size);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.kaahu-product-details__icon {
+  color: var(--kpd-icon-color);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.kaahu-product-details__panel {
+  max-width: 760px;
+  padding: 0 0 28px;
+  color: var(--kpd-text);
+  font-size: var(--kpd-text-size-mobile);
+  line-height: 1.62;
+}
+
+.kaahu-product-details__panel p {
+  margin: 0 0 18px;
+}
+
+.kaahu-product-details__panel p:last-child {
+  margin-bottom: 0;
+}
+
+.kaahu-product-details__item[open] .kaahu-product-details__icon {
+  transform: rotate(45deg);
+}
+
+@media only screen and (min-width: 950px) {
+  .kaahu-product-details__inner {
+    grid-template-columns: minmax(240px, 0.78fr) minmax(520px, 1.22fr);
+    padding: var(--kpd-padding-top-desktop) 0 var(--kpd-padding-bottom-desktop);
+    gap: clamp(72px, 9vw, 140px);
+  }
+
+  .kaahu-product-details__heading {
+    font-size: var(--kpd-heading-size-desktop);
+  }
+
+  .kaahu-product-details__intro,
+  .kaahu-product-details__panel {
+    font-size: var(--kpd-text-size-desktop);
+  }
+}
