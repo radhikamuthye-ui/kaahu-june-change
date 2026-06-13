@@ -10,8 +10,15 @@ class KaahuReviewsCarousel extends HTMLElement {
     this.autoplay = this.dataset.autoplay === 'true';
     this.pauseHover = this.dataset.pauseHover === 'true';
     this.dragEnabled = this.dataset.drag === 'true';
+    this.continuous = this.dataset.continuous === 'true';
     this.speed = Number(this.dataset.speed) || 5000;
     this.timer = null;
+
+    if (this.continuous) {
+      this.track.addEventListener('focusin', () => this.classList.add('is-paused'));
+      this.track.addEventListener('focusout', () => this.classList.remove('is-paused'));
+      return;
+    }
 
     this.prev?.addEventListener('click', () => this.go(-1));
     this.next?.addEventListener('click', () => this.go(1));

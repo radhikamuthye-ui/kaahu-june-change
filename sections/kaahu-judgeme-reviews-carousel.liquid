@@ -11,9 +11,15 @@
       assign fallback_block_count = fallback_block_count | plus: 1
     endif
   endfor
+  assign continuous_reviews = false
+  if section.settings.carousel_motion == 'continuous' and section.settings.autoplay and fallback_block_count > 1
+    assign continuous_reviews = true
+  endif
 -%}
 
 {%- style -%}
+  {{ section.settings.review_quote_font | font_face: font_display: 'swap' }}
+
   .section-{{ section.id }} {
     --kjrc-bg: {{ section.settings.section_background_color }};
     --kjrc-card-bg: {{ section.settings.card_background_color }};
@@ -34,11 +40,32 @@
     --kjrc-card-width-desktop: {{ section.settings.card_width_desktop }}px;
     --kjrc-card-radius: {{ section.settings.card_border_radius }}px;
     --kjrc-gap: {{ section.settings.card_gap }}px;
+    --kjrc-max-width: {{ section.settings.container_max_width }}px;
+    --kjrc-header-align: {{ section.settings.header_alignment }};
+    --kjrc-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --kjrc-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+    --kjrc-eyebrow-size: {{ section.settings.eyebrow_size }}px;
+    --kjrc-eyebrow-spacing: {{ section.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
+    --kjrc-marquee-duration: {{ section.settings.marquee_duration }}s;
+    --kjrc-media-height-mobile: {{ section.settings.image_height_mobile }}px;
+    --kjrc-media-height-desktop: {{ section.settings.image_height_desktop }}px;
+    --kjrc-media-fit: {{ section.settings.image_object_fit }};
+    --kjrc-media-position: {{ section.settings.image_object_position }};
+    --kjrc-content-bg: {{ section.settings.card_content_background_color }};
+    --kjrc-card-padding-mobile: {{ section.settings.card_padding_mobile }}px;
+    --kjrc-card-padding-desktop: {{ section.settings.card_padding_desktop }}px;
+    --kjrc-quote-font-family: {{ section.settings.review_quote_font.family }}, {{ section.settings.review_quote_font.fallback_families }};
+    --kjrc-quote-font-style: {{ section.settings.review_quote_font.style }};
+    --kjrc-quote-font-weight: {{ section.settings.review_quote_font.weight }};
+    --kjrc-quote-size-mobile: {{ section.settings.review_quote_size_mobile }}px;
+    --kjrc-quote-size-desktop: {{ section.settings.review_quote_size_desktop }}px;
+    --kjrc-quote-line-height: {{ section.settings.review_quote_line_height | divided_by: 100.0 }};
+    --kjrc-star-size: {{ section.settings.star_size }}px;
   }
 {%- endstyle -%}
 
 {%- if section.settings.show_section -%}
-  <kaahu-reviews-carousel class="kaahu-judgeme-reviews section-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-pause-hover="{{ section.settings.pause_on_hover }}" data-drag="{{ section.settings.enable_drag }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
+  <kaahu-reviews-carousel class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}{% if continuous_reviews %} kaahu-judgeme-reviews--continuous{% endif %}{% if section.settings.show_partial_cards %} kaahu-judgeme-reviews--peek{% endif %}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-pause-hover="{{ section.settings.pause_on_hover }}" data-drag="{{ section.settings.enable_drag }}" data-continuous="{{ continuous_reviews }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
     <div class="kaahu-judgeme-reviews__header">
       {%- if section.settings.eyebrow != blank -%}
         <div class="kaahu-judgeme-reviews__eyebrow">{{ section.settings.eyebrow }}</div>
@@ -60,65 +87,130 @@
       </div>
     {%- else -%}
       <div class="kaahu-judgeme-reviews__carousel-wrap">
-        {%- if section.settings.show_arrows -%}
+        {%- if section.settings.show_arrows and continuous_reviews == false -%}
           <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--prev" type="button" aria-label="Previous reviews" data-reviews-prev>
             {% render 'icon-arrow-slider' %}
           </button>
         {%- endif -%}
 
         <div class="kaahu-judgeme-reviews__track" tabindex="0" role="region" aria-label="Customer reviews carousel" data-reviews-track>
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'review' -%}
-              <article class="kaahu-judgeme-reviews__card" {{ block.shopify_attributes }}>
-                {%- if section.settings.show_customer_photo -%}
-                  <div class="kaahu-judgeme-reviews__media">
-                    {%- if block.settings.image != blank -%}
-                      {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: block.settings.name | escape }}
-                    {%- else -%}
-                      <div class="kaahu-judgeme-reviews__media-placeholder" aria-hidden="true"></div>
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
+          {%- if continuous_reviews -%}
+            <div class="kaahu-judgeme-reviews__marquee" data-reviews-marquee>
+              {%- for repeat_index in (1..2) -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'review' -%}
+                    <article class="kaahu-judgeme-reviews__card" {% if repeat_index == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
+                      {%- if section.settings.show_customer_photo -%}
+                        <div class="kaahu-judgeme-reviews__media">
+                          {%- if block.settings.image != blank -%}
+                            {%- assign review_image_alt = block.settings.image_alt | default: block.settings.name | escape -%}
+                            {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: review_image_alt }}
+                          {%- else -%}
+                            <div class="kaahu-judgeme-reviews__media-placeholder" aria-label="{{ section.settings.photo_placeholder_text | escape }}">
+                              <span class="kaahu-judgeme-reviews__media-placeholder-icon" aria-hidden="true">▧</span>
+                              <span>{{ section.settings.photo_placeholder_text }}</span>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
 
-                <div class="kaahu-judgeme-reviews__card-body">
-                  {%- if section.settings.show_stars -%}
-                    <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
-                      {%- for index in (1..5) -%}
-                        <span class="{% if index <= block.settings.rating %}is-filled{% endif %}" aria-hidden="true">★</span>
-                      {%- endfor -%}
+                      <div class="kaahu-judgeme-reviews__card-body">
+                        {%- if section.settings.show_stars -%}
+                          <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                            {%- for index in (1..5) -%}
+                              <span class="{% if index <= block.settings.rating %}is-filled{% endif %}" aria-hidden="true">★</span>
+                            {%- endfor -%}
+                          </div>
+                        {%- endif -%}
+
+                        {%- if block.settings.text != blank -%}
+                          <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
+                        {%- endif -%}
+
+                        <div class="kaahu-judgeme-reviews__customer">
+                          {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
+                          <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
+                          <span class="kaahu-judgeme-reviews__customer-copy">
+                            {%- if section.settings.show_customer_name and block.settings.name != blank -%}
+                              {%- if block.settings.product_link != blank and repeat_index == 1 -%}
+                                <a class="kaahu-judgeme-reviews__name" href="{{ block.settings.product_link }}">{{ block.settings.name }}</a>
+                              {%- else -%}
+                                <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
+                              {%- endif -%}
+                            {%- endif -%}
+                            {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
+                              <span class="kaahu-judgeme-reviews__meta">{% if block.settings.show_verified_icon %}<span aria-hidden="true">✓</span>{% endif %} {{ block.settings.metadata }}</span>
+                            {%- endif -%}
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'review' -%}
+                <article class="kaahu-judgeme-reviews__card" {{ block.shopify_attributes }}>
+                  {%- if section.settings.show_customer_photo -%}
+                    <div class="kaahu-judgeme-reviews__media">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign review_image_alt = block.settings.image_alt | default: block.settings.name | escape -%}
+                        {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: review_image_alt }}
+                      {%- else -%}
+                        <div class="kaahu-judgeme-reviews__media-placeholder" aria-label="{{ section.settings.photo_placeholder_text | escape }}">
+                          <span class="kaahu-judgeme-reviews__media-placeholder-icon" aria-hidden="true">▧</span>
+                          <span>{{ section.settings.photo_placeholder_text }}</span>
+                        </div>
+                      {%- endif -%}
                     </div>
                   {%- endif -%}
 
-                  {%- if block.settings.text != blank -%}
-                    <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
-                  {%- endif -%}
+                  <div class="kaahu-judgeme-reviews__card-body">
+                    {%- if section.settings.show_stars -%}
+                      <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                        {%- for index in (1..5) -%}
+                          <span class="{% if index <= block.settings.rating %}is-filled{% endif %}" aria-hidden="true">★</span>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
 
-                  <div class="kaahu-judgeme-reviews__customer">
-                    {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
-                    <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
-                    <span class="kaahu-judgeme-reviews__customer-copy">
-                      {%- if section.settings.show_customer_name and block.settings.name != blank -%}
-                        <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
-                      {%- endif -%}
-                      {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
-                        <span class="kaahu-judgeme-reviews__meta">{{ block.settings.metadata }}</span>
-                      {%- endif -%}
-                    </span>
+                    {%- if block.settings.text != blank -%}
+                      <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
+                    {%- endif -%}
+
+                    <div class="kaahu-judgeme-reviews__customer">
+                      {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
+                      <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
+                      <span class="kaahu-judgeme-reviews__customer-copy">
+                        {%- if section.settings.show_customer_name and block.settings.name != blank -%}
+                          {%- if block.settings.product_link != blank -%}
+                            <a class="kaahu-judgeme-reviews__name" href="{{ block.settings.product_link }}">{{ block.settings.name }}</a>
+                          {%- else -%}
+                            <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
+                          {%- endif -%}
+                        {%- endif -%}
+                        {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
+                          <span class="kaahu-judgeme-reviews__meta">{% if block.settings.show_verified_icon %}<span aria-hidden="true">✓</span>{% endif %} {{ block.settings.metadata }}</span>
+                        {%- endif -%}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </article>
-            {%- endif -%}
-          {%- endfor -%}
+                </article>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
         </div>
 
-        {%- if section.settings.show_arrows -%}
+        {%- if section.settings.show_arrows and continuous_reviews == false -%}
           <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--next" type="button" aria-label="Next reviews" data-reviews-next>
             {% render 'icon-arrow-slider' %}
           </button>
         {%- endif -%}
       </div>
 
-      {%- if section.settings.show_dots and fallback_block_count > 1 -%}
+      {%- if section.settings.show_dots and fallback_block_count > 1 and continuous_reviews == false -%}
         <div class="kaahu-judgeme-reviews__dots" aria-label="Review carousel pagination" data-reviews-dots>
           {%- for block in section.blocks -%}
             {%- if block.type == 'review' -%}
@@ -207,6 +299,12 @@
       "default": true
     },
     {
+      "type": "text",
+      "id": "photo_placeholder_text",
+      "label": "Photo placeholder text",
+      "default": "Customer photo"
+    },
+    {
       "type": "checkbox",
       "id": "show_stars",
       "label": "Show stars",
@@ -257,6 +355,38 @@
       "default": true
     },
     {
+      "type": "select",
+      "id": "carousel_motion",
+      "label": "Carousel motion",
+      "options": [
+        {
+          "value": "continuous",
+          "label": "Continuous slow scroll"
+        },
+        {
+          "value": "step",
+          "label": "Step carousel"
+        }
+      ],
+      "default": "step"
+    },
+    {
+      "type": "range",
+      "id": "marquee_duration",
+      "min": 18,
+      "max": 90,
+      "step": 2,
+      "unit": "s",
+      "label": "Continuous scroll speed",
+      "default": 44
+    },
+    {
+      "type": "checkbox",
+      "id": "show_partial_cards",
+      "label": "Show partial cards on edges",
+      "default": true
+    },
+    {
       "type": "checkbox",
       "id": "show_arrows",
       "label": "Show arrows",
@@ -271,6 +401,76 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "min": 960,
+      "max": 2200,
+      "step": 20,
+      "unit": "px",
+      "label": "Container max width",
+      "default": 1440
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 28,
+      "max": 82,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 24,
+      "max": 54,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "min": 9,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Eyebrow size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "%",
+      "label": "Eyebrow letter spacing",
+      "default": 22
     },
     {
       "type": "range",
@@ -334,6 +534,90 @@
     },
     {
       "type": "range",
+      "id": "image_height_mobile",
+      "min": 120,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Image area height mobile",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "image_height_desktop",
+      "min": 160,
+      "max": 420,
+      "step": 4,
+      "unit": "px",
+      "label": "Image area height desktop",
+      "default": 272
+    },
+    {
+      "type": "select",
+      "id": "image_object_fit",
+      "label": "Image object fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_object_position",
+      "label": "Image object position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Card padding mobile",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "card_padding_desktop",
+      "min": 18,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Card padding desktop",
+      "default": 34
+    },
+    {
+      "type": "range",
       "id": "card_border_radius",
       "min": 0,
       "max": 36,
@@ -357,6 +641,12 @@
       "id": "card_background_color",
       "label": "Card background",
       "default": "#fffdf9"
+    },
+    {
+      "type": "color",
+      "id": "card_content_background_color",
+      "label": "Card content background",
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -421,6 +711,56 @@
       "id": "metadata_color",
       "label": "Metadata/location",
       "default": "#8a837b"
+    },
+    {
+      "type": "header",
+      "content": "Review text"
+    },
+    {
+      "type": "font_picker",
+      "id": "review_quote_font",
+      "label": "Review quote font family",
+      "default": "libre_baskerville_i4"
+    },
+    {
+      "type": "range",
+      "id": "review_quote_size_desktop",
+      "min": 15,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Quote size desktop",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "review_quote_size_mobile",
+      "min": 14,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Quote size mobile",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "review_quote_line_height",
+      "min": 120,
+      "max": 190,
+      "step": 2,
+      "unit": "%",
+      "label": "Quote line height",
+      "default": 152
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Star size",
+      "default": 17
     }
   ],
   "blocks": [
@@ -435,6 +775,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Customer or product image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text"
         },
         {
           "type": "range",
@@ -468,6 +813,17 @@
           "id": "metadata",
           "label": "Metadata",
           "default": "Verified buyer"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_verified_icon",
+          "label": "Show check icon before metadata",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Optional product link"
         }
       ]
     }

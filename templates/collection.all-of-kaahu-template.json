@@ -212,6 +212,132 @@
         "padding_bottom": 70
       }
     },
+    "kaahu_reviews_moving_all_of_kaahu": {
+      "type": "kaahu-judgeme-reviews-carousel",
+      "blocks": {
+        "review_asha": {
+          "type": "review",
+          "settings": {
+            "image": "",
+            "image_alt": "Customer photo",
+            "rating": 5,
+            "text": "<p>The mustard and rose straps are even prettier in person. Huge inside — laptop, water bottle, the lot — and the magnetic closure is so handy.</p>",
+            "name": "Asha R.",
+            "initials": "AR",
+            "metadata": "Brooklyn, NY",
+            "show_verified_icon": true,
+            "product_link": ""
+          }
+        },
+        "review_dani": {
+          "type": "review",
+          "settings": {
+            "image": "",
+            "image_alt": "Customer photo",
+            "rating": 5,
+            "text": "<p>Beautifully made and I love that it gives back. Roomier than I expected, and the build quality feels genuinely premium. Reach for it almost every day.</p>",
+            "name": "Dani M.",
+            "initials": "DM",
+            "metadata": "Austin, TX",
+            "show_verified_icon": true,
+            "product_link": ""
+          }
+        },
+        "review_kremena": {
+          "type": "review",
+          "settings": {
+            "image": "",
+            "image_alt": "Customer photo",
+            "rating": 5,
+            "text": "<p>Durable material, stays clean and looks very sleek. Used it in the Caribbean, on the beach, shopping and going out to eat — it does everything.</p>",
+            "name": "Kremena F.",
+            "initials": "KF",
+            "metadata": "West Chester, PA",
+            "show_verified_icon": true,
+            "product_link": ""
+          }
+        },
+        "review_nikita": {
+          "type": "review",
+          "settings": {
+            "image": "",
+            "image_alt": "Customer photo",
+            "rating": 5,
+            "text": "<p>Lightweight yet tough, with pockets that actually make sense. It feels thoughtful, polished, and ready for real life.</p>",
+            "name": "Nikita L.",
+            "initials": "NL",
+            "metadata": "Campbell, CA",
+            "show_verified_icon": true,
+            "product_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_asha",
+        "review_dani",
+        "review_kremena",
+        "review_nikita"
+      ],
+      "settings": {
+        "show_section": true,
+        "review_source": "fallback",
+        "eyebrow": "KIND WORDS",
+        "heading": "What our customers say",
+        "reviews_to_display": 8,
+        "minimum_rating": 4,
+        "show_customer_photo": true,
+        "photo_placeholder_text": "Customer photo",
+        "show_stars": true,
+        "show_customer_name": true,
+        "show_metadata": true,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "pause_on_hover": true,
+        "enable_drag": true,
+        "carousel_motion": "continuous",
+        "marquee_duration": 44,
+        "show_partial_cards": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "container_max_width": 1440,
+        "header_alignment": "center",
+        "heading_size_desktop": 52,
+        "heading_size_mobile": 38,
+        "eyebrow_size": 12,
+        "eyebrow_letter_spacing": 22,
+        "padding_top": 104,
+        "padding_bottom": 104,
+        "card_width_mobile": 300,
+        "card_width_tablet": 380,
+        "card_width_desktop": 464,
+        "card_gap": 48,
+        "image_height_mobile": 220,
+        "image_height_desktop": 272,
+        "image_object_fit": "cover",
+        "image_object_position": "center center",
+        "card_padding_mobile": 26,
+        "card_padding_desktop": 34,
+        "card_border_radius": 18,
+        "section_background_color": "#f3eee6",
+        "card_background_color": "#fffdf9",
+        "card_content_background_color": "#ffffff",
+        "card_border_color": "#e8e0d5",
+        "card_shadow_intensity": 12,
+        "star_color": "#d9a73e",
+        "avatar_background_color": "#3d4c24",
+        "avatar_text_color": "#fffdf6",
+        "eyebrow_color": "#b46483",
+        "heading_color": "#24221f",
+        "review_text_color": "#24221f",
+        "customer_name_color": "#302d29",
+        "metadata_color": "#9a948b",
+        "review_quote_font": "libre_baskerville_i4",
+        "review_quote_size_desktop": 22,
+        "review_quote_size_mobile": 18,
+        "review_quote_line_height": 152,
+        "star_size": 17
+      }
+    },
     "section_testimonials_qXkqr9": {
       "type": "section-testimonials",
       "disabled": true,
@@ -432,6 +558,7 @@
     "navigation",
     "rich_text_9hnA4P",
     "product-grid",
+    "kaahu_reviews_moving_all_of_kaahu",
     "section_testimonials_qXkqr9",
     "collection_list_AeW6Ti",
     "rich_text_MLVYxE"
