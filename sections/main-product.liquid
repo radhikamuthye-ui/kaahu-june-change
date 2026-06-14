@@ -260,12 +260,6 @@
       }
     {%- endif -%}
 
-    @media only screen and (max-width: 949px) {
-      .sticky-buy-buttons .product-form {
-        padding: {{ section.settings.sticky_buttons_padding }}px {{ section.settings.sticky_buttons_padding_horizontal }}px {{ section.settings.sticky_buttons_padding }}px {{ section.settings.sticky_buttons_padding_horizontal }}px;
-        box-shadow: 0px 0px 12px 0px rgba(0,0,0,{{ section.settings.sticky_buttons_shadow | divided_by: 100.0 }});
-      }
-    }
     {%- if section.settings.padding_top > 0 -%}
     .pmc-thumbnail-position--adjacent-left-normal .gallery-slider-thumbnails, 
     .pmc-thumbnail-position--adjacent-left-large .gallery-slider-thumbnails,
@@ -338,7 +332,7 @@
     {% if section.settings.vertical_border and section.settings.section_desktop_layout != 'stacked' %}<div class="pdp-border--vertical"></div>{% endif %}
 
     <div class="product product-main-info-section align-{{ section.settings.info_txt_alignment }} vertical-align-{{ section.settings.text_section_vertical_position }}">
-      <div class="product__info-container product-info-justify-{{ section.settings.text_section_position }}{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}{% if section.settings.enable_sticky_buttons_desktop %} sticky-buy-buttons-dt sticky-buttons-dt-width--full sticky-buy-buttons--border-{{ section.settings.sticky_buttons_border }} sticky-buttons-dt-position--{{ section.settings.sticky_buttons_desktop_position }} sticky-buttons-dt-margin--{{ section.settings.sticky_buttons_desktop_margin }}{% endif %}{% if section.settings.enable_sticky_buttons %} sticky-buy-buttons sticky-buy-buttons--border-{{ section.settings.sticky_buttons_border }}{% endif %}">
+      <div class="product__info-container product-info-justify-{{ section.settings.text_section_position }}{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
                 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -2088,38 +2082,10 @@
               }
               @media only screen and (min-width: 950px) {
                 .product-buy-buttons-wrapper:not(.quick-add-modal .product-buy-buttons-wrapper) {
-                  padding-top: {{ block.settings.button_additional_padding_top }}px;
-                  margin-bottom: {{ section.settings.blocks_vertical_spacing | plus: block.settings.button_additional_padding_bottom | at_least: 30 }}px;
+                  margin-bottom: {{ section.settings.blocks_vertical_spacing | at_least: 30 }}px;
                 }                
               }
             </style>
-            {% if section.settings.enable_sticky_buttons and block.settings.show_dynamic_checkout == false %}
-            <style>
-              @media only screen and (max-width: 949px) {
-                .sub-footer {
-                  padding-bottom: 100px;
-                }  
-              }
-            </style>
-            {% endif %}
-            {% if section.settings.enable_sticky_buttons and block.settings.show_dynamic_checkout %}
-            <style>
-              @media only screen and (max-width: 949px) {
-                .sub-footer {
-                  padding-bottom: 100px;
-                }  
-              }
-            </style>
-            {% endif %}
-            {% if section.settings.enable_sticky_buttons_desktop and section.settings.sticky_buttons_desktop_position == 'bottom' %}
-            <style>
-              @media only screen and (min-width: 950px) {
-                .sub-footer {
-                  padding-bottom: 80px;
-                }  
-              }
-            </style>
-            {% endif %}
             {% if block.settings.show_pickup_icon == false %}
             <style>
               .pickup-availability-info .icon {
@@ -2285,99 +2251,6 @@
 {% endif %}
 {% endcase %}
 {% endfor %}
-        
-
-{% if section.settings.enable_sticky_buttons_desktop %}
-
-<style>
-@media only screen and (min-width: 950px) {
-  .product-buy-buttons-wrapper.stick-now .product-form {
-    padding-top: {{ section.settings.sticky_buttons_desktop_padding_vertical }}px;
-    padding-bottom: {{ section.settings.sticky_buttons_desktop_padding_vertical }}px;
-    padding-left: {{ section.settings.sticky_buttons_desktop_padding_vertical }}px;
-    padding-right: {{ section.settings.sticky_buttons_desktop_padding_vertical }}px;
-    box-shadow: 0px 0px 12px 0px rgba(0,0,0,{{ section.settings.sticky_buttons_shadow | divided_by: 100.0 }});
-  }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const buyButtonsWrapper = document.querySelector('.product-buy-buttons-wrapper');
-
-  if (!buyButtonsWrapper) return;
-
-  const threshold = 150;
-  const fadeDelay = 200;
-  const fadeDuration = 300;
-
-  let isSticky = false;
-  let fadeInTimeout = null;
-  let fadeOutTimeout = null;
-
-  function getReserveHeight() {
-    const styles = window.getComputedStyle(buyButtonsWrapper);
-    const marginBottom = (parseFloat(styles.marginBottom) || 0);
-    return buyButtonsWrapper.offsetHeight;
-  }
-
-  function updateSticky() {
-
-    if (window.innerWidth < 950) {
-      buyButtonsWrapper.style.minHeight = '';
-      isSticky = false;
-      return;
-    }
-
-    const shouldStick = buyButtonsWrapper.getBoundingClientRect().top <= -threshold;
-
-    if (shouldStick && !isSticky) {
-      isSticky = true;
-
-      clearTimeout(fadeOutTimeout);
-      clearTimeout(fadeInTimeout);
-
-      buyButtonsWrapper.style.minHeight = `${getReserveHeight()}px`;
-      buyButtonsWrapper.classList.add('stick-now');
-      buyButtonsWrapper.classList.remove('stick-visible');
-
-      fadeInTimeout = setTimeout(function () {
-        if (isSticky) {
-          buyButtonsWrapper.classList.add('stick-visible');
-        }
-      }, fadeDelay);
-    }
-
-    if (!shouldStick && isSticky) {
-      isSticky = false;
-
-      clearTimeout(fadeInTimeout);
-      buyButtonsWrapper.classList.remove('stick-visible');
-
-      clearTimeout(fadeOutTimeout);
-      fadeOutTimeout = setTimeout(function () {
-        if (!isSticky) {
-          buyButtonsWrapper.classList.remove('stick-now');
-          buyButtonsWrapper.style.minHeight = '';
-        }
-      }, 0);
-    }
-  }
-
-  window.addEventListener('scroll', updateSticky, { passive: true });
-  window.addEventListener('resize', function () {
-    if (isSticky) {
-      buyButtonsWrapper.style.minHeight = `${getReserveHeight()}px`;
-    }
-    updateSticky();
-  });
-
-  updateSticky();
-});
-</script>
-{% endif %}
-
-
 <script type="application/ld+json">
   {{ product | structured_data }}
 </script>
@@ -4493,26 +4366,6 @@ document.addEventListener('DOMContentLoaded', function () {
           "label": "t:sections.all.buttons.button_style"
         },
         {
-          "type": "range",
-          "id": "button_additional_padding_top",
-          "min": 0,
-          "max": 60,
-          "step": 10,
-          "label": "t:sections.all.padding.padding_top",
-          "info": "t:sections.all.devices.applies_desktop",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "button_additional_padding_bottom",
-          "min": 0,
-          "max": 60,
-          "step": 10,
-          "label": "t:sections.all.padding.padding_bottom",
-          "info": "t:sections.all.devices.applies_desktop",
-          "default": 0
-        },
-        {
           "type": "checkbox",
           "id": "show_dynamic_checkout",
           "default": true,
@@ -6563,246 +6416,6 @@ document.addEventListener('DOMContentLoaded', function () {
       "id": "pdp_mobile_star_color",
       "default": "#e0a52a",
       "label": "Rating stars"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-product.settings.header_sticky_buttons.content",
-      "info": "t:sections.main-product.settings.enable_sticky_buttons.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky_buttons",
-      "default": false,
-      "label": "t:sections.main-product.settings.enable_sticky_buttons.label"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_padding",
-      "min": 0,
-      "max": 20,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_vertical",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_padding_horizontal",
-      "min": 8,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_horizontal",
-      "default": 20
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky_buttons_border",
-      "default": true,
-      "label": "t:sections.all.border"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_shadow",
-      "min": 0,
-      "max": 20,
-      "step": 4,
-      "unit": "%",
-      "label": "t:sections.all.shadow",
-      "default": 0
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky_buttons_mobile_summary",
-      "default": true,
-      "label": "Show mobile sticky title and price"
-    },
-    {
-      "type": "text",
-      "id": "sticky_buttons_label",
-      "default": "ADD TO BAG",
-      "label": "Sticky button label"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_button_height",
-      "min": 44,
-      "max": 88,
-      "step": 2,
-      "unit": "px",
-      "default": 48,
-      "label": "Button height"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_button_radius",
-      "min": 0,
-      "max": 44,
-      "step": 2,
-      "unit": "px",
-      "default": 28,
-      "label": "Button corner radius"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_button_text_size",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "default": 15,
-      "label": "Button text size"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_dynamic_checkout_gap",
-      "min": 0,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 6,
-      "label": "Shop Pay top spacing"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_more_options_size",
-      "min": 11,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14,
-      "label": "More options text size"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_title_size",
-      "min": 11,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 13,
-      "label": "Title size"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_price_size",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "default": 16,
-      "label": "Price size"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_background_color",
-      "default": "#ffffff",
-      "label": "Sticky background"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_border_color",
-      "default": "#ece8e0",
-      "label": "Sticky border"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_button_background",
-      "default": "#cf6a2c",
-      "label": "Button background"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_button_text_color",
-      "default": "#ffffff",
-      "label": "Button text"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_more_options_color",
-      "default": "#1d1b17",
-      "label": "More options text"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_title_color",
-      "default": "#1d1b17",
-      "label": "Title"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_price_color",
-      "default": "#1d1b17",
-      "label": "Price"
-    },
-    {
-      "type": "color",
-      "id": "sticky_buttons_compare_price_color",
-      "default": "#9b948c",
-      "label": "Compare-at price"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sticky_buttons_desktop",
-      "default": false,
-      "label": "t:sections.main-product.settings.enable_sticky_buttons_desktop.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky_buttons_desktop_media",
-      "default": true,
-      "label": "t:sections.main-product.settings.sticky_buttons_desktop_enable_media.label",
-      "info": "t:sections.all.devices.applies_desktop"
-    },
-    {
-      "type": "checkbox",
-      "id": "sticky_buttons_desktop_price",
-      "default": true,
-      "label": "t:sections.main-product.settings.sticky_buttons_desktop_enable_price.label",
-      "info": "t:sections.all.devices.applies_desktop"
-    },
-    {
-      "type": "select",
-      "id": "sticky_buttons_desktop_position",
-      "label": "t:sections.all.layouts.position",
-      "info": "t:sections.all.devices.applies_desktop",
-      "options": [
-        {
-          "value": "top",
-          "label": "t:sections.all.alignment.top"
-        },
-        {
-          "value": "bottom",
-          "label": "t:sections.all.alignment.bottom"
-        }
-      ],
-      "default": "bottom"
-    },
-    {
-      "type": "select",
-      "id": "sticky_buttons_desktop_margin",
-      "label": "t:sections.all.margin_desktop",
-      "options": [
-        {
-          "value": "page",
-          "label": "t:sections.all.normal"
-        },
-        {
-          "value": "auto",
-          "label": "t:sections.all.size.wide"
-        }
-      ],
-      "default": "auto"
-    },
-    {
-      "type": "range",
-      "id": "sticky_buttons_desktop_padding_vertical",
-      "min": 8,
-      "max": 24,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_desktop",
-      "default": 16
     },
     {
       "type": "header",

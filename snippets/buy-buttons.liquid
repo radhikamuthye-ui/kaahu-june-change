@@ -35,29 +35,6 @@
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
     >
-      {% if request.page_type == 'product' and section.settings.enable_sticky_buttons_desktop %}
-      <div class="product-sticky-title text-body">
-          <div class="product-sticky-title--info">
-            {% if section.settings.sticky_buttons_desktop_media %}
-            <div class="product-sticky-media" id="stickyMedia-{{ section.id }}">
-              {% assign current_variant = product.selected_or_first_available_variant %}
-              {% assign featured_media = current_variant.featured_media %}
-              {% if featured_media %}
-              {{ featured_media | image_url: width: 120 | image_tag: loading: 'eager' }}
-              {% else %}
-              {% if product.featured_media %}{{ product.featured_media | image_url: width: 120 | image_tag: loading: 'eager' }}{% endif %}
-              {% endif %}
-            </div>
-            {% endif %}
-            <div class="product-sticky-title--text">
-              <div>{{ product.title }}</div>
-              {% if section.settings.sticky_buttons_desktop_price %}
-              <div class="product-sticky-price" id="sticky-price-{{ section.id }}">{% render 'price', product: product, use_variant: true %}</div>
-              {% endif %}
-            </div>
-          </div>
-      </div>
-      {% endif %}
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
           {% render 'icon-error' %}

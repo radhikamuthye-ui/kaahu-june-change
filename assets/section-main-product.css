@@ -2495,17 +2495,9 @@ body:has(.radio-options-drawer--background.open) .header-group {
   color: rgb(var(--color-foreground-rgb));
 }
 
-/* Let sticky checkout controls remain testable in unpublished theme previews. */
 #PBarNextFrameWrapper,
 #PBarNextFrame {
   pointer-events: none !important;
-}
-
-@media only screen and (max-width: 949px) {
-  html.shopify-preview-bar-active .sticky-buy-buttons .product-form,
-  body:has(#PBarNextFrameWrapper) .sticky-buy-buttons .product-form {
-    bottom: calc(68px + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 /* Product info */
@@ -4855,186 +4847,6 @@ a.product__text {
   }
 }
 
-
-@media only screen and (max-width: 750px) {
-  .sticky-buy-buttons .product-form__buttons {
-    margin-top: 0;
-    padding-bottom: 5px;
-  } 
-}
-
-@media only screen and (max-width: 949px) {
-  .sticky-buy-buttons .product-form {
-    margin-bottom: 0;
-    position: fixed;
-    bottom: 0;
-    background: var(--color-background);
-    width: 100%;
-    z-index: 5;
-    left: 0;
-    padding: var(--page-margin-mobile) var(--page-margin-mobile) 0 var(--page-margin-mobile);
-  }
-  .sticky-buy-buttons .product-form__buttons {
-    margin-top: 0;
-  }
-  .sticky-buy-buttons.sticky-buy-buttons--border-true .product-form {
-    border-top: 1px solid rgba(var(--color-foreground-rgb),0.15);
-  } 
-  .sticky-buy-buttons .product-form-payment-cards {
-    display: none;
-  }
-}
-
-.product-sticky-title {
-  display: none;
-  line-height: 1.2;
-}
-
-@media only screen and (min-width: 950px) {
-  .product-buy-buttons-wrapper.stick-now .product-form .product-sticky-title {
-    display: block;
-  }
-  .product-buy-buttons-wrapper.stick-now .product-form {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .product-sticky-title--info {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 16px;
-  }
-  .product-sticky-price {
-    margin-top: 2px;
-  }
-  .product-sticky-media {
-    position: relative;
-    width: 54px;
-    height: 68px;
-    flex-shrink: 0;
-    line-height: 0;
-    background: var(--product-card-media-bg-col);
-  }
-  body:has(.pmc-portrait-4x6) .product-sticky-media {
-    width: 54px;
-    height: 80px
-  }
-  body:has(.pmc-square) .product-sticky-media {
-    width: 60px;
-    height: 60px
-  }
-  body:has(.pmc-landscape) .product-sticky-media {
-    width: 80px;
-    height: 54px
-  }
-  .product-sticky-media img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: 0;
-    padding: 0;
-  }
-  .product-buy-buttons-wrapper.stick-now .product-form {
-    position: fixed;
-    z-index: 5;
-    background: var(--color-background);
-    width: auto;
-    bottom: 20px;
-    right: 20px;
-    min-width: 460px;
-    max-width: 700px;
-    opacity: 0;
-  }
-  .sticky-buttons-dt-margin--page:not(.sticky-buttons-dt-width--full) .product-buy-buttons-wrapper.stick-now .product-form {
-    right: var(--page-margin-tablet);
-  }
-  .product-buy-buttons-wrapper.stick-now.stick-visible .product-form {
-    opacity: 1;
-    transition: opacity 400ms ease;
-  }
-  .sticky-buttons-dt-width--full .product-buy-buttons-wrapper.stick-now .product-form {
-    width: 100%;
-    max-width: 100% !important;
-    bottom: 0;
-    right: 0;
-    border: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .sticky-buy-buttons--border-true.sticky-buttons-dt-width--full.sticky-buttons-dt-position--bottom .product-buy-buttons-wrapper.stick-now .product-form {
-    border-top: 1px solid rgba(0,0,0,0.15);
-  }
-  .sticky-buy-buttons--border-true.sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-  }
-  .sticky-buttons-dt-margin--page .product-buy-buttons-wrapper.stick-now .product-form {
-    padding-left: var(--page-margin-tablet);
-    padding-right: var(--page-margin-tablet);
-  }
-  .product-buy-buttons-wrapper.stick-now .product-form__buttons {
-    min-width: 160px;
-    flex-shrink: 0;
-    margin-top: 0;
-    display: flex;
-    gap: 10px;
-  }
-  .product-buy-buttons-wrapper.stick-now .product-form__buttons .product-form__submit {
-    margin-bottom: 0;
-  }
-  .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: var(--site-header-height-mobile);
-    bottom: auto;
-  }
-  body:has(.full-width-announcement-bar) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: calc(var(--site-header-height-mobile) + 35px);
-    bottom: auto;
-  }
-  .sticky-buttons-dt-width--full .stick-now .product-form__error-message-wrapper {
-    margin-left: auto;
-  }
-  body:has(.hb-scroll-behaviour--scroll) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: 0 !important;
-  }
-  body:has(.header-bar--page-margins:not(.hb-scroll-behaviour--scroll)) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: calc(var(--site-header-height-desktop) + 65px) !important;
-    right: auto;
-    left: var(--page-margin-tablet);
-    width: calc(100% - var(--page-margin-tablet) - var(--page-margin-tablet));
-    border: 1px solid rgba(0,0,0,0.15);
-  }
-}
-
-@media only screen and (min-width: 1025px) {
-  .sticky-buttons-dt-margin--page .product-buy-buttons-wrapper.stick-now .product-form {
-    padding-left: var(--page-margin-desktop);
-    padding-right: var(--page-margin-desktop);
-  }
-  .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: var(--site-header-height-desktop);
-    bottom: auto;
-  }
-  body:has(.full-width-announcement-bar) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: calc(var(--site-header-height-desktop) + 35px);
-    bottom: auto;
-  }
-  body:has(.hb-scroll-behaviour--scroll) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: 0 !important;
-  }
-  body:has(.header-bar--page-margins:not(.hb-scroll-behaviour--scroll)) .sticky-buttons-dt-width--full.sticky-buttons-dt-position--top .product-buy-buttons-wrapper.stick-now .product-form {
-    top: calc(var(--site-header-height-desktop) + 65px) !important;
-    right: auto;
-    left: var(--page-margin-desktop);
-    width: calc(100% - var(--page-margin-desktop) - var(--page-margin-desktop));
-    border: 1px solid rgba(0,0,0,0.15);
-  }
-}
-
-
 /* Complementary Products block */
 
 .product-complementary-block-list {
@@ -5970,22 +5782,6 @@ product-info[id^="MainProduct-"] .product-main-info-section .quantity.qty-select
   width: 52px;
 }
 
-product-info[id^="MainProduct-"] .product-form__buttons .button,
-product-info[id^="MainProduct-"] .shopify-payment-button__button {
-  min-height: 68px;
-  border-radius: 999px;
-  background: #cf7436;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  box-shadow: 0 12px 28px rgba(207, 116, 54, 0.22);
-}
-
-product-info[id^="MainProduct-"] .product-form__buttons .button:hover {
-  background: #bd652f;
-}
-
 product-info[id^="MainProduct-"] .product-service-highlights {
   display: flex;
   flex-wrap: wrap;
@@ -6022,23 +5818,6 @@ product-info[id^="MainProduct-"] .product-why-we-love-this .accordion-panel {
   line-height: 1.65;
 }
 
-product-info[id^="MainProduct-"] .product-buy-buttons-wrapper.stick-now .product-form {
-  width: min(100%, 100vw);
-  min-width: 0;
-  max-width: none !important;
-  right: 0;
-  bottom: 0;
-  padding: 16px clamp(24px, 14vw, 360px);
-  border-top: 1px solid #ece8e0;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 -8px 24px rgba(29, 27, 23, 0.12);
-}
-
-product-info[id^="MainProduct-"] .product-buy-buttons-wrapper.stick-now .product-form .product-form__buttons {
-  max-width: 360px;
-  margin-left: auto;
-}
-
 @media only screen and (max-width: 949px) {
   product-info[id^="MainProduct-"] .product-main-info-section {
     padding: 24px 20px 36px;
@@ -6054,8 +5833,4 @@ product-info[id^="MainProduct-"] .product-buy-buttons-wrapper.stick-now .product
     border-radius: 18px;
   }
 
-  product-info[id^="MainProduct-"] .product-form__buttons .button,
-  product-info[id^="MainProduct-"] .shopify-payment-button__button {
-    min-height: 56px;
-  }
 }
