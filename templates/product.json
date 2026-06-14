@@ -33,7 +33,26 @@
         },
         "rating_pdp": {
           "type": "rating",
-          "settings": {}
+          "settings": {
+            "show_rating_value": true,
+            "show_review_count": true,
+            "show_count_separator": true,
+            "review_count_label": "reviews",
+            "link_anchor": "#pdp-reviews",
+            "enable_metafield_visibility": true,
+            "visibility_metafield_namespace": "custom",
+            "visibility_metafield_key": "show_review_summary",
+            "metafield_visible_value": "true",
+            "show_when_metafield_blank": true,
+            "margin_top": 8,
+            "margin_bottom": 0,
+            "item_gap": 12,
+            "text_size_mobile": 21,
+            "text_size_desktop": 13,
+            "text_color": "#65615a",
+            "star_color": "#e0a52a",
+            "link_underline_color": "#ece8e0"
+          }
         },
         "judge_me_reviews_preview_badge_r7Qb7p": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",

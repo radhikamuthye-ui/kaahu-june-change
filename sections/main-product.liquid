@@ -997,9 +997,49 @@
               </div>
 
               {%- when 'rating' -%}
-                {%- if product.metafields.reviews.rating.value != blank -%}
-                  <div class="product-block-rating-wrapper">
-                    <a class="pdp-rating-link" href="#pdp-reviews">
+                {% liquid
+                  assign rating_block_visible = true
+                  assign rating_visibility_namespace = block.settings.visibility_metafield_namespace | default: 'custom' | strip
+                  assign rating_visibility_key = block.settings.visibility_metafield_key | default: 'show_review_summary' | strip
+
+                  if block.settings.enable_metafield_visibility
+                    assign rating_block_visible = false
+                    if rating_visibility_namespace != blank and rating_visibility_key != blank
+                      assign rating_visibility_metafield = product.metafields[rating_visibility_namespace][rating_visibility_key]
+                      if rating_visibility_metafield == blank
+                        assign rating_block_visible = block.settings.show_when_metafield_blank
+                      else
+                        assign rating_visibility_value = rating_visibility_metafield.value | default: rating_visibility_metafield, allow_false: true
+                        assign rating_visibility_string = rating_visibility_value | downcase | strip
+
+                        if block.settings.metafield_visible_value == 'false'
+                          assign rating_block_visible = true
+                          if rating_visibility_value == true or rating_visibility_string == 'true' or rating_visibility_string == '1' or rating_visibility_string == 'yes'
+                            assign rating_block_visible = false
+                          endif
+                        elsif rating_visibility_value == true or rating_visibility_string == 'true' or rating_visibility_string == '1' or rating_visibility_string == 'yes'
+                          assign rating_block_visible = true
+                        endif
+                      endif
+                    endif
+                  endif
+                %}
+                {%- if rating_block_visible and product.metafields.reviews.rating.value != blank -%}
+                  <div
+                    class="product-block-rating-wrapper"
+                    style="
+                      --pdp-rating-margin-top: {{ block.settings.margin_top }}px;
+                      --pdp-rating-margin-bottom: {{ block.settings.margin_bottom }}px;
+                      --pdp-rating-gap: {{ block.settings.item_gap }}px;
+                      --pdp-rating-text-size-mobile: {{ block.settings.text_size_mobile }}px;
+                      --pdp-rating-text-size-desktop: {{ block.settings.text_size_desktop }}px;
+                      --pdp-rating-text-color: {{ block.settings.text_color }};
+                      --pdp-rating-star-color: {{ block.settings.star_color }};
+                      --pdp-rating-link-line-color: {{ block.settings.link_underline_color }};
+                    "
+                    {{ block.shopify_attributes }}
+                  >
+                    <a class="pdp-rating-link" href="{{ block.settings.link_anchor | default: '#pdp-reviews' }}">
                     {% liquid
                       assign rating_decimal = 0
                       assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
@@ -1020,18 +1060,26 @@
                         style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
                       ></span>
                     </div>
-                    <p class="rating-text caption">
-                      <span aria-hidden="true">
-                        {{- product.metafields.reviews.rating.value -}}
-                      </span>
-                    </p>
-                    <p class="rating-count caption">
-                      <span aria-hidden="true">&middot; {{ product.metafields.reviews.rating_count }} {{ 'products.product.reviews' | t }}</span>
-                      <span class="visually-hidden">
-                        {{- product.metafields.reviews.rating_count }}
-                        {{ 'accessibility.total_reviews' | t -}}
-                      </span>
-                    </p>
+                    {%- if block.settings.show_rating_value -%}
+                      <p class="rating-text caption">
+                        <span aria-hidden="true">
+                          {{- product.metafields.reviews.rating.value -}}
+                        </span>
+                      </p>
+                    {%- endif -%}
+                    {%- if block.settings.show_review_count -%}
+                      <p class="rating-count caption">
+                        <span aria-hidden="true">
+                          {%- if block.settings.show_count_separator -%}&middot; {% endif -%}
+                          {{ product.metafields.reviews.rating_count }}
+                          {{ block.settings.review_count_label | default: 'reviews' }}
+                        </span>
+                        <span class="visually-hidden">
+                          {{- product.metafields.reviews.rating_count }}
+                          {{ 'accessibility.total_reviews' | t -}}
+                        </span>
+                      </p>
+                    {%- endif -%}
                     </a>
                   </div>
                 {%- endif -%}
@@ -4488,6 +4536,156 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        },
+        {
+          "type": "header",
+          "content": "Display"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating_value",
+          "label": "Show rating value",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review_count",
+          "label": "Show review count",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count_separator",
+          "label": "Show separator before review count",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "review_count_label",
+          "label": "Review count label",
+          "default": "reviews"
+        },
+        {
+          "type": "text",
+          "id": "link_anchor",
+          "label": "Review link anchor",
+          "default": "#pdp-reviews"
+        },
+        {
+          "type": "header",
+          "content": "Metafield visibility"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_metafield_visibility",
+          "label": "Control visibility with product metafield",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "visibility_metafield_namespace",
+          "label": "Metafield namespace",
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "visibility_metafield_key",
+          "label": "Metafield key",
+          "default": "show_review_summary"
+        },
+        {
+          "type": "select",
+          "id": "metafield_visible_value",
+          "label": "Show block when metafield is",
+          "options": [
+            {
+              "value": "true",
+              "label": "True"
+            },
+            {
+              "value": "false",
+              "label": "False"
+            }
+          ],
+          "default": "true"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_when_metafield_blank",
+          "label": "Show when metafield is blank",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Top margin",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "Bottom margin",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "item_gap",
+          "min": 0,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Item spacing",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "text_size_mobile",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Text size mobile",
+          "default": 21
+        },
+        {
+          "type": "range",
+          "id": "text_size_desktop",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Text size desktop",
+          "default": 13
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#65615a"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "Star color",
+          "default": "#e0a52a"
+        },
+        {
+          "type": "color",
+          "id": "link_underline_color",
+          "label": "Review count underline",
+          "default": "#ece8e0"
         }
       ]
     },
