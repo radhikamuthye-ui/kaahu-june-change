@@ -1,6 +1,6 @@
 # Kaahu Shopify Theme Instructions
 
-This repository is the working copy for the Kaahu Shopify theme draft.
+This repository is the working copy for the Kaahu Shopify theme draft. All routine work is on the unpublished `June 3` draft theme only.
 
 ## Project Identity
 
@@ -19,15 +19,18 @@ Use the home-folder copy unless the user explicitly says otherwise.
 - `./shopify-theme push` pushes to the June 3 draft only.
 - `./shopify-theme check` runs Theme Check with this repo's ignore config.
 - For push requests, push only changed theme files when possible.
+- Treat draft pull/push as low-risk sync operations. Do not add slow pre/post checks unless the user asks, the command fails, or the change is risky.
 - Do not run `git diff` or `git diff --stat` unless the user asks for a diff, asks what changed, or the task requires inspecting a specific change.
 - Prefer `git status --short` for quick state checks.
-- Keep the worktree clean with small commits when the user asks to commit.
+- Commit frequently after meaningful changes, especially after successful pulls from Shopify, successful pushes, and completed fixes.
+- Keep commit messages short and specific.
 
 ## Performance Notes
 
 - This theme has many Liquid/CSS/JSON files, and full `shopify theme check` can be slow.
 - `.theme-check.yml` intentionally ignores noisy app/vendor files from Avada and Visually.
 - Avoid full theme pulls/pushes/checks for small tasks unless needed.
+- Do not run full Theme Check as part of every trivial push/pull. Reserve it for Liquid/schema changes, broad CSS changes, or when the user asks.
 - Local tooling folders are intentionally ignored: `.claude/`, `.agents/`, `.codex/`.
 
 ## Safety Rules
