@@ -1,4 +1,6 @@
 .kaahu-judgeme-reviews {
+  display: block;
+  box-sizing: border-box;
   padding: var(--kjrc-padding-top-mobile) 0 var(--kjrc-padding-bottom-mobile);
   background: var(--kjrc-bg);
 }
@@ -66,7 +68,7 @@
   overflow-y: hidden;
   padding: 4px 0 18px;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none;
   scrollbar-width: none;
   cursor: grab;
 }
@@ -89,7 +91,6 @@
   border-radius: min(var(--kjrc-card-radius), 18px);
   background: var(--kjrc-card-bg);
   box-shadow: 0 14px 34px rgba(45, 38, 28, calc(var(--kjrc-card-shadow) * 0.62));
-  scroll-snap-align: start;
 }
 
 .kaahu-judgeme-reviews__media {

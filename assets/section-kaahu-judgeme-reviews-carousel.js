@@ -10,15 +10,10 @@ class KaahuReviewsCarousel extends HTMLElement {
     this.autoplay = this.dataset.autoplay === 'true';
     this.pauseHover = this.dataset.pauseHover === 'true';
     this.dragEnabled = this.dataset.drag === 'true';
-    this.continuous = this.dataset.continuous === 'true';
-    this.speed = Number(this.dataset.speed) || 5000;
-    this.timer = null;
-
-    if (this.continuous) {
-      this.track.addEventListener('focusin', () => this.classList.add('is-paused'));
-      this.track.addEventListener('focusout', () => this.classList.remove('is-paused'));
-      return;
-    }
+    this.speed = 28;
+    this.frame = null;
+    this.lastFrame = null;
+    this.loopWidth = 0;
 
     this.prev?.addEventListener('click', () => this.go(-1));
     this.next?.addEventListener('click', () => this.go(1));
@@ -32,6 +27,7 @@ class KaahuReviewsCarousel extends HTMLElement {
       this.addEventListener('mouseleave', () => this.start());
     }
 
+    if (this.autoplay && this.cards.length > 1) this.cloneCards();
     if (this.dragEnabled) this.enableDrag();
     this.updateDots();
     this.start();
@@ -49,15 +45,7 @@ class KaahuReviewsCarousel extends HTMLElement {
   }
 
   go(direction) {
-    const maxScroll = this.track.scrollWidth - this.track.clientWidth - 2;
-    if (direction > 0 && this.track.scrollLeft >= maxScroll) {
-      this.track.scrollTo({ left: 0, behavior: 'smooth' });
-      return;
-    }
-    if (direction < 0 && this.track.scrollLeft <= 2) {
-      this.track.scrollTo({ left: this.track.scrollWidth, behavior: 'smooth' });
-      return;
-    }
+    if (direction < 0 && this.track.scrollLeft <= 2 && this.loopWidth) this.track.scrollLeft = this.loopWidth;
     this.track.scrollBy({ left: direction * this.cardStep(), behavior: 'smooth' });
   }
 
@@ -84,13 +72,45 @@ class KaahuReviewsCarousel extends HTMLElement {
   }
 
   start() {
-    if (!this.autoplay || this.timer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    this.timer = window.setInterval(() => this.go(1), this.speed);
+    if (!this.autoplay || this.frame || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.lastFrame = null;
+    this.frame = window.requestAnimationFrame((timestamp) => this.tick(timestamp));
   }
 
   stop() {
-    window.clearInterval(this.timer);
-    this.timer = null;
+    window.cancelAnimationFrame(this.frame);
+    this.frame = null;
+    this.lastFrame = null;
+  }
+
+  cloneCards() {
+    if (this.track.dataset.cloned === 'true') return;
+    this.cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.removeAttribute('data-shopify-editor-block');
+      this.track.appendChild(clone);
+    });
+    this.track.dataset.cloned = 'true';
+    window.requestAnimationFrame(() => {
+      const firstClone = this.track.children[this.cards.length];
+      this.loopWidth = firstClone ? firstClone.offsetLeft : 0;
+    });
+  }
+
+  tick(timestamp) {
+    if (!this.frame) return;
+    if (this.lastFrame === null) this.lastFrame = timestamp;
+
+    const elapsed = timestamp - this.lastFrame;
+    this.lastFrame = timestamp;
+    this.track.scrollLeft += (this.speed * elapsed) / 1000;
+
+    if (this.loopWidth && this.track.scrollLeft >= this.loopWidth) {
+      this.track.scrollLeft -= this.loopWidth;
+    }
+
+    this.frame = window.requestAnimationFrame((nextTimestamp) => this.tick(nextTimestamp));
   }
 
   enableDrag() {
