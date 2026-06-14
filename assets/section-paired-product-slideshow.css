@@ -433,9 +433,25 @@
 }
 
 @media only screen and (max-width: 749px) {
+  .paired-product-slideshow,
+  .paired-product-slideshow .swiper,
+  .paired-product-slideshow .swiper-wrapper,
+  .pps-slide {
+    height: 100vh;
+    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
   .pps-slide {
     grid-template-rows: 1fr;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: auto;
+  }
+
+  .pps-panel,
+  .pps-lifestyle {
+    height: 100%;
+    aspect-ratio: auto;
   }
 
   .pps-product {
