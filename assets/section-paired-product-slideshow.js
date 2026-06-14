@@ -5,6 +5,7 @@ class PairedProductSlideshow {
     this.progress = element.querySelector('.pps-progress span');
     this.toggle = element.querySelector('.pps-toggle');
     this.swiper = null;
+    this.mobileQuery = window.matchMedia('(max-width: 749px)');
 
     if (!this.swiperElement) return;
 
@@ -14,6 +15,7 @@ class PairedProductSlideshow {
   init() {
     this.mountSlider();
     this.bindControls();
+    this.bindMobileReset();
     this.bindThemeEditorEvents();
   }
 
@@ -51,6 +53,7 @@ class PairedProductSlideshow {
     }
 
     this.swiper = new Swiper(this.swiperElement, config);
+    this.resetMobileSlide();
   }
 
   bindControls() {
@@ -85,6 +88,24 @@ class PairedProductSlideshow {
         this.section.classList.add('is-paused');
       }
     });
+  }
+
+  bindMobileReset() {
+    if (!this.swiper) return;
+
+    this.mobileQuery.addEventListener('change', () => this.resetMobileSlide());
+    this.resetMobileSlide();
+  }
+
+  resetMobileSlide() {
+    if (!this.swiper || !this.mobileQuery.matches) return;
+
+    if (this.swiper.params.loop) {
+      this.swiper.slideToLoop(0, 0, false);
+    } else {
+      this.swiper.slideTo(0, 0, false);
+    }
+    this.restartProgress();
   }
 
   restartProgress() {
