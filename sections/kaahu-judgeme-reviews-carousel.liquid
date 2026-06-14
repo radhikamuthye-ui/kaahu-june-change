@@ -31,8 +31,22 @@
     --kjrc-review-color: {{ section.settings.review_text_color }};
     --kjrc-name-color: {{ section.settings.customer_name_color }};
     --kjrc-meta-color: {{ section.settings.metadata_color }};
-    --kjrc-padding-top: {{ section.settings.padding_top }}px;
-    --kjrc-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --kjrc-padding-top-mobile: {{ section.settings.padding_top_mobile | default: section.settings.padding_top }}px;
+    --kjrc-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile | default: section.settings.padding_bottom }}px;
+    --kjrc-padding-top-desktop: {{ section.settings.padding_top_desktop | default: section.settings.padding_top }}px;
+    --kjrc-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop | default: section.settings.padding_bottom }}px;
+    --kjrc-header-bottom-spacing-mobile: {{ section.settings.header_bottom_spacing_mobile }}px;
+    --kjrc-header-bottom-spacing-desktop: {{ section.settings.header_bottom_spacing_desktop }}px;
+    --kjrc-side-padding-mobile: {{ section.settings.side_padding_mobile }}px;
+    --kjrc-side-padding-desktop: {{ section.settings.side_padding_desktop }}px;
+    --kjrc-track-padding-top-mobile: {{ section.settings.track_padding_top_mobile }}px;
+    --kjrc-track-padding-bottom-mobile: {{ section.settings.track_padding_bottom_mobile }}px;
+    --kjrc-track-padding-top-desktop: {{ section.settings.track_padding_top_desktop }}px;
+    --kjrc-track-padding-bottom-desktop: {{ section.settings.track_padding_bottom_desktop }}px;
+    --kjrc-app-padding-mobile: {{ section.settings.app_padding_mobile }}px;
+    --kjrc-app-padding-desktop: {{ section.settings.app_padding_desktop }}px;
+    --kjrc-widget-inner-padding-mobile: {{ section.settings.widget_inner_padding_mobile }}px;
+    --kjrc-widget-inner-padding-desktop: {{ section.settings.widget_inner_padding_desktop }}px;
     --kjrc-card-width-mobile: {{ section.settings.card_width_mobile }}px;
     --kjrc-card-width-tablet: {{ section.settings.card_width_tablet }}px;
     --kjrc-card-width-desktop: {{ section.settings.card_width_desktop }}px;
@@ -472,23 +486,83 @@
     },
     {
       "type": "range",
-      "id": "padding_top",
-      "min": 24,
-      "max": 180,
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 280,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Top padding desktop",
       "default": 104
     },
     {
       "type": "range",
-      "id": "padding_bottom",
-      "min": 24,
-      "max": 180,
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 280,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Bottom padding desktop",
       "default": 104
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding mobile",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 220,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding mobile",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "header_bottom_spacing_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Header bottom spacing mobile",
+      "default": 54
+    },
+    {
+      "type": "range",
+      "id": "header_bottom_spacing_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Header bottom spacing desktop",
+      "default": 66
+    },
+    {
+      "type": "range",
+      "id": "side_padding_mobile",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Side padding mobile",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "side_padding_desktop",
+      "min": 0,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Side padding desktop",
+      "default": 24
     },
     {
       "type": "range",
@@ -529,6 +603,86 @@
       "unit": "px",
       "label": "Gap between cards",
       "default": 24
+    },
+    {
+      "type": "range",
+      "id": "track_padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Carousel top padding mobile",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "track_padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Carousel bottom padding mobile",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "track_padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Carousel top padding desktop",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "track_padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Carousel bottom padding desktop",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "app_padding_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Judge.me wrapper padding mobile",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "app_padding_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Judge.me wrapper padding desktop",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "widget_inner_padding_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Judge.me inner widget padding mobile",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "widget_inner_padding_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Judge.me inner widget padding desktop",
+      "default": 0
     },
     {
       "type": "range",
@@ -597,7 +751,7 @@
     {
       "type": "range",
       "id": "card_padding_mobile",
-      "min": 16,
+      "min": 0,
       "max": 48,
       "step": 2,
       "unit": "px",
@@ -607,7 +761,7 @@
     {
       "type": "range",
       "id": "card_padding_desktop",
-      "min": 18,
+      "min": 0,
       "max": 64,
       "step": 2,
       "unit": "px",

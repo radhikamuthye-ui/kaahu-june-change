@@ -1,14 +1,14 @@
 .kaahu-judgeme-reviews {
   position: relative;
   overflow: hidden;
-  padding: var(--kjrc-padding-top) 0 var(--kjrc-padding-bottom);
+  padding: var(--kjrc-padding-top-mobile) 0 var(--kjrc-padding-bottom-mobile);
   background: var(--kjrc-bg);
 }
 
 .kaahu-judgeme-reviews__header {
   max-width: var(--kjrc-max-width);
-  margin: 0 auto 54px;
-  padding: 0 24px;
+  margin: 0 auto var(--kjrc-header-bottom-spacing-mobile);
+  padding: 0 var(--kjrc-side-padding-mobile);
   text-align: var(--kjrc-header-align);
 }
 
@@ -35,9 +35,9 @@
 }
 
 .kaahu-judgeme-reviews__app {
-  width: min(calc(100% - 40px), 1240px);
+  width: min(calc(100% - (var(--kjrc-side-padding-mobile) * 2)), var(--kjrc-max-width));
   margin: 0 auto;
-  padding: 32px;
+  padding: var(--kjrc-app-padding-mobile);
   border: 1px solid var(--kjrc-card-border);
   border-radius: var(--kjrc-card-radius);
   background: var(--kjrc-card-bg);
@@ -46,6 +46,13 @@
 
 .kaahu-judgeme-reviews__app :where(.jdgm-rev-widg, .jdgm-all-reviews-widget, .jdgm-carousel-wrapper) {
   margin: 0 !important;
+  padding: var(--kjrc-widget-inner-padding-mobile) !important;
+  background: transparent !important;
+}
+
+.kaahu-judgeme-reviews__app :where(.jdgm-rev-widg__body, .jdgm-rev-widg__reviews, .jdgm-carousel, .jdgm-carousel__item-container) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .kaahu-judgeme-reviews__carousel-wrap {
@@ -57,9 +64,9 @@
   gap: var(--kjrc-gap);
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 8px max(24px, calc((100vw - var(--kjrc-max-width)) / 2)) 34px;
+  padding: var(--kjrc-track-padding-top-mobile) max(var(--kjrc-side-padding-mobile), calc((100vw - var(--kjrc-max-width)) / 2)) var(--kjrc-track-padding-bottom-mobile);
   scroll-behavior: smooth;
-  scroll-padding-inline: max(24px, calc((100vw - var(--kjrc-max-width)) / 2));
+  scroll-padding-inline: max(var(--kjrc-side-padding-mobile), calc((100vw - var(--kjrc-max-width)) / 2));
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   cursor: grab;
@@ -305,8 +312,32 @@
 }
 
 @media only screen and (min-width: 990px) {
+  .kaahu-judgeme-reviews {
+    padding-top: var(--kjrc-padding-top-desktop);
+    padding-bottom: var(--kjrc-padding-bottom-desktop);
+  }
+
   .kaahu-judgeme-reviews__header {
-    margin-bottom: 66px;
+    margin-bottom: var(--kjrc-header-bottom-spacing-desktop);
+    padding-left: var(--kjrc-side-padding-desktop);
+    padding-right: var(--kjrc-side-padding-desktop);
+  }
+
+  .kaahu-judgeme-reviews__app {
+    width: min(calc(100% - (var(--kjrc-side-padding-desktop) * 2)), var(--kjrc-max-width));
+    padding: var(--kjrc-app-padding-desktop);
+  }
+
+  .kaahu-judgeme-reviews__app :where(.jdgm-rev-widg, .jdgm-all-reviews-widget, .jdgm-carousel-wrapper) {
+    padding: var(--kjrc-widget-inner-padding-desktop) !important;
+  }
+
+  .kaahu-judgeme-reviews__track {
+    padding-top: var(--kjrc-track-padding-top-desktop);
+    padding-bottom: var(--kjrc-track-padding-bottom-desktop);
+    padding-left: max(var(--kjrc-side-padding-desktop), calc((100vw - var(--kjrc-max-width)) / 2));
+    padding-right: max(var(--kjrc-side-padding-desktop), calc((100vw - var(--kjrc-max-width)) / 2));
+    scroll-padding-inline: max(var(--kjrc-side-padding-desktop), calc((100vw - var(--kjrc-max-width)) / 2));
   }
 
   .kaahu-judgeme-reviews__card {

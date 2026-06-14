@@ -1,1 +1,7 @@
-extends: theme-check:recommended
+extends:
+  - theme-check:recommended
+
+ignore:
+  - snippets/avada-*.liquid
+  - snippets/visually_io_sdk.liquid
+  - templates/search.avada-seo.liquid

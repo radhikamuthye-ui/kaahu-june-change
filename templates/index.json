@@ -686,7 +686,23 @@
         "review_quote_size_desktop": 15,
         "review_quote_size_mobile": 15,
         "review_quote_line_height": 130,
-        "star_size": 12
+        "star_size": 12,
+        "padding_top_desktop": 180,
+        "padding_bottom_desktop": 180,
+        "padding_top_mobile": 72,
+        "padding_bottom_mobile": 72,
+        "header_bottom_spacing_mobile": 36,
+        "header_bottom_spacing_desktop": 48,
+        "side_padding_mobile": 20,
+        "side_padding_desktop": 32,
+        "track_padding_top_mobile": 8,
+        "track_padding_bottom_mobile": 34,
+        "track_padding_top_desktop": 8,
+        "track_padding_bottom_desktop": 34,
+        "app_padding_mobile": 20,
+        "app_padding_desktop": 32,
+        "widget_inner_padding_mobile": 0,
+        "widget_inner_padding_desktop": 0
       }
     },
     "kaahu_community_board_homepage": {

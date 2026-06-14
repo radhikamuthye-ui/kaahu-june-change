@@ -6,6 +6,9 @@
 ehthumbs.db
 Thumbs.db
 .env
+.claude/
+.agents/
+.codex/
 .tools/
 node_modules/
 npm-debug.log*

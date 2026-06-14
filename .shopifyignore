@@ -1,4 +1,7 @@
 .git/*
+.claude/*
+.agents/*
+.codex/*
 .tools/*
 node_modules/*
 .env
