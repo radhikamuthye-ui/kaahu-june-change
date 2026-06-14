@@ -62,7 +62,7 @@
         {%- case block.type -%}     
           
           {%- when 'countdown' -%}
-          <div class="rich-text__countdown countdown-font--{{ block.settings.font_family }} align-{{ block.settings.alignment }}" {{ block.shopify_attributes }}>
+          <div class="rich-text__countdown align-{{ block.settings.alignment }}" {{ block.shopify_attributes }}>
 
           <div class="countdown-container" id="countdown-wrapper"
                data-store-time="{{ 'now' | date: '%Y-%m-%dT%H:%M:%S' }}"
@@ -585,22 +585,6 @@
           "id": "alignment",
           "default": "center",
           "label": "t:sections.all.alignment.alignment_header"
-        },
-        {
-          "type": "select",
-          "id": "font_family",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.all.body_font"
-            },
-            {
-              "value": "accent",
-              "label": "t:sections.all.navigation_font"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.all.font"
         },
         {
           "type": "select",

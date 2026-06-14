@@ -4,7 +4,7 @@
   background: rgba(var(--color-foreground-rgb),0.04);
   color: rgba(var(--color-foreground-rgb),0.3);   
   font-size: 0;
-  font-family: "Helvetica", Arial, sans-serif;
+  font-family: var(--font-body-family);
   display: flex;
   align-items: center;
   justify-content: center;

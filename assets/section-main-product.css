@@ -2470,12 +2470,6 @@ body:has(.radio-options-drawer--background.open) .header-group {
   margin-left: 10px;
 }
 
-.variant-picker-font-family--body .product-form__input {
-  font-family: var(--font-body-family) !important;
-  font-weight: var(--font-body-weight) !important;
-  font-style: var(--font-body-style) !important;
-}
-
 .product-form__input .select {
   max-width: none;
 }
@@ -4819,16 +4813,6 @@ a.product__text {
   cursor: pointer;
 }
 
-.product-info-tabs .tab-font-body .tab-button {
-  font-size: var(--font-body-base-size-mobile);
-}
-
-.product-info-tabs .tab-font-navigation .tab-button {
-  font-family: var(--font-accent-family) !important;
-  font-style: var(--font-accent-style) !important;
-  font-weight: var(--font-accent-weight) !important;
-}
-
 .product-info-tabs .tab-menu-with-border .tab-button {
   padding: 0 0 1.2rem 0;
 }
@@ -4866,10 +4850,6 @@ a.product__text {
 }
 
 @media only screen and (min-width: 1025px) {
-  .product-info-tabs .tab-font-body .tab-button {
-    font-size: var(--font-body-base-size-desktop);
-    cursor: pointer;
-  }
   .product-info-tabs .tab-menu {
     column-gap: 24px;
   }

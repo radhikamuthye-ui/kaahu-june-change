@@ -20,7 +20,7 @@
 .kaahu-product-sustainability__eyebrow {
   margin-bottom: 18px;
   color: var(--kps-accent);
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -31,7 +31,7 @@
 .kaahu-product-sustainability__heading {
   margin: 0;
   color: var(--kps-heading);
-  font-family: var(--font-heading-family, Georgia, serif);
+  font-family: var(--font-heading-family);
   font-size: var(--kps-heading-size-mobile);
   font-weight: var(--font-heading-weight);
   line-height: 1.08;

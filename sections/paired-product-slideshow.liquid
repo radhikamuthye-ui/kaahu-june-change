@@ -18,17 +18,7 @@
     assign lifestyle_zoom_out_start = lifestyle_zoom | plus: fade_zoom_amount
     assign product_zoom_in_start = product_zoom | minus: fade_zoom_amount | at_least: 1.0
     assign product_zoom_out_start = product_zoom | plus: fade_zoom_amount
-    assign breadcrumb_font = section.settings.breadcrumb_font_family
-    assign heading_font = section.settings.heading_font_family
-    assign body_text_font = section.settings.body_text_font_family
-    assign event_font = section.settings.event_font_family
-    assign button_font = section.settings.button_font_family
   -%}
-  {{ breadcrumb_font | font_face: font_display: 'swap' }}
-  {{ heading_font | font_face: font_display: 'swap' }}
-  {{ body_text_font | font_face: font_display: 'swap' }}
-  {{ event_font | font_face: font_display: 'swap' }}
-  {{ button_font | font_face: font_display: 'swap' }}
 
   .section-{{ section.id }} {
     --pps-overlay: {{ overlay }};
@@ -59,60 +49,36 @@
     --pps-copy-margin-bottom: {{ section.settings.copy_bottom_spacing }}px;
     --pps-event-margin-top: {{ section.settings.event_top_spacing }}px;
     --pps-buttons-margin-top: {{ section.settings.buttons_top_spacing }}px;
-    --pps-breadcrumb-font-family: {{ breadcrumb_font.family }}, {{ breadcrumb_font.fallback_families }};
-    --pps-breadcrumb-font-style: {{ breadcrumb_font.style }};
-    --pps-breadcrumb-font-weight: {{ breadcrumb_font.weight }};
+    --pps-breadcrumb-font-family: var(--font-accent-family);
+    --pps-breadcrumb-font-style: var(--font-accent-style);
+    --pps-breadcrumb-font-weight: var(--font-accent-weight);
     --pps-breadcrumb-size-mobile: {{ section.settings.breadcrumb_size_mobile }}px;
     --pps-breadcrumb-size-desktop: {{ section.settings.breadcrumb_size_desktop }}px;
-    {% case section.settings.heading_font_source %}
-      {% when 'theme_body' %}
-        --pps-heading-font-family: var(--font-body-family);
-        --pps-heading-font-style: var(--font-body-style);
-      {% when 'theme_accent' %}
-        --pps-heading-font-family: var(--font-accent-family);
-        --pps-heading-font-style: var(--font-accent-style);
-      {% when 'custom' %}
-        --pps-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-        --pps-heading-font-style: {{ heading_font.style }};
-      {% else %}
-        --pps-heading-font-family: var(--font-heading-family);
-        --pps-heading-font-style: var(--font-heading-style);
-    {% endcase %}
+    --pps-heading-font-family: var(--font-heading-family);
+    --pps-heading-font-style: var(--font-heading-style);
     --pps-heading-font-weight: {{ section.settings.heading_font_weight }};
     --pps-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --pps-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
     --pps-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
     --pps-heading-letter-spacing: {{ section.settings.heading_letter_spacing | divided_by: 100.0 }}em;
     --pps-heading-color: {{ section.settings.heading_color }};
-    {% case section.settings.body_text_font_source %}
-      {% when 'theme_heading' %}
-        --pps-text-font-family: var(--font-heading-family);
-        --pps-text-font-style: var(--font-heading-style);
-      {% when 'theme_accent' %}
-        --pps-text-font-family: var(--font-accent-family);
-        --pps-text-font-style: var(--font-accent-style);
-      {% when 'custom' %}
-        --pps-text-font-family: {{ body_text_font.family }}, {{ body_text_font.fallback_families }};
-        --pps-text-font-style: {{ body_text_font.style }};
-      {% else %}
-        --pps-text-font-family: var(--font-body-family);
-        --pps-text-font-style: var(--font-body-style);
-    {% endcase %}
+    --pps-text-font-family: var(--font-body-family);
+    --pps-text-font-style: var(--font-body-style);
     --pps-text-font-weight: {{ section.settings.body_text_font_weight }};
     --pps-text-size-mobile: {{ section.settings.body_text_size_mobile }}px;
     --pps-text-size-desktop: {{ section.settings.body_text_size_desktop }}px;
     --pps-text-line-height: {{ section.settings.body_text_line_height | divided_by: 100.0 }};
     --pps-text-color: {{ section.settings.body_text_color }};
-    --pps-event-font-family: {{ event_font.family }}, {{ event_font.fallback_families }};
-    --pps-event-font-style: {{ event_font.style }};
-    --pps-event-font-weight: {{ event_font.weight }};
+    --pps-event-font-family: var(--font-accent-family);
+    --pps-event-font-style: var(--font-accent-style);
+    --pps-event-font-weight: var(--font-accent-weight);
     --pps-event-label-size-mobile: {{ section.settings.event_label_size_mobile }}px;
     --pps-event-label-size-desktop: {{ section.settings.event_label_size_desktop }}px;
     --pps-event-text-size-mobile: {{ section.settings.event_text_size_mobile }}px;
     --pps-event-text-size-desktop: {{ section.settings.event_text_size_desktop }}px;
-    --pps-button-font-family: {{ button_font.family }}, {{ button_font.fallback_families }};
-    --pps-button-font-style: {{ button_font.style }};
-    --pps-button-font-weight: {{ button_font.weight }};
+    --pps-button-font-family: var(--font-accent-family);
+    --pps-button-font-style: var(--font-accent-style);
+    --pps-button-font-weight: var(--font-accent-weight);
     --pps-button-size-mobile: {{ section.settings.button_size_mobile }}px;
     --pps-button-size-desktop: {{ section.settings.button_size_desktop }}px;
   }
@@ -649,12 +615,6 @@
       "content": "Typography"
     },
     {
-      "type": "font_picker",
-      "id": "breadcrumb_font_family",
-      "label": "Breadcrumb font",
-      "default": "jost_n4"
-    },
-    {
       "type": "range",
       "id": "breadcrumb_size_mobile",
       "min": 9,
@@ -673,36 +633,6 @@
       "unit": "px",
       "label": "Breadcrumb size on desktop",
       "default": 11
-    },
-    {
-      "type": "font_picker",
-      "id": "heading_font_family",
-      "label": "Custom heading font",
-      "default": "montserrat_n4"
-    },
-    {
-      "type": "select",
-      "id": "heading_font_source",
-      "label": "Heading font source",
-      "options": [
-        {
-          "value": "theme_heading",
-          "label": "Theme heading font"
-        },
-        {
-          "value": "theme_body",
-          "label": "Theme body font"
-        },
-        {
-          "value": "theme_accent",
-          "label": "Theme accent font"
-        },
-        {
-          "value": "custom",
-          "label": "Custom font above"
-        }
-      ],
-      "default": "theme_heading"
     },
     {
       "type": "range",
@@ -775,36 +705,6 @@
       "default": "#ffffff"
     },
     {
-      "type": "font_picker",
-      "id": "body_text_font_family",
-      "label": "Custom text font",
-      "default": "cormorant_i5"
-    },
-    {
-      "type": "select",
-      "id": "body_text_font_source",
-      "label": "Text font source",
-      "options": [
-        {
-          "value": "theme_body",
-          "label": "Theme body font"
-        },
-        {
-          "value": "theme_heading",
-          "label": "Theme heading font"
-        },
-        {
-          "value": "theme_accent",
-          "label": "Theme accent font"
-        },
-        {
-          "value": "custom",
-          "label": "Custom font above"
-        }
-      ],
-      "default": "theme_body"
-    },
-    {
       "type": "range",
       "id": "body_text_size_mobile",
       "min": 12,
@@ -865,12 +765,6 @@
       "default": "#ffffff"
     },
     {
-      "type": "font_picker",
-      "id": "event_font_family",
-      "label": "Event font",
-      "default": "cormorant_i5"
-    },
-    {
       "type": "range",
       "id": "event_label_size_mobile",
       "min": 9,
@@ -909,12 +803,6 @@
       "unit": "px",
       "label": "Event text size on desktop",
       "default": 20
-    },
-    {
-      "type": "font_picker",
-      "id": "button_font_family",
-      "label": "Button font",
-      "default": "jost_n4"
     },
     {
       "type": "range",

@@ -61,7 +61,6 @@
         "btn_color_scheme": "default",
         "content_alignment": "center",
         "content_width": "standard",
-        "accordion_title_font": "body",
         "accordion_title_size": "std",
         "text_color": "fg-body",
         "bg_color": "bg-body",

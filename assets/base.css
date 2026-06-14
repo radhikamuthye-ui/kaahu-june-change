@@ -3734,7 +3734,7 @@ details[open] .modal-overlay::after {
   font-size: calc(var(--font-size) * 1rem);
   line-height: 1;
   display: inline-block;
-  font-family: Times;
+  font-family: var(--font-heading-family);
   margin: 0;
 }
 
@@ -3803,12 +3803,45 @@ body:has(.header-bar--page-margins) .shopify-policy__container {
 
 @media only screen and (min-width: 1025px) {
   body:has(.hbi-semi-transparent) .shopify-policy__container {
-    padding-top: calc(var(--site-header-height-desktop) + 80px);  
+    padding-top: calc(var(--site-header-height-desktop) + 80px);
   }
   body:has(.full-width-announcement-bar):has(.hbi-semi-transparent) .shopify-policy__container {
-    padding-top: calc(var(--site-header-height-desktop) + 80px);    
+    padding-top: calc(var(--site-header-height-desktop) + 80px);
   }
   body:has(.header-bar--page-margins) .shopify-policy__container {
     padding-top: calc(var(--site-header-height-desktop) + 80px);
   }
+}
+
+/* ── Typography system ──────────────────────────────────────────────────────
+   Variables are overridden in layout/theme.liquid <style> block (after
+   global-theme-styles). Everything below handles the cases that CSS vars
+   alone can't reach because section liquid files set intermediate vars
+   (--bs-body-font-family, --kjrc-quote-font-family) from --font-body-family
+   before we override it, and because .product-title-body uses !important.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* DM Mono: labels, captions, badges */
+.section-label,
+.caption,
+.caption-large,
+.caption-note,
+.badge {
+  font-family: var(--font-mono-family);
+}
+
+/* Cormorant: product card titles (overrides --font-body-family !important) */
+.product-title-body {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+/* Cormorant: testimonial / review quotes */
+.kaahu-judgeme-reviews__quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+/* Cormorant: "who we are" brand story body copy */
+.brand-story__body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }

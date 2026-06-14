@@ -28,49 +28,23 @@
 
       :root {
         --font-body-scale: 1;
-        --serif: "Cormorant Garamond", Georgia, serif;
-        --sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
-        --mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-        {% if settings.kaahu_google_fonts_enabled and settings.kaahu_body_font == 'sans' %}
-        --font-body-family: var(--sans);
-        --font-body-style: normal;
-        --font-body-weight: 400;
-        --font-body-weight-bold: 700;
-        {% else %}
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
         --font-body-weight-bold: {{ body_font_bold.weight }};
-        {% endif %}
         
-        {% if settings.kaahu_google_fonts_enabled and settings.kaahu_heading_font == 'serif' %}
-        --font-heading-family: var(--serif);
-        --font-heading-style: normal;
-        --font-heading-weight: 600;
-        {% else %}
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
-        {% endif %}
+        --font-serif-family: var(--font-heading-family);
   
-        {% if settings.kaahu_google_fonts_enabled and settings.kaahu_accent_font == 'sans' %}
-        --font-accent-family: var(--sans);
-        --font-accent-style: normal;
-        --font-accent-weight: 600;
-        {% else %}
         --font-accent-family: {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
         --font-accent-style: {{ settings.type_accent_font.style }};
         --font-accent-weight: {{ settings.type_accent_font.weight }};
-        {% endif %}
 
-        {% if settings.kaahu_google_fonts_enabled and settings.kaahu_detail_font == 'mono' %}
-        --font-detail-family: var(--mono);
-        --font-detail-weight: 500;
-        {% else %}
         --font-detail-family: var(--font-body-family);
         --font-detail-weight: var(--font-body-weight);
-        {% endif %}
         
         --font-body-base-size-mobile: {{ settings.body_font_size_mobile }}px;
         --font-body-base-size-tablet: {{ settings.body_font_size_tablet }}px;
@@ -140,8 +114,6 @@
         
         {% if settings.styled_link_style == 'italic' %}
         --font-styled-link-style: {{ settings.styled_link_style }};
-        {% elsif settings.kaahu_google_fonts_enabled and settings.kaahu_body_font == 'sans' %}
-        --font-styled-link-style: normal;
         {% else %}
         --font-styled-link-style: {{ settings.type_body_font.style }};
         {% endif %}

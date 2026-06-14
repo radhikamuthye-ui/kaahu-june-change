@@ -1,5 +1,5 @@
 .price {
-  font-family: var(--serif);
+  font-family: var(--font-heading-family);
   font-size: inherit;
   letter-spacing: 0rem;
   line-height: 1.2;

@@ -220,12 +220,6 @@
   line-height: 1.0;
 }
 
-.countdown-font--accent .countdown-timer {
-  font-family: var(--font-accent-family);
-  font-style: var(--font-accent-style);
-  font-weight: var(--font-accent-weight); 
-}
-
 .align-left .countdown-timer {
   justify-content: flex-start;
 }

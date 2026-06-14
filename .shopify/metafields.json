@@ -11,6 +11,16 @@
         "name": "boolean",
         "category": "TRUE_FALSE"
       }
+    },
+    {
+      "key": "eyebrow",
+      "namespace": "custom",
+      "name": "Eyebrow ",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
     }
   ],
   "company": [],
@@ -237,6 +247,16 @@
       "description": "",
       "type": {
         "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "feature_chips",
+      "namespace": "custom",
+      "name": "Feature chips",
+      "description": "",
+      "type": {
+        "name": "list.single_line_text_field",
         "category": "TEXT"
       }
     }

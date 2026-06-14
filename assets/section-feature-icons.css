@@ -47,7 +47,7 @@
   background: #eeeeee;
   color: #666666;
   font-size: 1.1rem;
-  font-family: "Helvetica", Arial, sans-serif;
+  font-family: var(--font-body-family);
   line-height: 1.0;
 }
 

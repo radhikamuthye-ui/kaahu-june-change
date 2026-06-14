@@ -262,19 +262,6 @@
   }
   {% endunless %}
 
-  {% if section.settings.nav_font_family == 'body' %}
-  .header-bar-inner, .header-nav-drawer, .header-bar-inner button, .mobile-localization-link, .header-drawer-language-selector {
-    font-family: var(--font-body-family) !important;
-    font-weight: var(--font-body-weight);
-  }
-  {% if section.settings.nav_font_secondary_family == 'navigation' %}
-  .header-nav-desktop-dd-panel {
-    font-family: var(--font-accent-family) !important;
-  }
-  {% endif %}
-  {% endif %}
-
-
   .nav-ul--primary {
     font-size: {{ section.settings.nav_font_size_mobile }}px;
   }
@@ -296,12 +283,6 @@
     text-transform: none;
   }
   {% endif %}
-  {% endif %}
-  {% if section.settings.nav_font_secondary_family == 'body' %}
-  .mob-secondary-level-ul, .dd-nav-dd-contents {
-    font-family: var(--font-body-family);
-    font-weight: var(--font-body-weight);
-  }    
   {% endif %}
   .header-bar-inner {
     border-radius: {{ section.settings.header_corner_radius | at_most: half_nb_base_height_dt }}px;
@@ -1832,40 +1813,6 @@ if (searchclosebutton) {
     {
       "type": "header",
       "content": "t:sections.header.settings.header__fonts.label"
-    },
-    {
-      "type": "select",
-      "id": "nav_font_family",
-      "label": "t:sections.header.settings.font_primary.label",
-      "info": "t:sections.header.settings.font_primary.info",
-      "options": [
-        {
-          "value": "navigation",
-          "label": "t:sections.all.navigation_font"
-        },
-        {
-          "value": "body",
-          "label": "t:sections.all.body_font"
-        }
-      ],
-      "default": "navigation"
-    },
-    {
-      "type": "select",
-      "id": "nav_font_secondary_family",
-      "label": "t:sections.header.settings.font_secondary.label",
-      "info": "t:sections.header.settings.font_secondary.info",
-      "options": [
-        {
-          "value": "navigation",
-          "label": "t:sections.all.navigation_font"
-        },
-        {
-          "value": "body",
-          "label": "t:sections.all.body_font"
-        }
-      ],
-      "default": "navigation"
     },
     {
       "type": "select",

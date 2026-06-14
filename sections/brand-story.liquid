@@ -2,10 +2,6 @@
 {{ 'section-brand-story.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign eyebrow_font = section.settings.eyebrow_font_family
-  assign intro_font = section.settings.intro_font_family
-  assign heading_font = section.settings.heading_font_family
-  assign body_font = section.settings.body_font_family
   assign heading_tag = section.settings.heading_tag
   if section.index == 1 and section.settings.heading_tag == 'h2'
     assign heading_tag = 'h1'
@@ -27,11 +23,6 @@
 -%}
 
 {%- style -%}
-  {{ eyebrow_font | font_face: font_display: 'swap' }}
-  {{ intro_font | font_face: font_display: 'swap' }}
-  {{ heading_font | font_face: font_display: 'swap' }}
-  {{ body_font | font_face: font_display: 'swap' }}
-
   .section-{{ section.id }} {
     --bs-bg: {{ section.settings.background_color }};
     --bs-bg-gradient: {{ background_gradient }};
@@ -54,30 +45,30 @@
     --bs-image-radius: {{ section.settings.image_border_radius }}px;
     --bs-image-fit: {{ section.settings.image_object_fit }};
     --bs-image-position: {{ section.settings.image_position }};
-    --bs-eyebrow-font-family: {{ eyebrow_font.family }}, {{ eyebrow_font.fallback_families }};
-    --bs-eyebrow-font-style: {{ eyebrow_font.style }};
+    --bs-eyebrow-font-family: var(--font-accent-family);
+    --bs-eyebrow-font-style: var(--font-accent-style);
     --bs-eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop }}px;
     --bs-eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile }}px;
     --bs-eyebrow-weight: {{ section.settings.eyebrow_weight }};
     --bs-eyebrow-letter-spacing: {{ section.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
     --bs-eyebrow-color: {{ section.settings.eyebrow_color }};
-    --bs-intro-font-family: {{ intro_font.family }}, {{ intro_font.fallback_families }};
+    --bs-intro-font-family: var(--font-heading-family);
     --bs-intro-font-style: {{ section.settings.intro_font_style }};
-    --bs-intro-font-weight: {{ intro_font.weight }};
+    --bs-intro-font-weight: var(--font-heading-weight);
     --bs-intro-size-desktop: {{ section.settings.intro_size_desktop }}px;
     --bs-intro-size-mobile: {{ section.settings.intro_size_mobile }}px;
     --bs-intro-color: {{ section.settings.intro_color }};
-    --bs-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-    --bs-heading-font-style: {{ heading_font.style }};
+    --bs-heading-font-family: var(--font-heading-family);
+    --bs-heading-font-style: var(--font-heading-style);
     --bs-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
     --bs-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --bs-heading-weight: {{ section.settings.heading_weight }};
     --bs-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
     --bs-heading-max-width: {{ section.settings.heading_max_width }}px;
     --bs-heading-color: {{ section.settings.heading_color }};
-    --bs-body-font-family: {{ body_font.family }}, {{ body_font.fallback_families }};
-    --bs-body-font-style: {{ body_font.style }};
-    --bs-body-font-weight: {{ body_font.weight }};
+    --bs-body-font-family: var(--font-body-family);
+    --bs-body-font-style: var(--font-body-style);
+    --bs-body-font-weight: var(--font-body-weight);
     --bs-body-size-desktop: {{ section.settings.body_size_desktop }}px;
     --bs-body-size-mobile: {{ section.settings.body_size_mobile }}px;
     --bs-body-line-height: {{ section.settings.body_line_height | divided_by: 100.0 }};
@@ -631,12 +622,6 @@
       "content": "Eyebrow heading"
     },
     {
-      "type": "font_picker",
-      "id": "eyebrow_font_family",
-      "label": "Font family",
-      "default": "jost_n7"
-    },
-    {
       "type": "range",
       "id": "eyebrow_size_desktop",
       "min": 9,
@@ -695,12 +680,6 @@
       "content": "Intro text"
     },
     {
-      "type": "font_picker",
-      "id": "intro_font_family",
-      "label": "Font family",
-      "default": "libre_baskerville_i4"
-    },
-    {
       "type": "range",
       "id": "intro_size_desktop",
       "min": 12,
@@ -739,12 +718,6 @@
     {
       "type": "header",
       "content": "Main heading"
-    },
-    {
-      "type": "font_picker",
-      "id": "heading_font_family",
-      "label": "Font family",
-      "default": "libre_baskerville_n4"
     },
     {
       "type": "range",
@@ -817,12 +790,6 @@
     {
       "type": "header",
       "content": "Body copy"
-    },
-    {
-      "type": "font_picker",
-      "id": "body_font_family",
-      "label": "Font family",
-      "default": "libre_baskerville_i4"
     },
     {
       "type": "range",

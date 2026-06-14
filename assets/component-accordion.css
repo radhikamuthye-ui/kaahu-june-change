@@ -81,12 +81,6 @@
   justify-content: space-around;
 }
 
-.accordion-title-font--heading .accordion-title {
-  font-family: var(--font-heading-family) !important;
-  font-weight: var(--font-heading-weight) !important;
-  font-style: var(--font-heading-style) !important;
-}
-
 .accordion-title-bold {
   font-weight: bold !important;
 }

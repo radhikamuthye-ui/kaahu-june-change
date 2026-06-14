@@ -14,7 +14,7 @@
 .kaahu-product-details__heading {
   margin: 0;
   color: var(--kpd-heading-color);
-  font-family: var(--font-heading-family, Georgia, serif);
+  font-family: var(--font-heading-family);
   font-size: var(--kpd-heading-size-mobile);
   font-weight: var(--font-heading-weight);
   line-height: 1.08;
@@ -52,7 +52,7 @@
   background: transparent;
   color: var(--kpd-title-color);
   cursor: pointer;
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: var(--kpd-title-size);
   font-weight: 700;
   letter-spacing: 0.12em;

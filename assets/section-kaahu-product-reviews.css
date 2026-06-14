@@ -12,7 +12,7 @@
 .kaahu-product-reviews__heading {
   margin: 0 0 32px;
   color: var(--kpr-heading);
-  font-family: var(--font-heading-family, Georgia, serif);
+  font-family: var(--font-heading-family);
   font-size: var(--kpr-heading-size-mobile);
   font-weight: var(--font-heading-weight);
   line-height: 1.08;
@@ -37,7 +37,7 @@
 
 .kaahu-product-reviews__score strong {
   color: var(--kpr-heading);
-  font-family: var(--font-heading-family, Georgia, serif);
+  font-family: var(--font-heading-family);
   font-size: 48px;
   font-weight: var(--font-heading-weight);
   line-height: 1;
@@ -150,7 +150,7 @@
   border-radius: 999px;
   color: var(--kpr-button-text);
   background: transparent;
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;

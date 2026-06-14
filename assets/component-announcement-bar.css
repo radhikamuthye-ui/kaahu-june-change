@@ -17,10 +17,6 @@
   padding: 0 4rem;
 }
 
-.header-announcement-bar.font-family--navigation {
-  font-family: var(--font-accent-family);
-}
-
 .ab-font-style--italic {
   font-style: italic;
 }

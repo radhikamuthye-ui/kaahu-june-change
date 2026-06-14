@@ -1,30 +1,6 @@
 {{ 'section-kaahu-bestsellers.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign eyebrow_font = section.settings.eyebrow_font
-  assign heading_font = section.settings.heading_font
-  assign button_font = section.settings.button_font
-  assign badge_font = section.settings.badge_font
-  assign quick_font = section.settings.quick_font
-  assign family_font = section.settings.family_font
-  assign title_font = section.settings.title_font
-  assign material_font = section.settings.material_font
-  assign price_font = section.settings.price_font
-  assign sale_font = section.settings.sale_font
--%}
-
 {%- style -%}
-  {{ eyebrow_font | font_face: font_display: 'swap' }}
-  {{ heading_font | font_face: font_display: 'swap' }}
-  {{ button_font | font_face: font_display: 'swap' }}
-  {{ badge_font | font_face: font_display: 'swap' }}
-  {{ quick_font | font_face: font_display: 'swap' }}
-  {{ family_font | font_face: font_display: 'swap' }}
-  {{ title_font | font_face: font_display: 'swap' }}
-  {{ material_font | font_face: font_display: 'swap' }}
-  {{ price_font | font_face: font_display: 'swap' }}
-  {{ sale_font | font_face: font_display: 'swap' }}
-
   .section-{{ section.id }} {
     --kb-page-width: {{ section.settings.page_width }}px;
     --kb-padding-top-mobile: {{ section.settings.padding_top | times: 0.7 | round }}px;
@@ -103,58 +79,58 @@
     --kb-discount-text: {{ section.settings.discount_text_color }};
     --kb-discount-letter-spacing: {{ section.settings.discount_letter_spacing | divided_by: 100.0 }}em;
     --kb-discount-case: {{ section.settings.discount_case }};
-    --kb-eyebrow-font-family: {{ eyebrow_font.family }}, {{ eyebrow_font.fallback_families }};
-    --kb-eyebrow-font-style: {{ eyebrow_font.style }};
-    --kb-eyebrow-font-weight: {{ eyebrow_font.weight }};
+    --kb-eyebrow-font-family: var(--font-accent-family);
+    --kb-eyebrow-font-style: var(--font-accent-style);
+    --kb-eyebrow-font-weight: var(--font-accent-weight);
     --kb-eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile }}px;
     --kb-eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop }}px;
     --kb-eyebrow-letter-spacing: {{ section.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
     --kb-eyebrow-case: {{ section.settings.eyebrow_case }};
-    --kb-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-    --kb-heading-font-style: {{ heading_font.style }};
-    --kb-heading-font-weight: {{ heading_font.weight }};
+    --kb-heading-font-family: var(--font-heading-family);
+    --kb-heading-font-style: var(--font-heading-style);
+    --kb-heading-font-weight: var(--font-heading-weight);
     --kb-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --kb-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-    --kb-button-font-family: {{ button_font.family }}, {{ button_font.fallback_families }};
-    --kb-button-font-style: {{ button_font.style }};
-    --kb-button-font-weight: {{ button_font.weight }};
+    --kb-button-font-family: var(--font-accent-family);
+    --kb-button-font-style: var(--font-accent-style);
+    --kb-button-font-weight: var(--font-accent-weight);
     --kb-button-size-mobile: {{ section.settings.button_size_mobile }}px;
     --kb-button-size-desktop: {{ section.settings.button_size_desktop }}px;
-    --kb-badge-font-family: {{ badge_font.family }}, {{ badge_font.fallback_families }};
-    --kb-badge-font-style: {{ badge_font.style }};
-    --kb-badge-font-weight: {{ badge_font.weight }};
+    --kb-badge-font-family: var(--font-accent-family);
+    --kb-badge-font-style: var(--font-accent-style);
+    --kb-badge-font-weight: var(--font-accent-weight);
     --kb-badge-size-mobile: {{ section.settings.badge_size_mobile }}px;
     --kb-badge-size-desktop: {{ section.settings.badge_size_desktop }}px;
-    --kb-quick-font-family: {{ quick_font.family }}, {{ quick_font.fallback_families }};
-    --kb-quick-font-style: {{ quick_font.style }};
-    --kb-quick-font-weight: {{ quick_font.weight }};
+    --kb-quick-font-family: var(--font-accent-family);
+    --kb-quick-font-style: var(--font-accent-style);
+    --kb-quick-font-weight: var(--font-accent-weight);
     --kb-quick-size-mobile: {{ section.settings.quick_size_mobile }}px;
     --kb-quick-size-desktop: {{ section.settings.quick_size_desktop }}px;
-    --kb-family-font-family: {{ family_font.family }}, {{ family_font.fallback_families }};
-    --kb-family-font-style: {{ family_font.style }};
-    --kb-family-font-weight: {{ family_font.weight }};
+    --kb-family-font-family: var(--font-accent-family);
+    --kb-family-font-style: var(--font-accent-style);
+    --kb-family-font-weight: var(--font-accent-weight);
     --kb-family-size-mobile: {{ section.settings.family_size_mobile }}px;
     --kb-family-size-desktop: {{ section.settings.family_size_desktop }}px;
     --kb-family-letter-spacing: {{ section.settings.family_letter_spacing | divided_by: 100.0 }}em;
     --kb-family-case: {{ section.settings.family_case }};
-    --kb-title-font-family: {{ title_font.family }}, {{ title_font.fallback_families }};
-    --kb-title-font-style: {{ title_font.style }};
-    --kb-title-font-weight: {{ title_font.weight }};
+    --kb-title-font-family: var(--font-heading-family);
+    --kb-title-font-style: var(--font-heading-style);
+    --kb-title-font-weight: var(--font-heading-weight);
     --kb-title-size-mobile: {{ section.settings.title_size_mobile }}px;
     --kb-title-size-desktop: {{ section.settings.title_size_desktop }}px;
-    --kb-material-font-family: {{ material_font.family }}, {{ material_font.fallback_families }};
-    --kb-material-font-style: {{ material_font.style }};
-    --kb-material-font-weight: {{ material_font.weight }};
+    --kb-material-font-family: var(--font-body-family);
+    --kb-material-font-style: var(--font-body-style);
+    --kb-material-font-weight: var(--font-body-weight);
     --kb-material-size-mobile: {{ section.settings.material_size_mobile }}px;
     --kb-material-size-desktop: {{ section.settings.material_size_desktop }}px;
-    --kb-price-font-family: {{ price_font.family }}, {{ price_font.fallback_families }};
-    --kb-price-font-style: {{ price_font.style }};
-    --kb-price-font-weight: {{ price_font.weight }};
+    --kb-price-font-family: var(--font-body-family);
+    --kb-price-font-style: var(--font-body-style);
+    --kb-price-font-weight: var(--font-body-weight);
     --kb-price-size-mobile: {{ section.settings.price_size_mobile }}px;
     --kb-price-size-desktop: {{ section.settings.price_size_desktop }}px;
-    --kb-sale-font-family: {{ sale_font.family }}, {{ sale_font.fallback_families }};
-    --kb-sale-font-style: {{ sale_font.style }};
-    --kb-sale-font-weight: {{ sale_font.weight }};
+    --kb-sale-font-family: var(--font-body-family);
+    --kb-sale-font-style: var(--font-body-style);
+    --kb-sale-font-weight: var(--font-body-weight);
     --kb-sale-size-mobile: {{ section.settings.sale_size_mobile }}px;
     --kb-sale-size-desktop: {{ section.settings.sale_size_desktop }}px;
   }
@@ -796,12 +772,6 @@
       "content": "Typography"
     },
     {
-      "type": "font_picker",
-      "id": "eyebrow_font",
-      "label": "Eyebrow font",
-      "default": "jost_n4"
-    },
-    {
       "type": "range",
       "id": "eyebrow_size_mobile",
       "min": 10,
@@ -848,12 +818,6 @@
       "default": "uppercase"
     },
     {
-      "type": "font_picker",
-      "id": "heading_font",
-      "label": "Heading font",
-      "default": "cormorant_n4"
-    },
-    {
       "type": "range",
       "id": "heading_size_mobile",
       "min": 28,
@@ -872,12 +836,6 @@
       "unit": "px",
       "label": "Heading size on desktop",
       "default": 52
-    },
-    {
-      "type": "font_picker",
-      "id": "family_font",
-      "label": "Family font",
-      "default": "jost_n4"
     },
     {
       "type": "range",
@@ -926,12 +884,6 @@
       "default": "uppercase"
     },
     {
-      "type": "font_picker",
-      "id": "title_font",
-      "label": "Product title font",
-      "default": "cormorant_n4"
-    },
-    {
       "type": "range",
       "id": "title_size_mobile",
       "min": 18,
@@ -950,12 +902,6 @@
       "unit": "px",
       "label": "Title size on desktop",
       "default": 26
-    },
-    {
-      "type": "font_picker",
-      "id": "material_font",
-      "label": "Material font",
-      "default": "jost_n4"
     },
     {
       "type": "range",
@@ -978,12 +924,6 @@
       "default": 17
     },
     {
-      "type": "font_picker",
-      "id": "price_font",
-      "label": "Price font",
-      "default": "jost_n4"
-    },
-    {
       "type": "range",
       "id": "price_size_mobile",
       "min": 16,
@@ -1002,12 +942,6 @@
       "unit": "px",
       "label": "Price size on desktop",
       "default": 24
-    },
-    {
-      "type": "font_picker",
-      "id": "sale_font",
-      "label": "Sale summary font",
-      "default": "jost_n4"
     },
     {
       "type": "range",
@@ -1030,12 +964,6 @@
       "default": 15
     },
     {
-      "type": "font_picker",
-      "id": "button_font",
-      "label": "Header button font",
-      "default": "jost_n4"
-    },
-    {
       "type": "range",
       "id": "button_size_mobile",
       "min": 11,
@@ -1056,12 +984,6 @@
       "default": 16
     },
     {
-      "type": "font_picker",
-      "id": "badge_font",
-      "label": "Badge font",
-      "default": "jost_n4"
-    },
-    {
       "type": "range",
       "id": "badge_size_mobile",
       "min": 10,
@@ -1080,12 +1002,6 @@
       "unit": "px",
       "label": "Badge size on desktop",
       "default": 13
-    },
-    {
-      "type": "font_picker",
-      "id": "quick_font",
-      "label": "Image button font",
-      "default": "jost_n4"
     },
     {
       "type": "range",

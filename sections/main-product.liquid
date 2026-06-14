@@ -1299,7 +1299,7 @@
             
             <div class="product-info-tabs tab-grand" {{ block.shopify_attributes }}>
 
-            <div role="tablist" class="tab-menu tab-style-{{ block.settings.tab_style }} tab-spacing-{{ block.settings.tab_spacing }}{% if block.settings.tab_list_border %} tab-menu-with-border{% endif %} tab-font-{{ block.settings.tab_font_family }}">
+            <div role="tablist" class="tab-menu tab-style-{{ block.settings.tab_style }} tab-spacing-{{ block.settings.tab_spacing }}{% if block.settings.tab_list_border %} tab-menu-with-border{% endif %}">
             {% if block.settings.description_tab and product.description != blank %}
             <button role="tab" id="productTabZero" class="tab-button" aria-controls="productTabContentZero" aria-selected="true">{{ block.settings.description_label }}</button>
             {% endif %}
@@ -2259,7 +2259,7 @@
               text-align: {{ block.settings.label_alignment }};
             }
             </style>
-            <div class="product-variant-picker-block variant-picker-font-family--{{ block.settings.font_family }} variant-picker-{{ block.settings.picker_type }} variant-picker-label-alignment-{{ block.settings.label_alignment }}{% if block.settings.picker_type == 'button' %} pill-layout--{{ block.settings.pill_layout }} pill-alignment--{{ block.settings.pill_alignment }}{% endif %} swatch-shape-{{ block.settings.color_swatches_style }} swatch-size-{{ block.settings.color_swatch_size }} pill-selected-state--{{ block.settings.pill_selected_state }} minimal-selected-state--{{ block.settings.minimal_highlight_style }}">
+            <div class="product-variant-picker-block variant-picker-{{ block.settings.picker_type }} variant-picker-label-alignment-{{ block.settings.label_alignment }}{% if block.settings.picker_type == 'button' %} pill-layout--{{ block.settings.pill_layout }} pill-alignment--{{ block.settings.pill_alignment }}{% endif %} swatch-shape-{{ block.settings.color_swatches_style }} swatch-size-{{ block.settings.color_swatch_size }} pill-selected-state--{{ block.settings.pill_selected_state }} minimal-selected-state--{{ block.settings.minimal_highlight_style }}">
             {% if block.settings.border_top %}
             <hr class="product-block-hr-top" />
             {% endif %}
@@ -4132,22 +4132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           "type": "select",
-          "id": "tab_font_family",
-          "label": "t:sections.main-product.blocks.tabs.settings.tab_font.label",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:settings_schema.typography.settings.type_body_font.label"
-            },
-            {
-              "value": "navigation",
-              "label": "t:settings_schema.typography.settings.type_accent_font.label"
-            }
-            ],
-          "default": "body"
-        },
-        {
-          "type": "select",
           "id": "tab_style",
           "label": "t:sections.main-product.blocks.tabs.settings.tab_style.label",
           "options": [
@@ -4269,22 +4253,6 @@ document.addEventListener('DOMContentLoaded', function () {
             {
               "value": "right",
               "label": "t:sections.all.alignment.right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "font_family",
-          "default": "accent",
-          "label": "t:sections.all.font",
-          "options": [
-            {
-              "value": "accent",
-              "label": "t:sections.all.navigation_font"
-            },
-            {
-              "value": "body",
-              "label": "t:sections.all.body_font"
             }
           ]
         },

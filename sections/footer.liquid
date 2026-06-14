@@ -128,7 +128,7 @@
 {% if true %}
 <footer
   id="{{ section.id }}"
-  class="site-footer kaahu-footer kaahu-footer--heading-font-{{ section.settings.kaahu_footer_heading_font }} kaahu-footer--link-font-{{ section.settings.kaahu_footer_link_font }} kaahu-footer--newsletter-font-{{ section.settings.kaahu_newsletter_heading_font }}"
+  class="site-footer kaahu-footer"
   style="
     --kf-bg: {{ section.settings.kaahu_footer_background }};
     --kf-text: {{ section.settings.kaahu_footer_text }};
@@ -299,7 +299,7 @@
 </footer>
 {% else %}
 
-<div id="{{ section.id }}" class="site-footer text-{{ section.settings.footer_font_size }} footer-heading-size-{{ section.settings.footer_heading_size }} footer-heading-style-{{ section.settings.footer_heading_style }} footer-heading-opacity-{{ section.settings.footer_heading_opacity }} color-scheme-{{ section.settings.text_color }} color-scheme-{{ section.settings.bg_color }}{% if section.settings.footer_font_family == 'accent' %} footer-accent-font{% endif %} footer-heading-font--{{ section.settings.footer_heading_font_family }} footer-font-case--{{ section.settings.footer_font_case }}">
+<div id="{{ section.id }}" class="site-footer text-{{ section.settings.footer_font_size }} footer-heading-size-{{ section.settings.footer_heading_size }} footer-heading-style-{{ section.settings.footer_heading_style }} footer-heading-opacity-{{ section.settings.footer_heading_opacity }} color-scheme-{{ section.settings.text_color }} color-scheme-{{ section.settings.bg_color }} footer-font-case--{{ section.settings.footer_font_case }}">
 
 <div class="footer-blocks-container page-width">
 {% for block in section.blocks %}
@@ -1733,17 +1733,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "content": "Kaahu column headings"
     },
     {
-      "type": "select",
-      "id": "kaahu_footer_heading_font",
-      "label": "Heading font family",
-      "options": [
-        { "value": "body", "label": "Body" },
-        { "value": "heading", "label": "Heading" },
-        { "value": "accent", "label": "Accent" }
-      ],
-      "default": "accent"
-    },
-    {
       "type": "range",
       "id": "kaahu_footer_heading_size",
       "min": 10,
@@ -1798,17 +1787,6 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "header",
       "content": "Kaahu column links"
-    },
-    {
-      "type": "select",
-      "id": "kaahu_footer_link_font",
-      "label": "Link font family",
-      "options": [
-        { "value": "body", "label": "Body" },
-        { "value": "heading", "label": "Heading" },
-        { "value": "accent", "label": "Accent" }
-      ],
-      "default": "body"
     },
     {
       "type": "range",
@@ -1877,17 +1855,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "id": "kaahu_newsletter_heading",
       "label": "Newsletter heading",
       "default": "Sign up to receive 20% off your first order."
-    },
-    {
-      "type": "select",
-      "id": "kaahu_newsletter_heading_font",
-      "label": "Newsletter heading font family",
-      "options": [
-        { "value": "body", "label": "Body" },
-        { "value": "heading", "label": "Heading" },
-        { "value": "accent", "label": "Accent" }
-      ],
-      "default": "heading"
     },
     {
       "type": "range",
@@ -2233,22 +2200,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       "type": "select",
-      "id": "footer_font_family",
-      "label": "t:sections.footer.settings.footer_font_family.label",
-      "options": [
-        {
-          "value": "body",
-          "label": "t:settings_schema.typography.settings.type_body_font.label"
-        },
-        {
-          "value": "accent",
-          "label": "t:settings_schema.typography.settings.type_accent_font.label"
-        }
-      ],
-      "default": "body"
-    },
-    {
-      "type": "select",
       "id": "footer_font_size",
       "label": "t:sections.all.size.text_size",
       "options": [
@@ -2278,26 +2229,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       ],
       "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "footer_heading_font_family",
-      "label": "t:settings_schema.typography.settings.type_header_font.label",
-      "options": [
-        {
-          "value": "heading",
-          "label": "t:settings_schema.typography.settings.type_header_font.label"
-        },
-        {
-          "value": "body",
-          "label": "t:settings_schema.typography.settings.type_body_font.label"
-        },
-        {
-          "value": "accent",
-          "label": "t:settings_schema.typography.settings.type_accent_font.label"
-        }
-      ],
-      "default": "heading"
     },
     {
       "type": "select",

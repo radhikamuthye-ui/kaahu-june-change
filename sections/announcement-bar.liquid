@@ -31,7 +31,7 @@
   {% assign ticker_enabled = true %}
 {% endif %}
 
-<div id="HdrAnnouncementBar" class="header-announcement-bar section-{{ section.id }} hab-index-{{ section.index }} font-family--{{ section.settings.font_family }} ab-font-style--{{ section.settings.font_style }} ab-link-style-{{ section.settings.link_style }} {{ section.settings.bar_type }}-announcement-bar{% if ticker_enabled %} header-announcement-bar-ticker{% elsif numb_announcements > 1 %} header-announcement-bar-multi abma-{{ section.settings.anim_style }} abma-{{ numb_announcements }} announcement-bar-delay-{{ interval }}{% endif %}">
+<div id="HdrAnnouncementBar" class="header-announcement-bar section-{{ section.id }} hab-index-{{ section.index }} ab-font-style--{{ section.settings.font_style }} ab-link-style-{{ section.settings.link_style }} {{ section.settings.bar_type }}-announcement-bar{% if ticker_enabled %} header-announcement-bar-ticker{% elsif numb_announcements > 1 %} header-announcement-bar-multi abma-{{ section.settings.anim_style }} abma-{{ numb_announcements }} announcement-bar-delay-{{ interval }}{% endif %}">
 {% if section.settings.close_btn_enable %}
   <button id="AnnouncementBarCloseButton" class="ab-close-btn" aria-label="{{ 'accessibility.close' | t }}">
     {% render 'icon-close' %}
@@ -142,22 +142,6 @@
         "default": 0,
         "unit": "%",
         "label": "t:sections.all.border_opacity"
-      },
-      {
-        "type": "select",
-        "id": "font_family",
-        "label": "t:sections.all.font",
-        "options": [
-          {
-            "value": "body",
-            "label": "t:sections.all.body_font"
-          },
-          {
-            "value": "navigation",
-            "label": "t:sections.all.navigation_font"
-          }
-        ],
-        "default": "body"
       },
       {
         "type": "select",

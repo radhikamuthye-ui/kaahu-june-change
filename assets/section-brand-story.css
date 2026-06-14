@@ -161,7 +161,7 @@
   min-height: 34px;
   padding-bottom: 8px;
   color: var(--bs-button-color);
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.14em;

@@ -15,7 +15,7 @@
 .kaahu-judgeme-reviews__eyebrow {
   margin-bottom: 14px;
   color: var(--kjrc-eyebrow-color);
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: var(--kjrc-eyebrow-size);
   font-weight: 700;
   letter-spacing: var(--kjrc-eyebrow-spacing);
@@ -26,7 +26,7 @@
 .kaahu-judgeme-reviews__heading {
   margin: 0;
   color: var(--kjrc-heading-color);
-  font-family: var(--font-heading-family, Georgia, serif);
+  font-family: var(--font-heading-family);
   font-size: var(--kjrc-heading-size-mobile);
   font-style: var(--font-heading-style, normal);
   font-weight: 600;
@@ -111,7 +111,7 @@
   border-bottom: 1px dashed rgba(72, 70, 64, 0.3);
   background: #e9e5dc;
   color: rgba(36, 34, 31, 0.55);
-  font-family: var(--font-body-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-family: var(--font-body-family);
   font-size: 14px;
   font-weight: 600;
 }
@@ -171,7 +171,7 @@
   border-radius: 50%;
   color: var(--kjrc-avatar-text);
   background: var(--kjrc-avatar-bg);
-  font-family: var(--font-accent-family, var(--font-body-family));
+  font-family: var(--font-accent-family);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -185,7 +185,7 @@
 
 .kaahu-judgeme-reviews__name {
   color: var(--kjrc-name-color);
-  font-family: var(--font-body-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-family: var(--font-body-family);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.2;
@@ -194,7 +194,7 @@
 
 .kaahu-judgeme-reviews__meta {
   color: var(--kjrc-meta-color);
-  font-family: var(--font-body-family, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-family: var(--font-body-family);
   font-size: 12px;
   line-height: 1.25;
 }

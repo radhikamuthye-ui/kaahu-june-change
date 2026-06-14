@@ -1808,7 +1808,7 @@ body:has(.nav-drawer--secondary-menu) .mob-drawer--market-menu {
 }
 
 .drawer-market-selector-bullet {
-  font-family: serif;
+  font-family: inherit;
   font-size: 12px;
   display: inline-block;
   margin-left: 2px;

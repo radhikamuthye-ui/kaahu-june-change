@@ -1,8 +1,6 @@
 {{ 'section-kaahu-community-board.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign heading_font = section.settings.heading_font
-  assign caption_font = section.settings.caption_font
   assign bg_gradient = section.settings.background_gradient
   if bg_gradient == blank
     assign bg_gradient = 'none'
@@ -10,9 +8,6 @@
 -%}
 
 {%- style -%}
-  {{ heading_font | font_face: font_display: 'swap' }}
-  {{ caption_font | font_face: font_display: 'swap' }}
-
   .section-{{ section.id }} {
     --kcb-bg: {{ section.settings.background_color }};
     --kcb-bg-gradient: {{ bg_gradient }};
@@ -28,9 +23,9 @@
     --kcb-header-gap-mobile: {{ section.settings.header_gap_mobile }}px;
     --kcb-handle-color: {{ section.settings.handle_color }};
     --kcb-heading-color: {{ section.settings.heading_color }};
-    --kcb-heading-font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-    --kcb-heading-font-style: {{ heading_font.style }};
-    --kcb-heading-font-weight: {{ heading_font.weight }};
+    --kcb-heading-font-family: var(--font-heading-family);
+    --kcb-heading-font-style: var(--font-heading-style);
+    --kcb-heading-font-weight: var(--font-heading-weight);
     --kcb-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
     --kcb-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
     --kcb-description-color: {{ section.settings.description_color }};
@@ -49,9 +44,9 @@
     --kcb-card-radius: {{ section.settings.card_border_radius }}px;
     --kcb-card-shadow: {{ section.settings.card_shadow_strength | divided_by: 100.0 }};
     --kcb-caption-color: {{ section.settings.caption_color }};
-    --kcb-caption-font-family: {{ caption_font.family }}, {{ caption_font.fallback_families }};
-    --kcb-caption-font-style: {{ caption_font.style }};
-    --kcb-caption-font-weight: {{ caption_font.weight }};
+    --kcb-caption-font-family: var(--font-body-family);
+    --kcb-caption-font-style: var(--font-body-style);
+    --kcb-caption-font-weight: var(--font-body-weight);
     --kcb-caption-size-desktop: {{ section.settings.caption_size_desktop }}px;
     --kcb-caption-size-mobile: {{ section.settings.caption_size_mobile }}px;
     --kcb-caption-line-height: {{ section.settings.caption_line_height | divided_by: 100.0 }};
@@ -313,12 +308,6 @@
       "default": "Styled by Kaahu Women"
     },
     {
-      "type": "font_picker",
-      "id": "heading_font",
-      "label": "Heading font family",
-      "default": "libre_baskerville_n4"
-    },
-    {
       "type": "range",
       "id": "heading_size_desktop",
       "min": 28,
@@ -562,12 +551,6 @@
       "unit": "px",
       "label": "Default card width mobile",
       "default": 280
-    },
-    {
-      "type": "font_picker",
-      "id": "caption_font",
-      "label": "Caption font family",
-      "default": "libre_baskerville_n4"
     },
     {
       "type": "range",

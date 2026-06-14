@@ -46,7 +46,7 @@
 {% for block in section.blocks %}
 {% case block.type %}
 {% when 'collapsible_row' %}
-<div class="accordion accordion-title-font--{{ section.settings.accordion_title_font }}" {{ block.shopify_attributes }}>
+<div class="accordion" {{ block.shopify_attributes }}>
 <button class="accordion-title" tabindex="0" aria-expanded="false" role="button" aria-controls="AccContent-{{ block.id }}-{{ section.id }}" id="AccHeading-{{ block.id }}-{{ section.id }}"><span class="text-{{ section.settings.accordion_title_size }}">{{ block.settings.title }}</span>
 <div class="accordion-icons-wrapper">
 <div class="accordion-icon-open">{% if settings.accordion_icon == 'plus' %}{% render 'icon-plus' %}{% else %}{% render 'icon-caret' %}{% endif %}</div>
@@ -272,22 +272,6 @@
     {
       "type": "header",
       "content": "t:sections.all.styles"
-    },
-    {
-      "type": "select",
-      "id": "accordion_title_font",
-      "label": "t:sections.collapsible_content.settings.row_title_font.label",
-      "options": [
-      {
-        "value": "body",
-        "label": "t:sections.all.body"
-      },
-      {
-        "value": "heading",
-        "label": "t:sections.all.heading"
-      }
-      ],
-      "default": "body"
     },
     {
       "type": "select",
