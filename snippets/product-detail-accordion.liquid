@@ -1,0 +1,53 @@
+<div
+  class="accordion product-why-we-love-this {{ extra_class }} product-why-we-love-this--icon-{{ block.settings.icon_style }}"
+  style="
+    --pdp-why-margin-top: {{ block.settings.margin_top }}px;
+    --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
+    --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
+    --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
+    --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
+    --pdp-why-title-weight: {{ block.settings.title_weight }};
+    --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
+    --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
+    --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
+    --pdp-why-icon-size: {{ block.settings.icon_size }}px;
+    --pdp-why-icon-color: {{ block.settings.icon_color }};
+    --pdp-why-border-width: {{ block.settings.border_width }}px;
+    --pdp-why-title-color: {{ block.settings.title_color }};
+    --pdp-why-body-color: {{ block.settings.body_color }};
+    --pdp-why-border-color: {{ block.settings.border_color }};
+    {{ extra_style }}
+  "
+  {{ block.shopify_attributes }}
+>
+  <button class="accordion-title{% if expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section_id }}-{{ panel_id }}" id="{{ block.id }}-{{ section_id }}-{{ button_id }}">
+    {{ block.settings.heading }}
+    <div class="accordion-icons-wrapper">
+      {% unless block.settings.icon_style == 'none' %}
+        <div class="accordion-icon-open">
+          {% if block.settings.icon_style == 'plus' %}
+            {% render 'icon-plus' %}
+          {% elsif block.settings.icon_style == 'custom' %}
+            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
+          {% else %}
+            {% render 'icon-caret' %}
+          {% endif %}
+        </div>
+        <div class="accordion-icon-close">
+          {% if block.settings.icon_style == 'plus' %}
+            {% render 'icon-minus' %}
+          {% elsif block.settings.icon_style == 'custom' %}
+            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
+          {% else %}
+            {% render 'icon-caret' %}
+          {% endif %}
+        </div>
+      {% endunless %}
+    </div>
+  </button>
+  <div class="accordion-panel rte{% if expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section_id }}-{{ panel_id }}" {% if expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section_id }}-{{ button_id }}">
+    <div class="product-why-we-love-this__panel-inner">
+      {{ content }}
+    </div>
+  </div>
+</div>

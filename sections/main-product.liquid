@@ -1362,62 +1362,21 @@
                 {% if block.settings.open_by_default %}
                   {% assign why_expanded_initial_state = true %}
                 {% endif %}
-                <div
-                  class="accordion product-why-we-love-this product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                  style="
-                    --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                    --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                    --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                    --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                    --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                    --pdp-why-title-weight: {{ block.settings.title_weight }};
-                    --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                    --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                    --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                    --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                    --pdp-why-icon-color: {{ block.settings.icon_color }};
-                    --pdp-why-border-width: {{ block.settings.border_width }}px;
-                    --pdp-why-title-color: {{ block.settings.title_color }};
-                    --pdp-why-body-color: {{ block.settings.body_color }};
-                    --pdp-why-border-color: {{ block.settings.border_color }};
-                  "
-                  {{ block.shopify_attributes }}
-                >
-                  <button class="accordion-title{% if why_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ why_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-why-panel" id="{{ block.id }}-{{ section.id }}-why-button">
-                    {{ block.settings.heading }}
-                    <div class="accordion-icons-wrapper">
-                      {% unless block.settings.icon_style == 'none' %}
-                        <div class="accordion-icon-open">
-                          {% if block.settings.icon_style == 'plus' %}
-                            {% render 'icon-plus' %}
-                          {% elsif block.settings.icon_style == 'custom' %}
-                            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                          {% else %}
-                            {% render 'icon-caret' %}
-                          {% endif %}
-                        </div>
-                        <div class="accordion-icon-close">
-                          {% if block.settings.icon_style == 'plus' %}
-                            {% render 'icon-minus' %}
-                          {% elsif block.settings.icon_style == 'custom' %}
-                            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                          {% else %}
-                            {% render 'icon-caret' %}
-                          {% endif %}
-                        </div>
-                      {% endunless %}
-                    </div>
-                  </button>
-                  <div class="accordion-panel rte{% if why_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-why-panel" {% if why_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-why-button">
-                    <div class="product-why-we-love-this__panel-inner">
-                      {% if why_has_metafield %}
-                        {{ why_metafield | metafield_tag }}
-                      {% else %}
-                        {{ block.settings.fallback_content }}
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
+                {% capture why_content %}
+                  {% if why_has_metafield %}
+                    {{ why_metafield | metafield_tag }}
+                  {% else %}
+                    {{ block.settings.fallback_content }}
+                  {% endif %}
+                {% endcapture %}
+                {% render 'product-detail-accordion',
+                  block: block,
+                  section_id: section.id,
+                  panel_id: 'why-panel',
+                  button_id: 'why-button',
+                  expanded_initial_state: why_expanded_initial_state,
+                  content: why_content
+                %}
               {% endif %}
 
             {%- when 'materials' -%}
@@ -1426,71 +1385,34 @@
               {% if block.settings.open_by_default %}
                 {% assign materials_expanded_initial_state = true %}
               {% endif %}
-              <div
-                class="accordion product-why-we-love-this product-materials-block product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                style="
-                  --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                  --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                  --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                  --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                  --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                  --pdp-why-title-weight: {{ block.settings.title_weight }};
-                  --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                  --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                  --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                  --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                  --pdp-why-icon-color: {{ block.settings.icon_color }};
-                  --pdp-why-border-width: {{ block.settings.border_width }}px;
-                  --pdp-why-title-color: {{ block.settings.title_color }};
-                  --pdp-why-body-color: {{ block.settings.body_color }};
-                  --pdp-why-border-color: {{ block.settings.border_color }};
-                  --pdp-materials-tick-color: {{ block.settings.tick_color }};
-                "
-                {{ block.shopify_attributes }}
-              >
-                <button class="accordion-title{% if materials_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ materials_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-materials-panel" id="{{ block.id }}-{{ section.id }}-materials-button">
-                  {{ block.settings.heading }}
-                  <div class="accordion-icons-wrapper">
-                    {% unless block.settings.icon_style == 'none' %}
-                      <div class="accordion-icon-open">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-plus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                      <div class="accordion-icon-close">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-minus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                    {% endunless %}
-                  </div>
-                </button>
-                <div class="accordion-panel rte{% if materials_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-materials-panel" {% if materials_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-materials-button">
-                  <div class="product-why-we-love-this__panel-inner">
-                    {% if block.settings.body != blank %}
-                      <div class="product-materials-block__body">{{ block.settings.body }}</div>
-                    {% endif %}
-                    {% if block.settings.bullets != blank %}
-                      <ul class="product-materials-block__list">
-                        {% for bullet in material_bullets %}
-                          {% assign bullet_text = bullet | strip %}
-                          {% if bullet_text != blank %}
-                            <li>{{ bullet_text | escape }}</li>
-                          {% endif %}
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
+              {% capture materials_content %}
+                {% if block.settings.body != blank %}
+                  <div class="product-materials-block__body">{{ block.settings.body }}</div>
+                {% endif %}
+                {% if block.settings.bullets != blank %}
+                  <ul class="product-materials-block__list">
+                    {% for bullet in material_bullets %}
+                      {% assign bullet_text = bullet | strip %}
+                      {% if bullet_text != blank %}
+                        <li>{{ bullet_text | escape }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endcapture %}
+              {% capture materials_style %}
+                --pdp-materials-tick-color: {{ block.settings.tick_color }};
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_id: section.id,
+                panel_id: 'materials-panel',
+                button_id: 'materials-button',
+                extra_class: 'product-materials-block',
+                extra_style: materials_style,
+                expanded_initial_state: materials_expanded_initial_state,
+                content: materials_content
+              %}
 
             {%- when 'care_instructions' -%}
               {% assign care_bullets = block.settings.bullets | newline_to_br | split: '<br />' %}
@@ -1498,137 +1420,44 @@
               {% if block.settings.open_by_default %}
                 {% assign care_expanded_initial_state = true %}
               {% endif %}
-              <div
-                class="accordion product-why-we-love-this product-materials-block product-care-instructions-block product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                style="
-                  --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                  --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                  --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                  --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                  --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                  --pdp-why-title-weight: {{ block.settings.title_weight }};
-                  --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                  --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                  --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                  --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                  --pdp-why-icon-color: {{ block.settings.icon_color }};
-                  --pdp-why-border-width: {{ block.settings.border_width }}px;
-                  --pdp-why-title-color: {{ block.settings.title_color }};
-                  --pdp-why-body-color: {{ block.settings.body_color }};
-                  --pdp-why-border-color: {{ block.settings.border_color }};
-                  --pdp-materials-tick-color: {{ block.settings.tick_color }};
-                "
-                {{ block.shopify_attributes }}
-              >
-                <button class="accordion-title{% if care_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ care_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-care-panel" id="{{ block.id }}-{{ section.id }}-care-button">
-                  {{ block.settings.heading }}
-                  <div class="accordion-icons-wrapper">
-                    {% unless block.settings.icon_style == 'none' %}
-                      <div class="accordion-icon-open">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-plus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                      <div class="accordion-icon-close">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-minus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                    {% endunless %}
-                  </div>
-                </button>
-                <div class="accordion-panel rte{% if care_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-care-panel" {% if care_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-care-button">
-                  <div class="product-why-we-love-this__panel-inner">
-                    {% if block.settings.body != blank %}
-                      <div class="product-materials-block__body">{{ block.settings.body }}</div>
-                    {% endif %}
-                    {% if block.settings.bullets != blank %}
-                      <ul class="product-materials-block__list">
-                        {% for bullet in care_bullets %}
-                          {% assign bullet_text = bullet | strip %}
-                          {% if bullet_text != blank %}
-                            <li>{{ bullet_text | escape }}</li>
-                          {% endif %}
-                        {% endfor %}
-                      </ul>
-                    {% endif %}
-                    {% if block.settings.footer != blank %}
-                      <div class="product-materials-block__footer">{{ block.settings.footer }}</div>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
+              {% capture care_content %}
+                {% if block.settings.body != blank %}
+                  <div class="product-materials-block__body">{{ block.settings.body }}</div>
+                {% endif %}
+                {% if block.settings.bullets != blank %}
+                  <ul class="product-materials-block__list">
+                    {% for bullet in care_bullets %}
+                      {% assign bullet_text = bullet | strip %}
+                      {% if bullet_text != blank %}
+                        <li>{{ bullet_text | escape }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                {% if block.settings.footer != blank %}
+                  <div class="product-materials-block__footer">{{ block.settings.footer }}</div>
+                {% endif %}
+              {% endcapture %}
+              {% capture care_style %}
+                --pdp-materials-tick-color: {{ block.settings.tick_color }};
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_id: section.id,
+                panel_id: 'care-panel',
+                button_id: 'care-button',
+                extra_class: 'product-materials-block product-care-instructions-block',
+                extra_style: care_style,
+                expanded_initial_state: care_expanded_initial_state,
+                content: care_content
+              %}
 
             {%- when 'sustainability_details' -%}
               {% assign sustain_details_expanded_initial_state = false %}
               {% if block.settings.open_by_default %}
                 {% assign sustain_details_expanded_initial_state = true %}
               {% endif %}
-              <div
-                class="accordion product-why-we-love-this product-sustainability-details-block product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                style="
-                  --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                  --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                  --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                  --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                  --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                  --pdp-why-title-weight: {{ block.settings.title_weight }};
-                  --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                  --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                  --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                  --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                  --pdp-why-icon-color: {{ block.settings.icon_color }};
-                  --pdp-why-border-width: {{ block.settings.border_width }}px;
-                  --pdp-why-title-color: {{ block.settings.title_color }};
-                  --pdp-why-body-color: {{ block.settings.body_color }};
-                  --pdp-why-border-color: {{ block.settings.border_color }};
-                  --pdp-sustain-details-icon-size: {{ block.settings.badge_size }}px;
-                  --pdp-sustain-details-image-scale: {{ block.settings.badge_image_scale }}%;
-                  --pdp-sustain-details-icon-bg: {{ block.settings.badge_background_color }};
-                  --pdp-sustain-details-row-gap: {{ block.settings.row_gap }}px;
-                  --pdp-sustain-details-column-gap: {{ block.settings.column_gap }}px;
-                  --pdp-sustain-details-intro-bottom: {{ block.settings.intro_bottom_spacing }}px;
-                  --pdp-sustain-details-item-title-size: {{ block.settings.item_title_size }}px;
-                  --pdp-sustain-details-item-title-color: {{ block.settings.item_title_color }};
-                  --pdp-sustain-details-item-title-weight: {{ block.settings.item_title_weight }};
-                "
-                {{ block.shopify_attributes }}
-              >
-                <button class="accordion-title{% if sustain_details_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ sustain_details_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-sustainability-panel" id="{{ block.id }}-{{ section.id }}-sustainability-button">
-                  {{ block.settings.heading }}
-                  <div class="accordion-icons-wrapper">
-                    {% unless block.settings.icon_style == 'none' %}
-                      <div class="accordion-icon-open">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-plus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                      <div class="accordion-icon-close">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-minus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                    {% endunless %}
-                  </div>
-                </button>
-                <div class="accordion-panel rte{% if sustain_details_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-sustainability-panel" {% if sustain_details_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-sustainability-button">
-                  <div class="product-why-we-love-this__panel-inner">
+              {% capture sustain_details_content %}
                     {% if block.settings.intro != blank %}
                       <div class="product-sustainability-details-block__intro">{{ block.settings.intro }}</div>
                     {% endif %}
@@ -1710,67 +1539,46 @@
                         </div>
                       {% endif %}
                     </div>
-                  </div>
-                </div>
-              </div>
+              {% endcapture %}
+              {% capture sustain_details_style %}
+                --pdp-sustain-details-icon-size: {{ block.settings.badge_size }}px;
+                --pdp-sustain-details-image-scale: {{ block.settings.badge_image_scale }}%;
+                --pdp-sustain-details-icon-bg: {{ block.settings.badge_background_color }};
+                --pdp-sustain-details-row-gap: {{ block.settings.row_gap }}px;
+                --pdp-sustain-details-column-gap: {{ block.settings.column_gap }}px;
+                --pdp-sustain-details-intro-bottom: {{ block.settings.intro_bottom_spacing }}px;
+                --pdp-sustain-details-item-title-size: {{ block.settings.item_title_size }}px;
+                --pdp-sustain-details-item-title-color: {{ block.settings.item_title_color }};
+                --pdp-sustain-details-item-title-weight: {{ block.settings.item_title_weight }};
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_id: section.id,
+                panel_id: 'sustainability-panel',
+                button_id: 'sustainability-button',
+                extra_class: 'product-sustainability-details-block',
+                extra_style: sustain_details_style,
+                expanded_initial_state: sustain_details_expanded_initial_state,
+                content: sustain_details_content
+              %}
 
             {%- when 'shipping_returns' -%}
               {% assign shipping_returns_expanded_initial_state = false %}
               {% if block.settings.open_by_default %}
                 {% assign shipping_returns_expanded_initial_state = true %}
               {% endif %}
-              <div
-                class="accordion product-why-we-love-this product-shipping-returns-block product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                style="
-                  --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                  --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                  --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                  --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                  --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                  --pdp-why-title-weight: {{ block.settings.title_weight }};
-                  --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                  --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                  --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                  --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                  --pdp-why-icon-color: {{ block.settings.icon_color }};
-                  --pdp-why-border-width: {{ block.settings.border_width }}px;
-                  --pdp-why-title-color: {{ block.settings.title_color }};
-                  --pdp-why-body-color: {{ block.settings.body_color }};
-                  --pdp-why-border-color: {{ block.settings.border_color }};
-                "
-                {{ block.shopify_attributes }}
-              >
-                <button class="accordion-title{% if shipping_returns_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ shipping_returns_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-shipping-panel" id="{{ block.id }}-{{ section.id }}-shipping-button">
-                  {{ block.settings.heading }}
-                  <div class="accordion-icons-wrapper">
-                    {% unless block.settings.icon_style == 'none' %}
-                      <div class="accordion-icon-open">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-plus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                      <div class="accordion-icon-close">
-                        {% if block.settings.icon_style == 'plus' %}
-                          {% render 'icon-minus' %}
-                        {% elsif block.settings.icon_style == 'custom' %}
-                          <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                        {% else %}
-                          {% render 'icon-caret' %}
-                        {% endif %}
-                      </div>
-                    {% endunless %}
-                  </div>
-                </button>
-                <div class="accordion-panel rte{% if shipping_returns_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-shipping-panel" {% if shipping_returns_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-shipping-button">
-                  <div class="product-why-we-love-this__panel-inner">
-                    <div class="product-shipping-returns-block__body">{{ block.settings.body }}</div>
-                  </div>
-                </div>
-              </div>
+              {% capture shipping_returns_content %}
+                <div class="product-shipping-returns-block__body">{{ block.settings.body }}</div>
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_id: section.id,
+                panel_id: 'shipping-panel',
+                button_id: 'shipping-button',
+                extra_class: 'product-shipping-returns-block',
+                expanded_initial_state: shipping_returns_expanded_initial_state,
+                content: shipping_returns_content
+              %}
 
             {%- when 'service_highlights' -%}
               <div
@@ -1874,65 +1682,7 @@
                 {% if block.settings.open_by_default %}
                   {% assign fit_expanded_initial_state = true %}
                 {% endif %}
-                <div
-                  class="accordion product-why-we-love-this product-fit-dimensions-block product-why-we-love-this--icon-{{ block.settings.icon_style }}"
-                  style="
-                    --pdp-why-margin-top: {{ block.settings.margin_top }}px;
-                    --pdp-why-margin-bottom: {{ block.settings.margin_bottom }}px;
-                    --pdp-why-padding-y: {{ block.settings.padding_vertical }}px;
-                    --pdp-why-title-size-mobile: {{ block.settings.title_size_mobile }}px;
-                    --pdp-why-title-size-desktop: {{ block.settings.title_size_desktop }}px;
-                    --pdp-why-title-weight: {{ block.settings.title_weight }};
-                    --pdp-why-body-size-mobile: {{ block.settings.body_size_mobile }}px;
-                    --pdp-why-body-size-desktop: {{ block.settings.body_size_desktop }}px;
-                    --pdp-why-body-padding-top: {{ block.settings.body_padding_top }}px;
-                    --pdp-why-icon-size: {{ block.settings.icon_size }}px;
-                    --pdp-why-icon-color: {{ block.settings.icon_color }};
-                    --pdp-why-border-width: {{ block.settings.border_width }}px;
-                    --pdp-why-title-color: {{ block.settings.title_color }};
-                    --pdp-why-body-color: {{ block.settings.body_color }};
-                    --pdp-why-border-color: {{ block.settings.border_color }};
-                    --pdp-fit-table-border: {{ block.settings.table_border_color }};
-                    --pdp-fit-label-color: {{ block.settings.label_color }};
-                    --pdp-fit-value-color: {{ block.settings.value_color }};
-                    --pdp-fit-image-radius: {{ block.settings.image_radius }}px;
-                    --pdp-fit-table-radius: {{ block.settings.table_radius }}px;
-                    --pdp-fit-cell-min-height: {{ block.settings.cell_min_height }}px;
-                    --pdp-fit-cell-padding-y: {{ block.settings.cell_padding_vertical }}px;
-                    --pdp-fit-cell-padding-x: {{ block.settings.cell_padding_horizontal }}px;
-                    --pdp-fit-cell-gap: {{ block.settings.cell_label_gap }}px;
-                    --pdp-fit-label-size: {{ block.settings.label_size }}px;
-                    --pdp-fit-image-margin-top: {{ block.settings.image_margin_top }}px;
-                  "
-                  {{ block.shopify_attributes }}
-                >
-                  <button class="accordion-title{% if fit_expanded_initial_state == true %} active{% endif %}" aria-expanded="{{ fit_expanded_initial_state }}" aria-controls="{{ block.id }}-{{ section.id }}-fit-panel" id="{{ block.id }}-{{ section.id }}-fit-button">
-                    {{ block.settings.heading }}
-                    <div class="accordion-icons-wrapper">
-                      {% unless block.settings.icon_style == 'none' %}
-                        <div class="accordion-icon-open">
-                          {% if block.settings.icon_style == 'plus' %}
-                            {% render 'icon-plus' %}
-                          {% elsif block.settings.icon_style == 'custom' %}
-                            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_open }}</span>
-                          {% else %}
-                            {% render 'icon-caret' %}
-                          {% endif %}
-                        </div>
-                        <div class="accordion-icon-close">
-                          {% if block.settings.icon_style == 'plus' %}
-                            {% render 'icon-minus' %}
-                          {% elsif block.settings.icon_style == 'custom' %}
-                            <span class="product-why-we-love-this__custom-icon">{{ block.settings.custom_icon_close }}</span>
-                          {% else %}
-                            {% render 'icon-caret' %}
-                          {% endif %}
-                        </div>
-                      {% endunless %}
-                    </div>
-                  </button>
-                  <div class="accordion-panel rte{% if fit_expanded_initial_state == true %} panel-open{% endif %}" id="{{ block.id }}-{{ section.id }}-fit-panel" {% if fit_expanded_initial_state == true %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %} aria-labelledby="{{ block.id }}-{{ section.id }}-fit-button">
-                    <div class="product-why-we-love-this__panel-inner">
+                {% capture fit_content %}
                       {% if fit_has_fields %}
                         <div class="product-fit-dimensions-block__grid">
                           {% if width_value != blank %}
@@ -1978,9 +1728,30 @@
                           {{ dimensions_media.preview_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
                         </div>
                       {% endif %}
-                    </div>
-                  </div>
-                </div>
+                {% endcapture %}
+                {% capture fit_style %}
+                  --pdp-fit-table-border: {{ block.settings.table_border_color }};
+                  --pdp-fit-label-color: {{ block.settings.label_color }};
+                  --pdp-fit-value-color: {{ block.settings.value_color }};
+                  --pdp-fit-image-radius: {{ block.settings.image_radius }}px;
+                  --pdp-fit-table-radius: {{ block.settings.table_radius }}px;
+                  --pdp-fit-cell-min-height: {{ block.settings.cell_min_height }}px;
+                  --pdp-fit-cell-padding-y: {{ block.settings.cell_padding_vertical }}px;
+                  --pdp-fit-cell-padding-x: {{ block.settings.cell_padding_horizontal }}px;
+                  --pdp-fit-cell-gap: {{ block.settings.cell_label_gap }}px;
+                  --pdp-fit-label-size: {{ block.settings.label_size }}px;
+                  --pdp-fit-image-margin-top: {{ block.settings.image_margin_top }}px;
+                {% endcapture %}
+                {% render 'product-detail-accordion',
+                  block: block,
+                  section_id: section.id,
+                  panel_id: 'fit-panel',
+                  button_id: 'fit-button',
+                  extra_class: 'product-fit-dimensions-block',
+                  extra_style: fit_style,
+                  expanded_initial_state: fit_expanded_initial_state,
+                  content: fit_content
+                %}
               {% endif %}
             
 
