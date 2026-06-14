@@ -165,8 +165,8 @@
             "button_style": "solid",
             "button_additional_padding_top": 0,
             "button_additional_padding_bottom": 0,
-            "show_dynamic_checkout": false,
-            "show_payment_methods": false,
+            "show_dynamic_checkout": true,
+            "show_payment_methods": true,
             "show_pickup": false,
             "pickup_alignment": "center",
             "show_pickup_icon": false,
@@ -256,7 +256,6 @@
         },
         "why_we_love_this": {
           "type": "why_we_love_this",
-          "disabled": true,
           "settings": {
             "heading": "WHY WE LOVE THIS",
             "metafield_namespace": "custom",
@@ -285,7 +284,6 @@
         },
         "materials": {
           "type": "materials",
-          "disabled": true,
           "settings": {
             "heading": "MATERIALS",
             "body": "<p>Woven from organic cotton and sustainably sourced jute — one of Earth’s most carbon-negative fibres — using Bengali textile craft passed down through generations.</p>",
@@ -314,7 +312,6 @@
         },
         "fit_dimensions": {
           "type": "fit_dimensions",
-          "disabled": true,
           "settings": {
             "heading": "FIT & DIMENSIONS",
             "metafield_namespace": "custom",
@@ -363,7 +360,6 @@
         },
         "care_instructions": {
           "type": "care_instructions",
-          "disabled": true,
           "settings": {
             "heading": "CARE INSTRUCTIONS",
             "body": "<p>Made from natural fibres, so a little love keeps it beautiful for years.</p>",
@@ -393,7 +389,6 @@
         },
         "sustainability_details": {
           "type": "sustainability_details",
-          "disabled": true,
           "settings": {
             "heading": "SUSTAINABILITY",
             "intro": "<p>Every Kaahu piece is made to give back — to the planet and to the craft that raised us.</p>",
@@ -445,7 +440,6 @@
         },
         "shipping_returns": {
           "type": "shipping_returns",
-          "disabled": true,
           "settings": {
             "heading": "SHIPPING & RETURNS",
             "body": "<p>Free carbon-neutral shipping on all U.S. orders — typically 5–8 business days. Changed your mind? You have <strong>90 days</strong> for a hassle-free return.</p>",
@@ -516,7 +510,7 @@
       "custom_css": [],
       "settings": {
         "section_desktop_layout": "image-left",
-        "enable_sticky_info": false,
+        "enable_sticky_info": true,
         "pdp_mobile_paper_color": "#ffffff",
         "pdp_mobile_ink_color": "#1d1b17",
         "pdp_mobile_text_color": "#65615a",
@@ -678,6 +672,7 @@
         "detail_sustainability",
         "detail_shipping"
       ],
+      "disabled": true,
       "settings": {
         "background_color": "#ffffff",
         "max_width": 1320,
@@ -732,6 +727,7 @@
         "service_returns",
         "service_care"
       ],
+      "disabled": true,
       "settings": {
         "page_background_color": "#ffffff",
         "max_width": 1320,
@@ -805,6 +801,7 @@
         "review_2",
         "review_3"
       ],
+      "disabled": true,
       "settings": {
         "background_color": "#ffffff",
         "max_width": 1320,
