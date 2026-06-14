@@ -69,6 +69,14 @@
         "banner_height": "default",
         "stacked_img_ratio": "landscape_16x9",
         "banner_width": "none",
+        "custom_heading": "",
+        "custom_description": "",
+        "kaahu_eyebrow": "",
+        "show_kaahu_breadcrumbs": false,
+        "breadcrumb_home_text": "Home",
+        "breadcrumb_middle_text": "",
+        "breadcrumb_middle_link": "",
+        "breadcrumb_current_text": "",
         "txt_alignment": "center",
         "text_width": "medium",
         "title_size": "h2",
@@ -77,12 +85,24 @@
         "description_size": "text-body",
         "text_indent": "none",
         "description_padding": 40,
+        "custom_image_alt": "",
+        "custom_image_position_desktop": "center center",
+        "custom_image_position_mobile": "center center",
         "cards_img_ratio": "fit",
         "cards_img_position": "left",
         "image_padding": "none",
         "grid_spacing": "none",
         "txt_col": "#999999",
         "bg_col": "#ffffff",
+        "kaahu_content_max_width": 620,
+        "kaahu_content_left_desktop": 16,
+        "kaahu_title_size_desktop": 68,
+        "kaahu_title_size_mobile": 42,
+        "kaahu_description_size_desktop": 18,
+        "kaahu_description_size_mobile": 16,
+        "kaahu_overlay_opacity": 35,
+        "kaahu_eyebrow_color": "#d9a73e",
+        "kaahu_breadcrumb_color": "#f7f2e8",
         "top_padding": 0,
         "bottom_padding": 0
       }
@@ -95,6 +115,11 @@
         "alignment": "center",
         "menu_style": "list",
         "image_ratio": "landscape",
+        "image_size_desktop": 92,
+        "image_size_mobile": 76,
+        "item_gap": 42,
+        "label_color": "#6f6a62",
+        "label_hover_color": "#d9a73e",
         "padding_top": 60,
         "padding_bottom": 0
       }
@@ -171,161 +196,24 @@
         "show_color_count": false,
         "show_rating": false,
         "enable_quick_add": true,
+        "collection_background_color": "#fbfaf7",
+        "collection_max_width": 1440,
+        "grid_column_gap_desktop": 24,
+        "grid_row_gap_desktop": 38,
+        "grid_column_gap_mobile": 14,
+        "grid_row_gap_mobile": 26,
+        "card_image_radius": 14,
+        "card_image_background_color": "#f4efe8",
+        "product_title_size_desktop": 21,
+        "product_title_size_mobile": 18,
+        "product_price_size_desktop": 16,
+        "product_price_size_mobile": 15,
+        "product_title_color": "#24221e",
+        "product_price_color": "#24221e",
+        "sale_price_color": "#b05f7d",
+        "compare_price_color": "#817b72",
         "padding_top": 0,
         "padding_bottom": 10
-      }
-    },
-    "section_testimonials_qXkqr9": {
-      "type": "section-testimonials",
-      "blocks": {
-        "testimonial_4VGnnN": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "This bag is super spacious and perfect for traveling with kids.",
-            "image": "shopify://shop_images/PHOTO-2024-12-20-09-52-30.jpg",
-            "caption": "Rashi, Seattle WA",
-            "star_rating": 5
-          }
-        },
-        "testimonial_LDiXBd": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "On a spontaneous snowy hike, I was amazed by how incredibly light weight yet tough it felt..",
-            "image": "shopify://shop_images/PHOTO-2025-09-30-20-34-59.jpg",
-            "caption": "Nikita Lohia, Campbell CA",
-            "star_rating": 5
-          }
-        },
-        "testimonial_dwCTna": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Durable material, stays clean and looks very sleek. Used it in the Caribbeans, on the beach, shopping and going out to eat...",
-            "caption": "Kremena Fletcher, West Chester PA",
-            "star_rating": 5
-          }
-        },
-        "testimonial_4CrFDB": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Love it, and can't believe it's made from grass!",
-            "image": "shopify://shop_images/WhatsApp_Image_2025-01-21_at_18.48.53.jpg",
-            "caption": "Yifan Zhang, Franklin TN",
-            "star_rating": 5
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_4VGnnN",
-        "testimonial_LDiXBd",
-        "testimonial_dwCTna",
-        "testimonial_4CrFDB"
-      ],
-      "name": "t:sections.testimonials.presets.name",
-      "settings": {
-        "section_layout": "slideshow",
-        "section_label": "",
-        "heading": "What our customers say about us...",
-        "subheading": "",
-        "heading_size": "h2",
-        "content_alignment": "center",
-        "show_ratings": true,
-        "show_captions": true,
-        "show_logos": true,
-        "image_size": 140,
-        "quote_font_size": "normal",
-        "btn_enable": false,
-        "btn_txt": "",
-        "btn_url": "",
-        "btn_style": "solid",
-        "btn_color_scheme": "default",
-        "text_color": "fg-03",
-        "bg_color": "bg-05",
-        "top_padding": 20,
-        "bottom_padding": 20,
-        "top_border": true,
-        "bottom_border": true,
-        "border_width": "full",
-        "border_color": "dark"
-      }
-    },
-    "collection_list_AeW6Ti": {
-      "type": "collection-list",
-      "blocks": {
-        "featured_collection_DJWLqW": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "frontpage"
-          }
-        },
-        "featured_collection_kA6DLY": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "messengers"
-          }
-        },
-        "featured_collection_MAaeTt": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "totes-1"
-          }
-        },
-        "featured_collection_78hQ7z": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "shoppers"
-          }
-        },
-        "featured_collection_NNpKmp": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "hobo"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_DJWLqW",
-        "featured_collection_kA6DLY",
-        "featured_collection_MAaeTt",
-        "featured_collection_78hQ7z",
-        "featured_collection_NNpKmp"
-      ],
-      "name": "t:sections.collection-list.presets.name",
-      "settings": {
-        "header_alignment": "center",
-        "section_label": "",
-        "heading": "",
-        "heading_size": "h2",
-        "sub_heading": "",
-        "link_style": "pill",
-        "list_separator": "none",
-        "list_font_size": "text-normal",
-        "section_layout": "horizontal",
-        "content_alignment": "center",
-        "content_width": "page-width",
-        "list_width": "100",
-        "list_borders": false,
-        "images_enable": true,
-        "rollover_image_position": "center",
-        "show_first_image": true,
-        "show_first_image_mobile": true,
-        "mobile_image_position": "last",
-        "image_ratio": "portrait",
-        "image_size": "medium",
-        "btn_enable": false,
-        "btn_txt": "",
-        "btn_url": "",
-        "btn_style": "solid",
-        "btn_position_mobile": "bottom",
-        "btn_position_desktop": "bottom",
-        "btn_color_scheme": "default",
-        "text_color": "fg-body",
-        "bg_color": "bg-body",
-        "padding_top": 40,
-        "padding_bottom": 0,
-        "top_border": false,
-        "bottom_border": false,
-        "border_width": "full",
-        "border_color": "dark"
       }
     },
     "rich_text_MLVYxE": {
@@ -386,8 +274,6 @@
     "navigation",
     "rich_text_9hnA4P",
     "product-grid",
-    "section_testimonials_qXkqr9",
-    "collection_list_AeW6Ti",
     "rich_text_MLVYxE"
   ]
 }

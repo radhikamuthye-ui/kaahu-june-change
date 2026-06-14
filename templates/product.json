@@ -83,7 +83,7 @@
             "show_promo_estimate": true,
             "promo_estimate_label": "Estimated final price",
             "promo_background_color": "#ffffff",
-            "promo_text_color": "#BE774C",
+            "promo_text_color": "#be774c",
             "price_show_taxes": false,
             "price_taxes_position": "below",
             "show_shoppay_banner": false
@@ -869,6 +869,7 @@
         "link_3",
         "link_4"
       ],
+      "disabled": true,
       "settings": {
         "page_background_color": "#ffffff",
         "background_color": "#aa627d",
