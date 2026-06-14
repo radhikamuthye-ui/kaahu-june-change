@@ -900,6 +900,13 @@
                   --pdp-price-compare-size-desktop: {{ block.settings.compare_price_size_desktop }}px;
                   --pdp-price-body-size-mobile: {{ block.settings.savings_text_size_mobile }}px;
                   --pdp-price-body-size-desktop: {{ block.settings.savings_text_size_desktop }}px;
+                  --pdp-price-current-weight: {{ block.settings.current_price_weight }};
+                  --pdp-price-compare-weight: {{ block.settings.compare_price_weight }};
+                  --pdp-price-savings-weight: {{ block.settings.savings_text_weight }};
+                  --pdp-price-badge-weight: {{ block.settings.savings_badge_weight }};
+                  --pdp-price-promo-weight: {{ block.settings.promo_text_weight }};
+                  --pdp-price-promo-details-weight: {{ block.settings.promo_details_weight }};
+                  --pdp-price-estimate-value-weight: {{ block.settings.promo_estimate_value_weight }};
                 "
                 {{ block.shopify_attributes }}
               >
@@ -3683,6 +3690,122 @@ document.addEventListener('DOMContentLoaded', function () {
           "label": "Savings text - desktop"
         },
         {
+          "type": "header",
+          "content": "Price weights"
+        },
+        {
+          "type": "select",
+          "id": "current_price_weight",
+          "label": "Current price weight",
+          "default": "500",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "compare_price_weight",
+          "label": "Compare-at price weight",
+          "default": "500",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "savings_text_weight",
+          "label": "Savings text weight",
+          "default": "700",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "savings_badge_weight",
+          "label": "Savings badge/value weight",
+          "default": "800",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
           "type": "range",
           "id": "price_row_spacing",
           "min": 0,
@@ -3747,6 +3870,90 @@ document.addEventListener('DOMContentLoaded', function () {
           "id": "promo_text_color",
           "default": "#b43a3a",
           "label": "Promo text"
+        },
+        {
+          "type": "select",
+          "id": "promo_text_weight",
+          "label": "Promo text weight",
+          "default": "800",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "promo_details_weight",
+          "label": "Promo helper/estimate label weight",
+          "default": "600",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "promo_estimate_value_weight",
+          "label": "Estimated price value weight",
+          "default": "800",
+          "options": [
+            {
+              "value": "400",
+              "label": "Regular"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi-bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra bold"
+            }
+          ]
         },
         {
           "type": "checkbox",
