@@ -1,0 +1,4 @@
+# Ignore Shopify CLI local state, but keep exported metafield definitions.
+*
+!.gitignore
+!metafields.json

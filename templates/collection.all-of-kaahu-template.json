@@ -1,32 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
       "type": "main-collection-banner",
       "settings": {
         "banner_layout": "overlay",
-        "banner_height_mobile": "default",
-        "banner_height": "large",
+        "banner_height_mobile": "large",
+        "banner_height": "default",
         "stacked_img_ratio": "landscape_16x9",
         "banner_width": "none",
-        "txt_alignment": "center",
-        "text_width": "medium",
-        "title_size": "h2",
+        "custom_heading": "",
+        "custom_description": "",
+        "kaahu_eyebrow": "Organic Cotton & Carbon-Negative Jute",
+        "show_kaahu_breadcrumbs": false,
+        "breadcrumb_home_text": "Home",
+        "breadcrumb_middle_text": "",
+        "breadcrumb_middle_link": "",
+        "breadcrumb_current_text": "",
+        "txt_alignment": "left",
+        "text_width": "wide",
+        "title_size": "ui-nav-element",
         "title_margin": 0,
         "description_enable": true,
         "description_size": "text-body",
         "text_indent": "none",
         "description_padding": 40,
-        "cards_img_ratio": "fit",
+        "custom_image_alt": "",
+        "custom_image_position_desktop": "center center",
+        "custom_image_position_mobile": "center center",
+        "cards_img_ratio": "landscape",
         "cards_img_position": "left",
         "image_padding": "none",
         "grid_spacing": "none",
         "txt_col": "#ffffff",
         "bg_col": "#fbfaf7",
-        "kaahu_title_size_desktop": 68,
+        "kaahu_content_max_width": 620,
+        "kaahu_content_left_desktop": 16,
+        "kaahu_title_size_desktop": 32,
         "kaahu_title_size_mobile": 42,
         "kaahu_description_size_desktop": 18,
         "kaahu_description_size_mobile": 16,
-        "kaahu_overlay_opacity": 35,
+        "kaahu_overlay_opacity": 45,
+        "kaahu_eyebrow_color": "#d9a73e",
+        "kaahu_breadcrumb_color": "#f7f2e8",
         "top_padding": 0,
         "bottom_padding": 0
       }
@@ -39,7 +63,6 @@
           "settings": {
             "collection": "totes",
             "label": "Totes",
-            "image": "",
             "link": ""
           }
         },
@@ -48,7 +71,6 @@
           "settings": {
             "collection": "messengers",
             "label": "Messengers",
-            "image": "",
             "link": ""
           }
         },
@@ -57,7 +79,6 @@
           "settings": {
             "collection": "shoppers",
             "label": "Shoppers",
-            "image": "",
             "link": ""
           }
         },
@@ -66,7 +87,6 @@
           "settings": {
             "collection": "hobo",
             "label": "Hobos",
-            "image": "",
             "link": ""
           }
         },
@@ -75,7 +95,6 @@
           "settings": {
             "collection": "best-sellers",
             "label": "Best Sellers",
-            "image": "",
             "link": ""
           }
         },
@@ -84,7 +103,6 @@
           "settings": {
             "collection": "all-of-kaahu",
             "label": "All Products",
-            "image": "",
             "link": ""
           }
         }
@@ -113,7 +131,6 @@
     },
     "rich_text_9hnA4P": {
       "type": "rich-text",
-      "disabled": true,
       "blocks": {
         "caption_LTgANa": {
           "type": "caption",
@@ -146,6 +163,7 @@
         "heading_8Bixfn",
         "text_Ue9jQV"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "content_width": "page-width",
@@ -209,7 +227,6 @@
         "review_asha": {
           "type": "review",
           "settings": {
-            "image": "",
             "image_alt": "Customer photo",
             "rating": 5,
             "text": "<p>The mustard and rose straps are even prettier in person. Huge inside — laptop, water bottle, the lot — and the magnetic closure is so handy.</p>",
@@ -223,7 +240,6 @@
         "review_dani": {
           "type": "review",
           "settings": {
-            "image": "",
             "image_alt": "Customer photo",
             "rating": 5,
             "text": "<p>Beautifully made and I love that it gives back. Roomier than I expected, and the build quality feels genuinely premium. Reach for it almost every day.</p>",
@@ -237,7 +253,6 @@
         "review_kremena": {
           "type": "review",
           "settings": {
-            "image": "",
             "image_alt": "Customer photo",
             "rating": 5,
             "text": "<p>Durable material, stays clean and looks very sleek. Used it in the Caribbean, on the beach, shopping and going out to eat — it does everything.</p>",
@@ -251,7 +266,6 @@
         "review_nikita": {
           "type": "review",
           "settings": {
-            "image": "",
             "image_alt": "Customer photo",
             "rating": 5,
             "text": "<p>Lightweight yet tough, with pockets that actually make sense. It feels thoughtful, polished, and ready for real life.</p>",
@@ -331,7 +345,6 @@
     },
     "section_testimonials_qXkqr9": {
       "type": "section-testimonials",
-      "disabled": true,
       "blocks": {
         "testimonial_4VGnnN": {
           "type": "testimonial",
@@ -375,6 +388,7 @@
         "testimonial_dwCTna",
         "testimonial_4CrFDB"
       ],
+      "disabled": true,
       "name": "t:sections.testimonials.presets.name",
       "settings": {
         "section_layout": "slideshow",
@@ -405,7 +419,6 @@
     },
     "collection_list_AeW6Ti": {
       "type": "collection-list",
-      "disabled": true,
       "blocks": {
         "featured_collection_9gf4mY": {
           "type": "featured_collection",
@@ -452,6 +465,7 @@
         "featured_collection_78hQ7z",
         "featured_collection_NNpKmp"
       ],
+      "disabled": true,
       "name": "t:sections.collection-list.presets.name",
       "settings": {
         "header_alignment": "center",
@@ -493,7 +507,6 @@
     },
     "rich_text_MLVYxE": {
       "type": "rich-text",
-      "disabled": true,
       "blocks": {
         "button_4TXyTL": {
           "type": "button",
@@ -527,6 +540,7 @@
         "button_4TXyTL",
         "text_PeBriN"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "content_width": "page-width",

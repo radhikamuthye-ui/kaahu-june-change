@@ -68,8 +68,8 @@
         "link_style": "none",
         "close_btn_enable": false,
         "anim_style": "ticker",
-        "ticker_speed": 18,
-        "anim_delay": 4
+        "ticker_speed": 40,
+        "anim_delay": 8
       }
     },
     "header": {

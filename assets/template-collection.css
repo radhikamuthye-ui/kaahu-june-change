@@ -661,6 +661,16 @@
   min-height: clamp(420px, 54vw, 680px);
 }
 
+.collection-template-all-of-kaahu-template .collection-banner-bg-img picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-bg-img img {
+  object-position: var(--kaahu-collection-hero-image-position-mobile, center center);
+}
+
 .collection-template-all-of-kaahu-template .collection-banner-bg-img::after {
   content: "";
   position: absolute;
@@ -671,6 +681,50 @@
 
 .collection-template-all-of-kaahu-template .collection-banner-title {
   max-width: 1440px;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-title.align-left {
+  max-width: var(--kaahu-collection-hero-content-max-width, 620px);
+  margin-left: max(var(--page-margin-mobile), 24px);
+  margin-right: auto;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--kaahu-collection-hero-breadcrumb-color, rgba(255, 255, 255, .82));
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-breadcrumb a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-eyebrow {
+  margin-bottom: 20px;
+  color: var(--kaahu-collection-hero-eyebrow-color, var(--kaahu-gold));
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
 }
 
 .collection-template-all-of-kaahu-template .collection-banner h1,
@@ -691,9 +745,17 @@
   font-size: var(--kaahu-collection-hero-description-size-mobile, 16px);
   line-height: 1.55;
   max-width: 50ch;
-  margin-inline: auto;
   color: rgba(255, 255, 255, .9);
   text-shadow: 0 1px 12px rgba(0, 0, 0, .36);
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-title.align-center .collection-banner-description {
+  margin-inline: auto;
+}
+
+.collection-template-all-of-kaahu-template .collection-banner-title.align-left .collection-banner-description {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .collection-sub-navigation.collection-template-all-of-kaahu-template {
@@ -901,6 +963,14 @@
   .collection-template-all-of-kaahu-template .collection-std-description,
   .collection-template-all-of-kaahu-template .collection-title-ab-description {
     font-size: var(--kaahu-collection-hero-description-size-desktop, 18px);
+  }
+
+  .collection-template-all-of-kaahu-template .collection-banner-bg-img img {
+    object-position: var(--kaahu-collection-hero-image-position-desktop, center center);
+  }
+
+  .collection-template-all-of-kaahu-template .collection-banner-title.align-left {
+    margin-left: var(--kaahu-collection-hero-content-left, 16%);
   }
 
   .collection-sub-navigation.collection-template-all-of-kaahu-template .collection-sub-navigation-image {
