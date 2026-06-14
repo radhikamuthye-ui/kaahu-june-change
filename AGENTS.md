@@ -54,5 +54,7 @@ Theme Check may still report app/vendor issues unrelated to current work, especi
 - Avada SEO snippets/templates
 - Visually SDK snippets
 - Remote app assets
+- Google Fonts / remote font preconnect warnings
+- Existing orphaned or unused app/theme helper snippets
 
-Treat those as separate cleanup work unless the user asks to fix them.
+Treat those as separate cleanup work unless the user asks to fix them. Do not repeatedly list these known unrelated warnings in routine completion notes; say Theme Check passed with known unrelated warnings only when needed.
