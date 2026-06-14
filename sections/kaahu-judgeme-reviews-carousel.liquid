@@ -1,5 +1,4 @@
 {{ 'section-kaahu-judgeme-reviews-carousel.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'section-kaahu-judgeme-reviews-carousel.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign app_block_count = 0
@@ -11,10 +10,6 @@
       assign fallback_block_count = fallback_block_count | plus: 1
     endif
   endfor
-  assign continuous_reviews = false
-  if section.settings.carousel_motion == 'continuous' and section.settings.autoplay and fallback_block_count > 1
-    assign continuous_reviews = true
-  endif
 -%}
 
 {%- style -%}
@@ -39,17 +34,10 @@
     --kjrc-header-bottom-spacing-desktop: {{ section.settings.header_bottom_spacing_desktop }}px;
     --kjrc-side-padding-mobile: {{ section.settings.side_padding_mobile }}px;
     --kjrc-side-padding-desktop: {{ section.settings.side_padding_desktop }}px;
-    --kjrc-track-padding-top-mobile: {{ section.settings.track_padding_top_mobile }}px;
-    --kjrc-track-padding-bottom-mobile: {{ section.settings.track_padding_bottom_mobile }}px;
-    --kjrc-track-padding-top-desktop: {{ section.settings.track_padding_top_desktop }}px;
-    --kjrc-track-padding-bottom-desktop: {{ section.settings.track_padding_bottom_desktop }}px;
     --kjrc-app-padding-mobile: {{ section.settings.app_padding_mobile }}px;
     --kjrc-app-padding-desktop: {{ section.settings.app_padding_desktop }}px;
     --kjrc-widget-inner-padding-mobile: {{ section.settings.widget_inner_padding_mobile }}px;
     --kjrc-widget-inner-padding-desktop: {{ section.settings.widget_inner_padding_desktop }}px;
-    --kjrc-card-width-mobile: {{ section.settings.card_width_mobile }}px;
-    --kjrc-card-width-tablet: {{ section.settings.card_width_tablet }}px;
-    --kjrc-card-width-desktop: {{ section.settings.card_width_desktop }}px;
     --kjrc-card-radius: {{ section.settings.card_border_radius }}px;
     --kjrc-gap: {{ section.settings.card_gap }}px;
     --kjrc-max-width: {{ section.settings.container_max_width }}px;
@@ -58,7 +46,6 @@
     --kjrc-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
     --kjrc-eyebrow-size: {{ section.settings.eyebrow_size }}px;
     --kjrc-eyebrow-spacing: {{ section.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
-    --kjrc-marquee-duration: {{ section.settings.marquee_duration }}s;
     --kjrc-media-height-mobile: {{ section.settings.image_height_mobile }}px;
     --kjrc-media-height-desktop: {{ section.settings.image_height_desktop }}px;
     --kjrc-media-fit: {{ section.settings.image_object_fit }};
@@ -77,109 +64,47 @@
 {%- endstyle -%}
 
 {%- if section.settings.show_section -%}
-  <kaahu-reviews-carousel class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}{% if continuous_reviews %} kaahu-judgeme-reviews--continuous{% endif %}{% if section.settings.show_partial_cards %} kaahu-judgeme-reviews--peek{% endif %}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-pause-hover="{{ section.settings.pause_on_hover }}" data-drag="{{ section.settings.enable_drag }}" data-continuous="{{ continuous_reviews }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
-    <div class="kaahu-judgeme-reviews__header">
-      {%- if section.settings.eyebrow != blank -%}
-        <div class="kaahu-judgeme-reviews__eyebrow">{{ section.settings.eyebrow }}</div>
-      {%- endif -%}
-      {%- if section.settings.heading != blank -%}
-        <h2 id="KaahuReviewsHeading-{{ section.id }}" class="kaahu-judgeme-reviews__heading">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-    </div>
-
-    {%- if section.settings.review_source == 'judgeme' and app_block_count > 0 -%}
-      <div class="kaahu-judgeme-reviews__app" aria-label="Customer reviews from Judge.me">
-        {%- for block in section.blocks -%}
-          {%- if block.type == '@app' -%}
-            <div class="kaahu-judgeme-reviews__app-block" {{ block.shopify_attributes }}>
-              {% render block %}
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- else -%}
-      <div class="kaahu-judgeme-reviews__carousel-wrap">
-        {%- if section.settings.show_arrows and continuous_reviews == false -%}
-          <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--prev" type="button" aria-label="Previous reviews" data-reviews-prev>
-            {% render 'icon-arrow-slider' %}
-          </button>
+  <section class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
+    <div class="kaahu-judgeme-reviews__inner">
+      <div class="kaahu-judgeme-reviews__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="kaahu-judgeme-reviews__eyebrow">{{ section.settings.eyebrow }}</div>
         {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 id="KaahuReviewsHeading-{{ section.id }}" class="kaahu-judgeme-reviews__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
 
-        <div class="kaahu-judgeme-reviews__track" tabindex="0" role="region" aria-label="Customer reviews carousel" data-reviews-track>
-          {%- if continuous_reviews -%}
-            <div class="kaahu-judgeme-reviews__marquee" data-reviews-marquee>
-              {%- for repeat_index in (1..2) -%}
-                {%- for block in section.blocks -%}
-                  {%- if block.type == 'review' -%}
-                    <article class="kaahu-judgeme-reviews__card" {% if repeat_index == 1 %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}>
-                      {%- if section.settings.show_customer_photo -%}
-                        <div class="kaahu-judgeme-reviews__media">
-                          {%- if block.settings.image != blank -%}
-                            {%- assign review_image_alt = block.settings.image_alt | default: block.settings.name | escape -%}
-                            {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: review_image_alt }}
-                          {%- else -%}
-                            <div class="kaahu-judgeme-reviews__media-placeholder" aria-label="{{ section.settings.photo_placeholder_text | escape }}">
-                              <span class="kaahu-judgeme-reviews__media-placeholder-icon" aria-hidden="true">▧</span>
-                              <span>{{ section.settings.photo_placeholder_text }}</span>
-                            </div>
-                          {%- endif -%}
-                        </div>
-                      {%- endif -%}
-
-                      <div class="kaahu-judgeme-reviews__card-body">
-                        {%- if section.settings.show_stars -%}
-                          <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
-                            {%- for index in (1..5) -%}
-                              <span class="{% if index <= block.settings.rating %}is-filled{% endif %}" aria-hidden="true">★</span>
-                            {%- endfor -%}
-                          </div>
-                        {%- endif -%}
-
-                        {%- if block.settings.text != blank -%}
-                          <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
-                        {%- endif -%}
-
-                        <div class="kaahu-judgeme-reviews__customer">
-                          {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
-                          <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
-                          <span class="kaahu-judgeme-reviews__customer-copy">
-                            {%- if section.settings.show_customer_name and block.settings.name != blank -%}
-                              {%- if block.settings.product_link != blank and repeat_index == 1 -%}
-                                <a class="kaahu-judgeme-reviews__name" href="{{ block.settings.product_link }}">{{ block.settings.name }}</a>
-                              {%- else -%}
-                                <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
-                              {%- endif -%}
-                            {%- endif -%}
-                            {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
-                              <span class="kaahu-judgeme-reviews__meta">{% if block.settings.show_verified_icon %}<span aria-hidden="true">✓</span>{% endif %} {{ block.settings.metadata }}</span>
-                            {%- endif -%}
-                          </span>
-                        </div>
+      {%- if section.settings.review_source == 'judgeme' and app_block_count > 0 -%}
+        <div class="kaahu-judgeme-reviews__app" aria-label="Customer reviews from Judge.me">
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              <div class="kaahu-judgeme-reviews__app-block" {{ block.shopify_attributes }}>
+                {% render block %}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- elsif fallback_block_count > 0 -%}
+        <div class="kaahu-judgeme-reviews__grid" role="list" aria-label="Customer reviews">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'review' -%}
+              <article class="kaahu-judgeme-reviews__card" role="listitem" {{ block.shopify_attributes }}>
+                {%- if section.settings.show_customer_photo -%}
+                  <div class="kaahu-judgeme-reviews__media">
+                    {%- if block.settings.image != blank -%}
+                      {%- assign review_image_alt = block.settings.image_alt | default: block.settings.name | escape -%}
+                      {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: review_image_alt }}
+                    {%- else -%}
+                      <div class="kaahu-judgeme-reviews__media-placeholder" aria-label="{{ section.settings.photo_placeholder_text | escape }}">
+                        <span>{{ section.settings.photo_placeholder_text }}</span>
                       </div>
-                    </article>
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endfor -%}
-            </div>
-          {%- else -%}
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'review' -%}
-                <article class="kaahu-judgeme-reviews__card" {{ block.shopify_attributes }}>
-                  {%- if section.settings.show_customer_photo -%}
-                    <div class="kaahu-judgeme-reviews__media">
-                      {%- if block.settings.image != blank -%}
-                        {%- assign review_image_alt = block.settings.image_alt | default: block.settings.name | escape -%}
-                        {{ block.settings.image | image_url: width: 720 | image_tag: loading: 'lazy', alt: review_image_alt }}
-                      {%- else -%}
-                        <div class="kaahu-judgeme-reviews__media-placeholder" aria-label="{{ section.settings.photo_placeholder_text | escape }}">
-                          <span class="kaahu-judgeme-reviews__media-placeholder-icon" aria-hidden="true">▧</span>
-                          <span>{{ section.settings.photo_placeholder_text }}</span>
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
 
-                  <div class="kaahu-judgeme-reviews__card-body">
+                <div class="kaahu-judgeme-reviews__card-body">
+                  <div>
                     {%- if section.settings.show_stars -%}
                       <div class="kaahu-judgeme-reviews__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
                         {%- for index in (1..5) -%}
@@ -191,48 +116,32 @@
                     {%- if block.settings.text != blank -%}
                       <div class="kaahu-judgeme-reviews__quote rte">{{ block.settings.text }}</div>
                     {%- endif -%}
-
-                    <div class="kaahu-judgeme-reviews__customer">
-                      {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
-                      <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
-                      <span class="kaahu-judgeme-reviews__customer-copy">
-                        {%- if section.settings.show_customer_name and block.settings.name != blank -%}
-                          {%- if block.settings.product_link != blank -%}
-                            <a class="kaahu-judgeme-reviews__name" href="{{ block.settings.product_link }}">{{ block.settings.name }}</a>
-                          {%- else -%}
-                            <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
-                          {%- endif -%}
-                        {%- endif -%}
-                        {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
-                          <span class="kaahu-judgeme-reviews__meta">{% if block.settings.show_verified_icon %}<span aria-hidden="true">✓</span>{% endif %} {{ block.settings.metadata }}</span>
-                        {%- endif -%}
-                      </span>
-                    </div>
                   </div>
-                </article>
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endif -%}
-        </div>
 
-        {%- if section.settings.show_arrows and continuous_reviews == false -%}
-          <button class="kaahu-judgeme-reviews__arrow kaahu-judgeme-reviews__arrow--next" type="button" aria-label="Next reviews" data-reviews-next>
-            {% render 'icon-arrow-slider' %}
-          </button>
-        {%- endif -%}
-      </div>
-
-      {%- if section.settings.show_dots and fallback_block_count > 1 and continuous_reviews == false -%}
-        <div class="kaahu-judgeme-reviews__dots" aria-label="Review carousel pagination" data-reviews-dots>
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'review' -%}
-              <button type="button" aria-label="Go to review {{ forloop.index }}" data-reviews-dot></button>
+                  <div class="kaahu-judgeme-reviews__customer">
+                    {%- assign initials = block.settings.initials | default: block.settings.name | slice: 0, 2 | upcase -%}
+                    <span class="kaahu-judgeme-reviews__avatar" aria-hidden="true">{{ initials }}</span>
+                    <span class="kaahu-judgeme-reviews__customer-copy">
+                      {%- if section.settings.show_customer_name and block.settings.name != blank -%}
+                        {%- if block.settings.product_link != blank -%}
+                          <a class="kaahu-judgeme-reviews__name" href="{{ block.settings.product_link }}">{{ block.settings.name }}</a>
+                        {%- else -%}
+                          <span class="kaahu-judgeme-reviews__name">{{ block.settings.name }}</span>
+                        {%- endif -%}
+                      {%- endif -%}
+                      {%- if section.settings.show_metadata and block.settings.metadata != blank -%}
+                        <span class="kaahu-judgeme-reviews__meta">{% if block.settings.show_verified_icon %}<span aria-hidden="true">✓</span>{% endif %} {{ block.settings.metadata }}</span>
+                      {%- endif -%}
+                    </span>
+                  </div>
+                </div>
+              </article>
             {%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
-    {%- endif -%}
-  </kaahu-reviews-carousel>
+    </div>
+  </section>
 {%- endif -%}
 
 {% schema %}
@@ -285,26 +194,6 @@
       "content": "Review display"
     },
     {
-      "type": "range",
-      "id": "reviews_to_display",
-      "min": 3,
-      "max": 20,
-      "step": 1,
-      "label": "Number of reviews to display",
-      "default": 8,
-      "info": "Judge.me app blocks may manage this inside Judge.me. Fallback cards display all cards added below."
-    },
-    {
-      "type": "range",
-      "id": "minimum_rating",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "label": "Minimum star rating",
-      "default": 4,
-      "info": "Use this in Judge.me admin for app-block data. Fallback cards are manually controlled below."
-    },
-    {
       "type": "checkbox",
       "id": "show_customer_photo",
       "label": "Show customer photo",
@@ -332,82 +221,6 @@
       "type": "checkbox",
       "id": "show_metadata",
       "label": "Show verified/location/product metadata",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Carousel"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Autoplay fallback carousel",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "autoplay_speed",
-      "min": 2,
-      "max": 10,
-      "step": 1,
-      "unit": "s",
-      "label": "Autoplay speed",
-      "default": 5
-    },
-    {
-      "type": "checkbox",
-      "id": "pause_on_hover",
-      "label": "Pause on hover/focus",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_drag",
-      "label": "Enable drag/swipe",
-      "default": true
-    },
-    {
-      "type": "select",
-      "id": "carousel_motion",
-      "label": "Carousel motion",
-      "options": [
-        {
-          "value": "continuous",
-          "label": "Continuous slow scroll"
-        },
-        {
-          "value": "step",
-          "label": "Step carousel"
-        }
-      ],
-      "default": "step"
-    },
-    {
-      "type": "range",
-      "id": "marquee_duration",
-      "min": 18,
-      "max": 90,
-      "step": 2,
-      "unit": "s",
-      "label": "Continuous scroll speed",
-      "default": 44
-    },
-    {
-      "type": "checkbox",
-      "id": "show_partial_cards",
-      "label": "Show partial cards on edges",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_arrows",
-      "label": "Show arrows",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dots",
-      "label": "Show dots",
       "default": true
     },
     {
@@ -566,36 +379,6 @@
     },
     {
       "type": "range",
-      "id": "card_width_mobile",
-      "min": 240,
-      "max": 360,
-      "step": 4,
-      "unit": "px",
-      "label": "Card width on mobile",
-      "default": 300
-    },
-    {
-      "type": "range",
-      "id": "card_width_tablet",
-      "min": 280,
-      "max": 480,
-      "step": 4,
-      "unit": "px",
-      "label": "Card width on tablet",
-      "default": 380
-    },
-    {
-      "type": "range",
-      "id": "card_width_desktop",
-      "min": 320,
-      "max": 620,
-      "step": 4,
-      "unit": "px",
-      "label": "Card width on desktop",
-      "default": 432
-    },
-    {
-      "type": "range",
       "id": "card_gap",
       "min": 12,
       "max": 48,
@@ -603,46 +386,6 @@
       "unit": "px",
       "label": "Gap between cards",
       "default": 24
-    },
-    {
-      "type": "range",
-      "id": "track_padding_top_mobile",
-      "min": 0,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "label": "Carousel top padding mobile",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "track_padding_bottom_mobile",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Carousel bottom padding mobile",
-      "default": 34
-    },
-    {
-      "type": "range",
-      "id": "track_padding_top_desktop",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Carousel top padding desktop",
-      "default": 8
-    },
-    {
-      "type": "range",
-      "id": "track_padding_bottom_desktop",
-      "min": 0,
-      "max": 120,
-      "step": 2,
-      "unit": "px",
-      "label": "Carousel bottom padding desktop",
-      "default": 34
     },
     {
       "type": "range",
