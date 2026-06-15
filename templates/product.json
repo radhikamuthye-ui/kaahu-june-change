@@ -28,7 +28,7 @@
         "tags_pdp": {
           "type": "tags",
           "settings": {
-            "badge_position": "normal",
+            "badge_position": "media",
             "featured_badge_tag": "Bestseller",
             "featured_badge_label": "Bestseller",
             "badge_media_alignment": "left",
