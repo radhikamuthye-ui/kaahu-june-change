@@ -25,6 +25,16 @@
             "collection_metafield_key": "breadcrumb"
           }
         },
+        "tags_pdp": {
+          "type": "tags",
+          "settings": {
+            "badge_position": "normal",
+            "featured_badge_tag": "Bestseller",
+            "featured_badge_label": "Bestseller",
+            "badge_media_alignment": "left",
+            "badge_font_size": 11
+          }
+        },
         "title": {
           "type": "title",
           "settings": {
@@ -388,6 +398,7 @@
       },
       "block_order": [
         "breadcrumb_pdp",
+        "tags_pdp",
         "title",
         "rating_pdp",
         "judge_me_reviews_preview_badge_r7Qb7p",

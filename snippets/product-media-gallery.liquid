@@ -70,9 +70,17 @@
     {% when 'tags' %}
       {% if block.settings.badge_position == 'media' %}
         {% assign metafield_badges = product.metafields.custom.badges %}
+        {% assign featured_badge_tag = block.settings.featured_badge_tag | default: 'Bestseller' | strip %}
+        {% assign featured_badge_tag_downcase = featured_badge_tag | downcase %}
+        {% assign has_featured_badge_tag = false %}
         {% assign hascustombadges = false %}
         {% for tag in product.tags %}
+        {% assign tag_downcase = tag | downcase | strip %}
         {% if tag contains 'Badge:' %}
+          {% assign hascustombadges = true %}
+        {% endif %}
+        {% if featured_badge_tag != blank and tag_downcase == featured_badge_tag_downcase %}
+          {% assign has_featured_badge_tag = true %}
           {% assign hascustombadges = true %}
         {% endif %}
         {% endfor %}
@@ -95,6 +103,9 @@
           <span>{{ tag | remove: 'Badge: ' }}</span>
         {% endif %}
         {% endfor %}
+        {% if has_featured_badge_tag %}
+          <span>{{ block.settings.featured_badge_label | default: featured_badge_tag }}</span>
+        {% endif %}
         {% if metafield_badges != blank %}
         {% for badge in metafield_badges.value %}
           <span>{{ badge }}</span>
