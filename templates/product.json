@@ -448,7 +448,7 @@
         "desktop_media_items_in_view": "1",
         "desktop_media_nav": "thumbnails",
         "desktop_media_thumbnail_size": "normal",
-        "desktop_media_thumbnail_position": "left",
+        "desktop_media_thumbnail_position": "bottom",
         "desktop_media_thumbnail_placement": "adjacent",
         "thumbnail_border_opacity": 20,
         "thumbnail_border_opacity_active": 80,
