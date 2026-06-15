@@ -46,8 +46,8 @@
           "type": "price",
           "settings": {
             "price_size": "price--large",
-            "price_show_taxes": true,
             "show_discounts": true,
+            "price_show_taxes": true,
             "show_shoppay_banner": true
           }
         },
@@ -64,7 +64,6 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "font_family": "accent",
             "show_labels": true,
             "show_puncuation": true,
             "swatch_label_position": "below",
@@ -82,9 +81,9 @@
         "099f936f-1f52-44f2-8d7b-0188fbd363d5": {
           "type": "quantity_selector",
           "settings": {
+            "selector_layout": "stacked",
             "border_top": false,
-            "border_bottom": false,
-            "selector_layout": "stacked"
+            "border_bottom": false
           }
         },
         "870625ea-f97e-4cab-b3b3-04010a7854a5": {
@@ -171,6 +170,9 @@
         "gallery_media_scale": "default",
         "gallery_height_limit_desktop": false,
         "media_section_width": "standard",
+        "product_section_width": "full-width",
+        "media_mobile_width": "full-width",
+        "gallery_grid_spacing": 0,
         "mobile_media_nav": "bullets",
         "mobile_media_nav_position": "below-media",
         "gallery_layout": "stack",
@@ -181,9 +183,6 @@
         "desktop_media_thumbnail_placement": "overlay",
         "arrow_style": "solid-inverted",
         "desktop_arrow_vis": "visible",
-        "product_section_width": "full-width",
-        "media_mobile_width": "full-width",
-        "gallery_grid_spacing": 0,
         "balance_grid": true,
         "media_video_autoplay": true,
         "media_video_play_button_style": "outline",
