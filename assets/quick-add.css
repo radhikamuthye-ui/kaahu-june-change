@@ -1,7 +1,7 @@
 .product-card-quick-add {
   position: relative;
   padding-top: var(--quick-add-button-padding);
-  min-height: 44px;
+  min-height: 40px;
   z-index: 2;
 }
 
@@ -34,6 +34,15 @@
   background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
   border-color: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
   color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-foreground)));
+}
+
+.product-card-quick-add .button {
+  height: 40px;
+  min-height: 40px;
+  min-width: 9rem;
+  padding-left: calc(var(--buttons-horizontal-padding) * 0.85);
+  padding-right: calc(var(--buttons-horizontal-padding) * 0.85);
+  font-size: max(12px, calc(var(--buttons-font-size-mobile) - 1px));
 }
 
 .product-card-quick-add .button.loading > .loading__spinner .path,
@@ -132,14 +141,14 @@
   }
   
   .product-card-quick-add.quick-add-button-mobile-icon {
-    min-height: 44px; 
+    min-height: 40px; 
   }
   
   .product-card-quick-add.quick-add-button-mobile-icon .button {
-    width: 44px;
-    height: 44px;
-    min-height: 44px;
-    min-width: 44px;
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px;
     padding: 0;
     margin: 0;
     border-radius: var(--pagination-radius);
@@ -151,8 +160,8 @@
   .product-card-quick-add.quick-add-button-mobile-icon .button::after {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     background: var(--color-background);
     border-radius: var(--pagination-radius);
     z-index: 0;
@@ -363,7 +372,6 @@ body:has(.cart-ui-word) .icon-qa-plus {
     border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
     text-decoration: none;
     width: 100%;
-    min-width: 10rem;
   }
   .quick-add-button-desktop-button-outline .button {
     background: var(--kaahu-add-to-bag-bg, transparent);
@@ -371,7 +379,6 @@ body:has(.cart-ui-word) .icon-qa-plus {
     color: var(--kaahu-add-to-bag-text, inherit);
     text-decoration: none;
     width: 100%;
-    min-width: 10rem;
   }  
   .quick-add-button-desktop-button-text .button {
     background: var(--kaahu-add-to-bag-bg, transparent);
@@ -379,7 +386,6 @@ body:has(.cart-ui-word) .icon-qa-plus {
     border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, transparent);
     color: var(--kaahu-add-to-bag-text, inherit);
     text-decoration: none;
-    min-width: 10rem;
   }
   .quick-add-button-desktop-button-solid-inverted .button {
     color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-background)));
@@ -388,6 +394,14 @@ body:has(.cart-ui-word) .icon-qa-plus {
     text-decoration: none;
     width: 100%;
   }  
+
+  .product-card-quick-add.quick-add-button-desktop-button-solid .button,
+  .product-card-quick-add.quick-add-button-desktop-button-outline .button,
+  .product-card-quick-add.quick-add-button-desktop-button-text .button,
+  .product-card-quick-add.quick-add-button-desktop-button-solid-inverted .button {
+    min-width: 9rem;
+    font-size: max(12px, calc(var(--buttons-font-size-desktop) - 1px));
+  }
 
   .quick-add-button-desktop-button-outline .button.loading > .loading__spinner .path {
     stroke: rgb(var(--color-outline-button-text)) !important;
@@ -420,26 +434,26 @@ body:has(.cart-ui-word) .icon-qa-plus {
     width: fit-content;
     justify-content: center;
   }
-  .quick-add-button-desktop-icon .button {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
+  .product-card-quick-add.quick-add-button-desktop-icon .button {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
     padding: 0;
     border-radius: var(--pagination-radius);
     background: none;
     border: 0;
     color: var(--color-foreground);    
   }
-  .quick-add-button-desktop-icon .button::after {
+  .product-card-quick-add.quick-add-button-desktop-icon .button::after {
     content: "";
     position: absolute;
-    width: 37px;
-    height: 37px;
+    width: 34px;
+    height: 34px;
     background: var(--color-background);
     border-radius: var(--pagination-radius);
     z-index: 0;
-    left: 4px;
-    top: 4px;
+    left: 3px;
+    top: 3px;
   }
   .quick-add-button-desktop-icon .qa-label {
     display: none;
