@@ -19,9 +19,28 @@
 }
 
 .quick-add__submit {
-  background: rgb(var(--color-button-background));
+  background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
+  border-color: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
+  color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-foreground)));
   position: relative;
   box-sizing: border-box;
+}
+
+.product-card-quick-add .button,
+.featured-product-quick-add .button,
+.featured-product-quick-add .quick-add-f-button,
+.featured-product-quick-add .quick-add__submit,
+.image-with-text-footer .quick-add__submit {
+  background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
+  border-color: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
+  color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-foreground)));
+}
+
+.product-card-quick-add .button.loading > .loading__spinner .path,
+.featured-product-quick-add .button.loading > .loading__spinner .path,
+.featured-product-quick-add .quick-add__submit.loading > .loading__spinner .path,
+.image-with-text-footer .quick-add__submit.loading > .loading__spinner .path {
+  stroke: var(--kaahu-add-to-bag-text, rgb(var(--color-button-foreground))) !important;
 }
 
 .card-product .quick-add__submit {
@@ -58,23 +77,22 @@
 }
 
 .quick-add-button-mobile-button-outline .button {
-  background: none;
-  border: var(--buttons-border-width) solid rgb(var(--color-outline-button-border));
-  color: inherit;
+  background: var(--kaahu-add-to-bag-bg, transparent);
+  border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, rgb(var(--color-outline-button-border)));
+  color: var(--kaahu-add-to-bag-text, inherit);
 }
 
 .quick-add-button-mobile-button-solid-inverted .button {
-  color: rgb(var(--color-button-background));
-  background: rgb(var(--color-button-foreground));
+  color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-background)));
+  background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-foreground)));
+  border-color: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-foreground)));
 }
 
 .quick-add-button-mobile-button-text .button {
-  background: none;
-  outline: none;
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-  text-decoration-thickness: 1px;
+  background: var(--kaahu-add-to-bag-bg, transparent);
+  border-color: var(--kaahu-add-to-bag-bg, transparent);
+  color: var(--kaahu-add-to-bag-text, inherit);
+  text-decoration: none;
 }
 
 .qa-label-icon {
@@ -340,35 +358,33 @@ body:has(.cart-ui-word) .icon-qa-plus {
     outline: 0 !important;
   }
   .quick-add-button-desktop-button-solid .button {
-    background: rgb(var(--color-button-background));
-    color: rgb(var(--color-button-foreground));
-    border: var(--buttons-border-width) solid rgb(var(--color-button-background));
+    background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
+    color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-foreground)));
+    border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, rgb(var(--color-button-background)));
     text-decoration: none;
     width: 100%;
     min-width: 10rem;
   }
   .quick-add-button-desktop-button-outline .button {
-    background: none;
-    border: var(--buttons-border-width) solid;
-    color: inherit;
+    background: var(--kaahu-add-to-bag-bg, transparent);
+    border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, currentColor);
+    color: var(--kaahu-add-to-bag-text, inherit);
     text-decoration: none;
     width: 100%;
     min-width: 10rem;
   }  
   .quick-add-button-desktop-button-text .button {
-    background: none;
+    background: var(--kaahu-add-to-bag-bg, transparent);
     outline: none;
-    border: 0;
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
-    text-decoration-thickness: 1px;
+    border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, transparent);
+    color: var(--kaahu-add-to-bag-text, inherit);
+    text-decoration: none;
     min-width: 10rem;
   }
   .quick-add-button-desktop-button-solid-inverted .button {
-    color: rgb(var(--color-button-background));
-    background: rgb(var(--color-button-foreground));
-    border: var(--buttons-border-width) solid rgb(var(--color-button-foreground));
+    color: var(--kaahu-add-to-bag-text, rgb(var(--color-button-background)));
+    background: var(--kaahu-add-to-bag-bg, rgb(var(--color-button-foreground)));
+    border: var(--buttons-border-width) solid var(--kaahu-add-to-bag-bg, rgb(var(--color-button-foreground)));
     text-decoration: none;
     width: 100%;
   }  

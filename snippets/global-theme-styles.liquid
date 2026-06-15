@@ -170,6 +170,8 @@
         
         --color-button-foreground: {{ settings.color_button_text.red }}, {{ settings.color_button_text.green }}, {{ settings.color_button_text.blue }};
         --color-button-background: {{ settings.color_button_background.red }}, {{ settings.color_button_background.green }}, {{ settings.color_button_background.blue }};        
+        --kaahu-add-to-bag-bg: {{ settings.add_to_bag_button_background | default: '#cf6a2c' }};
+        --kaahu-add-to-bag-text: {{ settings.add_to_bag_button_text | default: '#ffffff' }};
 
         --color-outline-button-text: {{ settings.color_outline_button_border.red }}, {{ settings.color_outline_button_border.green }}, {{ settings.color_outline_button_border.blue }};
         --color-outline-button-border: {{ settings.color_outline_button_border.red }}, {{ settings.color_outline_button_border.green }}, {{ settings.color_outline_button_border.blue }};

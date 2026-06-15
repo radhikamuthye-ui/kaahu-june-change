@@ -2478,6 +2478,13 @@ body:has(.radio-options-drawer--background.open) .header-group {
   margin-bottom: 1rem;
 }
 
+.product-form__submit.button,
+.quick-add-modal .product-form__submit.button {
+  background: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+  border-color: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+  color: var(--pdp-sticky-button-text, var(--kaahu-add-to-bag-text, #ffffff));
+}
+
 .product-form__submit[aria-disabled="true"] + .shopify-payment-button .shopify-payment-button__button[disabled],
 .product-form__submit[disabled] + .shopify-payment-button .shopify-payment-button__button[disabled] {
   cursor: not-allowed;
@@ -5933,8 +5940,9 @@ product-info[id^="MainProduct-"] .product-why-we-love-this .accordion-panel {
   }
 
   .sticky-buy-buttons .product-form__submit {
-    background: var(--pdp-sticky-button-bg, #cf6a2c);
-    color: var(--pdp-sticky-button-text, #ffffff);
+    background: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+    border-color: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+    color: var(--pdp-sticky-button-text, var(--kaahu-add-to-bag-text, #ffffff));
   }
 
   .sticky-buy-buttons .shopify-payment-button {
@@ -6019,8 +6027,9 @@ product-info[id^="MainProduct-"] .product-why-we-love-this .accordion-panel {
 
   .product-buy-buttons-wrapper.stick-now .product-form__submit {
     margin-bottom: 0;
-    background: var(--pdp-sticky-button-bg, #cf6a2c);
-    color: var(--pdp-sticky-button-text, #ffffff);
+    background: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+    border-color: var(--pdp-sticky-button-bg, var(--kaahu-add-to-bag-bg, #cf6a2c));
+    color: var(--pdp-sticky-button-text, var(--kaahu-add-to-bag-text, #ffffff));
   }
 
   .product-buy-buttons-wrapper.stick-now .shopify-payment-button {

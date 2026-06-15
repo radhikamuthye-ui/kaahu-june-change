@@ -951,6 +951,18 @@
         "content": "t:settings_schema.global.settings.style.label"
       },
       {
+        "type": "color",
+        "id": "add_to_bag_button_background",
+        "default": "#cf6a2c",
+        "label": "Add to Bag button background"
+      },
+      {
+        "type": "color",
+        "id": "add_to_bag_button_text",
+        "default": "#ffffff",
+        "label": "Add to Bag button text"
+      },
+      {
         "type": "range",
         "id": "buttons_border_thickness",
         "min": 0,
