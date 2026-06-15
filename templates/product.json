@@ -96,6 +96,7 @@
             "promo_text_color": "#b95d7b",
             "promo_text_weight": "500",
             "promo_details_weight": "500",
+            "promo_estimate_value_color": "#b95d7b",
             "promo_estimate_value_weight": "500",
             "price_show_taxes": false,
             "price_taxes_position": "below",

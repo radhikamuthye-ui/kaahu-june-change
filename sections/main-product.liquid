@@ -900,6 +900,7 @@
                   --pdp-price-badge-weight: {{ block.settings.savings_badge_weight }};
                   --pdp-price-promo-weight: {{ block.settings.promo_text_weight }};
                   --pdp-price-promo-details-weight: {{ block.settings.promo_details_weight }};
+                  --pdp-price-estimate-value-color: {{ block.settings.promo_estimate_value_color }};
                   --pdp-price-estimate-value-weight: {{ block.settings.promo_estimate_value_weight }};
                 "
                 {{ block.shopify_attributes }}
@@ -3875,6 +3876,12 @@
               "label": "Extra bold"
             }
           ]
+        },
+        {
+          "type": "color",
+          "id": "promo_estimate_value_color",
+          "default": "#b43a3a",
+          "label": "Estimated price value color"
         },
         {
           "type": "checkbox",

@@ -4650,7 +4650,7 @@ a.product__text {
 }
 
 .product-price-promo__estimate strong {
-  color: var(--pdp-price-current, currentColor);
+  color: var(--pdp-price-estimate-value-color, var(--pdp-price-promo-text, currentColor));
   font-weight: var(--pdp-price-estimate-value-weight, 800);
 }
 
