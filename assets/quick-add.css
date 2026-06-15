@@ -1,4 +1,5 @@
 .product-card-quick-add {
+  --kaahu-card-quick-add-inset: 10px;
   position: relative;
   padding-top: var(--quick-add-button-padding);
   min-height: 40px;
@@ -322,17 +323,18 @@ body:has(.cart-ui-word) .icon-qa-plus {
 @media only screen and (min-width: 1025px) {
   .product-card-quick-add.quick-add-desktop-hover {
     position: absolute;
-    width: 100%;
-    left: 0;
+    width: auto;
+    left: max(var(--quick-add-button-padding), var(--kaahu-card-quick-add-inset));
+    right: max(var(--quick-add-button-padding), var(--kaahu-card-quick-add-inset));
     bottom: 0px;
     box-sizing: border-box;
-    padding-left: var(--quick-add-button-padding);
-    padding-right: var(--quick-add-button-padding);
-    padding-bottom: var(--quick-add-button-padding);
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: max(var(--quick-add-button-padding), var(--kaahu-card-quick-add-inset));
     background: none;
   }
   .card-product--qa-bottom .product-card-quick-add.quick-add-desktop-hover {
-    padding-bottom: var(--quick-add-button-padding);
+    padding-bottom: max(var(--quick-add-button-padding), var(--kaahu-card-quick-add-inset));
   }
   .product-card-quick-add.quick-add-desktop-static.quick-add-button-desktop-icon {
     position: absolute;
