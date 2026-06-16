@@ -68,7 +68,7 @@
 {%- endstyle -%}
 
 {%- if section.settings.show_section -%}
-  <kaahu-reviews-carousel class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-pause-hover="{{ section.settings.pause_on_hover }}" data-drag="{{ section.settings.enable_drag }}" data-continuous="false" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
+  <kaahu-reviews-carousel class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-drag="{{ section.settings.enable_drag }}" data-continuous="false" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
     <div class="kaahu-judgeme-reviews__inner">
       <div class="kaahu-judgeme-reviews__header">
         {%- if section.settings.eyebrow != blank -%}
@@ -269,12 +269,6 @@
       "unit": "s",
       "label": "Autoplay speed",
       "default": 5
-    },
-    {
-      "type": "checkbox",
-      "id": "pause_on_hover",
-      "label": "Pause on hover/focus",
-      "default": true
     },
     {
       "type": "checkbox",
