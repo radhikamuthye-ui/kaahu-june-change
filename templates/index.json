@@ -12,12 +12,46 @@
     "paired_product_slideshow_kaahu": {
       "type": "paired-product-slideshow",
       "blocks": {
+        "slide_tL3Kwx": {
+          "type": "slide",
+          "settings": {
+            "product": "pocketful-of-sun-shopper-bag",
+            "lifestyle_alt_key": "",
+            "product_alt_key": "",
+            "heading_override": "",
+            "text_override": "",
+            "event_label_override": "",
+            "event_text_override": "",
+            "primary_link_override": "",
+            "secondary_link_override": ""
+          }
+        },
+        "slide_T4k7np": {
+          "type": "slide",
+          "settings": {
+            "product": "feathered-hope-tote",
+            "lifestyle_alt_key": "",
+            "product_alt_key": "",
+            "heading_override": "",
+            "text_override": "",
+            "event_label_override": "",
+            "event_text_override": "",
+            "primary_link_override": "",
+            "secondary_link_override": ""
+          }
+        },
         "slide_N9VLnw": {
           "type": "slide",
           "settings": {
             "product": "golden-pulse-messenger-handbag",
             "lifestyle_alt_key": "",
-            "product_alt_key": ""
+            "product_alt_key": "",
+            "heading_override": "",
+            "text_override": "",
+            "event_label_override": "",
+            "event_text_override": "",
+            "primary_link_override": "",
+            "secondary_link_override": ""
           }
         },
         "slide_one": {
@@ -25,7 +59,13 @@
           "settings": {
             "product": "ash-and-ember-tote",
             "lifestyle_alt_key": "",
-            "product_alt_key": ""
+            "product_alt_key": "",
+            "heading_override": "",
+            "text_override": "",
+            "event_label_override": "",
+            "event_text_override": "",
+            "primary_link_override": "",
+            "secondary_link_override": ""
           }
         },
         "slide_two": {
@@ -33,18 +73,26 @@
           "settings": {
             "product": "blush-flame-messenger-handbag",
             "lifestyle_alt_key": "",
-            "product_alt_key": ""
+            "product_alt_key": "",
+            "heading_override": "",
+            "text_override": "",
+            "event_label_override": "",
+            "event_text_override": "",
+            "primary_link_override": "",
+            "secondary_link_override": ""
           }
         }
       },
       "block_order": [
+        "slide_tL3Kwx",
+        "slide_T4k7np",
         "slide_N9VLnw",
         "slide_one",
         "slide_two"
       ],
       "settings": {
         "lifestyle_alt_key": "slideshow",
-        "product_alt_key": "front",
+        "product_alt_key": "slideshow2",
         "show_breadcrumb": true,
         "breadcrumb_separator": "•",
         "breadcrumb_type_namespace": "custom",
@@ -52,9 +100,9 @@
         "breadcrumb_name_namespace": "custom",
         "breadcrumb_name_key": "display_name",
         "breadcrumb_material_namespace": "custom",
-        "breadcrumb_material_key": "material",
+        "breadcrumb_material_key": "display_material",
         "heading": "Carry what you truly value.",
-        "text": "<p>Bold, functional bags woven from organic cotton & carbon-negative jute — made to carry everything that matters, and built to last.</p>",
+        "text": "<p>Bold, functional bags woven from organic cotton & carbon-negative jute. Made to carry everything that matters, and built to last.</p>",
         "event_label": "Summer event",
         "event_text": "20% off your first order",
         "primary_label": "Shop the product",
