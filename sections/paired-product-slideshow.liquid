@@ -142,13 +142,16 @@
 
               for media in slide_product.media
                 if media.media_type == 'image'
-                  assign media_alt = media.alt | downcase
-                  if lifestyle_media == blank and lifestyle_alt_key != blank and media_alt contains lifestyle_alt_key
-                    assign lifestyle_media = media
-                  endif
-                  if product_media == blank and product_alt_key != blank and media_alt contains product_alt_key
-                    assign product_media = media
-                  endif
+                  assign media_alt_lines = media.alt | downcase | newline_to_br | split: '<br />'
+                  for media_alt_line in media_alt_lines
+                    assign media_alt_line = media_alt_line | strip
+                    if lifestyle_media == blank and lifestyle_alt_key != blank and media_alt_line == lifestyle_alt_key
+                      assign lifestyle_media = media
+                    endif
+                    if product_media == blank and product_alt_key != blank and media_alt_line == product_alt_key
+                      assign product_media = media
+                    endif
+                  endfor
                 endif
               endfor
 
