@@ -134,7 +134,7 @@
         "overlay_opacity": 45,
         "accent_color": "#e5712a",
         "divider_color": "#e89aba",
-        "divider_width": 2,
+        "divider_width": 4,
         "product_background": "#f4f1ed",
         "text_color": "fg-white",
         "content_horizontal_padding_mobile": 28,
