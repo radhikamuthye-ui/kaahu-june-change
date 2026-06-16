@@ -13,8 +13,10 @@ class KaahuReviewsCarousel extends HTMLElement {
     this.autoplay = this.dataset.autoplay === 'true';
     this.pauseHover = this.dataset.pauseHover === 'true';
     this.dragEnabled = this.dataset.drag === 'true';
-    this.speed = parseInt(this.dataset.speed, 10) || 5000;
-    this.timer = null;
+    this.speed = 28;
+    this.frame = null;
+    this.lastFrame = null;
+    this.loopWidth = 0;
     this.restartTimer = null;
     this.userPaused = false;
 
@@ -36,6 +38,7 @@ class KaahuReviewsCarousel extends HTMLElement {
       this.addEventListener('mouseleave', () => this.resume());
     }
 
+    if (this.autoplay && this.cards.length > 1) this.cloneCards();
     if (this.dragEnabled) this.enableDrag();
     this.updateDots();
     this.start();
@@ -54,7 +57,8 @@ class KaahuReviewsCarousel extends HTMLElement {
   }
 
   go(direction) {
-    const maxScroll = Math.max(0, this.track.scrollWidth - this.track.clientWidth);
+    const scrollWidth = this.loopWidth || this.track.scrollWidth;
+    const maxScroll = Math.max(0, scrollWidth - this.track.clientWidth);
 
     if (direction > 0 && this.track.scrollLeft >= maxScroll - 4) {
       this.track.scrollTo({ left: 0, behavior: 'smooth' });
@@ -92,13 +96,50 @@ class KaahuReviewsCarousel extends HTMLElement {
   }
 
   start() {
-    if (!this.autoplay || this.timer || this.cards.length <= 1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    this.timer = window.setInterval(() => this.go(1), this.speed);
+    if (!this.autoplay || this.frame || this.cards.length <= 1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.lastFrame = null;
+    this.frame = window.requestAnimationFrame((timestamp) => this.tick(timestamp));
   }
 
   stop() {
-    window.clearInterval(this.timer);
-    this.timer = null;
+    window.cancelAnimationFrame(this.frame);
+    this.frame = null;
+    this.lastFrame = null;
+  }
+
+  cloneCards() {
+    if (this.track.dataset.cloned === 'true') return;
+
+    this.cards.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.removeAttribute('data-shopify-editor-block');
+      clone.querySelectorAll('a, button, input, textarea, select, [tabindex]').forEach((element) => {
+        element.setAttribute('tabindex', '-1');
+      });
+      this.track.appendChild(clone);
+    });
+
+    this.track.dataset.cloned = 'true';
+    window.requestAnimationFrame(() => {
+      const firstClone = this.track.children[this.cards.length];
+      this.loopWidth = firstClone ? firstClone.offsetLeft : 0;
+    });
+  }
+
+  tick(timestamp) {
+    if (!this.frame) return;
+    if (this.lastFrame === null) this.lastFrame = timestamp;
+
+    const elapsed = timestamp - this.lastFrame;
+    this.lastFrame = timestamp;
+    this.track.scrollLeft += (this.speed * elapsed) / 1000;
+
+    if (this.loopWidth && this.track.scrollLeft >= this.loopWidth) {
+      this.track.scrollLeft -= this.loopWidth;
+    }
+
+    this.frame = window.requestAnimationFrame((nextTimestamp) => this.tick(nextTimestamp));
   }
 
   pause() {
