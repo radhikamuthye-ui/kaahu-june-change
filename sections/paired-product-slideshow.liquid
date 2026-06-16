@@ -28,6 +28,7 @@
     --pps-overlay-mobile-soft: {{ overlay_mobile_soft }};
     --pps-accent: {{ section.settings.accent_color }};
     --pps-divider: {{ section.settings.divider_color }};
+    --pps-divider-width: {{ section.settings.divider_width }}px;
     --pps-product-bg: {{ section.settings.product_background }};
     --pps-image-fade-duration: {{ section.settings.image_fade_duration }}ms;
     --pps-lifestyle-zoom: {{ lifestyle_zoom }};
@@ -644,6 +645,16 @@
       "id": "divider_color",
       "label": "Divider and event color",
       "default": "#e89aba"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Image divider width",
+      "default": 2
     },
     {
       "type": "color",
