@@ -126,6 +126,14 @@
 {%- endstyle -%}
 
 {% if true %}
+{% assign markets = false %}
+{% if section.settings.location_enable and localization.available_countries.size > 1 %}
+  {% assign markets = true %}
+{% endif %}
+{% if section.settings.language_enable and localization.available_languages.size > 1 %}
+  {% assign markets = true %}
+{% endif %}
+
 <footer
   id="{{ section.id }}"
   class="site-footer kaahu-footer"
@@ -290,9 +298,70 @@
           {% render 'icon-instagram' %}
         </a>
       {%- endif -%}
+    </div>
 
-      {%- if section.settings.kaahu_footer_copyright != blank -%}
-        <div class="kaahu-footer__copyright">{{ section.settings.kaahu_footer_copyright }}</div>
+    <div class="kaahu-footer__legal">
+      {%- if section.settings.show_policies or section.settings.sub_footer_linklist != blank or markets == true -%}
+        <div class="kaahu-footer__legal-links">
+          <ul class="kaahu-footer__policies" role="list">
+            {%- for link in section.settings.sub_footer_linklist.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+            {%- if section.settings.show_policies -%}
+              {%- for policy in shop.policies -%}
+                {%- if policy != blank -%}
+                  <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if markets == true -%}
+              <li>
+                {%- if section.settings.location_enable and localization.available_countries.size > 1 -%}
+                  {%- if section.settings.show_location_labels -%}{{ 'localization.country_label' | t }}: {%- endif -%}
+                  <button class="button--inline-underline market-selector--opener">
+                    {%- if section.settings.location_format == 'code' -%}{{ localization.country.iso_code | upcase }}{%- else -%}{{ localization.country.name }}{%- endif -%}
+                    {%- if section.settings.show_currency_symbol %} ({{ localization.country.currency.symbol }}){%- endif -%}
+                  </button>
+                {%- endif -%}
+                {%- if section.settings.location_enable and localization.available_countries.size > 1 and section.settings.language_enable and localization.available_languages.size > 1 -%}<span class="footer-lang-bullet">&bull;</span>{%- endif -%}
+                {%- if section.settings.language_enable and localization.available_languages.size > 1 -%}
+                  {%- if section.settings.show_location_labels -%}{{ 'localization.language_label' | t }}: {%- endif -%}
+                  <button class="button--inline-underline market-language-selector--opener" id="langSelectorOpener" aria-label="{{ localization.language.endonym_name | capitalize }}">{{ localization.language.endonym_name | capitalize }}</button>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="kaahu-footer__legal-meta">
+        <span class="kaahu-footer__copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</span>
+        {%- if section.settings.sub_footer_single_link_label != blank -%}
+          <a class="kaahu-footer__single-link" href="{{ section.settings.sub_footer_single_link }}">{{ section.settings.sub_footer_single_link_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.show_powered_by -%}
+          {{ powered_by_link }}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.payment_enable -%}
+        {%- capture clip_id -%}
+          {{ section.id }}-kaahu-pi-
+        {%- endcapture -%}
+        <div class="kaahu-footer__payments">
+          <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+          <ul class="payments_list_ftr" role="list">
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="list-payment__item">
+                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' | replace: 'pi-', clip_id }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.follow_shop_enable -%}
+        <div class="kaahu-footer__follow-shop">{% # theme-check-disable %}{{ shop | login_button: action: 'follow' }}{% # theme-check-enable %}</div>
       {%- endif -%}
     </div>
   </div>
