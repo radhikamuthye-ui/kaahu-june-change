@@ -176,6 +176,19 @@
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .kaahu-value-cards__list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .kaahu-value-cards__card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+}
+
 @media only screen and (max-width: 520px) {
   .kaahu-value-cards__card {
     align-items: flex-start;
