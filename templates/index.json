@@ -440,7 +440,7 @@
             "icon": "shopify://shop_images/honor_heritage_87a5b356-075b-4aab-8c63-3dea9f82f94a.png",
             "fallback_icon": "tree",
             "title": "HONOR HERITAGE",
-            "body": "<p>Bengal jute and Bangla script woven into every design  honoring the roots and heritage textiles that inspire us.</p>"
+            "body": "<p>Bengal jute and Bangla script woven into every design — honoring the roots and heritage textiles that inspire us.</p>"
           }
         },
         "value_card_jute": {
@@ -449,7 +449,7 @@
             "icon": "shopify://shop_images/Jute.svg",
             "fallback_icon": "leaf",
             "title": "REGENERATIVE JUTE",
-            "body": "<p>Our jute absorbs up to 15 tons of CO₂ per hectare the ‘Golden Fibre’ that gives back more than it takes.</p>"
+            "body": "<p>Our jute absorbs up to 15 tons of CO₂ per hectare — the ‘Golden Fibre’ that gives back more than it takes.</p>"
           }
         },
         "value_card_cotton": {
@@ -458,7 +458,7 @@
             "icon": "shopify://shop_images/Cotton.svg",
             "fallback_icon": "cotton",
             "title": "ORGANIC COTTON",
-            "body": "<p>100% GOTS-certified organic cotton saves 91% more water than conventional crops, with every fibre.</p>"
+            "body": "<p>100% GOTS-certified organic cotton saves 91% more water than conventional crops, every fibre.</p>"
           }
         },
         "value_card_waste": {
@@ -467,7 +467,7 @@
             "icon": "shopify://shop_images/reduce_waste.svg",
             "fallback_icon": "planet",
             "title": "REDUCE WASTE",
-            "body": "<p>Algae-based inks, water-activated tape and biodegradable packaging our commitment down to every detail.</p>"
+            "body": "<p>Algae-based inks, water-activated tape and biodegradable packaging — down to every detail.</p>"
           }
         }
       },
@@ -483,19 +483,19 @@
         "subheading": "<p>Every Kaahu piece is made to give back to the planet and to the craft that raised us.</p>",
         "padding_top": 40,
         "padding_bottom": 40,
-        "page_width": 1700,
+        "page_width": 1000,
         "header_cards_gap_mobile": 24,
         "header_cards_gap_desktop": 28,
-        "grid_gap_mobile": 16,
-        "grid_gap_desktop": 18,
+        "grid_gap_mobile": 24,
+        "grid_gap_desktop": 28,
         "card_min_height_mobile": 220,
         "card_min_height_desktop": 260,
         "card_padding_mobile": 20,
         "card_padding_desktop": 24,
-        "card_radius": 14,
-        "icon_size_mobile": 62,
-        "icon_size_desktop": 64,
-        "icon_image_scale": 210,
+        "card_radius": 28,
+        "icon_size_mobile": 82,
+        "icon_size_desktop": 86,
+        "icon_image_scale": 160,
         "icon_bottom_spacing_mobile": 16,
         "icon_bottom_spacing_desktop": 18,
         "background_color": "#fbfaf7",
