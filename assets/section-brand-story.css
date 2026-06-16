@@ -106,7 +106,7 @@
 
 .brand-story__body {
   max-width: var(--bs-body-max-width);
-  margin-top: 30px;
+  margin-top: 20px;
   color: var(--bs-body-color);
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-size-mobile);
@@ -162,7 +162,7 @@
   padding-bottom: 8px;
   color: var(--bs-button-color);
   font-family: var(--font-accent-family);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.14em;
   line-height: 1;

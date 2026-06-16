@@ -113,14 +113,14 @@
   align-items: center;
   justify-content: center;
   min-height: 46px;
-  margin-top: 34px;
+  margin-top: 28px;
   padding: 0 28px;
   border: 1px solid var(--kim-button-border);
   border-radius: 999px;
   color: var(--kim-button-text);
   background: var(--kim-button-bg);
   font-family: var(--font-accent-family);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
