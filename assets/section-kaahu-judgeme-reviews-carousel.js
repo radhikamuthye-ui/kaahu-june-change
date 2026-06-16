@@ -1,5 +1,8 @@
 class KaahuReviewsCarousel extends HTMLElement {
   connectedCallback() {
+    if (this.initialized) return;
+    this.initialized = true;
+
     this.track = this.querySelector('[data-reviews-track]');
     if (!this.track) return;
 
@@ -10,24 +13,29 @@ class KaahuReviewsCarousel extends HTMLElement {
     this.autoplay = this.dataset.autoplay === 'true';
     this.pauseHover = this.dataset.pauseHover === 'true';
     this.dragEnabled = this.dataset.drag === 'true';
-    this.speed = 28;
-    this.frame = null;
-    this.lastFrame = null;
-    this.loopWidth = 0;
+    this.speed = parseInt(this.dataset.speed, 10) || 5000;
+    this.timer = null;
+    this.restartTimer = null;
+    this.userPaused = false;
 
     this.prev?.addEventListener('click', () => this.go(-1));
     this.next?.addEventListener('click', () => this.go(1));
     this.dots.forEach((dot, index) => dot.addEventListener('click', () => this.scrollToCard(index)));
-    this.track.addEventListener('scroll', () => this.updateDots(), { passive: true });
-    this.track.addEventListener('focusin', () => this.stop());
-    this.track.addEventListener('focusout', () => this.start());
+    this.track.addEventListener('scroll', () => {
+      this.updateDots();
+      if (this.userPaused) this.queueRestart();
+    }, { passive: true });
+    this.track.addEventListener('wheel', () => this.handleUserInteraction(), { passive: true });
+    this.track.addEventListener('touchstart', () => this.handleUserInteraction(), { passive: true });
+    this.track.addEventListener('keydown', () => this.handleUserInteraction());
+    this.track.addEventListener('focusin', () => this.pause());
+    this.track.addEventListener('focusout', () => this.resume());
 
     if (this.pauseHover) {
-      this.addEventListener('mouseenter', () => this.stop());
-      this.addEventListener('mouseleave', () => this.start());
+      this.addEventListener('mouseenter', () => this.pause());
+      this.addEventListener('mouseleave', () => this.resume());
     }
 
-    if (this.autoplay && this.cards.length > 1) this.cloneCards();
     if (this.dragEnabled) this.enableDrag();
     this.updateDots();
     this.start();
@@ -35,6 +43,7 @@ class KaahuReviewsCarousel extends HTMLElement {
 
   disconnectedCallback() {
     this.stop();
+    window.clearTimeout(this.restartTimer);
   }
 
   cardStep() {
@@ -45,7 +54,18 @@ class KaahuReviewsCarousel extends HTMLElement {
   }
 
   go(direction) {
-    if (direction < 0 && this.track.scrollLeft <= 2 && this.loopWidth) this.track.scrollLeft = this.loopWidth;
+    const maxScroll = Math.max(0, this.track.scrollWidth - this.track.clientWidth);
+
+    if (direction > 0 && this.track.scrollLeft >= maxScroll - 4) {
+      this.track.scrollTo({ left: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (direction < 0 && this.track.scrollLeft <= 4) {
+      this.track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      return;
+    }
+
     this.track.scrollBy({ left: direction * this.cardStep(), behavior: 'smooth' });
   }
 
@@ -68,49 +88,38 @@ class KaahuReviewsCarousel extends HTMLElement {
         active = index;
       }
     });
-    this.dots.forEach((dot, index) => dot.classList.toggle('is-active', index === active));
+    this.dots.forEach((dot, index) => dot.classList.toggle('is-active', index === active % this.dots.length));
   }
 
   start() {
-    if (!this.autoplay || this.frame || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    this.lastFrame = null;
-    this.frame = window.requestAnimationFrame((timestamp) => this.tick(timestamp));
+    if (!this.autoplay || this.timer || this.cards.length <= 1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.timer = window.setInterval(() => this.go(1), this.speed);
   }
 
   stop() {
-    window.cancelAnimationFrame(this.frame);
-    this.frame = null;
-    this.lastFrame = null;
+    window.clearInterval(this.timer);
+    this.timer = null;
   }
 
-  cloneCards() {
-    if (this.track.dataset.cloned === 'true') return;
-    this.cards.forEach((card) => {
-      const clone = card.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.removeAttribute('data-shopify-editor-block');
-      this.track.appendChild(clone);
-    });
-    this.track.dataset.cloned = 'true';
-    window.requestAnimationFrame(() => {
-      const firstClone = this.track.children[this.cards.length];
-      this.loopWidth = firstClone ? firstClone.offsetLeft : 0;
-    });
+  pause() {
+    this.userPaused = true;
+    this.stop();
   }
 
-  tick(timestamp) {
-    if (!this.frame) return;
-    if (this.lastFrame === null) this.lastFrame = timestamp;
+  resume() {
+    this.userPaused = false;
+    window.clearTimeout(this.restartTimer);
+    this.start();
+  }
 
-    const elapsed = timestamp - this.lastFrame;
-    this.lastFrame = timestamp;
-    this.track.scrollLeft += (this.speed * elapsed) / 1000;
+  queueRestart() {
+    window.clearTimeout(this.restartTimer);
+    this.restartTimer = window.setTimeout(() => this.resume(), 1400);
+  }
 
-    if (this.loopWidth && this.track.scrollLeft >= this.loopWidth) {
-      this.track.scrollLeft -= this.loopWidth;
-    }
-
-    this.frame = window.requestAnimationFrame((nextTimestamp) => this.tick(nextTimestamp));
+  handleUserInteraction() {
+    this.pause();
+    this.queueRestart();
   }
 
   enableDrag() {
@@ -124,7 +133,7 @@ class KaahuReviewsCarousel extends HTMLElement {
       scrollLeft = this.track.scrollLeft;
       this.track.classList.add('is-dragging');
       this.track.setPointerCapture(event.pointerId);
-      this.stop();
+      this.pause();
     });
 
     this.track.addEventListener('pointermove', (event) => {
@@ -137,7 +146,7 @@ class KaahuReviewsCarousel extends HTMLElement {
       if (!down) return;
       down = false;
       this.track.classList.remove('is-dragging');
-      this.start();
+      this.queueRestart();
     };
 
     this.track.addEventListener('pointerup', end);

@@ -142,7 +142,7 @@
         "show_metadata": true,
         "autoplay": true,
         "autoplay_speed": 10,
-        "pause_on_hover": true,
+        "pause_on_hover": false,
         "enable_drag": true,
         "show_arrows": false,
         "show_dots": false,

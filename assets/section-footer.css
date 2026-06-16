@@ -513,6 +513,9 @@
 }
 
 .footer-block-heading {
+  font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
+  font-weight: var(--font-accent-weight);
   text-align: left;
   margin-bottom: var(--footer-column-heading-margin);
   opacity: 1;
@@ -542,6 +545,9 @@
 }
 
 .footer-block-column p {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   margin: 0;
 }
 
@@ -551,6 +557,9 @@
 }
 
 .footer-block-column a {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   padding: 3px 0;
   display: block;
 }
@@ -1296,6 +1305,9 @@
 .kaahu-footer {
   background: var(--kf-bg);
   color: var(--kf-text);
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   padding: 0;
 }
 
@@ -1319,6 +1331,8 @@
 .kaahu-footer__heading {
   margin: 0 0 var(--kf-heading-link-gap, 18px);
   color: var(--kf-link-hover);
+  font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
   font-size: var(--kf-heading-size, 13px);
   font-weight: var(--kf-heading-weight, 700);
   letter-spacing: var(--kf-heading-letter-spacing, 0.18em);
@@ -1342,6 +1356,8 @@
   display: inline-flex;
   min-height: 28px;
   align-items: center;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
   font-size: var(--kf-link-size-mobile, 17px);
   font-weight: var(--kf-link-weight, 400);
   line-height: var(--kf-link-line-height, 1.45);
@@ -1360,6 +1376,8 @@
   max-width: 360px;
   margin: 0 0 var(--kf-newsletter-heading-form-gap, 24px);
   color: var(--kf-newsletter-heading-color);
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
   font-size: var(--kf-newsletter-heading-size-mobile, 24px);
   font-weight: var(--kf-newsletter-heading-weight, 400);
   line-height: var(--kf-newsletter-heading-line-height, 1.12);
@@ -1387,6 +1405,9 @@
   border: 0;
   background: transparent;
   color: var(--kf-link-hover);
+  font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
+  font-weight: var(--font-accent-weight);
   font-size: 14px;
   letter-spacing: 0.08em;
   padding: 0 18px;
@@ -1428,6 +1449,9 @@
   max-width: 360px;
   margin: 20px 0 0;
   color: var(--kf-text);
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   font-size: 15px;
   line-height: 1.55;
 }
@@ -1480,9 +1504,10 @@
 
 .kaahu-footer__tagline {
   color: var(--kf-tagline-color);
-  font-family: var(--font-heading-family);
+  font-family: var(--font-body-family);
   font-size: var(--kf-tagline-size, 14px);
-  font-style: italic;
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   line-height: 1.2;
 }
 
@@ -1505,6 +1530,9 @@
 
 .kaahu-footer__copyright {
   color: var(--kf-copyright-color);
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   font-size: var(--kf-copyright-size, 13px);
   line-height: 1.4;
 }

@@ -20,8 +20,9 @@
   margin-bottom: 10px;
   color: var(--kjrc-eyebrow-color);
   font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
   font-size: var(--kjrc-eyebrow-size);
-  font-weight: 700;
+  font-weight: var(--font-accent-weight);
   letter-spacing: var(--kjrc-eyebrow-spacing);
   line-height: 1.2;
   text-transform: uppercase;
@@ -33,7 +34,7 @@
   font-family: var(--font-heading-family);
   font-size: var(--kjrc-heading-size-mobile);
   font-style: var(--font-heading-style, normal);
-  font-weight: 600;
+  font-weight: var(--font-heading-weight);
   line-height: 1.08;
   letter-spacing: 0;
 }
@@ -126,8 +127,9 @@
   background: #e9e5dc;
   color: rgba(36, 34, 31, 0.58);
   font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: var(--font-body-weight);
 }
 
 .kaahu-judgeme-reviews__card-body {
@@ -184,8 +186,9 @@
   color: var(--kjrc-avatar-text);
   background: var(--kjrc-avatar-bg);
   font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: var(--font-accent-weight);
   letter-spacing: 0;
 }
 
@@ -198,8 +201,9 @@
 .kaahu-judgeme-reviews__name {
   color: var(--kjrc-name-color);
   font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -207,6 +211,8 @@
 .kaahu-judgeme-reviews__meta {
   color: var(--kjrc-meta-color);
   font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
   font-size: 12px;
   line-height: 1.25;
 }
