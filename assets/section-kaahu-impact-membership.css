@@ -112,17 +112,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  margin-top: 28px;
-  padding: 0 28px;
+  min-height: var(--kim-button-height);
+  margin-top: var(--kim-button-top-spacing);
+  padding: 0 var(--kim-button-x-padding);
   border: 1px solid var(--kim-button-border);
   border-radius: 999px;
   color: var(--kim-button-text);
   background: var(--kim-button-bg);
   font-family: var(--font-accent-family);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: var(--kim-button-size-mobile);
+  font-style: var(--font-accent-style);
+  font-weight: var(--kim-button-weight);
+  letter-spacing: var(--kim-button-letter-spacing);
   line-height: 1;
   text-decoration: none;
   text-transform: uppercase;
@@ -195,6 +196,10 @@
 
   .kaahu-impact-membership__body {
     font-size: var(--kim-body-size-desktop);
+  }
+
+  .kaahu-impact-membership__button {
+    font-size: var(--kim-button-size-desktop);
   }
 }
 

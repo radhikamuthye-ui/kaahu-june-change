@@ -143,17 +143,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 54px;
-  margin-top: 32px;
-  padding: 0 36px;
+  gap: 8px;
+  min-height: var(--kpr-button-height);
+  margin-top: var(--kpr-button-top-spacing);
+  padding: 0 var(--kpr-button-x-padding);
   border: 1px solid var(--kpr-button-border);
   border-radius: 999px;
   color: var(--kpr-button-text);
   background: transparent;
   font-family: var(--font-accent-family);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--kpr-button-size-mobile);
+  font-style: var(--font-accent-style);
+  font-weight: var(--kpr-button-weight);
+  letter-spacing: var(--kpr-button-letter-spacing);
+  line-height: 1;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -175,5 +178,9 @@
 
   .kaahu-product-reviews__cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kaahu-product-reviews__button {
+    font-size: var(--kpr-button-size-desktop);
   }
 }

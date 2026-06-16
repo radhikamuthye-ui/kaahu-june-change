@@ -191,16 +191,17 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 48px;
-  padding: 0 26px;
+  min-height: var(--kcb-button-height);
+  padding: 0 var(--kcb-button-x-padding);
   border: 1px solid var(--kcb-button-border);
   border-radius: var(--kcb-button-radius);
   background: var(--kcb-button-bg);
   color: var(--kcb-button-color);
   font-family: var(--font-accent-family);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: var(--kcb-button-size-mobile);
+  font-style: var(--font-accent-style);
+  font-weight: var(--kcb-button-weight);
+  letter-spacing: var(--kcb-button-letter-spacing);
   line-height: 1;
   text-decoration: none;
   text-transform: uppercase;
@@ -229,8 +230,8 @@
 }
 
 .kaahu-community-board__button-icon {
-  width: 18px;
-  height: 18px;
+  width: var(--kcb-button-icon-size);
+  height: var(--kcb-button-icon-size);
 }
 
 .kaahu-community-board__button-icon .icon {
@@ -348,6 +349,10 @@
 
   .kaahu-community-board__cta-headline {
     font-size: var(--kcb-cta-size-desktop);
+  }
+
+  .kaahu-community-board__button {
+    font-size: var(--kcb-button-size-desktop);
   }
 }
 

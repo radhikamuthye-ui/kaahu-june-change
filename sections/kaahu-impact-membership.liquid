@@ -22,6 +22,13 @@
     --kim-button-hover-bg: {{ section.settings.button_hover_background_color }};
     --kim-button-hover-text: {{ section.settings.button_hover_text_color }};
     --kim-button-hover-border: {{ section.settings.button_hover_border_color }};
+    --kim-button-height: {{ section.settings.button_height | default: 46 }}px;
+    --kim-button-x-padding: {{ section.settings.button_x_padding | default: 28 }}px;
+    --kim-button-top-spacing: {{ section.settings.button_top_spacing | default: 28 }}px;
+    --kim-button-size-mobile: {{ section.settings.button_size_mobile | default: 14 }}px;
+    --kim-button-size-desktop: {{ section.settings.button_size_desktop | default: 14 }}px;
+    --kim-button-weight: {{ section.settings.button_font_weight | default: 700 }};
+    --kim-button-letter-spacing: {{ section.settings.button_letter_spacing | default: 8 | divided_by: 100.0 }}em;
     --kim-max-width: {{ section.settings.container_max_width }}px;
     --kim-section-padding-top: {{ section.settings.padding_top }}px;
     --kim-section-padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -615,6 +622,78 @@
         }
       ],
       "default": "outline"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Button height",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "button_x_padding",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Button horizontal padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "button_top_spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Space above button",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "button_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size on mobile",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_size_desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size on desktop",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "%",
+      "label": "Button letter spacing",
+      "default": 8
     },
     {
       "type": "color",

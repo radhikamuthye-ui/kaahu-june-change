@@ -67,6 +67,13 @@
     --kcb-button-hover-color: {{ section.settings.button_hover_text_color }};
     --kcb-button-hover-bg: {{ section.settings.button_hover_background_color }};
     --kcb-button-hover-border: {{ section.settings.button_hover_border_color }};
+    --kcb-button-height: {{ section.settings.button_height | default: 48 }}px;
+    --kcb-button-x-padding: {{ section.settings.button_x_padding | default: 26 }}px;
+    --kcb-button-size-mobile: {{ section.settings.button_size_mobile | default: 13 }}px;
+    --kcb-button-size-desktop: {{ section.settings.button_size_desktop | default: 13 }}px;
+    --kcb-button-weight: {{ section.settings.button_font_weight | default: 700 }};
+    --kcb-button-letter-spacing: {{ section.settings.button_letter_spacing | default: 10 | divided_by: 100.0 }}em;
+    --kcb-button-icon-size: {{ section.settings.button_icon_size | default: 18 }}px;
   }
 {%- endstyle -%}
 
@@ -750,6 +757,78 @@
       "unit": "px",
       "label": "Button border radius",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Button height",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "button_x_padding",
+      "min": 0,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Button horizontal padding",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "button_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size on mobile",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "button_size_desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size on desktop",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "%",
+      "label": "Button letter spacing",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "button_icon_size",
+      "min": 10,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Button icon size",
+      "default": 18
     },
     {
       "type": "color",
