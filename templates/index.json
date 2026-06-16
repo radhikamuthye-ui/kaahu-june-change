@@ -493,7 +493,7 @@
         "card_padding_mobile": 20,
         "card_padding_desktop": 24,
         "card_radius": 14,
-        "icon_size_mobile": 138,
+        "icon_size_mobile": 70,
         "icon_size_desktop": 108,
         "icon_image_scale": 210,
         "icon_bottom_spacing_mobile": 16,
