@@ -23,7 +23,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/shoppers"
           }
         },
         "slide_T4k7np": {
@@ -37,7 +37,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/fading-footprints-collection"
           }
         },
         "slide_N9VLnw": {
@@ -51,7 +51,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/messengers"
           }
         },
         "slide_one": {
@@ -65,7 +65,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/totes"
           }
         },
         "slide_two": {
@@ -79,7 +79,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/golden-jute"
           }
         }
       },
@@ -104,7 +104,7 @@
         "heading": "Carry what you truly value.",
         "text": "<p>Bold, functional bags woven from organic cotton & carbon-negative jute. Made to carry everything that matters, and built to last.</p>",
         "event_label": "Summer event",
-        "event_text": "20% off your first order",
+        "event_text": "20% off your entire order",
         "primary_label": "Shop the product",
         "primary_style": "solid",
         "primary_background_color": "#e5712a",
@@ -123,14 +123,14 @@
         "secondary_hover_text_color": "#242424",
         "secondary_hover_border_color": "#ffffff",
         "enable_autoplay": true,
-        "autoplay_interval": 5,
-        "transition_speed": 800,
+        "autoplay_interval": 3,
+        "transition_speed": 2000,
         "image_fade_duration": 3000,
         "lifestyle_image_zoom": 112,
         "product_image_zoom": 112,
         "fade_zoom_amount": 8,
         "transition_effect": "fade",
-        "show_controls": true,
+        "show_controls": false,
         "overlay_opacity": 45,
         "accent_color": "#e5712a",
         "divider_color": "#e89aba",
@@ -147,23 +147,23 @@
         "copy_bottom_spacing": 0,
         "event_top_spacing": 24,
         "buttons_top_spacing": 28,
-        "breadcrumb_size_mobile": 11,
-        "breadcrumb_size_desktop": 11,
-        "heading_size_mobile": 38,
-        "heading_size_desktop": 62,
-        "heading_font_weight": "600",
+        "breadcrumb_size_mobile": 10,
+        "breadcrumb_size_desktop": 10,
+        "heading_size_mobile": 29,
+        "heading_size_desktop": 29,
+        "heading_font_weight": "500",
         "heading_line_height": 100,
         "heading_letter_spacing": 0,
         "heading_color": "#ffffff",
-        "body_text_size_mobile": 16,
-        "body_text_size_desktop": 21,
+        "body_text_size_mobile": 14,
+        "body_text_size_desktop": 14,
         "body_text_font_weight": "400",
         "body_text_line_height": 145,
         "body_text_color": "#ffffff",
         "event_label_size_mobile": 11,
         "event_label_size_desktop": 11,
-        "event_text_size_mobile": 16,
-        "event_text_size_desktop": 20,
+        "event_text_size_mobile": 14,
+        "event_text_size_desktop": 14,
         "button_size_mobile": 14,
         "button_size_desktop": 14
       }
@@ -212,17 +212,17 @@
         "eyebrow_size_desktop": 14,
         "eyebrow_size_mobile": 13,
         "eyebrow_weight": "400",
-        "eyebrow_letter_spacing": 27,
-        "intro_size_desktop": 20,
-        "intro_size_mobile": 18,
+        "eyebrow_letter_spacing": 10,
+        "intro_size_desktop": 14,
+        "intro_size_mobile": 14,
         "intro_font_style": "italic",
         "heading_size_desktop": 42,
         "heading_size_mobile": 32,
         "heading_weight": "400",
         "heading_line_height": 105,
         "heading_max_width": 620,
-        "body_size_desktop": 15,
-        "body_size_mobile": 13,
+        "body_size_desktop": 14,
+        "body_size_mobile": 14,
         "body_line_height": 168,
         "body_max_width": 560,
         "show_cta": true,
