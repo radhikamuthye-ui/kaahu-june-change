@@ -5,97 +5,84 @@
     --kvc-bg: {{ section.settings.background_color }};
     --kvc-card-bg: {{ section.settings.card_background_color }};
     --kvc-card-border: {{ section.settings.card_border_color }};
+    --kvc-card-border-width: {{ section.settings.card_border_width }}px;
     --kvc-heading-color: {{ section.settings.heading_color }};
     --kvc-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --kvc-subheading-color: {{ section.settings.subheading_color }};
     --kvc-title-color: {{ section.settings.card_title_color }};
     --kvc-body-color: {{ section.settings.card_body_color }};
-    --kvc-subheading-color: {{ section.settings.subheading_color }};
     --kvc-icon-bg: {{ section.settings.icon_background_color }};
     --kvc-icon-color: {{ section.settings.icon_color }};
+    --kvc-page-width: {{ section.settings.page_width }}px;
+    --kvc-card-list-width: {{ section.settings.card_list_width }}px;
+    --kvc-header-width: {{ section.settings.header_width }}px;
+    --kvc-header-align: {{ section.settings.header_alignment }};
+    --kvc-edge-padding-mobile: {{ section.settings.edge_padding_mobile }}px;
+    --kvc-edge-padding-desktop: {{ section.settings.edge_padding_desktop }}px;
     --kvc-padding-top-mobile: {{ section.settings.padding_top | times: 0.68 | round }}px;
     --kvc-padding-bottom-mobile: {{ section.settings.padding_bottom | times: 0.72 | round }}px;
     --kvc-padding-top-desktop: {{ section.settings.padding_top }}px;
     --kvc-padding-bottom-desktop: {{ section.settings.padding_bottom }}px;
-    --kvc-page-width: {{ section.settings.page_width }}px;
-    --kvc-icon-size-mobile: {{ section.settings.icon_size_mobile }}px;
-    --kvc-icon-size-desktop: {{ section.settings.icon_size_desktop }}px;
-    --kvc-icon-image-scale: {{ section.settings.icon_image_scale | divided_by: 100.0 }};
-    --kvc-icon-bottom-spacing-mobile: {{ section.settings.icon_bottom_spacing_mobile }}px;
-    --kvc-icon-bottom-spacing-desktop: {{ section.settings.icon_bottom_spacing_desktop }}px;
-    --kvc-card-min-height-mobile: {{ section.settings.card_min_height_mobile }}px;
-    --kvc-card-min-height-desktop: {{ section.settings.card_min_height_desktop }}px;
-    --kvc-card-padding-mobile: {{ section.settings.card_padding_mobile }}px;
-    --kvc-card-padding-desktop: {{ section.settings.card_padding_desktop }}px;
-    --kvc-card-radius: {{ section.settings.card_radius }}px;
     --kvc-header-cards-gap-mobile: {{ section.settings.header_cards_gap_mobile }}px;
     --kvc-header-cards-gap-desktop: {{ section.settings.header_cards_gap_desktop }}px;
     --kvc-grid-gap-mobile: {{ section.settings.grid_gap_mobile }}px;
     --kvc-grid-gap-desktop: {{ section.settings.grid_gap_desktop }}px;
+    --kvc-card-min-height-mobile: {{ section.settings.card_min_height_mobile }}px;
+    --kvc-card-min-height-desktop: {{ section.settings.card_min_height_desktop }}px;
+    --kvc-card-padding-x-mobile: {{ section.settings.card_padding_x_mobile }}px;
+    --kvc-card-padding-y-mobile: {{ section.settings.card_padding_y_mobile }}px;
+    --kvc-card-padding-x-desktop: {{ section.settings.card_padding_x_desktop }}px;
+    --kvc-card-padding-y-desktop: {{ section.settings.card_padding_y_desktop }}px;
+    --kvc-card-column-gap-mobile: {{ section.settings.card_column_gap_mobile }}px;
+    --kvc-card-column-gap-desktop: {{ section.settings.card_column_gap_desktop }}px;
+    --kvc-card-radius: {{ section.settings.card_radius }}px;
+    --kvc-icon-size-mobile: {{ section.settings.icon_size_mobile }}px;
+    --kvc-icon-size-desktop: {{ section.settings.icon_size_desktop }}px;
+    --kvc-icon-image-scale: {{ section.settings.icon_image_scale | divided_by: 100.0 }};
+    --kvc-title-body-gap: {{ section.settings.title_body_gap }}px;
+    --kvc-title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --kvc-title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --kvc-title-font-weight: {{ section.settings.title_font_weight }};
+    --kvc-title-line-height: {{ section.settings.title_line_height | divided_by: 100.0 }};
+    --kvc-title-letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}em;
+    --kvc-body-size-mobile: {{ section.settings.body_size_mobile }}px;
+    --kvc-body-size-desktop: {{ section.settings.body_size_desktop }}px;
+    --kvc-body-font-weight: {{ section.settings.body_font_weight }};
+    --kvc-body-line-height: {{ section.settings.body_line_height | divided_by: 100.0 }};
   }
 {%- endstyle -%}
 
-<section
-  class="kaahu-value-cards section-{{ section.id }}"
-  style="
-    --kvc-bg: {{ section.settings.background_color }};
-    --kvc-card-bg: {{ section.settings.card_background_color }};
-    --kvc-card-border: {{ section.settings.card_border_color }};
-    --kvc-heading-color: {{ section.settings.heading_color }};
-    --kvc-eyebrow-color: {{ section.settings.eyebrow_color }};
-    --kvc-title-color: {{ section.settings.card_title_color }};
-    --kvc-body-color: {{ section.settings.card_body_color }};
-    --kvc-subheading-color: {{ section.settings.subheading_color }};
-    --kvc-icon-bg: {{ section.settings.icon_background_color }};
-    --kvc-icon-color: {{ section.settings.icon_color }};
-    --kvc-padding-top-mobile: {{ section.settings.padding_top | times: 0.68 | round }}px;
-    --kvc-padding-bottom-mobile: {{ section.settings.padding_bottom | times: 0.72 | round }}px;
-    --kvc-padding-top-desktop: {{ section.settings.padding_top }}px;
-    --kvc-padding-bottom-desktop: {{ section.settings.padding_bottom }}px;
-    --kvc-page-width: {{ section.settings.page_width }}px;
-    --kvc-icon-size-mobile: {{ section.settings.icon_size_mobile }}px;
-    --kvc-icon-size-desktop: {{ section.settings.icon_size_desktop }}px;
-    --kvc-icon-image-scale: {{ section.settings.icon_image_scale | divided_by: 100.0 }};
-    --kvc-icon-bottom-spacing-mobile: {{ section.settings.icon_bottom_spacing_mobile }}px;
-    --kvc-icon-bottom-spacing-desktop: {{ section.settings.icon_bottom_spacing_desktop }}px;
-    --kvc-card-min-height-mobile: {{ section.settings.card_min_height_mobile }}px;
-    --kvc-card-min-height-desktop: {{ section.settings.card_min_height_desktop }}px;
-    --kvc-card-padding-mobile: {{ section.settings.card_padding_mobile }}px;
-    --kvc-card-padding-desktop: {{ section.settings.card_padding_desktop }}px;
-    --kvc-card-radius: {{ section.settings.card_radius }}px;
-    --kvc-header-cards-gap-mobile: {{ section.settings.header_cards_gap_mobile }}px;
-    --kvc-header-cards-gap-desktop: {{ section.settings.header_cards_gap_desktop }}px;
-    --kvc-grid-gap-mobile: {{ section.settings.grid_gap_mobile }}px;
-    --kvc-grid-gap-desktop: {{ section.settings.grid_gap_desktop }}px;
-  "
->
+<section class="kaahu-value-cards section-{{ section.id }}">
   <div class="kaahu-value-cards__inner">
-    <div class="kaahu-value-cards__header">
-      {%- if section.settings.eyebrow != blank -%}
-        <div class="kaahu-value-cards__eyebrow">
-          <span class="kaahu-value-cards__eyebrow-mark" aria-hidden="true">
-            <svg viewBox="0 0 16 16" focusable="false">
-              <path d="M12.9 2.2c-2.9.2-5.2 1.1-6.9 2.8-1.6 1.6-2.4 3.7-2.2 6.3 2.6.2 4.7-.6 6.3-2.2 1.7-1.7 2.6-4 2.8-6.9Zm-6.6 7.5c.5-1.7 1.6-3.1 3.4-4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span>{{ section.settings.eyebrow }}</span>
-        </div>
-      {%- endif -%}
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="kaahu-value-cards__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="kaahu-value-cards__eyebrow">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
 
-      {%- if section.settings.heading != blank -%}
-        <h2 class="kaahu-value-cards__heading">{{ section.settings.heading }}</h2>
-      {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="kaahu-value-cards__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
 
-      {%- if section.settings.subheading != blank -%}
-        <div class="kaahu-value-cards__subheading rte">{{ section.settings.subheading }}</div>
-      {%- endif -%}
-    </div>
+        {%- if section.settings.subheading != blank -%}
+          <div class="kaahu-value-cards__subheading rte">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
-    <div class="kaahu-value-cards__grid">
+    <div class="kaahu-value-cards__list">
       {%- for block in section.blocks -%}
         <article class="kaahu-value-cards__card" {{ block.shopify_attributes }}>
           <div class="kaahu-value-cards__icon-wrap">
             {%- if block.settings.icon != blank -%}
-              {{ block.settings.icon | image_url: width: 320 | image_tag: loading: 'lazy', class: 'kaahu-value-cards__icon-image', alt: block.settings.title | escape }}
+              {{
+                block.settings.icon
+                | image_url: width: 320
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'kaahu-value-cards__icon-image',
+                  alt: block.settings.title
+              }}
             {%- else -%}
               <span class="kaahu-value-cards__icon-fallback kaahu-value-cards__icon-fallback--{{ block.settings.fallback_icon }}" aria-hidden="true">
                 {%- case block.settings.fallback_icon -%}
@@ -128,13 +115,15 @@
             {%- endif -%}
           </div>
 
-          {%- if block.settings.title != blank -%}
-            <h3 class="kaahu-value-cards__title">{{ block.settings.title }}</h3>
-          {%- endif -%}
+          <div class="kaahu-value-cards__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="kaahu-value-cards__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
 
-          {%- if block.settings.body != blank -%}
-            <div class="kaahu-value-cards__body rte">{{ block.settings.body }}</div>
-          {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <div class="kaahu-value-cards__body rte">{{ block.settings.body }}</div>
+            {%- endif -%}
+          </div>
         </article>
       {%- endfor -%}
     </div>
@@ -171,7 +160,28 @@
       "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "<p>Every Kaahu piece is made to give back — to the planet and to the craft that raised us.</p>"
+      "default": "<p>Every Kaahu piece is made to give back to the planet and to the craft that raised us.</p>"
+    },
+    {
+      "type": "range",
+      "id": "header_width",
+      "min": 360,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "label": "Header width",
+      "default": 620
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
     },
     {
       "type": "header",
@@ -180,72 +190,102 @@
     {
       "type": "range",
       "id": "padding_top",
-      "min": 40,
-      "max": 220,
+      "min": 0,
+      "max": 160,
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 144
+      "default": 40
     },
     {
       "type": "range",
       "id": "padding_bottom",
-      "min": 40,
-      "max": 200,
+      "min": 0,
+      "max": 160,
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 76
+      "default": 40
     },
     {
       "type": "range",
       "id": "page_width",
-      "min": 1000,
-      "max": 1700,
+      "min": 640,
+      "max": 1600,
       "step": 20,
       "unit": "px",
-      "label": "Content width",
-      "default": 1420
+      "label": "Section width",
+      "default": 1000
     },
     {
       "type": "range",
-      "id": "header_cards_gap_mobile",
-      "min": 12,
-      "max": 96,
-      "step": 2,
+      "id": "card_list_width",
+      "min": 520,
+      "max": 1100,
+      "step": 20,
       "unit": "px",
-      "label": "Space between text and cards on mobile",
-      "default": 36
+      "label": "Card list width",
+      "default": 900
     },
     {
       "type": "range",
-      "id": "header_cards_gap_desktop",
-      "min": 16,
-      "max": 120,
-      "step": 2,
-      "unit": "px",
-      "label": "Space between text and cards on desktop",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "grid_gap_mobile",
-      "min": 12,
+      "id": "edge_padding_mobile",
+      "min": 14,
       "max": 48,
       "step": 2,
       "unit": "px",
-      "label": "Card gap on mobile/tablet",
+      "label": "Side padding on mobile",
       "default": 20
     },
     {
       "type": "range",
-      "id": "grid_gap_desktop",
-      "min": 16,
+      "id": "edge_padding_desktop",
+      "min": 24,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "label": "Side padding on desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "header_cards_gap_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between text and cards on mobile",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "header_cards_gap_desktop",
+      "min": 0,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between text and cards on desktop",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "min": 10,
       "max": 56,
       "step": 2,
       "unit": "px",
+      "label": "Card gap on mobile",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_desktop",
+      "min": 10,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
       "label": "Card gap on desktop",
-      "default": 26
+      "default": 28
     },
     {
       "type": "header",
@@ -254,52 +294,102 @@
     {
       "type": "range",
       "id": "card_min_height_mobile",
-      "min": 160,
-      "max": 520,
+      "min": 120,
+      "max": 320,
       "step": 10,
       "unit": "px",
       "label": "Card minimum height on mobile",
-      "default": 300
+      "default": 170
     },
     {
       "type": "range",
       "id": "card_min_height_desktop",
       "min": 120,
-      "max": 620,
+      "max": 360,
       "step": 10,
       "unit": "px",
       "label": "Card minimum height on desktop",
-      "default": 360
+      "default": 180
     },
     {
       "type": "range",
-      "id": "card_padding_mobile",
-      "min": 12,
+      "id": "card_padding_x_mobile",
+      "min": 16,
       "max": 64,
       "step": 2,
       "unit": "px",
-      "label": "Card padding on mobile",
-      "default": 32
+      "label": "Horizontal padding on mobile",
+      "default": 28
     },
     {
       "type": "range",
-      "id": "card_padding_desktop",
-      "min": 12,
-      "max": 80,
+      "id": "card_padding_y_mobile",
+      "min": 16,
+      "max": 64,
       "step": 2,
       "unit": "px",
-      "label": "Card padding on desktop",
-      "default": 44
+      "label": "Vertical padding on mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_padding_x_desktop",
+      "min": 20,
+      "max": 88,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding on desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_padding_y_desktop",
+      "min": 20,
+      "max": 88,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding on desktop",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_column_gap_mobile",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon to text gap on mobile",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_column_gap_desktop",
+      "min": 18,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon to text gap on desktop",
+      "default": 32
     },
     {
       "type": "range",
       "id": "card_radius",
       "min": 0,
-      "max": 36,
+      "max": 40,
       "step": 2,
       "unit": "px",
       "label": "Card corner radius",
-      "default": 18
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
     },
     {
       "type": "header",
@@ -308,22 +398,22 @@
     {
       "type": "range",
       "id": "icon_size_mobile",
-      "min": 56,
+      "min": 52,
       "max": 140,
       "step": 2,
       "unit": "px",
       "label": "Icon size on mobile",
-      "default": 88
+      "default": 82
     },
     {
       "type": "range",
       "id": "icon_size_desktop",
-      "min": 64,
+      "min": 56,
       "max": 160,
       "step": 2,
       "unit": "px",
       "label": "Icon size on desktop",
-      "default": 96
+      "default": 86
     },
     {
       "type": "range",
@@ -334,27 +424,115 @@
       "unit": "%",
       "label": "Image scale inside icon",
       "info": "Increase this when uploaded icon files have extra whitespace around the artwork.",
-      "default": 100
+      "default": 160
+    },
+    {
+      "type": "header",
+      "content": "Typography"
     },
     {
       "type": "range",
-      "id": "icon_bottom_spacing_mobile",
-      "min": 16,
-      "max": 56,
-      "step": 2,
+      "id": "title_body_gap",
+      "min": 4,
+      "max": 24,
+      "step": 1,
       "unit": "px",
-      "label": "Space below icon on mobile",
-      "default": 28
+      "label": "Space below card title",
+      "default": 12
     },
     {
       "type": "range",
-      "id": "icon_bottom_spacing_desktop",
-      "min": 18,
-      "max": 72,
-      "step": 2,
+      "id": "title_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
       "unit": "px",
-      "label": "Space below icon on desktop",
-      "default": 36
+      "label": "Title size on mobile",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size on desktop",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 100,
+      "max": 150,
+      "step": 1,
+      "unit": "%",
+      "label": "Title line height",
+      "default": 118
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "label": "Title letter spacing",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Body size on mobile",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "body_size_desktop",
+      "min": 13,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Body size on desktop",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "body_font_weight",
+      "label": "Body font weight",
+      "options": [
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "min": 120,
+      "max": 180,
+      "step": 1,
+      "unit": "%",
+      "label": "Body line height",
+      "default": 150
     },
     {
       "type": "header",
@@ -400,13 +578,13 @@
       "type": "color",
       "id": "card_title_color",
       "label": "Card title",
-      "default": "#414A29"
+      "default": "#414a29"
     },
     {
       "type": "color",
       "id": "card_body_color",
       "label": "Card body",
-      "default": "#7a746d"
+      "default": "#6f6962"
     },
     {
       "type": "color",
@@ -418,7 +596,7 @@
       "type": "color",
       "id": "icon_color",
       "label": "Fallback icon color",
-      "default": "#414A29"
+      "default": "#414a29"
     }
   ],
   "blocks": [
@@ -437,22 +615,10 @@
           "id": "fallback_icon",
           "label": "Fallback icon",
           "options": [
-            {
-              "value": "tree",
-              "label": "Heritage tree"
-            },
-            {
-              "value": "leaf",
-              "label": "Jute leaf"
-            },
-            {
-              "value": "cotton",
-              "label": "Cotton"
-            },
-            {
-              "value": "planet",
-              "label": "Planet"
-            }
+            { "value": "tree", "label": "Heritage tree" },
+            { "value": "leaf", "label": "Jute leaf" },
+            { "value": "cotton", "label": "Cotton" },
+            { "value": "planet", "label": "Planet" }
           ],
           "default": "tree"
         },
@@ -466,7 +632,7 @@
           "type": "richtext",
           "id": "body",
           "label": "Body",
-          "default": "<p>Bengal jute and Bangla script woven into every design — honoring the roots and heritage textiles that inspire us.</p>"
+          "default": "<p>Bengal jute and Bangla script woven into every design - honoring the roots and heritage textiles that inspire us.</p>"
         }
       ]
     }
@@ -475,18 +641,10 @@
     {
       "name": "Kaahu value cards",
       "blocks": [
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        }
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
       ]
     }
   ]

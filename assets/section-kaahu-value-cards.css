@@ -3,122 +3,104 @@
 }
 
 .kaahu-value-cards__inner {
-  width: min(calc(100% - 40px), var(--kvc-page-width, 760px));
+  width: min(calc(100% - (var(--kvc-edge-padding-mobile) * 2)), var(--kvc-page-width));
   margin: 0 auto;
   padding: var(--kvc-padding-top-mobile) 0 var(--kvc-padding-bottom-mobile);
 }
 
 .kaahu-value-cards__header {
-  max-width: 620px;
-  margin: 0 auto;
-  text-align: center;
+  max-width: var(--kvc-header-width);
+  margin: 0 auto var(--kvc-header-cards-gap-mobile);
+  text-align: var(--kvc-header-align);
 }
 
 .kaahu-value-cards__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  display: block;
+  margin: 0 0 12px;
   color: var(--kvc-eyebrow-color);
   font-family: var(--font-accent-family);
-  font-size: 10px;
-  font-style: var(--font-accent-style, normal);
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-style: var(--font-accent-style);
+  font-weight: var(--font-accent-weight);
   line-height: 1.2;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-.kaahu-value-cards__eyebrow-mark {
-  width: 14px;
-  height: 14px;
-  color: var(--kvc-title-color);
-}
-
-.kaahu-value-cards__eyebrow-mark svg {
-  display: block;
-  width: 100%;
-  height: 100%;
 }
 
 .kaahu-value-cards__heading {
   margin: 0;
   color: var(--kvc-heading-color);
   font-family: var(--font-heading-family);
-  font-size: 29px;
-  font-style: var(--font-heading-style, normal);
+  font-size: clamp(30px, 4.35vw, 58px);
+  font-style: var(--font-heading-style);
   font-weight: 500;
-  line-height: 1.02;
+  line-height: 1;
   letter-spacing: 0;
 }
 
 .kaahu-value-cards__subheading {
-  max-width: 560px;
-  margin: 14px auto 0;
+  max-width: 620px;
+  margin: 16px auto 0;
   color: var(--kvc-subheading-color);
   font-family: var(--font-body-family);
-  font-size: 14px;
-  font-style: var(--font-body-style, normal);
+  font-size: clamp(15px, 1.45vw, 20px);
+  font-style: var(--font-body-style);
   font-weight: 400;
   line-height: 1.45;
 }
 
-.kaahu-value-cards__subheading p {
+.kaahu-value-cards__subheading p,
+.kaahu-value-cards__body p {
   margin: 0;
 }
 
-.kaahu-value-cards__grid {
+.kaahu-value-cards__list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--kvc-grid-gap-mobile, 20px) !important;
-  margin-top: var(--kvc-header-cards-gap-mobile, 36px);
+  gap: var(--kvc-grid-gap-mobile);
+  max-width: var(--kvc-card-list-width);
+  margin: 0 auto;
 }
 
 .kaahu-value-cards__card {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
-  column-gap: 24px;
-  min-width: 0;
-  min-height: min(var(--kvc-card-min-height-mobile, 300px), 168px) !important;
-  padding: var(--kvc-card-padding-mobile, 32px) !important;
-  border: 1px solid var(--kvc-card-border);
-  border-radius: var(--kvc-card-radius, 18px);
+  grid-template-columns: var(--kvc-icon-size-mobile) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--kvc-card-column-gap-mobile);
+  min-height: var(--kvc-card-min-height-mobile);
+  padding: var(--kvc-card-padding-y-mobile) var(--kvc-card-padding-x-mobile);
+  border: var(--kvc-card-border-width) solid var(--kvc-card-border);
+  border-radius: var(--kvc-card-radius);
   background: var(--kvc-card-bg);
   box-sizing: border-box;
+}
+
+.kaahu-value-cards__icon-wrap,
+.kaahu-value-cards__icon-image,
+.kaahu-value-cards__icon-fallback {
+  width: var(--kvc-icon-size-mobile);
+  height: var(--kvc-icon-size-mobile);
+  border-radius: 50%;
 }
 
 .kaahu-value-cards__icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--kvc-icon-size-mobile, 88px) !important;
-  height: var(--kvc-icon-size-mobile, 88px) !important;
-  margin-bottom: 0;
-  flex: 0 0 auto;
-  line-height: 0;
   overflow: hidden;
-  border-radius: 50%;
-}
-
-.kaahu-value-cards__icon-image,
-.kaahu-value-cards__icon-fallback {
-  display: block;
-  width: var(--kvc-icon-size-mobile, 88px) !important;
-  height: var(--kvc-icon-size-mobile, 88px) !important;
-  border-radius: 50%;
+  line-height: 0;
 }
 
 .kaahu-value-cards__icon-image {
-  max-width: none !important;
+  display: block;
+  max-width: none;
   object-fit: contain;
-  object-position: center center;
-  transform: scale(var(--kvc-icon-image-scale, 1));
-  transform-origin: center center;
+  object-position: center;
+  transform: scale(var(--kvc-icon-image-scale));
+  transform-origin: center;
 }
 
 .kaahu-value-cards__icon-fallback {
+  display: block;
   color: var(--kvc-icon-color);
   background: var(--kvc-icon-bg);
 }
@@ -129,15 +111,19 @@
   height: 100%;
 }
 
+.kaahu-value-cards__content {
+  min-width: 0;
+}
+
 .kaahu-value-cards__title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--kvc-title-body-gap);
   color: var(--kvc-title-color);
-  font-family: var(--font-body-family);
-  font-size: 15px;
-  font-style: var(--font-body-style, normal);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.18;
+  font-family: var(--font-accent-family);
+  font-size: var(--kvc-title-size-mobile);
+  font-style: var(--font-accent-style);
+  font-weight: var(--kvc-title-font-weight);
+  line-height: var(--kvc-title-line-height);
+  letter-spacing: var(--kvc-title-letter-spacing);
   text-transform: uppercase;
   overflow-wrap: anywhere;
 }
@@ -145,89 +131,53 @@
 .kaahu-value-cards__body {
   color: var(--kvc-body-color);
   font-family: var(--font-body-family);
-  font-size: 16px;
-  font-style: var(--font-body-style, normal);
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: var(--kvc-body-size-mobile);
+  font-style: var(--font-body-style);
+  font-weight: var(--kvc-body-font-weight);
+  line-height: var(--kvc-body-line-height);
   overflow-wrap: anywhere;
-}
-
-.kaahu-value-cards__body p {
-  margin: 0;
 }
 
 @media only screen and (min-width: 750px) {
   .kaahu-value-cards__inner {
-    width: min(calc(100% - 84px), var(--kvc-page-width, 760px));
-  }
-
-  .kaahu-value-cards__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .kaahu-value-cards__inner {
-    width: min(calc(100% - 96px), var(--kvc-page-width, 760px));
+    width: min(calc(100% - (var(--kvc-edge-padding-desktop) * 2)), var(--kvc-page-width));
     padding-top: var(--kvc-padding-top-desktop);
     padding-bottom: var(--kvc-padding-bottom-desktop);
   }
 
-  .kaahu-value-cards__grid {
-    grid-template-columns: 1fr;
-    gap: var(--kvc-grid-gap-desktop, 26px) !important;
-    margin-top: var(--kvc-header-cards-gap-desktop, 48px);
+  .kaahu-value-cards__header {
+    margin-bottom: var(--kvc-header-cards-gap-desktop);
+  }
+
+  .kaahu-value-cards__list {
+    gap: var(--kvc-grid-gap-desktop);
   }
 
   .kaahu-value-cards__card {
-    min-height: min(var(--kvc-card-min-height-desktop, 360px), 168px) !important;
-    padding: var(--kvc-card-padding-desktop, 44px) !important;
-    column-gap: 28px;
+    grid-template-columns: var(--kvc-icon-size-desktop) minmax(0, 1fr);
+    gap: var(--kvc-card-column-gap-desktop);
+    min-height: var(--kvc-card-min-height-desktop);
+    padding: var(--kvc-card-padding-y-desktop) var(--kvc-card-padding-x-desktop);
   }
 
   .kaahu-value-cards__icon-wrap,
   .kaahu-value-cards__icon-image,
   .kaahu-value-cards__icon-fallback {
-    width: var(--kvc-icon-size-desktop, 96px) !important;
-    height: var(--kvc-icon-size-desktop, 96px) !important;
-  }
-
-  .kaahu-value-cards__icon-wrap {
-    margin-bottom: 0;
-  }
-
-  .kaahu-value-cards__eyebrow {
-    font-size: 11px;
-  }
-
-  .kaahu-value-cards__heading {
-    font-size: 30px;
+    width: var(--kvc-icon-size-desktop);
+    height: var(--kvc-icon-size-desktop);
   }
 
   .kaahu-value-cards__title {
-    font-size: 16px;
+    font-size: clamp(var(--kvc-title-size-mobile), 1.45vw, var(--kvc-title-size-desktop));
   }
 
   .kaahu-value-cards__body {
-    font-size: 18px;
+    font-size: clamp(var(--kvc-body-size-mobile), 1.8vw, var(--kvc-body-size-desktop));
   }
 }
 
 @media only screen and (max-width: 520px) {
-  .kaahu-value-cards__inner {
-    width: min(calc(100% - 28px), var(--kvc-page-width, 760px));
-  }
-
   .kaahu-value-cards__card {
-    column-gap: 16px;
-  }
-
-  .kaahu-value-cards__title {
-    font-size: 13px;
-  }
-
-  .kaahu-value-cards__body {
-    font-size: 14px;
-    line-height: 1.45;
+    align-items: flex-start;
   }
 }
