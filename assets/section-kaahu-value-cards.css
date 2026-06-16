@@ -176,7 +176,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 990px) {
   .kaahu-value-cards__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: stretch;
