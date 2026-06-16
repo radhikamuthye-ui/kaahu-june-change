@@ -216,6 +216,24 @@
     background-color 180ms ease;
 }
 
+.pps-buttons .pps-button--primary {
+  --pps-button-bg: var(--pps-primary-button-bg);
+  --pps-button-text: var(--pps-primary-button-text);
+  --pps-button-border: var(--pps-primary-button-border);
+  --pps-button-hover-bg: var(--pps-primary-button-hover-bg);
+  --pps-button-hover-text: var(--pps-primary-button-hover-text);
+  --pps-button-hover-border: var(--pps-primary-button-hover-border);
+}
+
+.pps-buttons .pps-button--secondary {
+  --pps-button-bg: var(--pps-secondary-button-bg);
+  --pps-button-text: var(--pps-secondary-button-text);
+  --pps-button-border: var(--pps-secondary-button-border);
+  --pps-button-hover-bg: var(--pps-secondary-button-hover-bg);
+  --pps-button-hover-text: var(--pps-secondary-button-hover-text);
+  --pps-button-hover-border: var(--pps-secondary-button-hover-border);
+}
+
 .pps-buttons .pps-button--outline {
   background: transparent !important;
 }

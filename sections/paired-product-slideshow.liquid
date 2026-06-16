@@ -81,6 +81,18 @@
     --pps-button-font-weight: var(--font-accent-weight);
     --pps-button-size-mobile: {{ section.settings.button_size_mobile }}px;
     --pps-button-size-desktop: {{ section.settings.button_size_desktop }}px;
+    --pps-primary-button-bg: {{ section.settings.primary_background_color }};
+    --pps-primary-button-text: {{ section.settings.primary_text_color }};
+    --pps-primary-button-border: {{ section.settings.primary_border_color }};
+    --pps-primary-button-hover-bg: {{ section.settings.primary_hover_background_color }};
+    --pps-primary-button-hover-text: {{ section.settings.primary_hover_text_color }};
+    --pps-primary-button-hover-border: {{ section.settings.primary_hover_border_color }};
+    --pps-secondary-button-bg: {{ section.settings.secondary_background_color }};
+    --pps-secondary-button-text: {{ section.settings.secondary_text_color }};
+    --pps-secondary-button-border: {{ section.settings.secondary_border_color }};
+    --pps-secondary-button-hover-bg: {{ section.settings.secondary_hover_background_color }};
+    --pps-secondary-button-hover-text: {{ section.settings.secondary_hover_text_color }};
+    --pps-secondary-button-hover-border: {{ section.settings.secondary_hover_border_color }};
   }
 {%- endstyle -%}
 
@@ -148,8 +160,12 @@
               endif
             endif
 
-            assign primary_link = block.settings.primary_link | default: product_url
-            assign secondary_link = block.settings.secondary_link | default: product_url
+            assign slide_heading = block.settings.heading_override | default: section.settings.heading
+            assign slide_text = block.settings.text_override | default: section.settings.text
+            assign slide_event_label = block.settings.event_label_override | default: section.settings.event_label
+            assign slide_event_text = block.settings.event_text_override | default: section.settings.event_text
+            assign primary_link = block.settings.primary_link_override | default: product_url
+            assign secondary_link = block.settings.secondary_link_override | default: section.settings.secondary_link
             assign image_fade_class = 'pps-image--fade-in'
             assign slide_remainder = forloop.index | modulo: 2
             if slide_remainder == 0
@@ -159,7 +175,7 @@
 
           <div class="swiper-slide pps-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
             <div class="pps-panel pps-lifestyle">
-              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: block.settings.heading | escape }}">
+              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: slide_heading | escape }}">
                 {%- if block.settings.lifestyle_image != blank -%}
                   {{ block.settings.lifestyle_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: image_fade_class }}
                 {%- elsif lifestyle_media != blank and lifestyle_media.preview_image != blank -%}
@@ -182,47 +198,45 @@
                   {%- endif -%}
                 {%- endif -%}
 
-                {%- if block.settings.heading != blank -%}
+                {%- if slide_heading != blank -%}
                   {%- if section.index == 1 and forloop.first -%}
-                    <h1 class="pps-heading">{{ block.settings.heading }}</h1>
+                    <h1 class="pps-heading">{{ slide_heading }}</h1>
                   {%- else -%}
-                    <h2 class="pps-heading">{{ block.settings.heading }}</h2>
+                    <h2 class="pps-heading">{{ slide_heading }}</h2>
                   {%- endif -%}
                 {%- endif -%}
 
-                {%- if block.settings.text != blank -%}
-                  <div class="pps-copy rte">{{ block.settings.text }}</div>
+                {%- if slide_text != blank -%}
+                  <div class="pps-copy rte">{{ slide_text }}</div>
                 {%- endif -%}
 
-                {%- unless block.settings.event_label == blank and block.settings.event_text == blank -%}
+                {%- unless slide_event_label == blank and slide_event_text == blank -%}
                   <div class="pps-event">
-                    {%- if block.settings.event_label != blank -%}
-                      <span class="pps-event-label">{{ block.settings.event_label }}</span>
+                    {%- if slide_event_label != blank -%}
+                      <span class="pps-event-label">{{ slide_event_label }}</span>
                     {%- endif -%}
-                    {%- if block.settings.event_text != blank -%}
-                      <span class="pps-event-text">{{ block.settings.event_text }}</span>
+                    {%- if slide_event_text != blank -%}
+                      <span class="pps-event-text">{{ slide_event_text }}</span>
                     {%- endif -%}
                   </div>
                 {%- endunless -%}
 
-                {%- unless block.settings.primary_label == blank and block.settings.secondary_label == blank -%}
+                {%- unless section.settings.primary_label == blank and section.settings.secondary_label == blank -%}
                   <div class="pps-buttons">
-                    {%- if block.settings.primary_label != blank -%}
+                    {%- if section.settings.primary_label != blank -%}
                       <a
                         href="{{ primary_link }}"
-                        class="button button--{{ block.settings.primary_style }} pps-button pps-button--{{ block.settings.primary_style }} pps-button--primary"
-                        style="--pps-button-bg: {{ block.settings.primary_background_color }}; --pps-button-text: {{ block.settings.primary_text_color }}; --pps-button-border: {{ block.settings.primary_border_color }}; --pps-button-hover-bg: {{ block.settings.primary_hover_background_color }}; --pps-button-hover-text: {{ block.settings.primary_hover_text_color }}; --pps-button-hover-border: {{ block.settings.primary_hover_border_color }};"
+                        class="button button--{{ section.settings.primary_style }} pps-button pps-button--{{ section.settings.primary_style }} pps-button--primary"
                       >
-                        {{ block.settings.primary_label }}
+                        {{ section.settings.primary_label }}
                       </a>
                     {%- endif -%}
-                    {%- if block.settings.secondary_label != blank -%}
+                    {%- if section.settings.secondary_label != blank -%}
                       <a
                         href="{{ secondary_link }}"
-                        class="button button--{{ block.settings.secondary_style }} pps-button pps-button--{{ block.settings.secondary_style }} pps-button--secondary"
-                        style="--pps-button-bg: {{ block.settings.secondary_background_color }}; --pps-button-text: {{ block.settings.secondary_text_color }}; --pps-button-border: {{ block.settings.secondary_border_color }}; --pps-button-hover-bg: {{ block.settings.secondary_hover_background_color }}; --pps-button-hover-text: {{ block.settings.secondary_hover_text_color }}; --pps-button-hover-border: {{ block.settings.secondary_hover_border_color }};"
+                        class="button button--{{ section.settings.secondary_style }} pps-button pps-button--{{ section.settings.secondary_style }} pps-button--secondary"
                       >
-                        {{ block.settings.secondary_label }}
+                        {{ section.settings.secondary_label }}
                       </a>
                     {%- endif -%}
                   </div>
@@ -231,7 +245,7 @@
             </div>
 
             <div class="pps-panel pps-product">
-              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: block.settings.heading | escape }}">
+              <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: slide_heading | escape }}">
                 {%- if block.settings.product_image != blank -%}
                   {{ block.settings.product_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: image_fade_class }}
                 {%- elsif product_media != blank and product_media.preview_image != blank -%}
@@ -355,6 +369,159 @@
       "id": "breadcrumb_material_key",
       "label": "Material metafield key",
       "default": "material"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Carry what you truly value."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Bold, functional bags made to carry everything that matters, and built to last.</p>"
+    },
+    {
+      "type": "text",
+      "id": "event_label",
+      "label": "Event label",
+      "default": "Summer event"
+    },
+    {
+      "type": "text",
+      "id": "event_text",
+      "label": "Event text",
+      "default": "20% off your first order"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop the product"
+    },
+    {
+      "type": "select",
+      "id": "primary_style",
+      "label": "Primary button style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outlined"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "primary_background_color",
+      "label": "Primary background color",
+      "default": "#e5712a"
+    },
+    {
+      "type": "color",
+      "id": "primary_text_color",
+      "label": "Primary text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_border_color",
+      "label": "Primary border color",
+      "default": "#e5712a"
+    },
+    {
+      "type": "color",
+      "id": "primary_hover_background_color",
+      "label": "Primary hover background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_hover_text_color",
+      "label": "Primary hover text color",
+      "default": "#e5712a"
+    },
+    {
+      "type": "color",
+      "id": "primary_hover_border_color",
+      "label": "Primary hover border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Shop by style"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "select",
+      "id": "secondary_style",
+      "label": "Secondary button style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outlined"
+        }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "color",
+      "id": "secondary_background_color",
+      "label": "Secondary background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_border_color",
+      "label": "Secondary border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_hover_background_color",
+      "label": "Secondary hover background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_hover_text_color",
+      "label": "Secondary hover text color",
+      "default": "#242424"
+    },
+    {
+      "type": "color",
+      "id": "secondary_hover_border_color",
+      "label": "Secondary hover border color",
+      "default": "#ffffff"
     },
     {
       "type": "header",
@@ -858,163 +1025,42 @@
         },
         {
           "type": "header",
-          "content": "Text"
+          "content": "Content overrides"
         },
         {
           "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Carry what you truly value."
+          "id": "heading_override",
+          "label": "Heading override"
         },
         {
           "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Bold, functional bags made to carry everything that matters, and built to last.</p>"
+          "id": "text_override",
+          "label": "Text override"
         },
         {
           "type": "text",
-          "id": "event_label",
-          "label": "Event label",
-          "default": "Summer event"
+          "id": "event_label_override",
+          "label": "Event label override"
         },
         {
           "type": "text",
-          "id": "event_text",
-          "label": "Event text",
-          "default": "20% off your first order"
+          "id": "event_text_override",
+          "label": "Event text override"
         },
         {
           "type": "header",
-          "content": "Buttons"
-        },
-        {
-          "type": "text",
-          "id": "primary_label",
-          "label": "Primary button label",
-          "default": "Shop the product"
+          "content": "Button link overrides"
         },
         {
           "type": "url",
-          "id": "primary_link",
-          "label": "Primary button link",
+          "id": "primary_link_override",
+          "label": "Primary button link override",
           "info": "Leave blank to link to the selected product."
-        },
-        {
-          "type": "select",
-          "id": "primary_style",
-          "label": "Primary button style",
-          "options": [
-            {
-              "value": "solid",
-              "label": "Solid"
-            },
-            {
-              "value": "outline",
-              "label": "Outlined"
-            }
-          ],
-          "default": "solid"
-        },
-        {
-          "type": "color",
-          "id": "primary_background_color",
-          "label": "Primary background color",
-          "default": "#e5712a"
-        },
-        {
-          "type": "color",
-          "id": "primary_text_color",
-          "label": "Primary text color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "primary_border_color",
-          "label": "Primary border color",
-          "default": "#e5712a"
-        },
-        {
-          "type": "color",
-          "id": "primary_hover_background_color",
-          "label": "Primary hover background color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "primary_hover_text_color",
-          "label": "Primary hover text color",
-          "default": "#e5712a"
-        },
-        {
-          "type": "color",
-          "id": "primary_hover_border_color",
-          "label": "Primary hover border color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "text",
-          "id": "secondary_label",
-          "label": "Secondary button label",
-          "default": "Shop by style"
         },
         {
           "type": "url",
-          "id": "secondary_link",
-          "label": "Secondary button link",
-          "info": "Leave blank to link to the selected product."
-        },
-        {
-          "type": "select",
-          "id": "secondary_style",
-          "label": "Secondary button style",
-          "options": [
-            {
-              "value": "solid",
-              "label": "Solid"
-            },
-            {
-              "value": "outline",
-              "label": "Outlined"
-            }
-          ],
-          "default": "outline"
-        },
-        {
-          "type": "color",
-          "id": "secondary_background_color",
-          "label": "Secondary background color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "secondary_text_color",
-          "label": "Secondary text color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "secondary_border_color",
-          "label": "Secondary border color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "secondary_hover_background_color",
-          "label": "Secondary hover background color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "color",
-          "id": "secondary_hover_text_color",
-          "label": "Secondary hover text color",
-          "default": "#242424"
-        },
-        {
-          "type": "color",
-          "id": "secondary_hover_border_color",
-          "label": "Secondary hover border color",
-          "default": "#ffffff"
+          "id": "secondary_link_override",
+          "label": "Secondary button link override"
         }
       ]
     }
