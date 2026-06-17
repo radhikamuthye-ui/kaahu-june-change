@@ -15,13 +15,6 @@
     endfor
   endif
 
-  assign slide_heading = section.settings.heading_override | default: collection.title
-  assign slide_text = section.settings.text_override | default: collection.description
-  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
-  assign overlay_strong = section.settings.overlay_opacity | plus: 18 | at_most: 98 | divided_by: 100.0
-  assign overlay_soft = section.settings.overlay_opacity | times: 0.55 | divided_by: 100.0
-  assign overlay_mobile = section.settings.overlay_opacity | plus: 28 | at_most: 98 | divided_by: 100.0
-  assign overlay_mobile_soft = section.settings.overlay_opacity | times: 0.42 | divided_by: 100.0
   assign image_zoom = section.settings.image_zoom | divided_by: 100.0
   assign fade_zoom_amount = section.settings.fade_zoom_amount | divided_by: 100.0
   assign image_zoom_in_start = image_zoom | minus: fade_zoom_amount | at_least: 1.0
@@ -30,35 +23,10 @@
 
 {%- style -%}
   .section-{{ section.id }} {
-    --cms-overlay: {{ overlay }};
-    --cms-overlay-strong: {{ overlay_strong }};
-    --cms-overlay-soft: {{ overlay_soft }};
-    --cms-overlay-mobile: {{ overlay_mobile }};
-    --cms-overlay-mobile-soft: {{ overlay_mobile_soft }};
     --cms-image-fade-duration: {{ section.settings.image_fade_duration }}ms;
     --cms-image-zoom: {{ image_zoom }};
     --cms-image-zoom-in-start: {{ image_zoom_in_start }};
     --cms-image-zoom-out-start: {{ image_zoom_out_start }};
-    --cms-content-left-mobile: {{ section.settings.content_horizontal_padding_mobile }}px;
-    --cms-content-right-mobile: {{ section.settings.content_horizontal_padding_mobile }}px;
-    --cms-content-top-mobile: {{ section.settings.content_top_padding_mobile }}px;
-    --cms-content-bottom-mobile: {{ section.settings.content_bottom_padding_mobile }}px;
-    --cms-content-left-desktop: {{ section.settings.content_horizontal_padding_desktop }}px;
-    --cms-content-right-desktop: {{ section.settings.content_horizontal_padding_desktop }}px;
-    --cms-content-top-desktop: {{ section.settings.content_top_padding_desktop }}px;
-    --cms-content-bottom-desktop: {{ section.settings.content_bottom_padding_desktop }}px;
-    --cms-content-max-width: {{ section.settings.content_max_width }}px;
-    --cms-heading-margin-bottom: {{ section.settings.heading_bottom_spacing }}px;
-    --cms-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-    --cms-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-    --cms-heading-weight: {{ section.settings.heading_font_weight }};
-    --cms-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
-    --cms-heading-color: {{ section.settings.heading_color }};
-    --cms-text-size-mobile: {{ section.settings.body_text_size_mobile }}px;
-    --cms-text-size-desktop: {{ section.settings.body_text_size_desktop }}px;
-    --cms-text-weight: {{ section.settings.body_text_font_weight }};
-    --cms-text-line-height: {{ section.settings.body_text_line_height | divided_by: 100.0 }};
-    --cms-text-color: {{ section.settings.body_text_color }};
   }
 {%- endstyle -%}
 
@@ -81,14 +49,6 @@
           -%}
           <div class="swiper-slide cms-slide" data-index="{{ forloop.index0 }}">
             {{ slideshow_image | image_url: width: 2400 | image_tag: loading: 'lazy', class: image_fade_class }}
-            <div class="cms-content">
-              {%- if slide_heading != blank -%}
-                <h2 class="cms-heading">{{ slide_heading | escape }}</h2>
-              {%- endif -%}
-              {%- if slide_text != blank -%}
-                <div class="cms-copy rte">{{ slide_text }}</div>
-              {%- endif -%}
-            </div>
           </div>
         {%- endfor -%}
       </div>
@@ -137,20 +97,6 @@
       "id": "metafield_key",
       "label": "Metafield key",
       "default": "ss1"
-    },
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "heading_override",
-      "label": "Heading override"
-    },
-    {
-      "type": "richtext",
-      "id": "text_override",
-      "label": "Text override"
     },
     {
       "type": "header",
@@ -217,220 +163,6 @@
       "id": "show_controls",
       "label": "Show progress and pause control",
       "default": true
-    },
-    {
-      "type": "header",
-      "content": "Style"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 10,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "label": "Overlay opacity",
-      "default": 45
-    },
-    {
-      "type": "range",
-      "id": "content_horizontal_padding_mobile",
-      "min": 16,
-      "max": 80,
-      "step": 2,
-      "unit": "px",
-      "label": "Horizontal padding on mobile",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "content_horizontal_padding_desktop",
-      "min": 24,
-      "max": 140,
-      "step": 2,
-      "unit": "px",
-      "label": "Horizontal padding on desktop",
-      "default": 72
-    },
-    {
-      "type": "range",
-      "id": "content_top_padding_mobile",
-      "min": 16,
-      "max": 120,
-      "step": 2,
-      "unit": "px",
-      "label": "Top padding on mobile",
-      "default": 34
-    },
-    {
-      "type": "range",
-      "id": "content_top_padding_desktop",
-      "min": 24,
-      "max": 160,
-      "step": 2,
-      "unit": "px",
-      "label": "Top padding on desktop",
-      "default": 72
-    },
-    {
-      "type": "range",
-      "id": "content_bottom_padding_mobile",
-      "min": 16,
-      "max": 120,
-      "step": 2,
-      "unit": "px",
-      "label": "Bottom padding on mobile",
-      "default": 34
-    },
-    {
-      "type": "range",
-      "id": "content_bottom_padding_desktop",
-      "min": 24,
-      "max": 160,
-      "step": 2,
-      "unit": "px",
-      "label": "Bottom padding on desktop",
-      "default": 72
-    },
-    {
-      "type": "range",
-      "id": "content_max_width",
-      "min": 320,
-      "max": 760,
-      "step": 10,
-      "unit": "px",
-      "label": "Content max width",
-      "default": 620
-    },
-    {
-      "type": "range",
-      "id": "heading_bottom_spacing",
-      "min": 0,
-      "max": 56,
-      "step": 2,
-      "unit": "px",
-      "label": "Space below heading",
-      "default": 18
-    },
-    {
-      "type": "range",
-      "id": "heading_size_mobile",
-      "min": 24,
-      "max": 96,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading size on mobile",
-      "default": 38
-    },
-    {
-      "type": "range",
-      "id": "heading_size_desktop",
-      "min": 24,
-      "max": 96,
-      "step": 1,
-      "unit": "px",
-      "label": "Heading size on desktop",
-      "default": 68
-    },
-    {
-      "type": "select",
-      "id": "heading_font_weight",
-      "label": "Heading font weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        }
-      ],
-      "default": "600"
-    },
-    {
-      "type": "range",
-      "id": "heading_line_height",
-      "min": 90,
-      "max": 150,
-      "step": 1,
-      "unit": "%",
-      "label": "Heading line height",
-      "default": 100
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "body_text_size_mobile",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "Text size on mobile",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "body_text_size_desktop",
-      "min": 12,
-      "max": 36,
-      "step": 1,
-      "unit": "px",
-      "label": "Text size on desktop",
-      "default": 18
-    },
-    {
-      "type": "select",
-      "id": "body_text_font_weight",
-      "label": "Text font weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        }
-      ],
-      "default": "400"
-    },
-    {
-      "type": "range",
-      "id": "body_text_line_height",
-      "min": 110,
-      "max": 180,
-      "step": 1,
-      "unit": "%",
-      "label": "Text line height",
-      "default": 145
-    },
-    {
-      "type": "color",
-      "id": "body_text_color",
-      "label": "Text color",
-      "default": "#ffffff"
     }
   ],
   "presets": [
