@@ -22,9 +22,19 @@
 {% assign show_dropdown_category_images = section.settings.images_dd_category %}
 {% assign has_sustainability_link = false %}
 {% for link in section.settings.main_menu.links %}
-  {% if link.url == '/pages/sustainability' %}
+  {% if link.url == '/pages/sustainability' or link.url contains '/pages/sustainability?' %}
     {% assign has_sustainability_link = true %}
   {% endif %}
+  {% for childlink in link.links %}
+    {% if childlink.url == '/pages/sustainability' or childlink.url contains '/pages/sustainability?' %}
+      {% assign has_sustainability_link = true %}
+    {% endif %}
+    {% for grandchildlink in childlink.links %}
+      {% if grandchildlink.url == '/pages/sustainability' or grandchildlink.url contains '/pages/sustainability?' %}
+        {% assign has_sustainability_link = true %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 {% endfor %}
 
 <div class="hdr-nav-desktop">
@@ -156,6 +166,9 @@
                     {% endif %}
                   </li>
                   {% endfor %}
+                  {% if dd_menu_name == 'discover' and has_sustainability_link == false %}
+                    <li><a href="/pages/sustainability">Sustainability</a></li>
+                  {% endif %}
                 </ul>
                 {% if show_images %}
                 <div class="dd-nav-image dd-image-size-{{ section.settings.dd_image_size }} dd-nav-image-ratio-{{ ratio }}">
@@ -193,9 +206,6 @@
           {% endif %}
           </li>
         {% endfor %}
-        {% unless has_sustainability_link %}
-          <li><a href="/pages/sustainability">Sustainability</a></li>
-        {% endunless %}
    </ul>
   </nav>
 </div>

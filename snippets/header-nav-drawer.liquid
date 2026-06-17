@@ -2,9 +2,19 @@
   <ul class="nav-ul--primary" role="list">
     {% assign has_sustainability_link = false %}
     {% for link in section.settings.main_menu.links %}
-      {% if link.url == '/pages/sustainability' %}
+      {% if link.url == '/pages/sustainability' or link.url contains '/pages/sustainability?' %}
         {% assign has_sustainability_link = true %}
       {% endif %}
+      {% for childlink in link.links %}
+        {% if childlink.url == '/pages/sustainability' or childlink.url contains '/pages/sustainability?' %}
+          {% assign has_sustainability_link = true %}
+        {% endif %}
+        {% for grandchildlink in childlink.links %}
+          {% if grandchildlink.url == '/pages/sustainability' or grandchildlink.url contains '/pages/sustainability?' %}
+            {% assign has_sustainability_link = true %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
     {% endfor %}
     {% for link in section.settings.main_menu.links %}
       {% if link.links != blank %}
@@ -157,6 +167,10 @@
           </li>
           {% endif %}  
           {% endfor %}
+          {% assign drawer_menu_name = link.title | handleize %}
+          {% if drawer_menu_name == 'discover' and has_sustainability_link == false %}
+            <li><a href="/pages/sustainability">Sustainability</a></li>
+          {% endif %}
           {% if section.settings.menu_viewall_mobile and section.settings.menu_viewall_mobile_position == 'last' and link.url contains '/collections/' %}<li class="li-mobile-viewall"><a href="{{ link.url }}">{{ section.settings.menu_viewall_mobile_label }}</a></li>{% endif %}
         </ul>
 
@@ -214,9 +228,6 @@
       </li>
       {% endif %}
     {% endfor %}
-    {% unless has_sustainability_link %}
-      <li><a href="/pages/sustainability">Sustainability</a></li>
-    {% endunless %}
   </ul>
 
   {% assign drawer_image_count = 0 %}
