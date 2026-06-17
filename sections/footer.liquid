@@ -184,6 +184,7 @@
     --kf-instagram-color: {{ section.settings.kaahu_footer_instagram_color }};
     --kf-copyright-size: {{ section.settings.kaahu_footer_copyright_size }}px;
     --kf-copyright-color: {{ section.settings.kaahu_footer_copyright_color }};
+    --kf-bottom-bg: {{ section.settings.kaahu_footer_bottom_background }};
     --kf-bottom-gap-mobile: {{ section.settings.kaahu_footer_bottom_gap_mobile }}px;
     --kf-bottom-gap-desktop: {{ section.settings.kaahu_footer_bottom_gap_desktop }}px;
     --kf-bottom-padding-top: {{ section.settings.kaahu_footer_bottom_padding_top }}px;
@@ -2104,6 +2105,12 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "header",
       "content": "Kaahu bottom bar"
+    },
+    {
+      "type": "color",
+      "id": "kaahu_footer_bottom_background",
+      "label": "Bottom bar background",
+      "default": "#B15C79"
     },
     {
       "type": "checkbox",

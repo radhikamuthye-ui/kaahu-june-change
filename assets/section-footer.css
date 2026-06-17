@@ -1476,7 +1476,11 @@
   align-items: center;
   margin-top: var(--kf-bottom-gap-mobile, 64px);
   padding-top: var(--kf-bottom-padding-top, 28px);
+  padding-bottom: var(--kf-bottom-padding-top, 28px);
   border-top: 1px solid var(--kf-divider);
+  background: var(--kf-bottom-bg, transparent);
+  box-shadow: 0 0 0 100vmax var(--kf-bottom-bg, transparent);
+  clip-path: inset(0 -100vmax);
   text-align: center;
 }
 

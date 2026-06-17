@@ -762,6 +762,7 @@
         "kaahu_newsletter_terms_label": "Terms",
         "kaahu_newsletter_terms_link": "/policies/terms-of-service",
         "kaahu_newsletter_consent_after": ".",
+        "kaahu_footer_bottom_background": "#B15C79",
         "kaahu_footer_show_logo": true,
         "kaahu_footer_logo": "shopify://shop_images/logo_kaahu.png",
         "kaahu_footer_logo_text": "KAAHU",
