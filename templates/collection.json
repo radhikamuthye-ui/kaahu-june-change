@@ -45,6 +45,7 @@
         "heading_zXXCaf",
         "text_ykCKBJ"
       ],
+      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "content_width": "page-width",
@@ -63,6 +64,7 @@
     },
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "banner_layout": "split_banner",
         "banner_height_mobile": "default",
@@ -181,11 +183,11 @@
         "metafield_namespace": "custom",
         "metafield_key": "ss1",
         "enable_autoplay": true,
-        "autoplay_interval": 5,
-        "transition_speed": 800,
-        "image_fade_duration": 1600,
-        "image_zoom": 104,
-        "fade_zoom_amount": 8,
+        "autoplay_interval": 3,
+        "transition_speed": 2000,
+        "image_fade_duration": 3000,
+        "image_zoom": 120,
+        "fade_zoom_amount": 20,
         "show_controls": true
       }
     },
