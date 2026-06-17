@@ -35,6 +35,14 @@
     padding-bottom: var(--sus-y);
   }
 
+  .kaahu-sus .sus-hero {
+    padding-bottom: calc(var(--sus-y) * .4);
+  }
+
+  .kaahu-sus .sus-intro {
+    padding-top: calc(var(--sus-y) * .45);
+  }
+
   .kaahu-sus .sus-band {
     background: var(--sus-band);
     border-top: 1px solid var(--sus-line);
@@ -140,9 +148,12 @@
   }
 
   .kaahu-sus .sus-illus img {
+    object-fit: contain;
+  }
+
+  .kaahu-sus .sus-illus:not(.sus-has-custom-image) img {
     width: 46%;
     height: auto;
-    object-fit: contain;
   }
 
   .kaahu-sus .sus-stack {
@@ -395,7 +406,7 @@
     </div>
   </header>
 
-  <section class="sus-block">
+  <section class="sus-block sus-intro">
     <div class="page-width-narrow sus-narrow">
       <div class="sus-richtext">
         {% if section.settings.intro_text != blank %}
@@ -437,8 +448,12 @@
             </div>
           </article>
           <article>
-            <div class="sus-frame sus-frame-tile sus-illus">
-              <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="Bengal jute fiber" width="512" height="512">
+            <div class="sus-frame sus-frame-tile sus-illus{% if section.settings.jute_image %} sus-has-custom-image{% endif %}">
+              {% if section.settings.jute_image %}
+                <img src="{{ section.settings.jute_image | image_url: width: 1200 }}" alt="{{ section.settings.jute_image.alt | default: 'Bengal jute fiber' }}" width="{{ section.settings.jute_image.width }}" height="{{ section.settings.jute_image.height }}" loading="lazy">
+              {% else %}
+                <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="Bengal jute fiber" width="512" height="512" loading="lazy">
+              {% endif %}
             </div>
             <div class="sus-card-copy">
               <p class="sus-kicker">{{ section.settings.jute_kicker | default: 'Bengal jute' }}</p>
@@ -669,6 +684,11 @@
       "type": "image_picker",
       "id": "cotton_image",
       "label": "Cotton image"
+    },
+    {
+      "type": "image_picker",
+      "id": "jute_image",
+      "label": "Jute image"
     },
     {
       "type": "text",
