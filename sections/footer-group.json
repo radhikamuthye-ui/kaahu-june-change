@@ -469,7 +469,7 @@
         "button_x_padding": 26,
         "button_size_mobile": 13,
         "button_size_desktop": 13,
-        "button_font_weight": "700",
+        "button_font_weight": "500",
         "button_letter_spacing": 10,
         "button_icon_size": 18,
         "button_text_color": "#e5712a",
