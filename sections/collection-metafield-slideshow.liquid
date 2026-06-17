@@ -27,6 +27,7 @@
     --cms-image-zoom: {{ image_zoom }};
     --cms-image-zoom-in-start: {{ image_zoom_in_start }};
     --cms-image-zoom-out-start: {{ image_zoom_out_start }};
+    --cms-control-color: {{ section.settings.slider_color }};
   }
 {%- endstyle -%}
 
@@ -163,6 +164,12 @@
       "id": "show_controls",
       "label": "Show progress and pause control",
       "default": true
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider color",
+      "default": "#E5722A"
     }
   ],
   "presets": [

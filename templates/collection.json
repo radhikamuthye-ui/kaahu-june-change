@@ -188,7 +188,8 @@
         "image_fade_duration": 3000,
         "image_zoom": 120,
         "fade_zoom_amount": 20,
-        "show_controls": true
+        "show_controls": true,
+        "slider_color": "#E5722A"
       }
     },
     "product-grid": {
