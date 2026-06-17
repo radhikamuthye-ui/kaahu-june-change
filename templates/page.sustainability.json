@@ -11,7 +11,11 @@
   "sections": {
     "sustainability": {
       "type": "kaahu-sustainability-page",
-      "settings": {}
+      "settings": {
+        "cotton_image": "shopify://shop_images/Screenshot_2026-06-16_at_11.29.59_PM.png",
+        "jute_image": "shopify://shop_images/Screenshot_2026-06-16_at_11.28.27_PM.png",
+        "heritage_image": "shopify://shop_images/Screenshot_2026-02-15_at_12.07.44_AM.png"
+      }
     }
   },
   "order": [
