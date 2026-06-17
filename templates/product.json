@@ -441,6 +441,7 @@
         "product_details_summary_visibility": "desktop",
         "product_details_summary_heading": "The Details",
         "product_details_summary_max_width": 520,
+        "product_details_summary_column_width": 35,
         "product_details_summary_margin_top_mobile": 24,
         "product_details_summary_margin_top_desktop": 34,
         "product_details_summary_padding_top": 0,

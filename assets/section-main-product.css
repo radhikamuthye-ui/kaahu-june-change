@@ -2579,7 +2579,7 @@ body:has(.radio-options-drawer--background.open) .header-group {
 
   .product-desktop-details {
     display: grid;
-    grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+    grid-template-columns: minmax(0, var(--pdp-details-summary-column-width, 35fr)) minmax(0, var(--pdp-details-accordions-column-width, 65fr));
     gap: 64px;
     width: min(calc(100% - 96px), var(--page-width, 1600px));
     margin: var(--pdp-details-summary-margin-top-desktop, 34px) auto 0;
@@ -5663,6 +5663,10 @@ a.product__text {
 }
 
 @media only screen and (min-width: 950px) {
+  .product-sustainability-card--mobile-source {
+    display: none !important;
+  }
+
   .product__info-container > .product-why-we-love-this,
   .product__info-container > .product-sustainability-card {
     display: none;

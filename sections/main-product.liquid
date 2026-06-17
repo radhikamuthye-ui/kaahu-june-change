@@ -35,6 +35,8 @@
       --pdp-details-summary-margin-top-desktop: {{ section.settings.product_details_summary_margin_top_desktop }}px;
       --pdp-details-summary-padding-top: {{ section.settings.product_details_summary_padding_top }}px;
       --pdp-details-summary-border-color: {{ section.settings.product_details_summary_border_color }};
+      --pdp-details-summary-column-width: {{ section.settings.product_details_summary_column_width }}fr;
+      --pdp-details-accordions-column-width: {{ 100 | minus: section.settings.product_details_summary_column_width }}fr;
       --pdp-details-desktop-offset-x: {{ section.settings.product_detail_desktop_offset_x }}px;
       --pdp-details-desktop-offset-top: {{ section.settings.product_detail_desktop_offset_top }}px;
       --pdp-details-desktop-max-width: {{ section.settings.product_detail_desktop_max_width }}px;
@@ -1233,7 +1235,7 @@
             {%- when 'sustainability_card' -%}
               {% assign sustainability_badges = block.settings.badges | newline_to_br | split: '<br />' %}
               <div
-                class="product-sustainability-card product-sustainability-card--footer-{{ block.settings.footer_layout }} product-sustainability-card--desktop-image-{{ block.settings.desktop_image_position }}{% if block.settings.mobile_only %} product-sustainability-card--mobile-only{% endif %}{% if block.settings.desktop_image != blank %} product-sustainability-card--has-desktop-image{% endif %}"
+                class="product-sustainability-card product-sustainability-card--mobile-source product-sustainability-card--footer-{{ block.settings.footer_layout }} product-sustainability-card--desktop-image-{{ block.settings.desktop_image_position }}{% if block.settings.mobile_only %} product-sustainability-card--mobile-only{% endif %}{% if block.settings.desktop_image != blank %} product-sustainability-card--has-desktop-image{% endif %}"
                 style="
                   --pdp-sustain-margin-top: {{ block.settings.margin_top }}px;
                   --pdp-sustain-margin-bottom: {{ block.settings.margin_bottom }}px;
@@ -6894,6 +6896,16 @@ document.addEventListener('DOMContentLoaded', function () {
       "unit": "px",
       "default": 520,
       "label": "Maximum width"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_column_width",
+      "min": 25,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 35,
+      "label": "Details column width on desktop"
     },
     {
       "type": "range",
