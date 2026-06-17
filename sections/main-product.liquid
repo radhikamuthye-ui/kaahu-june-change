@@ -364,17 +364,6 @@
       thumbnail_placement: section.settings.desktop_media_thumbnail_placement,
       balance_grid: section.settings.balance_grid
       %}
-      {% if product.description != blank and section.settings.product_details_summary_visibility != 'hidden' %}
-        {% assign details_summary_split_word = section.settings.description_split_keyword | default: 'SPECIFICATIONS' %}
-        <div class="product-details-summary product-details-summary--{{ section.settings.product_details_summary_visibility }}">
-          {% if section.settings.product_details_summary_heading != blank %}
-            <h2 class="product-details-summary__heading">{{ section.settings.product_details_summary_heading }}</h2>
-          {% endif %}
-          <div class="product-details-summary__body rte">
-            {{ product.description | split: details_summary_split_word | first }}
-          </div>
-        </div>
-      {% endif %}
       {% endunless %}
     </div>
     
@@ -2249,6 +2238,8 @@
         </div>
     </div>
   </div>
+
+  {% render 'product-desktop-details', product: product, section: section %}
 
 {% if section.settings.bottom_border %}
 <hr class="section-border section-border-color-{{ section.settings.border_color }} section-border-width-{{ section.settings.border_width }}">
@@ -6868,7 +6859,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "type": "select",
       "id": "product_details_summary_visibility",
       "label": "Details summary visibility",
-      "default": "both",
+      "default": "desktop",
       "options": [
         {
           "value": "both",
@@ -6951,7 +6942,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "max": 84,
       "step": 1,
       "unit": "px",
-      "default": 46,
+      "default": 52,
       "label": "Heading size desktop"
     },
     {
@@ -6971,7 +6962,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "max": 26,
       "step": 1,
       "unit": "px",
-      "default": 16,
+      "default": 17,
       "label": "Body size desktop"
     },
     {

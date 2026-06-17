@@ -1,0 +1,320 @@
+{% liquid
+  assign split_word = section.settings.description_split_keyword | default: 'SPECIFICATIONS'
+  assign desktop_section_id = section.id | append: '-desktop'
+%}
+
+{% if product.description != blank %}
+  <section class="product-desktop-details" aria-label="{{ section.settings.product_details_summary_heading | escape }}">
+    <div class="product-desktop-details__summary">
+      {% if section.settings.product_details_summary_heading != blank %}
+        <h2 class="product-details-summary__heading">{{ section.settings.product_details_summary_heading }}</h2>
+      {% endif %}
+      <div class="product-details-summary__body rte">
+        {{ product.description | split: split_word | first }}
+      </div>
+    </div>
+
+    <div class="product-desktop-details__accordions">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'why_we_love_this' %}
+            {% liquid
+              assign why_metafield = blank
+              if block.settings.metafield_namespace != blank and block.settings.metafield_key != blank
+                assign why_metafield = product.metafields[block.settings.metafield_namespace][block.settings.metafield_key]
+              endif
+              assign why_has_metafield = false
+              if why_metafield != blank
+                assign why_has_metafield = true
+              endif
+            %}
+            {% if why_has_metafield or block.settings.fallback_content != blank %}
+              {% assign why_expanded_initial_state = block.settings.open_by_default %}
+              {% capture why_content %}
+                {% if why_has_metafield %}
+                  {{ why_metafield | metafield_tag }}
+                {% else %}
+                  {{ block.settings.fallback_content }}
+                {% endif %}
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_settings: section.settings,
+                section_id: desktop_section_id,
+                panel_id: 'why-panel',
+                button_id: 'why-button',
+                expanded_initial_state: why_expanded_initial_state,
+                content: why_content
+              %}
+            {% endif %}
+
+          {% when 'materials' %}
+            {% assign material_bullets = block.settings.bullets | newline_to_br | split: '<br />' %}
+            {% capture materials_content %}
+              {% if block.settings.body != blank %}
+                <div class="product-materials-block__body">{{ block.settings.body }}</div>
+              {% endif %}
+              {% if block.settings.bullets != blank %}
+                <ul class="product-materials-block__list">
+                  {% for bullet in material_bullets %}
+                    {% assign bullet_text = bullet | strip %}
+                    {% if bullet_text != blank %}
+                      <li>{{ bullet_text | escape }}</li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endcapture %}
+            {% render 'product-detail-accordion',
+              block: block,
+              section_settings: section.settings,
+              section_id: desktop_section_id,
+              panel_id: 'materials-panel',
+              button_id: 'materials-button',
+              extra_class: 'product-materials-block',
+              expanded_initial_state: block.settings.open_by_default,
+              content: materials_content
+            %}
+
+          {% when 'fit_dimensions' %}
+            {% liquid
+              assign dimension_metafield = product.metafields[block.settings.metafield_namespace][block.settings.dimension_key]
+              assign closure_metafield = product.metafields[block.settings.metafield_namespace][block.settings.closure_key]
+              assign pockets_metafield = product.metafields[block.settings.metafield_namespace][block.settings.pockets_key]
+              assign straps_metafield = product.metafields[block.settings.metafield_namespace][block.settings.straps_key]
+              assign dimension_value = dimension_metafield.value | default: dimension_metafield | strip
+              assign normalized_dimension = dimension_value | downcase | replace: '×', 'x'
+              assign dimension_parts = normalized_dimension | split: 'x'
+              assign height_value = dimension_parts[0] | strip
+              assign depth_value = dimension_parts[1] | strip
+              assign width_value = dimension_parts[2] | strip
+              assign closure_value = closure_metafield.value | default: closure_metafield
+              assign pockets_value = pockets_metafield.value | default: pockets_metafield
+              assign straps_value = straps_metafield.value | default: straps_metafield
+              assign dimensions_media = blank
+              assign alt_label = block.settings.image_alt_label | upcase
+              for media in product.media
+                assign media_alt = media.alt | upcase
+                if dimensions_media == blank and media.media_type == 'image' and media_alt contains alt_label
+                  assign dimensions_media = media
+                endif
+              endfor
+              assign fit_has_content = false
+              assign fit_has_fields = false
+              if width_value != blank or height_value != blank or depth_value != blank or closure_value != blank or pockets_value != blank or straps_value != blank or dimensions_media != blank
+                assign fit_has_content = true
+              endif
+              if width_value != blank or height_value != blank or depth_value != blank or closure_value != blank or pockets_value != blank or straps_value != blank
+                assign fit_has_fields = true
+              endif
+            %}
+            {% if fit_has_content %}
+              {% capture fit_content %}
+                {% if fit_has_fields %}
+                  <div class="product-fit-dimensions-block__grid">
+                    {% if width_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.width_label }}</span><strong>{{ width_value }}{% unless width_value contains '"' %}"{% endunless %}</strong></div>{% endif %}
+                    {% if height_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.height_label }}</span><strong>{{ height_value }}{% unless height_value contains '"' %}"{% endunless %}</strong></div>{% endif %}
+                    {% if depth_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.depth_label }}</span><strong>{{ depth_value }}{% unless depth_value contains '"' %}"{% endunless %}</strong></div>{% endif %}
+                    {% if closure_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.closure_label }}</span><strong>{{ closure_value }}</strong></div>{% endif %}
+                    {% if pockets_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.pockets_label }}</span><strong>{{ pockets_value }}</strong></div>{% endif %}
+                    {% if straps_value != blank %}<div class="product-fit-dimensions-block__cell"><span>{{ block.settings.straps_label }}</span><strong>{{ straps_value }}</strong></div>{% endif %}
+                  </div>
+                {% endif %}
+                {% if dimensions_media != blank %}
+                  <div class="product-fit-dimensions-block__image">
+                    {{ dimensions_media.preview_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+                  </div>
+                {% endif %}
+              {% endcapture %}
+              {% capture fit_style %}
+                --pdp-fit-table-border: {{ block.settings.table_border_color }};
+                --pdp-fit-label-color: {{ block.settings.label_color }};
+                --pdp-fit-value-color: {{ block.settings.value_color }};
+                --pdp-fit-image-radius: {{ block.settings.image_radius }}px;
+                --pdp-fit-table-radius: {{ block.settings.table_radius }}px;
+                --pdp-fit-cell-min-height: {{ block.settings.cell_min_height }}px;
+                --pdp-fit-cell-padding-y: {{ block.settings.cell_padding_vertical }}px;
+                --pdp-fit-cell-padding-x: {{ block.settings.cell_padding_horizontal }}px;
+                --pdp-fit-cell-gap: {{ block.settings.cell_label_gap }}px;
+                --pdp-fit-label-size: {{ block.settings.label_size }}px;
+                --pdp-fit-image-margin-top: {{ block.settings.image_margin_top }}px;
+              {% endcapture %}
+              {% render 'product-detail-accordion',
+                block: block,
+                section_settings: section.settings,
+                section_id: desktop_section_id,
+                panel_id: 'fit-panel',
+                button_id: 'fit-button',
+                extra_class: 'product-fit-dimensions-block',
+                extra_style: fit_style,
+                expanded_initial_state: block.settings.open_by_default,
+                content: fit_content
+              %}
+            {% endif %}
+
+          {% when 'care_instructions' %}
+            {% assign care_bullets = block.settings.bullets | newline_to_br | split: '<br />' %}
+            {% capture care_content %}
+              {% if block.settings.body != blank %}<div class="product-materials-block__body">{{ block.settings.body }}</div>{% endif %}
+              {% if block.settings.bullets != blank %}
+                <ul class="product-materials-block__list">
+                  {% for bullet in care_bullets %}
+                    {% assign bullet_text = bullet | strip %}
+                    {% if bullet_text != blank %}<li>{{ bullet_text | escape }}</li>{% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if block.settings.footer != blank %}<div class="product-materials-block__footer">{{ block.settings.footer }}</div>{% endif %}
+            {% endcapture %}
+            {% render 'product-detail-accordion',
+              block: block,
+              section_settings: section.settings,
+              section_id: desktop_section_id,
+              panel_id: 'care-panel',
+              button_id: 'care-button',
+              extra_class: 'product-materials-block product-care-instructions-block',
+              expanded_initial_state: block.settings.open_by_default,
+              content: care_content
+            %}
+
+          {% when 'sustainability_details' %}
+            {% capture sustain_details_content %}
+              {% if block.settings.intro != blank %}<div class="product-sustainability-details-block__intro">{{ block.settings.intro }}</div>{% endif %}
+              <div class="product-sustainability-details-block__items">
+                {% for index in (1..4) %}
+                  {% liquid
+                    assign image_key = 'item_' | append: index | append: '_image'
+                    assign fallback_key = 'item_' | append: index | append: '_fallback'
+                    assign title_key = 'item_' | append: index | append: '_title'
+                    assign text_key = 'item_' | append: index | append: '_text'
+                  %}
+                  {% if block.settings[title_key] != blank or block.settings[text_key] != blank or block.settings[image_key] != blank %}
+                    <div class="product-sustainability-details-block__item">
+                      <div class="product-sustainability-details-block__badge">
+                        {% if block.settings[image_key] != blank %}
+                          {{ block.settings[image_key] | image_url: width: 220 | image_tag: loading: 'lazy' }}
+                        {% else %}
+                          <span>{{ block.settings[fallback_key] }}</span>
+                        {% endif %}
+                      </div>
+                      <div class="product-sustainability-details-block__copy">
+                        {% if block.settings[title_key] != blank %}<h3>{{ block.settings[title_key] }}</h3>{% endif %}
+                        {% if block.settings[text_key] != blank %}<div>{{ block.settings[text_key] }}</div>{% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endcapture %}
+            {% capture sustain_details_style %}
+              --pdp-sustain-details-icon-size: {{ block.settings.badge_size }}px;
+              --pdp-sustain-details-image-scale: {{ block.settings.badge_image_scale }}%;
+              --pdp-sustain-details-icon-bg: {{ block.settings.badge_background_color }};
+              --pdp-sustain-details-row-gap: {{ block.settings.row_gap }}px;
+              --pdp-sustain-details-column-gap: {{ block.settings.column_gap }}px;
+              --pdp-sustain-details-intro-bottom: {{ block.settings.intro_bottom_spacing }}px;
+              --pdp-sustain-details-item-title-size: {{ block.settings.item_title_size }}px;
+              --pdp-sustain-details-item-title-color: {{ block.settings.item_title_color }};
+              --pdp-sustain-details-item-title-weight: {{ block.settings.item_title_weight }};
+            {% endcapture %}
+            {% render 'product-detail-accordion',
+              block: block,
+              section_settings: section.settings,
+              section_id: desktop_section_id,
+              panel_id: 'sustainability-panel',
+              button_id: 'sustainability-button',
+              extra_class: 'product-sustainability-details-block',
+              extra_style: sustain_details_style,
+              expanded_initial_state: block.settings.open_by_default,
+              content: sustain_details_content
+            %}
+
+          {% when 'shipping_returns' %}
+            {% capture shipping_returns_content %}<div class="product-shipping-returns-block__body">{{ block.settings.body }}</div>{% endcapture %}
+            {% render 'product-detail-accordion',
+              block: block,
+              section_settings: section.settings,
+              section_id: desktop_section_id,
+              panel_id: 'shipping-panel',
+              button_id: 'shipping-button',
+              extra_class: 'product-shipping-returns-block',
+              expanded_initial_state: block.settings.open_by_default,
+              content: shipping_returns_content
+            %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% for block in section.blocks %}
+  {% if block.type == 'sustainability_card' %}
+    {% assign sustainability_badges = block.settings.badges | newline_to_br | split: '<br />' %}
+    <section
+      class="product-sustainability-card product-sustainability-card--desktop-band product-sustainability-card--footer-{{ block.settings.footer_layout }} product-sustainability-card--desktop-image-{{ block.settings.desktop_image_position }}{% if block.settings.desktop_image != blank %} product-sustainability-card--has-desktop-image{% endif %}"
+      style="
+        --pdp-sustain-margin-top: {{ block.settings.margin_top }}px;
+        --pdp-sustain-margin-bottom: {{ block.settings.margin_bottom }}px;
+        --pdp-sustain-padding-mobile: {{ block.settings.padding_mobile }}px;
+        --pdp-sustain-padding-desktop: {{ block.settings.padding_desktop }}px;
+        --pdp-sustain-radius: {{ block.settings.card_radius }}px;
+        --pdp-sustain-border-width: {{ block.settings.card_border_width }}px;
+        --pdp-sustain-align: {{ block.settings.text_alignment }};
+        --pdp-sustain-bg: {{ block.settings.background_color }};
+        --pdp-sustain-text: {{ block.settings.text_color }};
+        --pdp-sustain-heading: {{ block.settings.heading_color }};
+        --pdp-sustain-accent: {{ block.settings.accent_color }};
+        --pdp-sustain-border: {{ block.settings.border_color }};
+        --pdp-sustain-divider: {{ block.settings.divider_color }};
+        --pdp-sustain-eyebrow-size: {{ block.settings.eyebrow_size }}px;
+        --pdp-sustain-eyebrow-spacing: {{ block.settings.eyebrow_letter_spacing | divided_by: 100.0 }}em;
+        --pdp-sustain-heading-size-mobile: {{ block.settings.heading_size_mobile }}px;
+        --pdp-sustain-heading-size-desktop: {{ block.settings.heading_size_desktop }}px;
+        --pdp-sustain-body-size-mobile: {{ block.settings.body_size_mobile }}px;
+        --pdp-sustain-body-size-desktop: {{ block.settings.body_size_desktop }}px;
+        --pdp-sustain-badge-gap: {{ block.settings.badge_gap }}px;
+        --pdp-sustain-badge-margin-top: {{ block.settings.badge_margin_top }}px;
+        --pdp-sustain-badge-padding-y: {{ block.settings.badge_padding_vertical }}px;
+        --pdp-sustain-badge-padding-x: {{ block.settings.badge_padding_horizontal }}px;
+        --pdp-sustain-badge-radius: {{ block.settings.badge_radius }}px;
+        --pdp-sustain-badge-bg: {{ block.settings.badge_background_color }};
+        --pdp-sustain-badge-text: {{ block.settings.badge_text_color }};
+        --pdp-sustain-badge-border: {{ block.settings.badge_border_color }};
+        --pdp-sustain-badge-size: {{ block.settings.badge_font_size }}px;
+        --pdp-sustain-footer-gap: {{ block.settings.footer_gap }}px;
+        --pdp-sustain-footer-margin-top: {{ block.settings.footer_margin_top }}px;
+        --pdp-sustain-footer-padding-top: {{ block.settings.footer_padding_top }}px;
+        --pdp-sustain-footer-size: {{ block.settings.footer_text_size }}px;
+        --pdp-sustain-logo-width: {{ block.settings.logo_width }}px;
+        --pdp-sustain-desktop-image-width: {{ block.settings.desktop_image_width }}%;
+        --pdp-sustain-desktop-image-radius: {{ block.settings.desktop_image_radius }}px;
+        --pdp-sustain-desktop-image-fit: {{ block.settings.desktop_image_fit }};
+      "
+    >
+      <div class="product-sustainability-card__content">
+        {% if block.settings.eyebrow != blank %}<div class="product-sustainability-card__eyebrow">{% if block.settings.eyebrow_icon != blank %}<span aria-hidden="true">{{ block.settings.eyebrow_icon }}</span>{% endif %}<span>{{ block.settings.eyebrow | escape }}</span></div>{% endif %}
+        {% if block.settings.heading != blank %}<h2 class="product-sustainability-card__heading">{{ block.settings.heading | escape }}</h2>{% endif %}
+        {% if block.settings.body != blank %}<div class="product-sustainability-card__body rte">{{ block.settings.body }}</div>{% endif %}
+        {% if block.settings.badges != blank %}
+          <div class="product-sustainability-card__badges">
+            {% for badge in sustainability_badges %}
+              {% assign badge_text = badge | strip %}
+              {% if badge_text != blank %}<span class="product-sustainability-card__badge">{{ badge_text | escape }}</span>{% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if block.settings.give_text != blank or block.settings.logo != blank %}
+          <div class="product-sustainability-card__give{% if block.settings.show_divider %} product-sustainability-card__give--divider{% endif %}">
+            {% if block.settings.logo != blank %}{{ block.settings.logo | image_url: width: 120 | image_tag: loading: 'lazy', class: 'product-sustainability-card__logo' }}{% endif %}
+            {% if block.settings.give_text != blank %}<div class="product-sustainability-card__give-text rte">{{ block.settings.give_text }}</div>{% endif %}
+          </div>
+        {% endif %}
+      </div>
+      {% if block.settings.desktop_image != blank %}
+        <div class="product-sustainability-card__desktop-image">
+          {{ block.settings.desktop_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+{% endfor %}

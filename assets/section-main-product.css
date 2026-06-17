@@ -2549,6 +2549,11 @@ body:has(.radio-options-drawer--background.open) .header-group {
   margin-bottom: 0;
 }
 
+.product-desktop-details,
+.product-sustainability-card--desktop-band {
+  display: none;
+}
+
 @media only screen and (max-width: 949px) {
   .product-details-summary--desktop {
     display: none;
@@ -2570,6 +2575,27 @@ body:has(.radio-options-drawer--background.open) .header-group {
 
   .product-details-summary__body {
     font-size: var(--pdp-details-summary-body-size-desktop, 16px);
+  }
+
+  .product-desktop-details {
+    display: grid;
+    grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+    gap: 64px;
+    width: min(calc(100% - 96px), var(--page-width, 1600px));
+    margin: var(--pdp-details-summary-margin-top-desktop, 34px) auto 0;
+    padding-top: var(--pdp-details-summary-padding-top, 0);
+    border-top: 1px solid var(--pdp-details-summary-border-color, transparent);
+  }
+
+  .product-desktop-details__summary {
+    max-width: var(--pdp-details-summary-max-width, 520px);
+  }
+
+  .product-desktop-details__accordions {
+    min-width: 0;
+    max-width: var(--pdp-details-desktop-max-width, 760px);
+    margin-left: var(--pdp-details-desktop-offset-x, 0);
+    padding-top: var(--pdp-details-desktop-offset-top, 0);
   }
 }
 
@@ -5358,14 +5384,25 @@ a.product__text {
   text-align: center;
 }
 
-.product__info-container .product-why-we-love-this {
+.product-sustainability-card--desktop-band {
+  border: var(--pdp-sustain-border-width, 0) solid var(--pdp-sustain-border, transparent);
+  border-radius: var(--pdp-sustain-radius, 28px);
+  padding: var(--pdp-sustain-padding-desktop, 34px);
+  background: var(--pdp-sustain-bg, #414A29);
+  color: var(--pdp-sustain-text, #f3f1e6);
+  text-align: var(--pdp-sustain-align, left);
+}
+
+.product__info-container .product-why-we-love-this,
+.product-desktop-details .product-why-we-love-this {
   margin: var(--pdp-why-margin-top, 8px) 0 var(--pdp-why-margin-bottom, 8px) !important;
   padding: var(--pdp-why-padding-y, 12px) 0;
   border-top: var(--pdp-why-border-width, 1px) solid var(--pdp-why-border-color, #ece8e0);
   border-bottom: var(--pdp-why-border-width, 1px) solid var(--pdp-why-border-color, #ece8e0);
 }
 
-.product__info-container .product-why-we-love-this + .accordion:not(.product-materials-block):not(.product-fit-dimensions-block):not(.product-care-instructions-block):not(.product-sustainability-details-block):not(.product-shipping-returns-block) {
+.product__info-container .product-why-we-love-this + .accordion:not(.product-materials-block):not(.product-fit-dimensions-block):not(.product-care-instructions-block):not(.product-sustainability-details-block):not(.product-shipping-returns-block),
+.product-desktop-details .product-why-we-love-this + .accordion:not(.product-materials-block):not(.product-fit-dimensions-block):not(.product-care-instructions-block):not(.product-sustainability-details-block):not(.product-shipping-returns-block) {
   border-top: 0;
 }
 
@@ -5626,6 +5663,11 @@ a.product__text {
 }
 
 @media only screen and (min-width: 950px) {
+  .product__info-container > .product-why-we-love-this,
+  .product__info-container > .product-sustainability-card {
+    display: none;
+  }
+
   .product-sustainability-card--mobile-only {
     display: none;
   }
@@ -5664,6 +5706,28 @@ a.product__text {
     object-fit: var(--pdp-sustain-desktop-image-fit, cover);
   }
 
+  .product-sustainability-card--desktop-band {
+    display: block;
+    box-sizing: border-box;
+    width: min(calc(100% - 96px), var(--page-width, 1800px));
+    margin: 48px auto 0;
+  }
+
+  .product-sustainability-card--desktop-band.product-sustainability-card--has-desktop-image {
+    display: grid;
+    grid-template-columns: minmax(0, calc(100% - var(--pdp-sustain-desktop-image-width, 44%) - 56px)) minmax(260px, var(--pdp-sustain-desktop-image-width, 44%));
+    gap: 56px;
+    align-items: center;
+  }
+
+  .product-sustainability-card--desktop-band.product-sustainability-card--desktop-image-left {
+    grid-template-columns: minmax(260px, var(--pdp-sustain-desktop-image-width, 44%)) minmax(0, calc(100% - var(--pdp-sustain-desktop-image-width, 44%) - 56px));
+  }
+
+  .product-sustainability-card--desktop-band.product-sustainability-card--desktop-image-left .product-sustainability-card__content {
+    order: 2;
+  }
+
   .product-sustainability-card__heading {
     font-size: var(--pdp-sustain-heading-size-desktop, 38px);
   }
@@ -5678,12 +5742,6 @@ a.product__text {
 
   .product-why-we-love-this .accordion-panel {
     font-size: var(--pdp-why-body-size-desktop, 14px);
-  }
-
-  .product__info-container .product-why-we-love-this {
-    max-width: var(--pdp-details-desktop-max-width, none);
-    margin-left: var(--pdp-details-desktop-offset-x, 0);
-    margin-top: calc(var(--pdp-why-margin-top, 0px) + var(--pdp-details-desktop-offset-top, 0px)) !important;
   }
 
   .product-fit-dimensions-block__cell strong {
