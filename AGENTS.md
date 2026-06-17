@@ -47,6 +47,24 @@ Use the home-folder copy unless the user explicitly says otherwise.
 - Homepage Judge.me reviews section: `sections/kaahu-judgeme-reviews-carousel.liquid` and `assets/section-kaahu-judgeme-reviews-carousel.css`.
 - Global font logic lives in `snippets/global-theme-styles.liquid` and native Shopify typography settings.
 
+## Standalone HTML Page Integration
+
+When the user provides a standalone HTML page for this Shopify theme, treat the HTML as content and layout direction, not as final theme code. Do not paste it as raw Shopify page content, and do not commit the supplied HTML file as the implementation unless the user explicitly asks.
+
+- Convert standalone HTML pages into a proper theme section plus JSON template.
+- Keep pages editable through the Shopify theme editor.
+- Expose practical content controls in the section schema: main headings, eyebrows/kickers, body copy, CTA/link text and URLs, chips/badges, spacing controls when useful, and all content images.
+- Use `image_picker` settings for replaceable images, with the supplied/current image URLs as fallbacks.
+- Make uploaded photographic images fill their frames with `object-fit: cover` by default. Use `contain` only for logos, icons, SVG illustrations, or artwork where cropping would be wrong.
+- Use the existing theme design system: `page-width`, `page-width-narrow`, `--page-margin-*`, `--font-body-family`, `--font-heading-family`, heading size variables, body size variables, line-height variables, and existing color variables where appropriate.
+- Do not import page-specific Google Fonts or create a separate typography system unless the user explicitly asks.
+- Do not use ad hoc fixed gutters such as `20px` or `28px` for the main content rhythm. Full-bleed color bands are fine, but their inner content should use the same consistent theme width/margin primitive.
+- Scope all custom CSS under a unique section class. Never style `body`, `html`, or global element selectors for a page section.
+- Use one consistent wrapper pattern throughout a page. Avoid mixing custom wrappers with theme page-width wrappers unless there is a clear reason.
+- Check vertical spacing between adjacent sections, especially after hero images. Avoid stacking two large section paddings back-to-back.
+- If a new page must be reachable from navigation, prefer Shopify Admin navigation. If Admin menu access is unavailable and the user asks to ensure the header link works, add only a guarded theme fallback that checks existing nested menu links and avoids duplicate links.
+- Before editing a page template that may have been customized in Shopify, pull from the June 3 draft and preserve Shopify editor-generated template settings.
+
 ## Known External/App Noise
 
 Theme Check may still report app/vendor issues unrelated to current work, especially:
