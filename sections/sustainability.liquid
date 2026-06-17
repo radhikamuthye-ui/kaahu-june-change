@@ -1,464 +1,317 @@
 <style>
   .kaahu-sus {
-    --ground: var(--color-background, #F7F5EE);
-    --ground-2: var(--color-bg-two, #EFEADD);
-    --ink: var(--color-foreground, #232A22);
-    --ink-soft: rgba(var(--color-foreground-rgb, 35, 42, 34), .72);
-    --green: var(--color-accent-one, #354A38);
-    --amber: var(--color-amber, #A9762A);
-    --rose: #C29A92;
-    --line: rgba(var(--color-foreground-rgb, 35, 42, 34), .16);
-    --serif: var(--font-heading-family);
-    --sans: var(--font-body-family);
-    background: var(--ground);
-    color: var(--ink);
-    font-family: var(--sans);
+    --sus-ground: var(--color-background, #f7f5ee);
+    --sus-band: var(--color-bg-two, #efeadd);
+    --sus-ink: var(--color-foreground, #232a22);
+    --sus-muted: rgba(var(--color-foreground-rgb, 35, 42, 34), .72);
+    --sus-accent: var(--color-accent-one, #354a38);
+    --sus-warm: var(--color-amber, #a9762a);
+    --sus-line: rgba(var(--color-foreground-rgb, 35, 42, 34), .16);
+    --sus-max-width: {{ section.settings.content_width }}px;
+    --sus-y: {{ section.settings.section_spacing_mobile }}px;
+    background: var(--sus-ground);
+    color: var(--sus-ink);
+    font-family: var(--font-body-family);
     font-style: var(--font-body-style);
     font-weight: var(--font-body-weight);
-    font-size: var(--font-body-base-size-mobile, 16px);
-    line-height: var(--base-line-height, 1.6);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    font-size: var(--font-body-base-size-mobile);
+    line-height: var(--base-line-height);
   }
 
   .kaahu-sus * {
     box-sizing: border-box;
   }
 
-  .kaahu-sus .wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 var(--page-margin-mobile, 2rem);
+  .kaahu-sus .sus-wrap {
+    max-width: var(--sus-max-width);
   }
 
-  .kaahu-sus .narrow {
-    max-width: 660px;
+  .kaahu-sus .sus-narrow {
+    max-width: min(70rem, var(--sus-max-width));
   }
 
-  .kaahu-sus .eyebrow {
-    font-size: 12px;
-    letter-spacing: .22em;
+  .kaahu-sus .sus-block {
+    padding-top: var(--sus-y);
+    padding-bottom: var(--sus-y);
+  }
+
+  .kaahu-sus .sus-band {
+    background: var(--sus-band);
+    border-top: 1px solid var(--sus-line);
+    border-bottom: 1px solid var(--sus-line);
+  }
+
+  .kaahu-sus .sus-rule {
+    width: 54px;
+    height: 1px;
+    background: var(--sus-warm);
+    border: 0;
+    margin: 0 0 28px;
+  }
+
+  .kaahu-sus .sus-eyebrow {
+    margin: 0 0 14px;
+    color: var(--sus-warm);
+    font-family: var(--font-accent-family);
+    font-size: var(--font-caption-size-mobile);
+    font-style: var(--font-accent-style);
+    font-weight: var(--font-accent-weight);
+    letter-spacing: .12em;
+    line-height: 1.2;
     text-transform: uppercase;
-    font-weight: 600;
-    color: var(--amber);
-    margin: 0 0 18px;
+  }
+
+  .kaahu-sus h1,
+  .kaahu-sus h2,
+  .kaahu-sus h3,
+  .kaahu-sus p {
+    margin-top: 0;
   }
 
   .kaahu-sus h1,
   .kaahu-sus h2,
   .kaahu-sus h3 {
-    font-family: var(--serif);
-    font-style: var(--font-heading-style);
-    font-weight: var(--font-heading-weight);
-    color: var(--green);
-    margin: 0;
+    color: var(--sus-accent);
   }
 
-  .kaahu-sus h1 {
-    font-size: var(--font-h1-size-mobile, 42px);
-    line-height: 1.08;
-    letter-spacing: var(--font-h1-ls, 0);
-    text-transform: var(--font-h1-case, none);
-    color: var(--ink);
+  .kaahu-sus .sus-hero h1 {
+    max-width: 15ch;
+    color: var(--sus-ink);
   }
 
-  .kaahu-sus h2 {
-    font-size: var(--font-h2-size-mobile, 30px);
-    line-height: 1.15;
-    letter-spacing: var(--font-h2-ls, 0);
-    text-transform: var(--font-h2-case, none);
+  .kaahu-sus .sus-copy,
+  .kaahu-sus .sus-richtext,
+  .kaahu-sus .sus-lede {
+    color: var(--sus-muted);
   }
 
-  .kaahu-sus h3 {
-    font-size: var(--font-h3-size-mobile, 22px);
-    line-height: 1.3;
-    letter-spacing: var(--font-h3-ls, 0);
-    text-transform: var(--font-h3-case, none);
+  .kaahu-sus .sus-lede {
+    max-width: 52rem;
+    font-size: 1.08em;
   }
 
-  .kaahu-sus p {
-    margin: 0 0 1.1em;
+  .kaahu-sus .sus-richtext > *:last-child,
+  .kaahu-sus .sus-copy > *:last-child {
+    margin-bottom: 0;
   }
 
   .kaahu-sus a {
-    color: var(--green);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
+    color: var(--sus-accent);
+    text-underline-offset: .18em;
   }
 
   .kaahu-sus a:hover {
-    color: var(--amber);
+    color: var(--sus-warm);
   }
 
   .kaahu-sus :focus-visible {
-    outline: 2px solid var(--amber);
+    outline: 2px solid var(--sus-warm);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
-  .kaahu-sus .frame {
+  .kaahu-sus .sus-frame {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    background: var(--ground-2);
-    border: 1px solid var(--line);
+    border: 1px solid var(--sus-line);
+    border-radius: var(--media-radius-small, 8px);
+    background: var(--sus-band);
   }
 
-  .kaahu-sus .frame img {
+  .kaahu-sus .sus-frame img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .kaahu-sus .frame-wide {
+  .kaahu-sus .sus-frame-wide {
     aspect-ratio: 16 / 8;
   }
 
-  .kaahu-sus .frame-tile,
-  .kaahu-sus .frame-port {
+  .kaahu-sus .sus-frame-tile,
+  .kaahu-sus .sus-frame-port {
     aspect-ratio: 4 / 5;
   }
 
-  .kaahu-sus .illus {
+  .kaahu-sus .sus-illus {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--ground-2);
   }
 
-  .kaahu-sus .illus img {
+  .kaahu-sus .sus-illus img {
     width: 46%;
     height: auto;
     object-fit: contain;
-    opacity: .92;
   }
 
-  .kaahu-sus .hero {
-    padding: 104px 0 40px;
-  }
-
-  .kaahu-sus .hero h1 {
-    max-width: 14ch;
-  }
-
-  .kaahu-sus .hero .lede {
-    font-size: clamp(1.05rem, 2vw, 1.28rem);
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin-top: 28px;
-  }
-
-  .kaahu-sus .rule {
-    width: 54px;
-    height: 2px;
-    background: var(--amber);
-    border: 0;
-    margin: 0 0 34px;
-  }
-
-  .kaahu-sus .hero-img {
-    margin-top: 56px;
-  }
-
-  .kaahu-sus .intro {
-    padding: 78px 0;
-  }
-
-  .kaahu-sus .intro p {
-    font-size: 1.22rem;
-    color: var(--ink);
-    line-height: 1.78;
-  }
-
-  .kaahu-sus .mala {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--green);
-  }
-
-  .kaahu-sus .band {
-    background: var(--ground-2);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .kaahu-sus .section {
-    padding: 80px 0;
-  }
-
-  .kaahu-sus .section-head {
-    max-width: 36ch;
-    margin-bottom: 46px;
-  }
-
-  .kaahu-sus .section-head h2 {
-    margin-top: 6px;
-  }
-
-  .kaahu-sus .tiles {
+  .kaahu-sus .sus-stack {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 28px;
   }
 
-  .kaahu-sus .tile .copy {
-    padding-top: 24px;
+  .kaahu-sus .sus-hero-media {
+    margin-top: 16px;
   }
 
-  .kaahu-sus .tile .kicker {
-    font-family: var(--serif);
+  .kaahu-sus .sus-grid {
+    display: grid;
+    gap: 36px;
+  }
+
+  .kaahu-sus .sus-card-copy {
+    padding-top: 20px;
+  }
+
+  .kaahu-sus .sus-kicker,
+  .kaahu-sus .sus-lead,
+  .kaahu-sus .sus-sign,
+  .kaahu-sus .sus-row-label {
+    color: var(--sus-accent);
+    font-family: var(--font-heading-family);
     font-style: italic;
-    font-size: 1.05rem;
-    color: var(--amber);
-    margin: 0 0 4px;
+    font-weight: var(--font-heading-weight);
   }
 
-  .kaahu-sus .tile h3 {
-    margin-bottom: 12px;
+  .kaahu-sus .sus-kicker {
+    margin-bottom: 6px;
   }
 
-  .kaahu-sus .tile p {
-    color: var(--ink-soft);
-    margin-bottom: 18px;
+  .kaahu-sus .sus-lead,
+  .kaahu-sus .sus-sign {
+    font-size: 1.18em;
+    line-height: 1.45;
   }
 
-  .kaahu-sus .chips {
+  .kaahu-sus .sus-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: 18px;
   }
 
-  .kaahu-sus .chip {
-    font-size: 12.5px;
-    letter-spacing: .04em;
-    font-weight: 600;
-    color: var(--green);
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, .5);
+  .kaahu-sus .sus-chip {
+    border: 1px solid var(--sus-line);
+    border-radius: var(--button-radius, 999px);
     padding: 6px 12px;
-    border-radius: 999px;
+    background: rgba(255, 255, 255, .45);
+    color: var(--sus-accent);
+    font-family: var(--font-accent-family);
+    font-size: var(--font-caption-size-mobile);
+    line-height: 1.2;
   }
 
-  .kaahu-sus .split {
+  .kaahu-sus .sus-split {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
+    gap: 32px;
     align-items: center;
   }
 
-  .kaahu-sus .split .frame-port {
-    align-self: stretch;
+  .kaahu-sus .sus-rows {
+    border-top: 1px solid var(--sus-line);
   }
 
-  .kaahu-sus .split.reverse .media {
-    order: 2;
-  }
-
-  .kaahu-sus .split .copy p {
-    color: var(--ink-soft);
-    font-size: 1.08rem;
-  }
-
-  .kaahu-sus .split .lead {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--green);
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-
-  .kaahu-sus .rows {
-    border-top: 1px solid var(--line);
-  }
-
-  .kaahu-sus .row {
+  .kaahu-sus .sus-row {
     display: grid;
-    grid-template-columns: 230px 1fr;
-    gap: 40px;
-    padding: 30px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
+    gap: 10px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--sus-line);
   }
 
-  .kaahu-sus .row .label {
-    font-family: var(--serif);
-    font-size: 1.3rem;
-    color: var(--green);
-    line-height: 1.25;
+  .kaahu-sus .sus-row-label {
+    font-size: 1.12em;
+    line-height: 1.3;
   }
 
-  .kaahu-sus .row p {
-    margin: 0 0 14px;
-    color: var(--ink-soft);
-  }
-
-  .kaahu-sus .give {
-    padding: 84px var(--page-margin-mobile, 2rem);
+  .kaahu-sus .sus-give,
+  .kaahu-sus .sus-close {
     text-align: center;
   }
 
-  .kaahu-sus .give .mark {
+  .kaahu-sus .sus-mark {
     width: 84px;
     height: 84px;
-    margin: 0 auto 26px;
+    margin: 0 auto 24px;
     border-radius: 50%;
     overflow: hidden;
-    background: var(--green);
+    background: var(--sus-accent);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .kaahu-sus .give .mark img {
+  .kaahu-sus .sus-mark img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
     padding: 14px;
   }
 
-  .kaahu-sus .give h2 {
-    margin: 0 auto 22px;
-    max-width: 18ch;
+  .kaahu-sus .sus-last {
+    border-top: 1px solid var(--sus-line);
   }
 
-  .kaahu-sus .give p {
-    max-width: 52ch;
-    margin: 0 auto;
-    color: var(--ink-soft);
-    font-size: 1.1rem;
+  .kaahu-sus .sus-progress {
+    background: var(--sus-accent);
+    color: var(--sus-ground);
   }
 
-  .kaahu-sus .give .fig {
-    color: var(--green);
-    font-weight: 600;
+  .kaahu-sus .sus-progress h2,
+  .kaahu-sus .sus-progress .sus-lead,
+  .kaahu-sus .sus-progress .sus-copy {
+    color: inherit;
   }
 
-  .kaahu-sus .last {
-    border-top: 1px solid var(--line);
+  .kaahu-sus .sus-progress .sus-eyebrow {
+    color: var(--sus-warm);
   }
 
-  .kaahu-sus .last .inner {
-    max-width: 60ch;
-  }
-
-  .kaahu-sus .last p {
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-  }
-
-  .kaahu-sus .last .lead {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.35rem;
-    color: var(--green);
-    line-height: 1.4;
-    margin-bottom: 18px;
-  }
-
-  .kaahu-sus .progress {
-    background: var(--green);
-    color: #EDEADD;
-  }
-
-  .kaahu-sus .progress .eyebrow {
-    color: #D9B675;
-  }
-
-  .kaahu-sus .progress h2 {
-    color: #F4F1E6;
-  }
-
-  .kaahu-sus .progress .intro-line {
-    color: #CBD2C2;
-    max-width: 50ch;
-    font-size: 1.12rem;
-    margin-bottom: 38px;
-  }
-
-  .kaahu-sus .todo {
-    list-style: none;
+  .kaahu-sus .sus-list {
+    display: grid;
+    gap: 0;
     margin: 0;
     padding: 0;
-    max-width: 62ch;
+    list-style: none;
   }
 
-  .kaahu-sus .todo li {
+  .kaahu-sus .sus-list li {
     position: relative;
-    padding: 20px 0 20px 40px;
-    border-top: 1px solid rgba(255, 255, 255, .14);
-    color: #E6E3D5;
-    font-size: 1.06rem;
-    line-height: 1.6;
+    padding: 18px 0 18px 32px;
+    border-top: 1px solid rgba(255, 255, 255, .18);
   }
 
-  .kaahu-sus .todo li:last-child {
-    border-bottom: 1px solid rgba(255, 255, 255, .14);
+  .kaahu-sus .sus-list li:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, .18);
   }
 
-  .kaahu-sus .todo li::before {
+  .kaahu-sus .sus-list li::before {
     content: "";
     position: absolute;
+    top: 24px;
     left: 0;
-    top: 25px;
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--sus-warm);
     border-radius: 50%;
-    border: 2px solid #D9B675;
-    background: transparent;
   }
 
-  .kaahu-sus .close {
-    padding: 80px var(--page-margin-mobile, 2rem) 30px;
-    text-align: center;
-  }
-
-  .kaahu-sus .close p {
-    max-width: 48ch;
-    margin: 0 auto 18px;
-    color: var(--ink-soft);
-    font-size: 1.1rem;
-  }
-
-  .kaahu-sus .close .sign {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.45rem;
-    color: var(--green);
-    line-height: 1.4;
-  }
-
-  .kaahu-sus .close-img {
-    padding-bottom: 96px;
-  }
-
-  .kaahu-sus .reveal {
+  .kaahu-sus .sus-reveal {
     opacity: 0;
-    transform: translateY(14px);
-    animation: kaahu-rise .8s cubic-bezier(.2, .7, .2, 1) forwards;
+    transform: translateY(12px);
+    animation: kaahu-rise .65s cubic-bezier(.2, .7, .2, 1) forwards;
   }
 
-  .kaahu-sus .hero .reveal:nth-child(1) {
-    animation-delay: .05s;
+  .kaahu-sus .sus-reveal:nth-child(2) {
+    animation-delay: .08s;
   }
 
-  .kaahu-sus .hero .reveal:nth-child(2) {
+  .kaahu-sus .sus-reveal:nth-child(3) {
     animation-delay: .16s;
   }
 
-  .kaahu-sus .hero .reveal:nth-child(3) {
-    animation-delay: .27s;
-  }
-
-  .kaahu-sus .hero .reveal:nth-child(4) {
-    animation-delay: .38s;
-  }
-
-  .kaahu-sus .hero .reveal:nth-child(5) {
-    animation-delay: .5s;
+  .kaahu-sus .sus-reveal:nth-child(4) {
+    animation-delay: .24s;
   }
 
   @keyframes kaahu-rise {
@@ -469,190 +322,145 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .kaahu-sus .reveal {
+    .kaahu-sus .sus-reveal {
       opacity: 1;
       transform: none;
       animation: none;
     }
   }
 
-  @media (max-width: 760px) {
-    .kaahu-sus .frame-wide {
-      aspect-ratio: 4 / 3;
-    }
-
-    .kaahu-sus .hero {
-      padding: 50px 0 22px;
-    }
-
-    .kaahu-sus .hero-img {
-      margin-top: 40px;
-    }
-
-    .kaahu-sus .section {
-      padding: 54px 0;
-    }
-
-    .kaahu-sus .intro {
-      padding: 56px 0;
-    }
-
-    .kaahu-sus .give {
-      padding-top: 62px;
-      padding-bottom: 62px;
-    }
-
-    .kaahu-sus .tiles {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .kaahu-sus .split {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .kaahu-sus .split.reverse .media {
-      order: 0;
-    }
-
-    .kaahu-sus .row {
-      grid-template-columns: 1fr;
-      gap: 10px;
-      padding: 26px 0;
-    }
-
-    .kaahu-sus .row .label {
-      font-size: 1.18rem;
-    }
-  }
-
   @media (min-width: 750px) {
     .kaahu-sus {
-      font-size: var(--font-body-base-size-tablet, 17px);
+      --sus-y: {{ section.settings.section_spacing_desktop }}px;
+      font-size: var(--font-body-base-size-tablet);
     }
 
-    .kaahu-sus .wrap {
-      padding-left: var(--page-margin-tablet, 4rem);
-      padding-right: var(--page-margin-tablet, 4rem);
+    .kaahu-sus .sus-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px;
     }
 
-    .kaahu-sus h1 {
-      font-size: var(--font-h1-size-tablet, 54px);
+    .kaahu-sus .sus-split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px;
     }
 
-    .kaahu-sus h2 {
-      font-size: var(--font-h2-size-tablet, 38px);
-    }
-
-    .kaahu-sus h3 {
-      font-size: var(--font-h3-size-tablet, 24px);
-    }
-
-    .kaahu-sus .give,
-    .kaahu-sus .close {
-      padding-left: var(--page-margin-tablet, 4rem);
-      padding-right: var(--page-margin-tablet, 4rem);
+    .kaahu-sus .sus-row {
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 40px;
+      padding: 30px 0;
     }
   }
 
   @media (min-width: 1025px) {
     .kaahu-sus {
-      font-size: var(--font-body-base-size-desktop, 17px);
+      font-size: var(--font-body-base-size-desktop);
     }
 
-    .kaahu-sus .wrap {
-      padding-left: var(--page-margin-desktop, 6rem);
-      padding-right: var(--page-margin-desktop, 6rem);
+    .kaahu-sus .sus-eyebrow,
+    .kaahu-sus .sus-chip {
+      font-size: var(--font-caption-size-desktop);
     }
+  }
 
-    .kaahu-sus h1 {
-      font-size: var(--font-h1-size-desktop, 62px);
-    }
-
-    .kaahu-sus h2 {
-      font-size: var(--font-h2-size-desktop, 42px);
-    }
-
-    .kaahu-sus h3 {
-      font-size: var(--font-h3-size-desktop, 25px);
-    }
-
-    .kaahu-sus .give,
-    .kaahu-sus .close {
-      padding-left: var(--page-margin-desktop, 6rem);
-      padding-right: var(--page-margin-desktop, 6rem);
+  @media (max-width: 749px) {
+    .kaahu-sus .sus-frame-wide {
+      aspect-ratio: 4 / 3;
     }
   }
 </style>
 
+{%- assign hero_eyebrow = section.settings.hero_eyebrow | default: 'Sustainability at Kaahu' -%}
+{%- assign hero_heading = section.settings.hero_heading | default: 'What you carry should reflect what you value.' -%}
+{%- assign hero_text = section.settings.hero_text | default: 'So we account for it at every stage. Here is what that means, in plain terms, including the parts we have not finished yet.' -%}
+
 <div class="kaahu-sus">
-  <header class="hero">
-    <div class="wrap">
-      <p class="eyebrow reveal">Sustainability at Kaahu</p>
-      <hr class="rule reveal" aria-hidden="true">
-      <h1 class="reveal">What you carry should reflect what you value.</h1>
-      <p class="lede reveal">So we account for it &mdash; at every stage. Here is what that means, in plain terms, including the parts we haven&rsquo;t finished yet.</p>
-    </div>
-    <div class="wrap hero-img reveal">
-      <div class="frame frame-wide">
-        {% if section.settings.hero_image %}
-          <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="{{ section.settings.hero_image.alt | default: 'A Kaahu bag in everyday life' }}" width="{{ section.settings.hero_image.width }}" height="{{ section.settings.hero_image.height }}">
-        {% else %}
-          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547" alt="A Kaahu bag in everyday life" width="1600" height="800">
-        {% endif %}
+  <header class="sus-hero sus-block">
+    <div class="page-width sus-wrap sus-stack">
+      <div>
+        <p class="sus-eyebrow sus-reveal">{{ hero_eyebrow }}</p>
+        <hr class="sus-rule sus-reveal" aria-hidden="true">
+        <h1 class="sus-reveal">{{ hero_heading }}</h1>
+        <p class="sus-lede sus-reveal">{{ hero_text }}</p>
+      </div>
+      <div class="sus-hero-media sus-reveal">
+        <div class="sus-frame sus-frame-wide">
+          {% if section.settings.hero_image %}
+            <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="{{ section.settings.hero_image.alt | default: 'A Kaahu bag in everyday life' }}" width="{{ section.settings.hero_image.width }}" height="{{ section.settings.hero_image.height }}">
+          {% else %}
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547" alt="A Kaahu bag in everyday life" width="1600" height="800">
+          {% endif %}
+        </div>
       </div>
     </div>
   </header>
 
-  <section class="intro">
-    <div class="wrap narrow">
-      <p>Kaahu is shaped by the Hawaiian principle of <span class="mala">M&#257;lama</span> &mdash; to care for one&rsquo;s people, and for the land, air, and water that hold them. That care decides what we make, and how.</p>
-      <p>We choose natural fibers, low-impact methods, and partners who meet real standards. And we would rather move slowly than overstate.</p>
+  <section class="sus-block">
+    <div class="page-width-narrow sus-narrow">
+      <div class="sus-richtext">
+        {% if section.settings.intro_text != blank %}
+          {{ section.settings.intro_text }}
+        {% else %}
+          <p>Kaahu is shaped by the Hawaiian principle of <em>M&#257;lama</em> &mdash; to care for one&rsquo;s people, and for the land, air, and water that hold them. That care decides what we make, and how.</p>
+          <p>We choose natural fibers, low-impact methods, and partners who meet real standards. And we would rather move slowly than overstate.</p>
+        {% endif %}
+      </div>
     </div>
   </section>
 
-  <div class="band">
-    <section class="section wrap">
-      <div class="section-head">
-        <p class="eyebrow">Materials</p>
-        <h2>Two fibers, chosen for what they conserve.</h2>
-      </div>
-      <div class="tiles">
-        <article class="tile">
-          <div class="frame frame-tile">
-            {% if section.settings.cotton_image %}
-              <img src="{{ section.settings.cotton_image | image_url: width: 1200 }}" alt="{{ section.settings.cotton_image.alt | default: 'Cotton boll on the plant' }}" width="{{ section.settings.cotton_image.width }}" height="{{ section.settings.cotton_image.height }}" loading="lazy">
-            {% else %}
-              <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="Cotton boll on the plant" width="1200" height="1500" loading="lazy">
-            {% endif %}
-          </div>
-          <div class="copy">
-            <p class="kicker">Certified organic cotton</p>
-            <h3>Grown gently, from the seed up.</h3>
-            <p>No synthetic pesticides, no GM seeds, and certified to the Global Organic Textile Standard. It uses up to 91% less water than conventional cotton.</p>
-            <div class="chips"><span class="chip">GOTS-certified</span><span class="chip">Up to 91% less water</span></div>
-          </div>
-        </article>
-        <article class="tile">
-          <div class="frame frame-tile illus">
-            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="Bengal jute fiber" width="512" height="512">
-          </div>
-          <div class="copy">
-            <p class="kicker">Bengal jute</p>
-            <h3>One of the lowest-impact fibers there is.</h3>
-            <p>Rain-fed, harvested within six months, and gentle on the soil it grows in &mdash; a fiber with a quiet strength we fell for.</p>
-            <div class="chips"><span class="chip">Rain-fed</span><span class="chip">6-month harvest</span><span class="chip">Builds soil health</span></div>
-          </div>
-        </article>
+  <div class="sus-band">
+    <section class="sus-block">
+      <div class="page-width sus-wrap sus-stack">
+        <div>
+          <p class="sus-eyebrow">{{ section.settings.materials_eyebrow | default: 'Materials' }}</p>
+          <h2>{{ section.settings.materials_heading | default: 'Two fibers, chosen for what they conserve.' }}</h2>
+        </div>
+        <div class="sus-grid">
+          <article>
+            <div class="sus-frame sus-frame-tile">
+              {% if section.settings.cotton_image %}
+                <img src="{{ section.settings.cotton_image | image_url: width: 1200 }}" alt="{{ section.settings.cotton_image.alt | default: 'Cotton boll on the plant' }}" width="{{ section.settings.cotton_image.width }}" height="{{ section.settings.cotton_image.height }}" loading="lazy">
+              {% else %}
+                <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="Cotton boll on the plant" width="1200" height="1500" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="sus-card-copy">
+              <p class="sus-kicker">{{ section.settings.cotton_kicker | default: 'Certified organic cotton' }}</p>
+              <h3>{{ section.settings.cotton_heading | default: 'Grown gently, from the seed up.' }}</h3>
+              <p class="sus-copy">{{ section.settings.cotton_text | default: 'No synthetic pesticides, no GM seeds, and certified to the Global Organic Textile Standard. It uses up to 91% less water than conventional cotton.' }}</p>
+              <div class="sus-chips">
+                {%- assign cotton_chips = section.settings.cotton_chips | default: 'GOTS-certified,Up to 91% less water' | split: ',' -%}
+                {% for chip in cotton_chips %}
+                  <span class="sus-chip">{{ chip | strip }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="sus-frame sus-frame-tile sus-illus">
+              <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="Bengal jute fiber" width="512" height="512">
+            </div>
+            <div class="sus-card-copy">
+              <p class="sus-kicker">{{ section.settings.jute_kicker | default: 'Bengal jute' }}</p>
+              <h3>{{ section.settings.jute_heading | default: 'One of the lowest-impact fibers there is.' }}</h3>
+              <p class="sus-copy">{{ section.settings.jute_text | default: 'Rain-fed, harvested within six months, and gentle on the soil it grows in: a fiber with a quiet strength we fell for.' }}</p>
+              <div class="sus-chips">
+                {%- assign jute_chips = section.settings.jute_chips | default: 'Rain-fed,6-month harvest,Builds soil health' | split: ',' -%}
+                {% for chip in jute_chips %}
+                  <span class="sus-chip">{{ chip | strip }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </div>
 
-  <section class="section wrap">
-    <div class="split">
-      <div class="media">
-        <div class="frame frame-port">
+  <section class="sus-block">
+    <div class="page-width sus-wrap sus-split">
+      <div>
+        <div class="sus-frame sus-frame-port">
           {% if section.settings.craft_image %}
             <img src="{{ section.settings.craft_image | image_url: width: 1200 }}" alt="{{ section.settings.craft_image.alt | default: 'Artisan craft and heritage textile work' }}" width="{{ section.settings.craft_image.width }}" height="{{ section.settings.craft_image.height }}" loading="lazy">
           {% else %}
@@ -660,80 +468,118 @@
           {% endif %}
         </div>
       </div>
-      <div class="copy">
-        <p class="eyebrow">Hands &amp; lineage</p>
-        <p class="lead">Made by people, and named as such.</p>
-        <p>Small mills and artisan cooperatives carry the work forward &mdash; jute looms in Bengal, cotton spinning in Gujarat. One bag even carries a note in Bengali script, written by our own family.</p>
-        <div class="chips"><span class="chip">Bengal looms</span><span class="chip">Gujarat spinning</span></div>
+      <div>
+        <p class="sus-eyebrow">{{ section.settings.craft_eyebrow | default: 'Hands & lineage' }}</p>
+        <p class="sus-lead">{{ section.settings.craft_lead | default: 'Made by people, and named as such.' }}</p>
+        <p class="sus-copy">{{ section.settings.craft_text | default: 'Small mills and artisan cooperatives carry the work forward: jute looms in Bengal, cotton spinning in Gujarat. One bag even carries a note in Bengali script, written by our own family.' }}</p>
+        <div class="sus-chips">
+          {%- assign craft_chips = section.settings.craft_chips | default: 'Bengal looms,Gujarat spinning' | split: ',' -%}
+          {% for chip in craft_chips %}
+            <span class="sus-chip">{{ chip | strip }}</span>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="band">
-    <section class="section wrap">
-      <div class="section-head">
-        <p class="eyebrow">How it&rsquo;s made</p>
-        <h2>Held to a standard, every step.</h2>
-      </div>
-      <div class="rows">
-        <div class="row">
-          <div class="label">Dyes &amp; water</div>
-          <div>
-            <p>GOTS-approved low-impact dyes. Several partner mills run closed-loop systems that recycle process water rather than discharge it.</p>
-            <div class="chips"><span class="chip">GOTS-approved dyes</span><span class="chip">Closed-loop water</span></div>
-          </div>
+  <div class="sus-band">
+    <section class="sus-block">
+      <div class="page-width sus-wrap sus-stack">
+        <div>
+          <p class="sus-eyebrow">{{ section.settings.making_eyebrow | default: 'How it is made' }}</p>
+          <h2>{{ section.settings.making_heading | default: 'Held to a standard, every step.' }}</h2>
         </div>
-        <div class="row">
-          <div class="label">Fair, safe labor</div>
-          <div>
-            <p>We work only with SEDEX-audited suppliers &mdash; fair pay in local terms, safe conditions, no forced labor. If a facility falls short, we move on, even when it costs more.</p>
-            <div class="chips"><span class="chip">SEDEX-audited</span><span class="chip">ISO 14001:2015</span></div>
+        <div class="sus-rows">
+          <div class="sus-row">
+            <div class="sus-row-label">{{ section.settings.row_one_label | default: 'Dyes & water' }}</div>
+            <div>
+              <p class="sus-copy">{{ section.settings.row_one_text | default: 'GOTS-approved low-impact dyes. Several partner mills run closed-loop systems that recycle process water rather than discharge it.' }}</p>
+              <div class="sus-chips">
+                {%- assign row_one_chips = section.settings.row_one_chips | default: 'GOTS-approved dyes,Closed-loop water' | split: ',' -%}
+                {% for chip in row_one_chips %}
+                  <span class="sus-chip">{{ chip | strip }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="sus-row">
+            <div class="sus-row-label">{{ section.settings.row_two_label | default: 'Fair, safe labor' }}</div>
+            <div>
+              <p class="sus-copy">{{ section.settings.row_two_text | default: 'We work only with SEDEX-audited suppliers: fair pay in local terms, safe conditions, no forced labor. If a facility falls short, we move on, even when it costs more.' }}</p>
+              <div class="sus-chips">
+                {%- assign row_two_chips = section.settings.row_two_chips | default: 'SEDEX-audited,ISO 14001:2015' | split: ',' -%}
+                {% for chip in row_two_chips %}
+                  <span class="sus-chip">{{ chip | strip }}</span>
+                {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </div>
 
-  <section class="give wrap">
-    <div class="mark"><img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png?v=1781041085" alt="1% for the Planet" width="84" height="84"></div>
-    <p class="eyebrow">Giving back</p>
-    <h2>One percent of revenue. Not profit.</h2>
-    <p>We are a member of <a href="https://www.onepercentfortheplanet.org/" target="_blank" rel="noopener">1% for the Planet</a>, so a portion of every purchase goes to vetted environmental organizations. The network has directed over <span class="fig">$672 million</span> to climate and conservation work across more than 110 countries.</p>
-  </section>
-
-  <section class="section last wrap">
-    <div class="inner">
-      <p class="eyebrow">Built to last</p>
-      <p class="lead">Sustainability without durability is just slower waste.</p>
-      <p>So we design for real life and for repair &mdash; choosing materials for resilience and hardware for strength. Fewer, better things, made to be used rather than shelved.</p>
+  <section class="sus-block sus-give">
+    <div class="page-width-narrow sus-narrow">
+      <div class="sus-mark">
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png?v=1781041085" alt="1% for the Planet" width="84" height="84">
+      </div>
+      <p class="sus-eyebrow">{{ section.settings.giving_eyebrow | default: 'Giving back' }}</p>
+      <h2>{{ section.settings.giving_heading | default: 'One percent of revenue. Not profit.' }}</h2>
+      <div class="sus-richtext">
+        {% if section.settings.giving_text != blank %}
+          {{ section.settings.giving_text }}
+        {% else %}
+          <p>We are a member of <a href="https://www.onepercentfortheplanet.org/" target="_blank" rel="noopener">1% for the Planet</a>, so a portion of every purchase goes to vetted environmental organizations. The network has directed over $672 million to climate and conservation work across more than 110 countries.</p>
+        {% endif %}
+      </div>
     </div>
   </section>
 
-  <section class="progress">
-    <div class="wrap section">
-      <p class="eyebrow">In progress</p>
-      <h2>What we&rsquo;re still working on.</h2>
-      <p class="intro-line">We don&rsquo;t claim perfection. A few things are underway, and we would rather name them than hide them.</p>
-      <ul class="todo">
-        <li>Moving more partner mills onto renewable energy.</li>
-        <li>Finalizing verified NGO partnerships for reforestation and mangrove restoration across South Asia &mdash; measurable, not symbolic.</li>
-        <li>Lowering water, energy, and chemical use further, one mill at a time.</li>
+  <section class="sus-block sus-last">
+    <div class="page-width-narrow sus-narrow">
+      <p class="sus-eyebrow">{{ section.settings.last_eyebrow | default: 'Built to last' }}</p>
+      <p class="sus-lead">{{ section.settings.last_lead | default: 'Sustainability without durability is just slower waste.' }}</p>
+      <p class="sus-copy">{{ section.settings.last_text | default: 'So we design for real life and for repair: choosing materials for resilience and hardware for strength. Fewer, better things, made to be used rather than shelved.' }}</p>
+    </div>
+  </section>
+
+  <section class="sus-block sus-progress">
+    <div class="page-width sus-wrap">
+      <p class="sus-eyebrow">{{ section.settings.progress_eyebrow | default: 'In progress' }}</p>
+      <h2>{{ section.settings.progress_heading | default: 'What we are still working on.' }}</h2>
+      <p class="sus-copy">{{ section.settings.progress_text | default: 'We do not claim perfection. A few things are underway, and we would rather name them than hide them.' }}</p>
+      <ul class="sus-list">
+        {%- assign progress_items = section.settings.progress_items | default: 'Moving more partner mills onto renewable energy.|Finalizing verified NGO partnerships for reforestation and mangrove restoration across South Asia: measurable, not symbolic.|Lowering water, energy, and chemical use further, one mill at a time.' | split: '|' -%}
+        {% for item in progress_items %}
+          <li>{{ item | strip }}</li>
+        {% endfor %}
       </ul>
     </div>
   </section>
 
-  <section class="close wrap">
-    <p>Have a question we haven&rsquo;t answered? Write to <a href="mailto:care@kaahu.us">care@kaahu.us</a>. We&rsquo;ll tell you what we know &mdash; and what we&rsquo;re still learning.</p>
-    <p class="sign">Because what you carry should reflect what you believe.</p>
+  <section class="sus-block sus-close">
+    <div class="page-width-narrow sus-narrow">
+      <div class="sus-richtext">
+        {% if section.settings.close_text != blank %}
+          {{ section.settings.close_text }}
+        {% else %}
+          <p>Have a question we have not answered? Write to <a href="mailto:care@kaahu.us">care@kaahu.us</a>. We will tell you what we know, and what we are still learning.</p>
+        {% endif %}
+      </div>
+      <p class="sus-sign">{{ section.settings.close_signoff | default: 'Because what you carry should reflect what you believe.' }}</p>
+    </div>
   </section>
 
-  <div class="wrap close-img">
-    <div class="frame frame-wide">
-      {% if section.settings.closing_image %}
-        <img src="{{ section.settings.closing_image | image_url: width: 1600 }}" alt="{{ section.settings.closing_image.alt | default: 'Kaahu bag on a walk in nature' }}" width="{{ section.settings.closing_image.width }}" height="{{ section.settings.closing_image.height }}" loading="lazy">
-      {% else %}
-        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927" alt="Kaahu bag on a walk in nature" width="1600" height="800" loading="lazy">
-      {% endif %}
+  <div class="sus-block">
+    <div class="page-width sus-wrap">
+      <div class="sus-frame sus-frame-wide">
+        {% if section.settings.closing_image %}
+          <img src="{{ section.settings.closing_image | image_url: width: 1600 }}" alt="{{ section.settings.closing_image.alt | default: 'Kaahu bag on a walk in nature' }}" width="{{ section.settings.closing_image.width }}" height="{{ section.settings.closing_image.height }}" loading="lazy">
+        {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927" alt="Kaahu bag on a walk in nature" width="1600" height="800" loading="lazy">
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
@@ -744,9 +590,80 @@
   "tag": "section",
   "settings": [
     {
+      "type": "range",
+      "id": "content_width",
+      "label": "Content width",
+      "min": 900,
+      "max": 1400,
+      "step": 20,
+      "default": 1080
+    },
+    {
+      "type": "range",
+      "id": "section_spacing_mobile",
+      "label": "Section spacing mobile",
+      "min": 36,
+      "max": 96,
+      "step": 4,
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "section_spacing_desktop",
+      "label": "Section spacing desktop",
+      "min": 48,
+      "max": 128,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow",
+      "default": "Sustainability at Kaahu"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "What you carry should reflect what you value."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_text",
+      "label": "Intro text",
+      "default": "So we account for it at every stage. Here is what that means, in plain terms, including the parts we have not finished yet."
+    },
+    {
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Opening copy",
+      "default": "<p>Kaahu is shaped by the Hawaiian principle of <em>M&#257;lama</em> &mdash; to care for one&rsquo;s people, and for the land, air, and water that hold them. That care decides what we make, and how.</p><p>We choose natural fibers, low-impact methods, and partners who meet real standards. And we would rather move slowly than overstate.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Materials"
+    },
+    {
+      "type": "text",
+      "id": "materials_eyebrow",
+      "label": "Eyebrow",
+      "default": "Materials"
+    },
+    {
+      "type": "text",
+      "id": "materials_heading",
+      "label": "Heading",
+      "default": "Two fibers, chosen for what they conserve."
     },
     {
       "type": "image_picker",
@@ -754,9 +671,213 @@
       "label": "Cotton image"
     },
     {
+      "type": "text",
+      "id": "cotton_kicker",
+      "label": "Cotton kicker",
+      "default": "Certified organic cotton"
+    },
+    {
+      "type": "text",
+      "id": "cotton_heading",
+      "label": "Cotton heading",
+      "default": "Grown gently, from the seed up."
+    },
+    {
+      "type": "textarea",
+      "id": "cotton_text",
+      "label": "Cotton text",
+      "default": "No synthetic pesticides, no GM seeds, and certified to the Global Organic Textile Standard. It uses up to 91% less water than conventional cotton."
+    },
+    {
+      "type": "text",
+      "id": "cotton_chips",
+      "label": "Cotton chips, comma separated",
+      "default": "GOTS-certified,Up to 91% less water"
+    },
+    {
+      "type": "text",
+      "id": "jute_kicker",
+      "label": "Jute kicker",
+      "default": "Bengal jute"
+    },
+    {
+      "type": "text",
+      "id": "jute_heading",
+      "label": "Jute heading",
+      "default": "One of the lowest-impact fibers there is."
+    },
+    {
+      "type": "textarea",
+      "id": "jute_text",
+      "label": "Jute text",
+      "default": "Rain-fed, harvested within six months, and gentle on the soil it grows in: a fiber with a quiet strength we fell for."
+    },
+    {
+      "type": "text",
+      "id": "jute_chips",
+      "label": "Jute chips, comma separated",
+      "default": "Rain-fed,6-month harvest,Builds soil health"
+    },
+    {
+      "type": "header",
+      "content": "Craft"
+    },
+    {
       "type": "image_picker",
       "id": "craft_image",
       "label": "Craft / lineage image"
+    },
+    {
+      "type": "text",
+      "id": "craft_eyebrow",
+      "label": "Eyebrow",
+      "default": "Hands & lineage"
+    },
+    {
+      "type": "text",
+      "id": "craft_lead",
+      "label": "Lead",
+      "default": "Made by people, and named as such."
+    },
+    {
+      "type": "textarea",
+      "id": "craft_text",
+      "label": "Text",
+      "default": "Small mills and artisan cooperatives carry the work forward: jute looms in Bengal, cotton spinning in Gujarat. One bag even carries a note in Bengali script, written by our own family."
+    },
+    {
+      "type": "text",
+      "id": "craft_chips",
+      "label": "Chips, comma separated",
+      "default": "Bengal looms,Gujarat spinning"
+    },
+    {
+      "type": "header",
+      "content": "Making"
+    },
+    {
+      "type": "text",
+      "id": "making_eyebrow",
+      "label": "Eyebrow",
+      "default": "How it is made"
+    },
+    {
+      "type": "text",
+      "id": "making_heading",
+      "label": "Heading",
+      "default": "Held to a standard, every step."
+    },
+    {
+      "type": "text",
+      "id": "row_one_label",
+      "label": "First row label",
+      "default": "Dyes & water"
+    },
+    {
+      "type": "textarea",
+      "id": "row_one_text",
+      "label": "First row text",
+      "default": "GOTS-approved low-impact dyes. Several partner mills run closed-loop systems that recycle process water rather than discharge it."
+    },
+    {
+      "type": "text",
+      "id": "row_one_chips",
+      "label": "First row chips, comma separated",
+      "default": "GOTS-approved dyes,Closed-loop water"
+    },
+    {
+      "type": "text",
+      "id": "row_two_label",
+      "label": "Second row label",
+      "default": "Fair, safe labor"
+    },
+    {
+      "type": "textarea",
+      "id": "row_two_text",
+      "label": "Second row text",
+      "default": "We work only with SEDEX-audited suppliers: fair pay in local terms, safe conditions, no forced labor. If a facility falls short, we move on, even when it costs more."
+    },
+    {
+      "type": "text",
+      "id": "row_two_chips",
+      "label": "Second row chips, comma separated",
+      "default": "SEDEX-audited,ISO 14001:2015"
+    },
+    {
+      "type": "header",
+      "content": "Giving and closing"
+    },
+    {
+      "type": "text",
+      "id": "giving_eyebrow",
+      "label": "Giving eyebrow",
+      "default": "Giving back"
+    },
+    {
+      "type": "text",
+      "id": "giving_heading",
+      "label": "Giving heading",
+      "default": "One percent of revenue. Not profit."
+    },
+    {
+      "type": "richtext",
+      "id": "giving_text",
+      "label": "Giving text",
+      "default": "<p>We are a member of <a href=\"https://www.onepercentfortheplanet.org/\" target=\"_blank\" rel=\"noopener\">1% for the Planet</a>, so a portion of every purchase goes to vetted environmental organizations. The network has directed over $672 million to climate and conservation work across more than 110 countries.</p>"
+    },
+    {
+      "type": "text",
+      "id": "last_eyebrow",
+      "label": "Durability eyebrow",
+      "default": "Built to last"
+    },
+    {
+      "type": "text",
+      "id": "last_lead",
+      "label": "Durability lead",
+      "default": "Sustainability without durability is just slower waste."
+    },
+    {
+      "type": "textarea",
+      "id": "last_text",
+      "label": "Durability text",
+      "default": "So we design for real life and for repair: choosing materials for resilience and hardware for strength. Fewer, better things, made to be used rather than shelved."
+    },
+    {
+      "type": "text",
+      "id": "progress_eyebrow",
+      "label": "Progress eyebrow",
+      "default": "In progress"
+    },
+    {
+      "type": "text",
+      "id": "progress_heading",
+      "label": "Progress heading",
+      "default": "What we are still working on."
+    },
+    {
+      "type": "textarea",
+      "id": "progress_text",
+      "label": "Progress text",
+      "default": "We do not claim perfection. A few things are underway, and we would rather name them than hide them."
+    },
+    {
+      "type": "textarea",
+      "id": "progress_items",
+      "label": "Progress items, separated by |",
+      "default": "Moving more partner mills onto renewable energy.|Finalizing verified NGO partnerships for reforestation and mangrove restoration across South Asia: measurable, not symbolic.|Lowering water, energy, and chemical use further, one mill at a time."
+    },
+    {
+      "type": "richtext",
+      "id": "close_text",
+      "label": "Closing text",
+      "default": "<p>Have a question we have not answered? Write to <a href=\"mailto:care@kaahu.us\">care@kaahu.us</a>. We will tell you what we know, and what we are still learning.</p>"
+    },
+    {
+      "type": "text",
+      "id": "close_signoff",
+      "label": "Closing signoff",
+      "default": "Because what you carry should reflect what you believe."
     },
     {
       "type": "image_picker",
