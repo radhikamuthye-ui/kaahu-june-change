@@ -186,8 +186,8 @@
         "autoplay_interval": 3,
         "transition_speed": 700,
         "image_fade_duration": 3000,
-        "image_zoom": 120,
-        "fade_zoom_amount": 20,
+        "image_zoom": 110,
+        "fade_zoom_amount": 10,
         "show_controls": true,
         "slider_color": "#e5722a"
       }
