@@ -24,6 +24,20 @@
       --pdp-mobile-accent: {{ section.settings.pdp_mobile_accent_color }};
       --pdp-mobile-sale: {{ section.settings.pdp_mobile_sale_color }};
       --pdp-mobile-star: {{ section.settings.pdp_mobile_star_color }};
+      --pdp-details-summary-heading-color: {{ section.settings.product_details_summary_heading_color }};
+      --pdp-details-summary-text-color: {{ section.settings.product_details_summary_text_color }};
+      --pdp-details-summary-heading-size-mobile: {{ section.settings.product_details_summary_heading_size_mobile }}px;
+      --pdp-details-summary-heading-size-desktop: {{ section.settings.product_details_summary_heading_size_desktop }}px;
+      --pdp-details-summary-body-size-mobile: {{ section.settings.product_details_summary_body_size_mobile }}px;
+      --pdp-details-summary-body-size-desktop: {{ section.settings.product_details_summary_body_size_desktop }}px;
+      --pdp-details-summary-max-width: {{ section.settings.product_details_summary_max_width }}px;
+      --pdp-details-summary-margin-top-mobile: {{ section.settings.product_details_summary_margin_top_mobile }}px;
+      --pdp-details-summary-margin-top-desktop: {{ section.settings.product_details_summary_margin_top_desktop }}px;
+      --pdp-details-summary-padding-top: {{ section.settings.product_details_summary_padding_top }}px;
+      --pdp-details-summary-border-color: {{ section.settings.product_details_summary_border_color }};
+      --pdp-details-desktop-offset-x: {{ section.settings.product_detail_desktop_offset_x }}px;
+      --pdp-details-desktop-offset-top: {{ section.settings.product_detail_desktop_offset_top }}px;
+      --pdp-details-desktop-max-width: {{ section.settings.product_detail_desktop_max_width }}px;
     }
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -350,6 +364,17 @@
       thumbnail_placement: section.settings.desktop_media_thumbnail_placement,
       balance_grid: section.settings.balance_grid
       %}
+      {% if product.description != blank and section.settings.product_details_summary_visibility != 'hidden' %}
+        {% assign details_summary_split_word = section.settings.description_split_keyword | default: 'SPECIFICATIONS' %}
+        <div class="product-details-summary product-details-summary--{{ section.settings.product_details_summary_visibility }}">
+          {% if section.settings.product_details_summary_heading != blank %}
+            <h2 class="product-details-summary__heading">{{ section.settings.product_details_summary_heading }}</h2>
+          {% endif %}
+          <div class="product-details-summary__body rte">
+            {{ product.description | split: details_summary_split_word | first }}
+          </div>
+        </div>
+      {% endif %}
       {% endunless %}
     </div>
     
@@ -1219,7 +1244,7 @@
             {%- when 'sustainability_card' -%}
               {% assign sustainability_badges = block.settings.badges | newline_to_br | split: '<br />' %}
               <div
-                class="product-sustainability-card product-sustainability-card--footer-{{ block.settings.footer_layout }}{% if block.settings.mobile_only %} product-sustainability-card--mobile-only{% endif %}"
+                class="product-sustainability-card product-sustainability-card--footer-{{ block.settings.footer_layout }} product-sustainability-card--desktop-image-{{ block.settings.desktop_image_position }}{% if block.settings.mobile_only %} product-sustainability-card--mobile-only{% endif %}{% if block.settings.desktop_image != blank %} product-sustainability-card--has-desktop-image{% endif %}"
                 style="
                   --pdp-sustain-margin-top: {{ block.settings.margin_top }}px;
                   --pdp-sustain-margin-bottom: {{ block.settings.margin_bottom }}px;
@@ -1254,41 +1279,55 @@
                   --pdp-sustain-footer-padding-top: {{ block.settings.footer_padding_top }}px;
                   --pdp-sustain-footer-size: {{ block.settings.footer_text_size }}px;
                   --pdp-sustain-logo-width: {{ block.settings.logo_width }}px;
+                  --pdp-sustain-desktop-image-width: {{ block.settings.desktop_image_width }}%;
+                  --pdp-sustain-desktop-image-radius: {{ block.settings.desktop_image_radius }}px;
+                  --pdp-sustain-desktop-image-fit: {{ block.settings.desktop_image_fit }};
                 "
                 {{ block.shopify_attributes }}
               >
-                {% if block.settings.eyebrow != blank %}
-                  <div class="product-sustainability-card__eyebrow">
-                    {% if block.settings.eyebrow_icon != blank %}
-                      <span aria-hidden="true">{{ block.settings.eyebrow_icon }}</span>
-                    {% endif %}
-                    <span>{{ block.settings.eyebrow | escape }}</span>
-                  </div>
-                {% endif %}
-                {% if block.settings.heading != blank %}
-                  <h2 class="product-sustainability-card__heading">{{ block.settings.heading | escape }}</h2>
-                {% endif %}
-                {% if block.settings.body != blank %}
-                  <div class="product-sustainability-card__body rte">{{ block.settings.body }}</div>
-                {% endif %}
-                {% if block.settings.badges != blank %}
-                  <div class="product-sustainability-card__badges">
-                    {% for badge in sustainability_badges %}
-                      {% assign badge_text = badge | strip %}
-                      {% if badge_text != blank %}
-                        <span class="product-sustainability-card__badge">{{ badge_text | escape }}</span>
+                <div class="product-sustainability-card__content">
+                  {% if block.settings.eyebrow != blank %}
+                    <div class="product-sustainability-card__eyebrow">
+                      {% if block.settings.eyebrow_icon != blank %}
+                        <span aria-hidden="true">{{ block.settings.eyebrow_icon }}</span>
                       {% endif %}
-                    {% endfor %}
-                  </div>
-                {% endif %}
-                {% if block.settings.give_text != blank or block.settings.logo != blank %}
-                  <div class="product-sustainability-card__give{% if block.settings.show_divider %} product-sustainability-card__give--divider{% endif %}">
-                    {% if block.settings.logo != blank %}
-                      {{ block.settings.logo | image_url: width: 120 | image_tag: loading: 'lazy', class: 'product-sustainability-card__logo' }}
+                      <span>{{ block.settings.eyebrow | escape }}</span>
+                    </div>
+                  {% endif %}
+                  {% if block.settings.heading != blank %}
+                    <h2 class="product-sustainability-card__heading">{{ block.settings.heading | escape }}</h2>
+                  {% endif %}
+                  {% if block.settings.body != blank %}
+                    <div class="product-sustainability-card__body rte">{{ block.settings.body }}</div>
+                  {% endif %}
+                  {% if block.settings.badges != blank %}
+                    <div class="product-sustainability-card__badges">
+                      {% for badge in sustainability_badges %}
+                        {% assign badge_text = badge | strip %}
+                        {% if badge_text != blank %}
+                          <span class="product-sustainability-card__badge">{{ badge_text | escape }}</span>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.give_text != blank or block.settings.logo != blank %}
+                    <div class="product-sustainability-card__give{% if block.settings.show_divider %} product-sustainability-card__give--divider{% endif %}">
+                      {% if block.settings.logo != blank %}
+                        {{ block.settings.logo | image_url: width: 120 | image_tag: loading: 'lazy', class: 'product-sustainability-card__logo' }}
+                      {% endif %}
+                      {% if block.settings.give_text != blank %}
+                        <div class="product-sustainability-card__give-text rte">{{ block.settings.give_text }}</div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+                {% if block.settings.desktop_image != blank %}
+                  <div class="product-sustainability-card__desktop-image">
+                    {% assign sustain_desktop_image_width = 1200 %}
+                    {% if block.settings.desktop_image_width < 42 %}
+                      {% assign sustain_desktop_image_width = 900 %}
                     {% endif %}
-                    {% if block.settings.give_text != blank %}
-                      <div class="product-sustainability-card__give-text rte">{{ block.settings.give_text }}</div>
-                    {% endif %}
+                    {{ block.settings.desktop_image | image_url: width: sustain_desktop_image_width | image_tag: loading: 'lazy' }}
                   </div>
                 {% endif %}
               </div>
@@ -4942,6 +4981,11 @@ document.addEventListener('DOMContentLoaded', function () {
           "label": "Giving text"
         },
         {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image"
+        },
+        {
           "type": "header",
           "content": "Layout"
         },
@@ -4950,6 +4994,58 @@ document.addEventListener('DOMContentLoaded', function () {
           "id": "mobile_only",
           "default": false,
           "label": "Show on mobile only"
+        },
+        {
+          "type": "select",
+          "id": "desktop_image_position",
+          "label": "Desktop image position",
+          "default": "right",
+          "options": [
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "desktop_image_width",
+          "min": 30,
+          "max": 58,
+          "step": 1,
+          "unit": "%",
+          "default": 44,
+          "label": "Desktop image width"
+        },
+        {
+          "type": "range",
+          "id": "desktop_image_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 24,
+          "label": "Desktop image corner radius"
+        },
+        {
+          "type": "select",
+          "id": "desktop_image_fit",
+          "label": "Desktop image fit",
+          "default": "cover",
+          "options": [
+            {
+              "value": "cover",
+              "label": "Cover"
+            },
+            {
+              "value": "contain",
+              "label": "Contain"
+            }
+          ]
         },
         {
           "type": "text_alignment",
@@ -6763,6 +6859,172 @@ document.addEventListener('DOMContentLoaded', function () {
       "id": "pdp_mobile_star_color",
       "default": "#e0a52a",
       "label": "Rating stars"
+    },
+    {
+      "type": "header",
+      "content": "Product details summary"
+    },
+    {
+      "type": "select",
+      "id": "product_details_summary_visibility",
+      "label": "Details summary visibility",
+      "default": "both",
+      "options": [
+        {
+          "value": "both",
+          "label": "Desktop and mobile"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop only"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile only"
+        },
+        {
+          "value": "hidden",
+          "label": "Hidden"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "product_details_summary_heading",
+      "default": "The Details",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_max_width",
+      "min": 260,
+      "max": 760,
+      "step": 10,
+      "unit": "px",
+      "default": 520,
+      "label": "Maximum width"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_margin_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "label": "Top spacing mobile"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_margin_top_desktop",
+      "min": 0,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 34,
+      "label": "Top spacing desktop"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 0,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_heading_size_mobile",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 36,
+      "label": "Heading size mobile"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_heading_size_desktop",
+      "min": 28,
+      "max": 84,
+      "step": 1,
+      "unit": "px",
+      "default": 46,
+      "label": "Heading size desktop"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_body_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15,
+      "label": "Body size mobile"
+    },
+    {
+      "type": "range",
+      "id": "product_details_summary_body_size_desktop",
+      "min": 12,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "label": "Body size desktop"
+    },
+    {
+      "type": "color",
+      "id": "product_details_summary_heading_color",
+      "default": "#1d1b17",
+      "label": "Heading color"
+    },
+    {
+      "type": "color",
+      "id": "product_details_summary_text_color",
+      "default": "#65615a",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "product_details_summary_border_color",
+      "default": "rgba(0,0,0,0)",
+      "label": "Top border"
+    },
+    {
+      "type": "header",
+      "content": "Product detail accordions desktop"
+    },
+    {
+      "type": "range",
+      "id": "product_detail_desktop_offset_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 22,
+      "label": "Move down"
+    },
+    {
+      "type": "range",
+      "id": "product_detail_desktop_offset_x",
+      "min": -160,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": -40,
+      "label": "Horizontal offset"
+    },
+    {
+      "type": "range",
+      "id": "product_detail_desktop_max_width",
+      "min": 420,
+      "max": 980,
+      "step": 10,
+      "unit": "px",
+      "default": 760,
+      "label": "Maximum width"
     },
     {
       "type": "header",
