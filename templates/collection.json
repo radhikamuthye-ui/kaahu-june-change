@@ -184,12 +184,12 @@
         "metafield_key": "ss1",
         "enable_autoplay": true,
         "autoplay_interval": 3,
-        "transition_speed": 2000,
+        "transition_speed": 700,
         "image_fade_duration": 3000,
         "image_zoom": 120,
         "fade_zoom_amount": 20,
         "show_controls": true,
-        "slider_color": "#E5722A"
+        "slider_color": "#e5722a"
       }
     },
     "product-grid": {
