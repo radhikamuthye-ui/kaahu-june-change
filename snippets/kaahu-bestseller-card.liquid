@@ -3,7 +3,6 @@
   assign card_title = 'Be Your Own Light Tote'
   assign card_price = 15900
   assign card_compare_price = 19900
-  assign card_available = true
   assign family_text = 'Fading Footprints'
   assign material_text = 'Organic Cotton'
   assign card_image = blank
@@ -25,7 +24,6 @@
     assign card_title = product.title
     assign card_price = product.price
     assign card_compare_price = product.compare_at_price_max
-    assign card_available = product.available
     assign family_metafield = product.metafields[section.settings.family_namespace][section.settings.family_key]
     assign material_metafield = product.metafields[section.settings.material_namespace][section.settings.material_key]
     assign family_text = family_metafield.value | default: family_metafield | default: product.type
@@ -164,14 +162,6 @@
         {%- if has_compare_discount -%}
           <span class="kaahu-bestseller-card__badge">{{ section.settings.sale_badge_label }}</span>
         {%- endif -%}
-      </span>
-    {%- endif -%}
-
-    {%- if section.settings.show_favorite_icon -%}
-      <span class="kaahu-bestseller-card__favorite" aria-hidden="true">
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path d="M20.5 5.8c-1.8-1.8-4.7-1.8-6.5 0L12 7.8 10 5.8c-1.8-1.8-4.7-1.8-6.5 0s-1.8 4.7 0 6.5L12 20.8l8.5-8.5c1.8-1.8 1.8-4.7 0-6.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
       </span>
     {%- endif -%}
 

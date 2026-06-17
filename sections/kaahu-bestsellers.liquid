@@ -61,10 +61,6 @@
     --kb-badge-text: {{ section.settings.badge_text_color }};
     --kb-badge-letter-spacing: {{ section.settings.badge_letter_spacing | divided_by: 100.0 }}em;
     --kb-badge-case: {{ section.settings.badge_case }};
-    --kb-favorite-offset: {{ section.settings.favorite_offset }}px;
-    --kb-favorite-size: {{ section.settings.favorite_size }}px;
-    --kb-favorite-bg: {{ section.settings.favorite_background }};
-    --kb-favorite-icon: {{ section.settings.favorite_icon_color }};
     --kb-quick-offset: {{ section.settings.quick_offset }}px;
     --kb-quick-height: {{ section.settings.quick_height }}px;
     --kb-quick-radius: {{ section.settings.quick_radius }}px;
@@ -136,7 +132,7 @@
   }
 {%- endstyle -%}
 
-<section class="kaahu-bestsellers section-{{ section.id }}">
+<section class="kaahu-bestsellers kaahu-bestsellers--mobile-columns-{{ section.settings.columns_mobile }} kaahu-bestsellers--desktop-columns-{{ section.settings.columns_desktop }} section-{{ section.id }}">
   <div class="kaahu-bestsellers__inner">
     <div class="kaahu-bestsellers__header">
       <div>
@@ -152,15 +148,38 @@
         {%- endif -%}
       </div>
 
-      {%- if section.settings.show_button and section.settings.button_label != blank -%}
-        {%- liquid
-          assign button_url = section.settings.button_link
-          if button_url == blank and section.settings.collection != blank
-            assign button_url = section.settings.collection.url
-          endif
-        -%}
-        <a class="kaahu-bestsellers__button" href="{{ button_url | default: '#' }}">
-          <span>{{ section.settings.button_label }}</span>
+      {%- liquid
+        assign button_label_desktop = section.settings.button_label
+        assign button_label_mobile = section.settings.button_label_mobile | default: button_label_desktop
+        assign button_url_desktop = section.settings.button_link
+        assign button_url_mobile = section.settings.button_link_mobile | default: button_url_desktop
+        if button_url_desktop == blank and section.settings.collection != blank
+          assign button_url_desktop = section.settings.collection.url
+        endif
+        if button_url_mobile == blank
+          assign button_url_mobile = button_url_desktop
+        endif
+      -%}
+      {%- if section.settings.show_button and button_label_desktop != blank -%}
+        <a
+          class="kaahu-bestsellers__button kaahu-bestsellers__button--desktop"
+          href="{{ button_url_desktop | default: '#' }}"
+        >
+          <span>{{ button_label_desktop }}</span>
+          {%- if section.settings.show_button_arrow -%}
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.show_button and button_label_mobile != blank -%}
+        <a
+          class="kaahu-bestsellers__button kaahu-bestsellers__button--mobile"
+          href="{{ button_url_mobile | default: '#' }}"
+        >
+          <span>{{ button_label_mobile }}</span>
           {%- if section.settings.show_button_arrow -%}
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -257,13 +276,25 @@
     {
       "type": "text",
       "id": "button_label",
-      "label": "Button label",
+      "label": "Desktop button label",
       "default": "Shop bestsellers"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button link"
+      "label": "Desktop button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_mobile",
+      "label": "Mobile button label",
+      "default": "Shop all"
+    },
+    {
+      "type": "url",
+      "id": "button_link_mobile",
+      "label": "Mobile button link",
+      "info": "Leave blank to use the desktop button link."
     },
     {
       "type": "checkbox",
@@ -331,12 +362,6 @@
       "type": "checkbox",
       "id": "show_rating",
       "label": "Show rating",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_favorite_icon",
-      "label": "Show heart icon",
       "default": true
     },
     {
@@ -1210,38 +1235,6 @@
         }
       ],
       "default": "uppercase"
-    },
-    {
-      "type": "color",
-      "id": "favorite_background",
-      "label": "Heart background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "favorite_icon_color",
-      "label": "Heart color",
-      "default": "#242424"
-    },
-    {
-      "type": "range",
-      "id": "favorite_size",
-      "min": 34,
-      "max": 68,
-      "step": 1,
-      "unit": "px",
-      "label": "Heart size",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "favorite_offset",
-      "min": 8,
-      "max": 34,
-      "step": 1,
-      "unit": "px",
-      "label": "Heart offset",
-      "default": 18
     },
     {
       "type": "color",

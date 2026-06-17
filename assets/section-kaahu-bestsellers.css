@@ -12,7 +12,8 @@
 
 .kaahu-bestsellers__header {
   display: grid;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
   align-items: end;
   margin-bottom: var(--kb-header-gap-mobile);
 }
@@ -41,7 +42,7 @@
 }
 
 .kaahu-bestsellers__button {
-  justify-self: start;
+  justify-self: end;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -63,6 +64,10 @@
   transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
+.kaahu-bestsellers__button--desktop {
+  display: none;
+}
+
 .kaahu-bestsellers__button:hover {
   color: var(--kb-button-hover-text);
   border-color: var(--kb-button-hover-border);
@@ -76,16 +81,28 @@
 }
 
 .kaahu-bestsellers__grid {
-  display: grid;
-  grid-template-columns: repeat(var(--kb-columns-mobile), minmax(0, 1fr));
-  gap: var(--kb-row-gap-mobile) var(--kb-column-gap-mobile);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--kb-column-gap-mobile);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-padding-left: var(--kb-side-padding-mobile);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .kaahu-bestseller-card {
+  flex: 0 0 84%;
   min-width: 0;
+  scroll-snap-align: start;
+}
+
+.kaahu-bestsellers--mobile-columns-2 .kaahu-bestseller-card {
+  flex-basis: calc((100% - var(--kb-column-gap-mobile)) / 2);
 }
 
 .kaahu-bestseller-card a {
@@ -151,28 +168,6 @@
   line-height: 1;
   letter-spacing: var(--kb-badge-letter-spacing);
   text-transform: var(--kb-badge-case);
-}
-
-.kaahu-bestseller-card__favorite {
-  position: absolute;
-  top: var(--kb-favorite-offset);
-  right: var(--kb-favorite-offset);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--kb-favorite-size);
-  height: var(--kb-favorite-size);
-  border: 0;
-  border-radius: 50%;
-  color: var(--kb-favorite-icon);
-  background: var(--kb-favorite-bg);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
-}
-
-.kaahu-bestseller-card__favorite svg {
-  width: 45%;
-  height: 45%;
 }
 
 .kaahu-bestseller-card__quick-view {
@@ -331,6 +326,14 @@
     margin-bottom: var(--kb-header-gap-desktop);
   }
 
+  .kaahu-bestsellers__button--desktop {
+    display: inline-flex;
+  }
+
+  .kaahu-bestsellers__button--mobile {
+    display: none;
+  }
+
   .kaahu-bestsellers__button {
     justify-self: end;
     font-size: var(--kb-button-size-desktop);
@@ -345,8 +348,20 @@
   }
 
   .kaahu-bestsellers__grid {
-    grid-template-columns: repeat(var(--kb-columns-desktop), minmax(0, 1fr));
-    gap: var(--kb-row-gap-desktop) var(--kb-column-gap-desktop);
+    gap: var(--kb-column-gap-desktop);
+    scroll-padding-left: var(--kb-side-padding-desktop);
+  }
+
+  .kaahu-bestsellers--desktop-columns-3 .kaahu-bestseller-card {
+    flex-basis: calc((100% - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop)) / 3);
+  }
+
+  .kaahu-bestsellers--desktop-columns-4 .kaahu-bestseller-card {
+    flex-basis: calc((100% - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop)) / 4);
+  }
+
+  .kaahu-bestsellers--desktop-columns-5 .kaahu-bestseller-card {
+    flex-basis: calc((100% - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop) - var(--kb-column-gap-desktop)) / 5);
   }
 
   .kaahu-bestseller-card__badge {
