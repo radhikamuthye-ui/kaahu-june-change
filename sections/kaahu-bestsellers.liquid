@@ -29,6 +29,7 @@
     --kb-star-color: {{ section.settings.star_color }};
     --kb-saving-color: {{ section.settings.saving_color }};
     --kb-scrollbar-color: {{ section.settings.scrollbar_color }};
+    --kb-swipe-hint-color: {{ section.settings.swipe_hint_color }};
     --kb-image-bg: {{ section.settings.image_background }};
     --kb-image-radius: {{ section.settings.image_radius }}px;
     --kb-image-fit: {{ section.settings.image_object_fit }};
@@ -93,6 +94,8 @@
     --kb-button-font-weight: var(--font-accent-weight);
     --kb-button-size-mobile: {{ section.settings.button_size_mobile }}px;
     --kb-button-size-desktop: {{ section.settings.button_size_desktop }}px;
+    --kb-swipe-hint-size-mobile: {{ section.settings.swipe_hint_size_mobile }}px;
+    --kb-swipe-hint-size-desktop: {{ section.settings.swipe_hint_size_desktop }}px;
     --kb-badge-font-family: var(--font-accent-family);
     --kb-badge-font-style: var(--font-accent-style);
     --kb-badge-font-weight: var(--font-accent-weight);
@@ -225,6 +228,15 @@
         {%- endfor -%}
       {%- endif -%}
     </ul>
+
+    {%- if section.settings.show_swipe_hint and section.settings.swipe_hint_text != blank -%}
+      <p class="kaahu-bestsellers__swipe-hint">
+        <span>{{ section.settings.swipe_hint_text }}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -302,6 +314,18 @@
       "id": "show_button_arrow",
       "label": "Show button arrow",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swipe_hint",
+      "label": "Show swipe hint",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "swipe_hint_text",
+      "label": "Swipe hint text",
+      "default": "Swipe to explore"
     },
     {
       "type": "header",
@@ -800,6 +824,12 @@
       "default": "#D17434"
     },
     {
+      "type": "color",
+      "id": "swipe_hint_color",
+      "label": "Swipe hint",
+      "default": "#D17434"
+    },
+    {
       "type": "header",
       "content": "Typography"
     },
@@ -1014,6 +1044,26 @@
       "unit": "px",
       "label": "Header button size on desktop",
       "default": 16
+    },
+    {
+      "type": "range",
+      "id": "swipe_hint_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Swipe hint size on mobile",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "swipe_hint_size_desktop",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Swipe hint size on desktop",
+      "default": 13
     },
     {
       "type": "range",

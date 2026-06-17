@@ -103,7 +103,7 @@
   scrollbar-color: var(--kb-scrollbar-color) transparent;
   -webkit-overflow-scrolling: touch;
   margin: 0;
-  padding: 0 0 18px;
+  padding: 0 0 26px;
   list-style: none;
 }
 
@@ -118,6 +118,26 @@
 .kaahu-bestsellers__grid::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: var(--kb-scrollbar-color);
+}
+
+.kaahu-bestsellers__swipe-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  color: var(--kb-swipe-hint-color);
+  font-family: var(--kb-button-font-family);
+  font-size: var(--kb-swipe-hint-size-mobile);
+  font-style: var(--kb-button-font-style);
+  font-weight: var(--kb-button-font-weight);
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.kaahu-bestsellers__swipe-hint svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
 }
 
 .kaahu-bestseller-card {
@@ -362,6 +382,10 @@
   .kaahu-bestsellers__button {
     justify-self: end;
     font-size: var(--kb-button-size-desktop);
+  }
+
+  .kaahu-bestsellers__swipe-hint {
+    font-size: var(--kb-swipe-hint-size-desktop);
   }
 
   .kaahu-bestsellers__eyebrow {
