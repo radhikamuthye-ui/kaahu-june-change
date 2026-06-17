@@ -22,7 +22,7 @@ class CollectionMetafieldSlideshow {
     const speed = parseInt(this.swiperElement.dataset.speed, 10) || 800;
     const autoplay = this.swiperElement.dataset.autoplay === 'true';
     const slideCount = this.swiperElement.querySelectorAll('.swiper-slide').length;
-    const totalInterval = interval * Math.max(slideCount, 1);
+    const totalInterval = (interval * Math.max(slideCount, 1)) + (speed * Math.max(slideCount - 1, 0));
 
     this.section.style.setProperty('--cms-interval', `${totalInterval}ms`);
 
