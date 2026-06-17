@@ -1,1 +1,65 @@
-{"sections":{"main":{"type":"sustainability"}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "sustainability",
+      "settings": {
+        "content_width": 1100,
+        "section_spacing_mobile": 36,
+        "section_spacing_desktop": 48,
+        "hero_eyebrow": "Sustainability at Kaahu",
+        "hero_heading": "What you carry should reflect what you value.",
+        "hero_text": "So we account for it at every stage. Here is what that means, in plain terms, including the parts we have not finished yet.",
+        "intro_text": "<p>Kaahu is shaped by the Hawaiian principle of <em>Mālama</em> — to care for one’s people, and for the land, air, and water that hold them. That care decides what we make, and how.</p><p>We choose natural fibers, low-impact methods, and partners who meet real standards. And we would rather move slowly than overstate.</p>",
+        "materials_eyebrow": "Materials",
+        "materials_heading": "Two fibers, chosen for what they conserve.",
+        "cotton_image": "shopify://shop_images/Screenshot_2026-06-16_at_11.29.59_PM.png",
+        "jute_image": "shopify://shop_images/Screenshot_2026-06-16_at_11.28.27_PM.png",
+        "cotton_kicker": "Certified organic cotton",
+        "cotton_heading": "Grown gently, from the seed up.",
+        "cotton_text": "No synthetic pesticides, no GM seeds, and certified to the Global Organic Textile Standard. It uses up to 91% less water than conventional cotton.",
+        "cotton_chips": "GOTS-certified,Up to 91% less water",
+        "jute_kicker": "Bengal jute",
+        "jute_heading": "One of the lowest-impact fibers there is.",
+        "jute_text": "Rain-fed, harvested within six months, and gentle on the soil it grows in: a fiber with a quiet strength we fell for.",
+        "jute_chips": "Rain-fed,6-month harvest,Builds soil health",
+        "craft_image": "shopify://shop_images/Screenshot_2026-02-15_at_12.07.44_AM.png",
+        "craft_eyebrow": "Hands & lineage",
+        "craft_lead": "Made by people, and named as such.",
+        "craft_text": "Small mills and artisan cooperatives carry the work forward: jute looms in Bengal, cotton spinning in Gujarat. One bag even carries a note in Bengali script, written by our own family.",
+        "craft_chips": "Bengal looms,Gujarat spinning",
+        "making_eyebrow": "How it is made",
+        "making_heading": "Held to a standard, every step.",
+        "row_one_label": "Dyes & water",
+        "row_one_text": "GOTS-approved low-impact dyes. Several partner mills run closed-loop systems that recycle process water rather than discharge it.",
+        "row_one_chips": "GOTS-approved dyes,Closed-loop water",
+        "row_two_label": "Fair, safe labor",
+        "row_two_text": "We work only with SEDEX-audited suppliers: fair pay in local terms, safe conditions, no forced labor. If a facility falls short, we move on, even when it costs more.",
+        "row_two_chips": "SEDEX-audited,ISO 14001:2015",
+        "giving_eyebrow": "Giving back",
+        "giving_heading": "One percent of revenue. Not profit.",
+        "giving_text": "<p>We are a member of <a href=\"https://www.onepercentfortheplanet.org/\" target=\"_blank\">1% for the Planet</a>, so a portion of every purchase goes to vetted environmental organizations. The network has directed over $672 million to climate and conservation work across more than 110 countries.</p>",
+        "last_eyebrow": "Built to last",
+        "last_lead": "Sustainability without durability is just slower waste.",
+        "last_text": "So we design for real life and for repair: choosing materials for resilience and hardware for strength. Fewer, better things, made to be used rather than shelved.",
+        "progress_eyebrow": "In progress",
+        "progress_heading": "What we are still working on.",
+        "progress_text": "We do not claim perfection. A few things are underway, and we would rather name them than hide them.",
+        "progress_items": "Moving more partner mills onto renewable energy.|Finalizing verified NGO partnerships for reforestation and mangrove restoration across South Asia: measurable, not symbolic.|Lowering water, energy, and chemical use further, one mill at a time.",
+        "close_text": "<p>Have a question we have not answered? Write to <a href=\"mailto:care@kaahu.us\">care@kaahu.us</a>. We will tell you what we know, and what we are still learning.</p>",
+        "close_signoff": "Because what you carry should reflect what you believe."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
