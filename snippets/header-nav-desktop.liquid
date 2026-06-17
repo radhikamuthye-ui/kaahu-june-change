@@ -20,6 +20,12 @@
 {% assign dropdown_exists = false %}
 
 {% assign show_dropdown_category_images = section.settings.images_dd_category %}
+{% assign has_sustainability_link = false %}
+{% for link in section.settings.main_menu.links %}
+  {% if link.url == '/pages/sustainability' %}
+    {% assign has_sustainability_link = true %}
+  {% endif %}
+{% endfor %}
 
 <div class="hdr-nav-desktop">
   <nav>
@@ -187,6 +193,9 @@
           {% endif %}
           </li>
         {% endfor %}
+        {% unless has_sustainability_link %}
+          <li><a href="/pages/sustainability">Sustainability</a></li>
+        {% endunless %}
    </ul>
   </nav>
 </div>

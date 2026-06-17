@@ -1,0 +1,575 @@
+{{ 'section-kaahu-sustainability-page.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_alt = section.settings.hero_image_alt | default: 'A Kaahu bag in everyday life'
+  assign cotton_alt = section.settings.cotton_image_alt | default: 'Cotton boll on the plant'
+  assign jute_alt = section.settings.jute_image_alt | default: 'Bengal jute fiber'
+  assign heritage_alt = section.settings.heritage_image_alt | default: 'Artisan craft and heritage textile work'
+  assign planet_alt = section.settings.planet_image_alt | default: '1% for the Planet'
+  assign close_alt = section.settings.close_image_alt | default: 'Kaahu bag on a walk in nature'
+-%}
+
+<main class="kaahu-sustainability">
+  <header class="ks-hero">
+    <div class="ks-wrap">
+      <p class="ks-eyebrow">{{ section.settings.hero_eyebrow }}</p>
+      <hr class="ks-rule" aria-hidden="true">
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <p class="ks-lede">{{ section.settings.hero_text }}</p>
+    </div>
+    <div class="ks-wrap ks-hero-img">
+      <div class="ks-frame ks-frame-wide">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+        {%- else -%}
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547" alt="{{ hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
+        {%- endif -%}
+      </div>
+    </div>
+  </header>
+
+  <section class="ks-intro">
+    <div class="ks-wrap ks-narrow">
+      {{ section.settings.intro_text }}
+    </div>
+  </section>
+
+  <div class="ks-band">
+    <section class="ks-section ks-wrap">
+      <div class="ks-section-head">
+        <p class="ks-eyebrow">{{ section.settings.materials_eyebrow }}</p>
+        <h2>{{ section.settings.materials_heading }}</h2>
+      </div>
+      <div class="ks-tiles">
+        <article class="ks-tile">
+          <div class="ks-frame ks-frame-tile">
+            {%- if section.settings.cotton_image != blank -%}
+              {{ section.settings.cotton_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: cotton_alt }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="{{ cotton_alt | escape }}" width="900" height="1125" loading="lazy">
+            {%- endif -%}
+          </div>
+          <div class="ks-tile-copy">
+            <p class="ks-kicker">{{ section.settings.cotton_kicker }}</p>
+            <h3>{{ section.settings.cotton_heading }}</h3>
+            <p>{{ section.settings.cotton_text }}</p>
+            <div class="ks-chips">
+              <span class="ks-chip">{{ section.settings.cotton_chip_1 }}</span>
+              <span class="ks-chip">{{ section.settings.cotton_chip_2 }}</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ks-tile">
+          <div class="ks-frame ks-frame-tile ks-illus">
+            {%- if section.settings.jute_image != blank -%}
+              {{ section.settings.jute_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: jute_alt }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="{{ jute_alt | escape }}" width="420" height="420" loading="lazy">
+            {%- endif -%}
+          </div>
+          <div class="ks-tile-copy">
+            <p class="ks-kicker">{{ section.settings.jute_kicker }}</p>
+            <h3>{{ section.settings.jute_heading }}</h3>
+            <p>{{ section.settings.jute_text }}</p>
+            <div class="ks-chips">
+              <span class="ks-chip">{{ section.settings.jute_chip_1 }}</span>
+              <span class="ks-chip">{{ section.settings.jute_chip_2 }}</span>
+              <span class="ks-chip">{{ section.settings.jute_chip_3 }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="ks-section ks-wrap">
+    <div class="ks-split">
+      <div class="ks-media">
+        <div class="ks-frame ks-frame-port">
+          {%- if section.settings.heritage_image != blank -%}
+            {{ section.settings.heritage_image | image_url: width: 1100 | image_tag: loading: 'lazy', alt: heritage_alt }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Heritage.jpg?v=1778784669" alt="{{ heritage_alt | escape }}" width="900" height="1125" loading="lazy">
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="ks-split-copy">
+        <p class="ks-eyebrow">{{ section.settings.heritage_eyebrow }}</p>
+        <p class="ks-lead">{{ section.settings.heritage_lead }}</p>
+        <p>{{ section.settings.heritage_text }}</p>
+        <div class="ks-chips">
+          <span class="ks-chip">{{ section.settings.heritage_chip_1 }}</span>
+          <span class="ks-chip">{{ section.settings.heritage_chip_2 }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ks-band">
+    <section class="ks-section ks-wrap">
+      <div class="ks-section-head">
+        <p class="ks-eyebrow">{{ section.settings.making_eyebrow }}</p>
+        <h2>{{ section.settings.making_heading }}</h2>
+      </div>
+      <div class="ks-rows">
+        <div class="ks-row">
+          <div class="ks-row-label">{{ section.settings.dyes_heading }}</div>
+          <div>
+            <p>{{ section.settings.dyes_text }}</p>
+            <div class="ks-chips">
+              <span class="ks-chip">{{ section.settings.dyes_chip_1 }}</span>
+              <span class="ks-chip">{{ section.settings.dyes_chip_2 }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="ks-row">
+          <div class="ks-row-label">{{ section.settings.labor_heading }}</div>
+          <div>
+            <p>{{ section.settings.labor_text }}</p>
+            <div class="ks-chips">
+              <span class="ks-chip">{{ section.settings.labor_chip_1 }}</span>
+              <span class="ks-chip">{{ section.settings.labor_chip_2 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="ks-give ks-wrap">
+    <div class="ks-mark">
+      {%- if section.settings.planet_image != blank -%}
+        {{ section.settings.planet_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: planet_alt }}
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png?v=1781041085" alt="{{ planet_alt | escape }}" width="120" height="120" loading="lazy">
+      {%- endif -%}
+    </div>
+    <p class="ks-eyebrow">{{ section.settings.giving_eyebrow }}</p>
+    <h2>{{ section.settings.giving_heading }}</h2>
+    <p>{{ section.settings.giving_text }}</p>
+  </section>
+
+  <section class="ks-section ks-last ks-wrap">
+    <div class="ks-last-inner">
+      <p class="ks-eyebrow">{{ section.settings.last_eyebrow }}</p>
+      <p class="ks-lead">{{ section.settings.last_lead }}</p>
+      <p>{{ section.settings.last_text }}</p>
+    </div>
+  </section>
+
+  <section class="ks-progress">
+    <div class="ks-wrap ks-section">
+      <p class="ks-eyebrow">{{ section.settings.progress_eyebrow }}</p>
+      <h2>{{ section.settings.progress_heading }}</h2>
+      <p class="ks-progress-line">{{ section.settings.progress_text }}</p>
+      <ul class="ks-todo">
+        <li>{{ section.settings.progress_item_1 }}</li>
+        <li>{{ section.settings.progress_item_2 }}</li>
+        <li>{{ section.settings.progress_item_3 }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ks-close ks-wrap">
+    <p>{{ section.settings.close_text }}</p>
+    <p class="ks-sign">{{ section.settings.close_signoff }}</p>
+  </section>
+
+  <div class="ks-wrap ks-close-img">
+    <div class="ks-frame ks-frame-wide">
+      {%- if section.settings.close_image != blank -%}
+        {{ section.settings.close_image | image_url: width: 1800 | image_tag: loading: 'lazy', alt: close_alt }}
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927" alt="{{ close_alt | escape }}" width="1800" height="900" loading="lazy">
+      {%- endif -%}
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Sustainability",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow",
+      "default": "Sustainability at Kaahu"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "What you carry should reflect what you value."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_text",
+      "label": "Text",
+      "default": "So we account for it - at every stage. Here is what that means, in plain terms, including the parts we haven't finished yet."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Hero image alt text"
+    },
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Kaahu is shaped by the Hawaiian principle of <em>Malama</em> - to care for one's people, and for the land, air, and water that hold them. That care decides what we make, and how.</p><p>We choose natural fibers, low-impact methods, and partners who meet real standards. And we would rather move slowly than overstate.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Materials"
+    },
+    {
+      "type": "text",
+      "id": "materials_eyebrow",
+      "label": "Eyebrow",
+      "default": "Materials"
+    },
+    {
+      "type": "text",
+      "id": "materials_heading",
+      "label": "Heading",
+      "default": "Two fibers, chosen for what they conserve."
+    },
+    {
+      "type": "image_picker",
+      "id": "cotton_image",
+      "label": "Cotton image"
+    },
+    {
+      "type": "text",
+      "id": "cotton_image_alt",
+      "label": "Cotton image alt text"
+    },
+    {
+      "type": "text",
+      "id": "cotton_kicker",
+      "label": "Cotton kicker",
+      "default": "Certified organic cotton"
+    },
+    {
+      "type": "text",
+      "id": "cotton_heading",
+      "label": "Cotton heading",
+      "default": "Grown gently, from the seed up."
+    },
+    {
+      "type": "textarea",
+      "id": "cotton_text",
+      "label": "Cotton text",
+      "default": "No synthetic pesticides, no GM seeds, and certified to the Global Organic Textile Standard. It uses up to 91% less water than conventional cotton."
+    },
+    {
+      "type": "text",
+      "id": "cotton_chip_1",
+      "label": "Cotton chip 1",
+      "default": "GOTS-certified"
+    },
+    {
+      "type": "text",
+      "id": "cotton_chip_2",
+      "label": "Cotton chip 2",
+      "default": "Up to 91% less water"
+    },
+    {
+      "type": "image_picker",
+      "id": "jute_image",
+      "label": "Jute image"
+    },
+    {
+      "type": "text",
+      "id": "jute_image_alt",
+      "label": "Jute image alt text"
+    },
+    {
+      "type": "text",
+      "id": "jute_kicker",
+      "label": "Jute kicker",
+      "default": "Bengal jute"
+    },
+    {
+      "type": "text",
+      "id": "jute_heading",
+      "label": "Jute heading",
+      "default": "One of the lowest-impact fibers there is."
+    },
+    {
+      "type": "textarea",
+      "id": "jute_text",
+      "label": "Jute text",
+      "default": "Rain-fed, harvested within six months, and gentle on the soil it grows in - a fiber with a quiet strength we fell for."
+    },
+    {
+      "type": "text",
+      "id": "jute_chip_1",
+      "label": "Jute chip 1",
+      "default": "Rain-fed"
+    },
+    {
+      "type": "text",
+      "id": "jute_chip_2",
+      "label": "Jute chip 2",
+      "default": "6-month harvest"
+    },
+    {
+      "type": "text",
+      "id": "jute_chip_3",
+      "label": "Jute chip 3",
+      "default": "Builds soil health"
+    },
+    {
+      "type": "header",
+      "content": "Hands and lineage"
+    },
+    {
+      "type": "image_picker",
+      "id": "heritage_image",
+      "label": "Heritage image"
+    },
+    {
+      "type": "text",
+      "id": "heritage_image_alt",
+      "label": "Heritage image alt text"
+    },
+    {
+      "type": "text",
+      "id": "heritage_eyebrow",
+      "label": "Eyebrow",
+      "default": "Hands & lineage"
+    },
+    {
+      "type": "text",
+      "id": "heritage_lead",
+      "label": "Lead",
+      "default": "Made by people, and named as such."
+    },
+    {
+      "type": "textarea",
+      "id": "heritage_text",
+      "label": "Text",
+      "default": "Small mills and artisan cooperatives carry the work forward - jute looms in Bengal, cotton spinning in Gujarat. One bag even carries a note in Bengali script, written by our own family."
+    },
+    {
+      "type": "text",
+      "id": "heritage_chip_1",
+      "label": "Chip 1",
+      "default": "Bengal looms"
+    },
+    {
+      "type": "text",
+      "id": "heritage_chip_2",
+      "label": "Chip 2",
+      "default": "Gujarat spinning"
+    },
+    {
+      "type": "header",
+      "content": "How it's made"
+    },
+    {
+      "type": "text",
+      "id": "making_eyebrow",
+      "label": "Eyebrow",
+      "default": "How it's made"
+    },
+    {
+      "type": "text",
+      "id": "making_heading",
+      "label": "Heading",
+      "default": "Held to a standard, every step."
+    },
+    {
+      "type": "text",
+      "id": "dyes_heading",
+      "label": "Dyes heading",
+      "default": "Dyes & water"
+    },
+    {
+      "type": "textarea",
+      "id": "dyes_text",
+      "label": "Dyes text",
+      "default": "GOTS-approved low-impact dyes. Several partner mills run closed-loop systems that recycle process water rather than discharge it."
+    },
+    {
+      "type": "text",
+      "id": "dyes_chip_1",
+      "label": "Dyes chip 1",
+      "default": "GOTS-approved dyes"
+    },
+    {
+      "type": "text",
+      "id": "dyes_chip_2",
+      "label": "Dyes chip 2",
+      "default": "Closed-loop water"
+    },
+    {
+      "type": "text",
+      "id": "labor_heading",
+      "label": "Labor heading",
+      "default": "Fair, safe labor"
+    },
+    {
+      "type": "textarea",
+      "id": "labor_text",
+      "label": "Labor text",
+      "default": "We work only with SEDEX-audited suppliers - fair pay in local terms, safe conditions, no forced labor. If a facility falls short, we move on, even when it costs more."
+    },
+    {
+      "type": "text",
+      "id": "labor_chip_1",
+      "label": "Labor chip 1",
+      "default": "SEDEX-audited"
+    },
+    {
+      "type": "text",
+      "id": "labor_chip_2",
+      "label": "Labor chip 2",
+      "default": "ISO 14001:2015"
+    },
+    {
+      "type": "header",
+      "content": "Giving back"
+    },
+    {
+      "type": "image_picker",
+      "id": "planet_image",
+      "label": "1% image"
+    },
+    {
+      "type": "text",
+      "id": "planet_image_alt",
+      "label": "1% image alt text"
+    },
+    {
+      "type": "text",
+      "id": "giving_eyebrow",
+      "label": "Eyebrow",
+      "default": "Giving back"
+    },
+    {
+      "type": "text",
+      "id": "giving_heading",
+      "label": "Heading",
+      "default": "One percent of revenue. Not profit."
+    },
+    {
+      "type": "html",
+      "id": "giving_text",
+      "label": "Text",
+      "default": "We are a member of <a href=\"https://www.onepercentfortheplanet.org/\" target=\"_blank\" rel=\"noopener\">1% for the Planet</a>, so a portion of every purchase goes to vetted environmental organizations. The network has directed over <span class=\"ks-fig\">$672 million</span> to climate and conservation work across more than 110 countries."
+    },
+    {
+      "type": "header",
+      "content": "Built to last"
+    },
+    {
+      "type": "text",
+      "id": "last_eyebrow",
+      "label": "Eyebrow",
+      "default": "Built to last"
+    },
+    {
+      "type": "text",
+      "id": "last_lead",
+      "label": "Lead",
+      "default": "Sustainability without durability is just slower waste."
+    },
+    {
+      "type": "textarea",
+      "id": "last_text",
+      "label": "Text",
+      "default": "So we design for real life and for repair - choosing materials for resilience and hardware for strength. Fewer, better things, made to be used rather than shelved."
+    },
+    {
+      "type": "header",
+      "content": "In progress"
+    },
+    {
+      "type": "text",
+      "id": "progress_eyebrow",
+      "label": "Eyebrow",
+      "default": "In progress"
+    },
+    {
+      "type": "text",
+      "id": "progress_heading",
+      "label": "Heading",
+      "default": "What we're still working on."
+    },
+    {
+      "type": "textarea",
+      "id": "progress_text",
+      "label": "Text",
+      "default": "We don't claim perfection. A few things are underway, and we would rather name them than hide them."
+    },
+    {
+      "type": "text",
+      "id": "progress_item_1",
+      "label": "Item 1",
+      "default": "Moving more partner mills onto renewable energy."
+    },
+    {
+      "type": "text",
+      "id": "progress_item_2",
+      "label": "Item 2",
+      "default": "Finalizing verified NGO partnerships for reforestation and mangrove restoration across South Asia - measurable, not symbolic."
+    },
+    {
+      "type": "text",
+      "id": "progress_item_3",
+      "label": "Item 3",
+      "default": "Lowering water, energy, and chemical use further, one mill at a time."
+    },
+    {
+      "type": "header",
+      "content": "Close"
+    },
+    {
+      "type": "html",
+      "id": "close_text",
+      "label": "Close text",
+      "default": "Have a question we haven't answered? Write to <a href=\"mailto:care@kaahu.us\">care@kaahu.us</a>. We'll tell you what we know - and what we're still learning."
+    },
+    {
+      "type": "text",
+      "id": "close_signoff",
+      "label": "Signoff",
+      "default": "Because what you carry should reflect what you believe."
+    },
+    {
+      "type": "image_picker",
+      "id": "close_image",
+      "label": "Close image"
+    },
+    {
+      "type": "text",
+      "id": "close_image_alt",
+      "label": "Close image alt text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sustainability"
+    }
+  ]
+}
+{% endschema %}

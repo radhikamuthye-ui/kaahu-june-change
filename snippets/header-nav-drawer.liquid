@@ -1,5 +1,11 @@
 <nav>
   <ul class="nav-ul--primary" role="list">
+    {% assign has_sustainability_link = false %}
+    {% for link in section.settings.main_menu.links %}
+      {% if link.url == '/pages/sustainability' %}
+        {% assign has_sustainability_link = true %}
+      {% endif %}
+    {% endfor %}
     {% for link in section.settings.main_menu.links %}
       {% if link.links != blank %}
       <li>
@@ -208,6 +214,9 @@
       </li>
       {% endif %}
     {% endfor %}
+    {% unless has_sustainability_link %}
+      <li><a href="/pages/sustainability">Sustainability</a></li>
+    {% endunless %}
   </ul>
 
   {% assign drawer_image_count = 0 %}
