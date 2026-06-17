@@ -21,8 +21,9 @@ class CollectionMetafieldSlideshow {
     const speed = parseInt(this.swiperElement.dataset.speed, 10) || 800;
     const autoplay = this.swiperElement.dataset.autoplay === 'true';
     const slideCount = this.swiperElement.querySelectorAll('.swiper-slide').length;
+    const totalInterval = interval * Math.max(slideCount, 1);
 
-    this.section.style.setProperty('--cms-interval', `${interval}ms`);
+    this.section.style.setProperty('--cms-interval', `${totalInterval}ms`);
 
     const config = {
       loop: slideCount > 1,
@@ -35,8 +36,7 @@ class CollectionMetafieldSlideshow {
         crossFade: true
       },
       on: {
-        init: () => this.restartProgress(),
-        slideChangeTransitionStart: () => this.restartProgress()
+        init: () => this.restartProgress()
       }
     };
 
@@ -63,7 +63,6 @@ class CollectionMetafieldSlideshow {
       if (isPaused) {
         this.swiper.autoplay.stop();
       } else {
-        this.restartProgress();
         this.swiper.autoplay.start();
       }
     });
