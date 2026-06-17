@@ -1,0 +1,78 @@
+{{ 'section-kaahu-content-page.css' | asset_url | stylesheet_tag }}
+
+<main class="kaahu-content-page kcp-content">
+  <header class="kcp-hero">
+    <div class="kcp-wrap">
+      <p class="kcp-eyebrow">{{ section.settings.eyebrow }}</p>
+      <hr class="kcp-rule" aria-hidden="true">
+      <h1>{{ section.settings.heading }}</h1>
+      <div class="kcp-hero__lede kcp-rich">{{ section.settings.lede }}</div>
+    </div>
+    <div class="kcp-wrap kcp-hero__image">
+      <div class="kcp-frame kcp-frame--wide">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+        {%- else -%}
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
+        {%- endif -%}
+      </div>
+    </div>
+  </header>
+
+  <section class="kcp-notes">
+    <div class="kcp-wrap">
+      <div class="kcp-rows">
+        {%- for block in section.blocks -%}
+          <div class="kcp-row" {{ block.shopify_attributes }}>
+            <div class="kcp-row__label">{{ block.settings.label }}</div>
+            <div class="kcp-row__text kcp-rich">{{ block.settings.text }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  <section class="kcp-close kcp-wrap">
+    <div class="kcp-rich">{{ section.settings.close_text }}</div>
+    <p class="kcp-sign">{{ section.settings.signoff }}</p>
+  </section>
+</main>
+
+{% schema %}
+{
+  "name": "Kaahu care page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Care" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A few quiet ways to keep it well." },
+    { "type": "richtext", "id": "lede", "label": "Intro text", "default": "<p>Each Kaahu bag is made from natural fibers and built by hand. These notes help it last - gracefully and naturally, just as it was made.</p>" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "hero_alt", "label": "Hero image alt text", "default": "Close-up of a Kaahu bag's fabric and finish" },
+    { "type": "richtext", "id": "close_text", "label": "Closing text", "default": "<p>For anything else, write to <a href=\"mailto:care@kaahu.us\">care@kaahu.us</a>. We're here.</p>" },
+    { "type": "text", "id": "signoff", "label": "Signoff", "default": "Used gently, a good bag only gets better." }
+  ],
+  "blocks": [
+    {
+      "type": "care_note",
+      "name": "Care note",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Spot clean" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>For small marks or spills, use a damp cloth and gentle pressure. Avoid soaps, detergents, or solvents - natural fibers respond best to a lighter touch.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kaahu care page",
+      "blocks": [
+        { "type": "care_note", "settings": { "label": "Spot clean", "text": "<p>For small marks or spills, use a damp cloth and gentle pressure. Avoid soaps, detergents, or solvents - natural fibers respond best to a lighter touch.</p>" } },
+        { "type": "care_note", "settings": { "label": "Air dry", "text": "<p>Let your bag dry in a shaded, well-ventilated space. Keep it away from direct sunlight or artificial heat, which can shrink or fade the fibers over time.</p>" } },
+        { "type": "care_note", "settings": { "label": "Store thoughtfully", "text": "<p>When it's resting, keep your bag in a cool, dry place. The cotton dust bag it arrives in guards against moisture and dust, while letting the materials breathe.</p>" } },
+        { "type": "care_note", "settings": { "label": "Natural fibers, natural rhythm", "text": "<p>Jute and organic cotton breathe, shift, and age with time. Keep them dry and away from prolonged humidity to preserve their texture and strength.</p>" } },
+        { "type": "care_note", "settings": { "label": "Mend what matters", "text": "<p>If your bag ever needs attention, repair before you replace. A small mend carries it further - and adds to the story it holds.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

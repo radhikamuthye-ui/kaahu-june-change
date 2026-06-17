@@ -1,0 +1,126 @@
+{{ 'section-kaahu-content-page.css' | asset_url | stylesheet_tag }}
+
+<main class="kaahu-content-page kcp-content">
+  <header class="kcp-hero">
+    <div class="kcp-wrap">
+      <p class="kcp-eyebrow">{{ section.settings.hero_eyebrow }}</p>
+      <hr class="kcp-rule" aria-hidden="true">
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <div class="kcp-hero__lede kcp-rich">{{ section.settings.hero_text }}</div>
+    </div>
+    <div class="kcp-wrap kcp-hero__image">
+      <div class="kcp-frame kcp-frame--wide">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+        {%- else -%}
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
+        {%- endif -%}
+      </div>
+    </div>
+  </header>
+
+  <section class="kcp-story-intro">
+    <div class="kcp-wrap kcp-narrow kcp-rich">{{ section.settings.intro_text }}</div>
+  </section>
+
+  <section class="kcp-quote">
+    <div class="kcp-wrap">
+      <hr class="kcp-mark" aria-hidden="true">
+      <blockquote>{{ section.settings.quote }}</blockquote>
+    </div>
+  </section>
+
+  <section class="kcp-story-intro" style="padding-top:0">
+    <div class="kcp-wrap kcp-narrow kcp-rich">{{ section.settings.answer_text }}</div>
+  </section>
+
+  <div class="kcp-band">
+    <section class="kcp-section kcp-wrap">
+      <div class="kcp-split">
+        <div class="kcp-frame kcp-frame--portrait">
+          {%- if section.settings.material_image != blank -%}
+            {{ section.settings.material_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.material_alt }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="{{ section.settings.material_alt | escape }}" width="900" height="1125" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="kcp-split__copy kcp-rich">
+          <p class="kcp-eyebrow">{{ section.settings.material_eyebrow }}</p>
+          <p class="kcp-lead">{{ section.settings.material_heading }}</p>
+          {{ section.settings.material_text }}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="kcp-care-over">
+    <div class="kcp-wrap kcp-narrow kcp-rich">{{ section.settings.care_text }}</div>
+  </section>
+
+  <section class="kcp-symbol">
+    <div class="kcp-wrap kcp-symbol__inner">
+      <p class="kcp-eyebrow">{{ section.settings.symbol_eyebrow }}</p>
+      <div class="kcp-frame kcp-symbol__image">
+        {%- if section.settings.symbol_image != blank -%}
+          {{ section.settings.symbol_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.symbol_alt }}
+        {%- else -%}
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696" alt="{{ section.settings.symbol_alt | escape }}" width="900" height="620" loading="lazy">
+        {%- endif -%}
+      </div>
+      <p class="kcp-symbol__lead">{{ section.settings.symbol_heading }}</p>
+      <div class="kcp-rich">{{ section.settings.symbol_text }}</div>
+    </div>
+  </section>
+
+  <section class="kcp-close kcp-story-close kcp-wrap">
+    <div class="kcp-rich">{{ section.settings.close_text }}</div>
+    <p class="kcp-story-sign"><span>{{ section.settings.signoff_line_one }}</span><span>{{ section.settings.signoff_line_two }}</span></p>
+  </section>
+
+  <div class="kcp-wrap kcp-close-img">
+    <div class="kcp-frame kcp-frame--wide">
+      {%- if section.settings.close_image != blank -%}
+        {{ section.settings.close_image | image_url: width: 1800 | image_tag: loading: 'lazy', alt: section.settings.close_alt }}
+      {%- else -%}
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901" alt="{{ section.settings.close_alt | escape }}" width="1800" height="900" loading="lazy">
+      {%- endif -%}
+    </div>
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Kaahu our story page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Our story" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Kaahu was born when the world had slowed." },
+    { "type": "richtext", "id": "hero_text", "label": "Hero text", "default": "<p>In a quiet season in Hawaii, nature carried the conversation - and a daily rhythm built on respect stayed with us.</p>" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "hero_alt", "label": "Hero image alt text", "default": "A quiet natural landscape, the spirit of Kaahu's beginnings" },
+    { "type": "richtext", "id": "intro_text", "label": "Intro text", "default": "<p>In that stillness, we witnessed something rare: a daily rhythm built on respect. For land. For community. For the quiet balance between beauty and restraint. People lived with less, but everything had meaning. That way of life stayed with us.</p><p>We came home with a question.</p>" },
+    { "type": "text", "id": "quote", "label": "Quote", "default": "What if what we carry could reflect what we truly value?" },
+    { "type": "richtext", "id": "answer_text", "label": "Answer text", "default": "<p>Kaahu was our answer. Not a brand, but a commitment - to thoughtful materials, intentional design, and a slower, more conscious way of moving through the world.</p>" },
+    { "type": "image_picker", "id": "material_image", "label": "Materials image" },
+    { "type": "text", "id": "material_alt", "label": "Materials image alt text", "default": "The texture of natural fiber, cotton on the plant" },
+    { "type": "text", "id": "material_eyebrow", "label": "Materials eyebrow", "default": "Materials" },
+    { "type": "text", "id": "material_heading", "label": "Materials heading", "default": "We began with texture." },
+    { "type": "richtext", "id": "material_text", "label": "Materials text", "default": "<p>The raw weave of jute, the soft structure of organic cotton - chosen not just for how they feel, but for what they conserve. Organic cotton uses up to 91% less water than conventional cotton. Jute grows quickly, thrives on minimal resources, and gives back to the soil. By bringing it to the North American market, we hope to offer something both rare and necessary.</p>" },
+    { "type": "richtext", "id": "care_text", "label": "Care over speed text", "default": "<p>At every step, we've chosen care over speed. We work only with partners who honor fair treatment, skilled craftsmanship, and the dignity of labor. Every Kaahu piece is made to last - not just in construction, but in meaning. We design with permanence in mind: clean lines, considered details, no waste.</p>" },
+    { "type": "text", "id": "symbol_eyebrow", "label": "Symbol eyebrow", "default": "The symbol" },
+    { "type": "image_picker", "id": "symbol_image", "label": "Symbol image" },
+    { "type": "text", "id": "symbol_alt", "label": "Symbol image alt text", "default": "Line drawing of two Huia birds, the Kaahu symbol" },
+    { "type": "text", "id": "symbol_heading", "label": "Symbol heading", "default": "Two Huia birds, always seen in pairs." },
+    { "type": "richtext", "id": "symbol_text", "label": "Symbol text", "default": "<p>Once native to Aotearoa, the Huia was a symbol of devotion, grace, and harmony. Now extinct, it reminds us of what's precious - and what disappears when we stop protecting it.</p><p>Their presence at the heart of Kaahu is intentional: balance, companionship, and the urgency of care. A reminder that beauty must be preserved, not just admired.</p>" },
+    { "type": "richtext", "id": "close_text", "label": "Closing text", "default": "<p>We don't believe in one-size-fits-all. We believe in resonance - in pieces that carry your values quietly, beautifully, and with purpose.</p>" },
+    { "type": "text", "id": "signoff_line_one", "label": "Signoff line 1", "default": "We're not here to define your story." },
+    { "type": "text", "id": "signoff_line_two", "label": "Signoff line 2", "default": "We're here to walk beside you while you live it." },
+    { "type": "image_picker", "id": "close_image", "label": "Closing image" },
+    { "type": "text", "id": "close_alt", "label": "Closing image alt text", "default": "A Kaahu bag carried through an everyday moment" }
+  ],
+  "presets": [
+    { "name": "Kaahu our story page" }
+  ]
+}
+{% endschema %}

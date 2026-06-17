@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "kaahu-care-page",
+      "blocks": {
+        "spot_clean": {
+          "type": "care_note",
+          "settings": {
+            "label": "Spot clean",
+            "text": "<p>For small marks or spills, use a damp cloth and gentle pressure. Avoid soaps, detergents, or solvents - natural fibers respond best to a lighter touch.</p>"
+          }
+        },
+        "air_dry": {
+          "type": "care_note",
+          "settings": {
+            "label": "Air dry",
+            "text": "<p>Let your bag dry in a shaded, well-ventilated space. Keep it away from direct sunlight or artificial heat, which can shrink or fade the fibers over time.</p>"
+          }
+        },
+        "store": {
+          "type": "care_note",
+          "settings": {
+            "label": "Store thoughtfully",
+            "text": "<p>When it's resting, keep your bag in a cool, dry place. The cotton dust bag it arrives in guards against moisture and dust, while letting the materials breathe.</p>"
+          }
+        },
+        "natural": {
+          "type": "care_note",
+          "settings": {
+            "label": "Natural fibers, natural rhythm",
+            "text": "<p>Jute and organic cotton breathe, shift, and age with time. Keep them dry and away from prolonged humidity to preserve their texture and strength.</p>"
+          }
+        },
+        "mend": {
+          "type": "care_note",
+          "settings": {
+            "label": "Mend what matters",
+            "text": "<p>If your bag ever needs attention, repair before you replace. A small mend carries it further - and adds to the story it holds.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "spot_clean",
+        "air_dry",
+        "store",
+        "natural",
+        "mend"
+      ],
+      "settings": {
+        "eyebrow": "Care",
+        "heading": "A few quiet ways to keep it well.",
+        "lede": "<p>Each Kaahu bag is made from natural fibers and built by hand. These notes help it last - gracefully and naturally, just as it was made.</p>",
+        "hero_alt": "Close-up of a Kaahu bag's fabric and finish",
+        "close_text": "<p>For anything else, write to <a href=\"mailto:care@kaahu.us\">care@kaahu.us</a>. We're here.</p>",
+        "signoff": "Used gently, a good bag only gets better."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,5 +1,7 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
+{% assign kaahu_custom_page_handles = 'care,care-instructions,faq,our-story' | split: ',' %}
+
 {%- style -%}
 .section-{{ section.id }}-padding {
   padding-top: {{ section.settings.padding_top | times: 0.8 | round: 0 }}px;
@@ -17,6 +19,9 @@
 
 {% assign enable_unit_toggle = false %}
 
+{% if kaahu_custom_page_handles contains page.handle %}
+  {% render 'kaahu-static-content-pages' %}
+{% else %}
 <div class="{{ section.settings.content_width }} section-{{ section.id }}-padding section-index-{{ section.index }}{% if request.design_mode %} section-index-1{% endif %}">
   {% unless section.settings.heading_hide %}
   <h1 class="main-page-title page-title align-{{ section.settings.hdr_alignment }}">
@@ -33,6 +38,7 @@
     {{ page.content }}
   </div>
 </div>
+{% endif %}
 
 {% if page.url contains 'size' and enable_unit_toggle %}
 <script>

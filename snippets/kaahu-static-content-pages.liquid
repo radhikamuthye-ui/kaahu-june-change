@@ -1,0 +1,159 @@
+{{ 'section-kaahu-content-page.css' | asset_url | stylesheet_tag }}
+
+{%- case page.handle -%}
+  {%- when 'care', 'care-instructions' -%}
+    <main class="kaahu-content-page kcp-content">
+      <header class="kcp-hero">
+        <div class="kcp-wrap">
+          <p class="kcp-eyebrow">Care</p>
+          <hr class="kcp-rule" aria-hidden="true">
+          <h1>A few quiet ways to keep it well.</h1>
+          <div class="kcp-hero__lede kcp-rich"><p>Each Kaahu bag is made from natural fibers and built by hand. These notes help it last - gracefully and naturally, just as it was made.</p></div>
+        </div>
+        <div class="kcp-wrap kcp-hero__image">
+          <div class="kcp-frame kcp-frame--wide">
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033" alt="Close-up of a Kaahu bag's fabric and finish" width="1800" height="900" loading="eager" fetchpriority="high">
+          </div>
+        </div>
+      </header>
+
+      <section class="kcp-notes">
+        <div class="kcp-wrap">
+          <div class="kcp-rows">
+            <div class="kcp-row"><div class="kcp-row__label">Spot clean</div><div class="kcp-row__text kcp-rich"><p>For small marks or spills, use a damp cloth and gentle pressure. Avoid soaps, detergents, or solvents - natural fibers respond best to a lighter touch.</p></div></div>
+            <div class="kcp-row"><div class="kcp-row__label">Air dry</div><div class="kcp-row__text kcp-rich"><p>Let your bag dry in a shaded, well-ventilated space. Keep it away from direct sunlight or artificial heat, which can shrink or fade the fibers over time.</p></div></div>
+            <div class="kcp-row"><div class="kcp-row__label">Store thoughtfully</div><div class="kcp-row__text kcp-rich"><p>When it's resting, keep your bag in a cool, dry place. The cotton dust bag it arrives in guards against moisture and dust, while letting the materials breathe.</p></div></div>
+            <div class="kcp-row"><div class="kcp-row__label">Natural fibers, natural rhythm</div><div class="kcp-row__text kcp-rich"><p>Jute and organic cotton breathe, shift, and age with time. Keep them dry and away from prolonged humidity to preserve their texture and strength.</p></div></div>
+            <div class="kcp-row"><div class="kcp-row__label">Mend what matters</div><div class="kcp-row__text kcp-rich"><p>If your bag ever needs attention, repair before you replace. A small mend carries it further - and adds to the story it holds.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kcp-close kcp-wrap">
+        <div class="kcp-rich"><p>For anything else, write to <a href="mailto:care@kaahu.us">care@kaahu.us</a>. We're here.</p></div>
+        <p class="kcp-sign">Used gently, a good bag only gets better.</p>
+      </section>
+    </main>
+
+  {%- when 'faq' -%}
+    <main class="kaahu-content-page kcp-content">
+      <header class="kcp-hero kcp-wrap kcp-faq-wrap">
+        <p class="kcp-eyebrow">FAQ</p>
+        <hr class="kcp-rule" aria-hidden="true">
+        <h1>Questions, answered.</h1>
+        <div class="kcp-hero__lede kcp-rich"><p>For anything not covered here, write to us at <a href="mailto:care@kaahu.us">care@kaahu.us</a> - we respond within one business day.</p></div>
+      </header>
+
+      <nav class="kcp-jump kcp-wrap kcp-faq-wrap" aria-label="FAQ categories">
+        <a href="#orders">Orders &amp; shipping</a>
+        <a href="#materials">Product &amp; materials</a>
+        <a href="#gifting">Gifting</a>
+        <a href="#support">Support</a>
+        <a href="#social">News &amp; social</a>
+        <a href="#pricing">Pricing &amp; refunds</a>
+        <a href="#payment">Payment</a>
+      </nav>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="orders">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">01</p><h2>Orders &amp; shipping</h2></div>
+        <details class="kcp-faq-item"><summary>Can I cancel or update my order?</summary><div class="kcp-answer kcp-rich"><p>You can cancel or update your order before it ships. Just email us at <a href="mailto:care@kaahu.us">care@kaahu.us</a> with your order number. If your order has already shipped, we'll guide you through the return process.</p></div></details>
+        <details class="kcp-faq-item"><summary>What is your return policy?</summary><div class="kcp-answer kcp-rich"><p>You have 90 days from delivery to initiate a return. Email us at <a href="mailto:care@kaahu.us">care@kaahu.us</a> and we'll send you a return label. Your item should be:</p><ul><li>In original, unworn condition</li><li>With tags attached</li><li>In original packaging, including the dust bag</li></ul><p>Refunds are issued to the original method of payment once your return is received.</p></div></details>
+        <details class="kcp-faq-item"><summary>Do you offer exchanges?</summary><div class="kcp-answer kcp-rich"><p>We don't offer exchanges after an order has shipped. If you'd like a different item, place a new order and return the original.</p></div></details>
+        <details class="kcp-faq-item"><summary>How can I check my order status?</summary><div class="kcp-answer kcp-rich"><p>You can track your order anytime from the <strong>Order History</strong> section of your account. For help, email us at <a href="mailto:care@kaahu.us">care@kaahu.us</a>.</p></div></details>
+        <details class="kcp-faq-item"><summary>Do you ship internationally?</summary><div class="kcp-answer kcp-rich"><p>We currently ship within the United States, excluding the following territories:</p><ul><li>Micronesia</li><li>Guam</li><li>Marshall Islands</li><li>Palau</li><li>U.S. Virgin Islands</li></ul><p>We're working toward international shipping soon.</p></div></details>
+        <details class="kcp-faq-item"><summary>How long will my order take to arrive?</summary><div class="kcp-answer kcp-rich"><p>With free shipping, orders typically arrive within <strong>5-8 business days</strong>.</p></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="materials">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">02</p><h2>Product &amp; materials</h2></div>
+        <details class="kcp-faq-item"><summary>What is Kaahu?</summary><div class="kcp-answer kcp-rich"><p>Kaahu is rooted in the Hawaiian idea of a guardian - someone who walks alongside, not ahead. We design bags that reflect care, connection, and craft.</p></div></details>
+        <details class="kcp-faq-item"><summary>What makes Kaahu sustainable?</summary><div class="kcp-answer kcp-rich"><p>We work with natural fibers like jute, organic cotton, and juco. Our production is low-waste, labor-conscious, and built to last. Through our partnership with 1% for the Planet, a portion of every sale goes toward environmental work around the world.</p></div></details>
+        <details class="kcp-faq-item"><summary>What materials do you use?</summary><div class="kcp-answer kcp-rich"><ul><li><strong>Organic canvas:</strong> a sturdy cotton textile grown without harmful chemicals</li><li><strong>Jute:</strong> a rain-fed, low-impact fiber</li><li><strong>Juco:</strong> a woven blend of jute and cotton that balances structure and softness</li></ul></div></details>
+        <details class="kcp-faq-item"><summary>Are your products vegan?</summary><div class="kcp-answer kcp-rich"><p>Yes. All Kaahu products are made without animal-derived materials.</p></div></details>
+        <details class="kcp-faq-item"><summary>How do I care for my Kaahu bag?</summary><div class="kcp-answer kcp-rich"><p>You'll find detailed care instructions on our <a href="/pages/care-instructions">Care page</a>. A few small steps go a long way in keeping your bag well.</p></div></details>
+        <details class="kcp-faq-item"><summary>Is your packaging eco-friendly?</summary><div class="kcp-answer kcp-rich"><p>Yes. Our packaging is recyclable and plastic-free. We use:</p><ul><li>Recycled paper boxes</li><li>Water-activated paper tape</li><li>Algae ink (carbon-negative) for printing</li></ul><p>Every element is chosen to minimize waste while protecting your bag in transit.</p></div></details>
+        <details class="kcp-faq-item"><summary>Why jute and organic cotton?</summary><div class="kcp-answer kcp-rich"><ul><li><strong>Jute:</strong> grows with minimal water and no pesticides</li><li><strong>Organic cotton:</strong> preserves soil health and reduces runoff</li><li><strong>Juco:</strong> offers breathability, strength, and natural beauty - well-suited to lasting design</li></ul></div></details>
+        <details class="kcp-faq-item"><summary>What inspires Kaahu designs?</summary><div class="kcp-answer kcp-rich"><p>Each collection reflects a specific story - from endangered species to lost symbols of the natural world. We've honored the orca whale, the extinct Huia bird, and others as quiet reminders of what's still worth protecting.</p></div></details>
+        <details class="kcp-faq-item"><summary>Are Kaahu products ethically made?</summary><div class="kcp-answer kcp-rich"><p>Yes. We partner with manufacturers who prioritize ethical labor and sustainability across every step of production.</p></div></details>
+        <details class="kcp-faq-item"><summary>Why do products vary slightly?</summary><div class="kcp-answer kcp-rich"><p>We use natural fabrics. Subtle variations in color, weave, or finish may appear - these reflect the organic nature of our materials and the hand-finishing of each piece.</p></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="gifting">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">03</p><h2>Gifting &amp; personalization</h2></div>
+        <details class="kcp-faq-item"><summary>Can I add a gift message?</summary><div class="kcp-answer kcp-rich"><p>Yes. Enter your message in the <strong>Order Instructions</strong> box at checkout, and we'll include it in the shipment.</p></div></details>
+        <details class="kcp-faq-item"><summary>Can I personalize my item?</summary><div class="kcp-answer kcp-rich"><p>Not at the moment, but it's something we're exploring.</p></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="support">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">04</p><h2>Support &amp; feedback</h2></div>
+        <details class="kcp-faq-item"><summary>How can I reach you?</summary><div class="kcp-answer kcp-rich"><p>Email us at <a href="mailto:care@kaahu.us">care@kaahu.us</a>. We respond within one business day.</p></div></details>
+        <details class="kcp-faq-item"><summary>When is your customer support available?</summary><div class="kcp-answer kcp-rich"><p>Our team is available 24/7 by email.</p></div></details>
+        <details class="kcp-faq-item"><summary>How can I share feedback?</summary><div class="kcp-answer kcp-rich"><p>We read everything. Send feedback or suggestions to <a href="mailto:care@kaahu.us">care@kaahu.us</a> - your thoughts help shape what's next.</p></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="social">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">05</p><h2>News &amp; social</h2></div>
+        <details class="kcp-faq-item"><summary>How do I stay updated?</summary><div class="kcp-answer kcp-rich"><p>Join our newsletter to receive updates on new releases, early access, and quiet announcements.</p></div></details>
+        <details class="kcp-faq-item"><summary>Where can I follow Kaahu?</summary><div class="kcp-answer kcp-rich"><ul><li><a href="https://www.instagram.com/houseofkaahu" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/houseofkaahu" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.pinterest.com/houseofkaahu" target="_blank" rel="noopener">Pinterest</a></li><li><a href="https://www.linkedin.com/company/104397456" target="_blank" rel="noopener">LinkedIn</a></li></ul></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="pricing">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">06</p><h2>Pricing &amp; refunds</h2></div>
+        <details class="kcp-faq-item"><summary>Will I be charged sales tax?</summary><div class="kcp-answer kcp-rich"><p>Yes, where applicable by law.</p></div></details>
+        <details class="kcp-faq-item"><summary>Are delivery charges refundable?</summary><div class="kcp-answer kcp-rich"><p>No. We refund product costs only, not shipping fees.</p></div></details>
+        <details class="kcp-faq-item"><summary>How long do refunds take?</summary><div class="kcp-answer kcp-rich"><p>Please allow <strong>7-10 business days</strong> after we receive your return for the refund to appear.</p></div></details>
+        <details class="kcp-faq-item"><summary>Do you have a privacy policy?</summary><div class="kcp-answer kcp-rich"><p>Yes. You'll find it linked in the footer of our website.</p></div></details>
+      </section>
+
+      <section class="kcp-faq-category kcp-wrap kcp-faq-wrap" id="payment">
+        <div class="kcp-faq-category__head"><p class="kcp-eyebrow">07</p><h2>Payment</h2></div>
+        <details class="kcp-faq-item"><summary>What payment methods do you accept?</summary><div class="kcp-answer kcp-rich"><ul><li>Visa, MasterCard, American Express, Discover</li><li>Shop Pay</li><li>PayPal</li><li>Other secure providers offered at checkout</li></ul></div></details>
+      </section>
+
+      <section class="kcp-close kcp-wrap kcp-faq-wrap">
+        <div class="kcp-rich"><p>Still stuck? Write to <a href="mailto:care@kaahu.us">care@kaahu.us</a> - a real person will get back to you within a business day.</p></div>
+      </section>
+    </main>
+
+  {%- when 'our-story' -%}
+    <main class="kaahu-content-page kcp-content">
+      <header class="kcp-hero">
+        <div class="kcp-wrap">
+          <p class="kcp-eyebrow">Our story</p>
+          <hr class="kcp-rule" aria-hidden="true">
+          <h1>Kaahu was born when the world had slowed.</h1>
+          <div class="kcp-hero__lede kcp-rich"><p>In a quiet season in Hawaii, nature carried the conversation - and a daily rhythm built on respect stayed with us.</p></div>
+        </div>
+        <div class="kcp-wrap kcp-hero__image">
+          <div class="kcp-frame kcp-frame--wide"><img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580" alt="A quiet natural landscape, the spirit of Kaahu's beginnings" width="1800" height="900" loading="eager" fetchpriority="high"></div>
+        </div>
+      </header>
+
+      <section class="kcp-story-intro"><div class="kcp-wrap kcp-narrow kcp-rich"><p>In that stillness, we witnessed something rare: a daily rhythm built on respect. For land. For community. For the quiet balance between beauty and restraint. People lived with less, but everything had meaning. That way of life stayed with us.</p><p>We came home with a question.</p></div></section>
+      <section class="kcp-quote"><div class="kcp-wrap"><hr class="kcp-mark" aria-hidden="true"><blockquote>What if what we carry could reflect what we truly value?</blockquote></div></section>
+      <section class="kcp-story-intro" style="padding-top:0"><div class="kcp-wrap kcp-narrow kcp-rich"><p>Kaahu was our answer. Not a brand, but a commitment - to thoughtful materials, intentional design, and a slower, more conscious way of moving through the world.</p></div></section>
+
+      <div class="kcp-band">
+        <section class="kcp-section kcp-wrap">
+          <div class="kcp-split">
+            <div class="kcp-frame kcp-frame--portrait"><img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="The texture of natural fiber, cotton on the plant" width="900" height="1125" loading="lazy"></div>
+            <div class="kcp-split__copy kcp-rich"><p class="kcp-eyebrow">Materials</p><p class="kcp-lead">We began with texture.</p><p>The raw weave of jute, the soft structure of organic cotton - chosen not just for how they feel, but for what they conserve. Organic cotton uses up to 91% less water than conventional cotton. Jute grows quickly, thrives on minimal resources, and gives back to the soil. By bringing it to the North American market, we hope to offer something both rare and necessary.</p></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="kcp-care-over"><div class="kcp-wrap kcp-narrow kcp-rich"><p>At every step, we've chosen care over speed. We work only with partners who honor fair treatment, skilled craftsmanship, and the dignity of labor. Every Kaahu piece is made to last - not just in construction, but in meaning. We design with permanence in mind: clean lines, considered details, no waste.</p></div></section>
+
+      <section class="kcp-symbol">
+        <div class="kcp-wrap kcp-symbol__inner">
+          <p class="kcp-eyebrow">The symbol</p>
+          <div class="kcp-frame kcp-symbol__image"><img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696" alt="Line drawing of two Huia birds, the Kaahu symbol" width="900" height="620" loading="lazy"></div>
+          <p class="kcp-symbol__lead">Two Huia birds, always seen in pairs.</p>
+          <div class="kcp-rich"><p>Once native to Aotearoa, the Huia was a symbol of devotion, grace, and harmony. Now extinct, it reminds us of what's precious - and what disappears when we stop protecting it.</p><p>Their presence at the heart of Kaahu is intentional: balance, companionship, and the urgency of care. A reminder that beauty must be preserved, not just admired.</p></div>
+        </div>
+      </section>
+
+      <section class="kcp-close kcp-story-close kcp-wrap"><div class="kcp-rich"><p>We don't believe in one-size-fits-all. We believe in resonance - in pieces that carry your values quietly, beautifully, and with purpose.</p></div><p class="kcp-story-sign"><span>We're not here to define your story.</span><span>We're here to walk beside you while you live it.</span></p></section>
+      <div class="kcp-wrap kcp-close-img"><div class="kcp-frame kcp-frame--wide"><img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901" alt="A Kaahu bag carried through an everyday moment" width="1800" height="900" loading="lazy"></div></div>
+    </main>
+{%- endcase -%}

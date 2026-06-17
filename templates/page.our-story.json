@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "kaahu-our-story-page",
+      "settings": {
+        "hero_eyebrow": "Our story",
+        "hero_heading": "Kaahu was born when the world had slowed.",
+        "hero_text": "<p>In a quiet season in Hawaii, nature carried the conversation - and a daily rhythm built on respect stayed with us.</p>",
+        "hero_alt": "A quiet natural landscape, the spirit of Kaahu's beginnings",
+        "intro_text": "<p>In that stillness, we witnessed something rare: a daily rhythm built on respect. For land. For community. For the quiet balance between beauty and restraint. People lived with less, but everything had meaning. That way of life stayed with us.</p><p>We came home with a question.</p>",
+        "quote": "What if what we carry could reflect what we truly value?",
+        "answer_text": "<p>Kaahu was our answer. Not a brand, but a commitment - to thoughtful materials, intentional design, and a slower, more conscious way of moving through the world.</p>",
+        "material_alt": "The texture of natural fiber, cotton on the plant",
+        "material_eyebrow": "Materials",
+        "material_heading": "We began with texture.",
+        "material_text": "<p>The raw weave of jute, the soft structure of organic cotton - chosen not just for how they feel, but for what they conserve. Organic cotton uses up to 91% less water than conventional cotton. Jute grows quickly, thrives on minimal resources, and gives back to the soil. By bringing it to the North American market, we hope to offer something both rare and necessary.</p>",
+        "care_text": "<p>At every step, we've chosen care over speed. We work only with partners who honor fair treatment, skilled craftsmanship, and the dignity of labor. Every Kaahu piece is made to last - not just in construction, but in meaning. We design with permanence in mind: clean lines, considered details, no waste.</p>",
+        "symbol_eyebrow": "The symbol",
+        "symbol_alt": "Line drawing of two Huia birds, the Kaahu symbol",
+        "symbol_heading": "Two Huia birds, always seen in pairs.",
+        "symbol_text": "<p>Once native to Aotearoa, the Huia was a symbol of devotion, grace, and harmony. Now extinct, it reminds us of what's precious - and what disappears when we stop protecting it.</p><p>Their presence at the heart of Kaahu is intentional: balance, companionship, and the urgency of care. A reminder that beauty must be preserved, not just admired.</p>",
+        "close_text": "<p>We don't believe in one-size-fits-all. We believe in resonance - in pieces that carry your values quietly, beautifully, and with purpose.</p>",
+        "signoff_line_one": "We're not here to define your story.",
+        "signoff_line_two": "We're here to walk beside you while you live it.",
+        "close_alt": "A Kaahu bag carried through an everyday moment"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
