@@ -69,7 +69,7 @@
 }
 
 .collection-metafield-slideshow.is-playing .cms-progress span {
-  animation: cms-progress var(--cms-interval, 5s) linear infinite;
+  animation: cms-progress var(--cms-interval, 5s) linear forwards;
 }
 
 .collection-metafield-slideshow.is-paused .cms-progress span {
