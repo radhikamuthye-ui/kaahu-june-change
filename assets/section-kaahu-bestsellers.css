@@ -42,6 +42,9 @@
 }
 
 .kaahu-bestsellers__button {
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
   justify-self: end;
   display: inline-flex;
   align-items: center;
@@ -53,6 +56,7 @@
   border-radius: var(--kb-button-radius);
   color: var(--kb-button-text);
   background: var(--kb-button-bg);
+  background-color: var(--kb-button-bg);
   font-family: var(--kb-button-font-family);
   font-size: var(--kb-button-size-mobile);
   font-style: var(--kb-button-font-style);
@@ -61,6 +65,7 @@
   letter-spacing: var(--kb-button-letter-spacing);
   text-decoration: none;
   text-transform: var(--kb-button-case);
+  white-space: nowrap;
   transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
@@ -72,12 +77,18 @@
   color: var(--kb-button-hover-text);
   border-color: var(--kb-button-hover-border);
   background: var(--kb-button-hover-bg);
+  background-color: var(--kb-button-hover-bg);
 }
 
 .kaahu-bestsellers__button svg {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
+}
+
+.kaahu-bestsellers__button span,
+.kaahu-bestsellers__button svg {
+  color: inherit;
 }
 
 .kaahu-bestsellers__grid {
@@ -89,10 +100,24 @@
   scroll-padding-left: var(--kb-side-padding-mobile);
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
+  scrollbar-color: var(--kb-scrollbar-color) transparent;
   -webkit-overflow-scrolling: touch;
   margin: 0;
-  padding: 0;
+  padding: 0 0 18px;
   list-style: none;
+}
+
+.kaahu-bestsellers__grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.kaahu-bestsellers__grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kaahu-bestsellers__grid::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--kb-scrollbar-color);
 }
 
 .kaahu-bestseller-card {
