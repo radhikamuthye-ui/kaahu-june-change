@@ -20,6 +20,8 @@
   font-style: var(--font-body-style);
   font-size: var(--kcp-body-size);
   line-height: 1.55;
+  padding-left: var(--kcp-page-inset);
+  padding-right: var(--kcp-page-inset);
 }
 
 .kaahu-content-page a {
@@ -35,8 +37,8 @@
 .kcp-wrap {
   max-width: var(--kcp-width, 1080px);
   margin: 0 auto;
-  padding-left: var(--kcp-page-inset);
-  padding-right: var(--kcp-page-inset);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .kcp-narrow {
@@ -450,8 +452,8 @@
   }
 
   .kcp-wrap {
-    padding-left: var(--kcp-page-inset);
-    padding-right: var(--kcp-page-inset);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .kcp-row__label,
@@ -473,8 +475,8 @@
   }
 
   .kcp-wrap {
-    padding-left: var(--kcp-page-inset);
-    padding-right: var(--kcp-page-inset);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .kcp-row__label,
