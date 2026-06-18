@@ -6,11 +6,17 @@
   --kcp-green: #354a38;
   --kcp-amber: #a9762a;
   --kcp-line: #dcd6c7;
+  --kcp-body-size: var(--font-body-base-size-mobile);
+  --kcp-heading-1-size: var(--font-h1-size-mobile);
+  --kcp-heading-2-size: var(--font-h2-size-mobile);
+  --kcp-caption-size: var(--font-caption-size-mobile);
+  --kcp-ui-size: var(--font-ui-size-mobile);
   background: var(--kcp-ground);
   color: var(--kcp-ink);
   font-family: var(--font-body-family);
-  font-size: 17px;
-  line-height: 1.7;
+  font-style: var(--font-body-style);
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kaahu-content-page a {
@@ -41,9 +47,11 @@
 .kcp-eyebrow {
   margin: 0 0 18px;
   color: var(--kcp-amber);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .22em;
+  font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
+  font-size: var(--kcp-caption-size);
+  font-weight: var(--font-accent-weight);
+  letter-spacing: .16em;
   text-transform: uppercase;
 }
 
@@ -67,18 +75,20 @@
   margin: 0;
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-weight: 400;
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: var(--body-letter-spacing);
 }
 
 .kcp-content h1 {
   max-width: 15ch;
   color: var(--kcp-ink);
-  font-size: clamp(2.4rem, 5.2vw, 3.9rem);
+  font-size: var(--kcp-heading-1-size);
   line-height: 1.08;
 }
 
 .kcp-content h2 {
-  font-size: 1.7rem;
+  font-size: var(--kcp-heading-2-size);
   line-height: 1.2;
 }
 
@@ -94,7 +104,8 @@
   max-width: 48ch;
   margin-top: 26px;
   color: var(--kcp-ink-soft);
-  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-size: calc(var(--kcp-body-size) + 2px);
+  line-height: 1.55;
 }
 
 .kcp-hero__image {
@@ -144,13 +155,16 @@
 .kcp-row__label {
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-size: 1.4rem;
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-h3-size-mobile);
   line-height: 1.25;
 }
 
 .kcp-row__text {
   color: var(--kcp-ink-soft);
-  font-size: 1.06rem;
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kcp-row__text p:last-child,
@@ -172,14 +186,16 @@
   margin-left: auto;
   margin-right: auto;
   color: var(--kcp-ink-soft);
-  font-size: 1.1rem;
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kcp-sign {
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-size: 1.4rem;
   font-style: italic;
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-h3-size-mobile);
   line-height: 1.4;
 }
 
@@ -196,10 +212,12 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, .5);
   color: var(--kcp-green);
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-accent-family);
+  font-style: var(--font-accent-style);
+  font-size: var(--kcp-ui-size);
+  font-weight: var(--font-accent-weight);
   letter-spacing: .02em;
-  padding: 7px 14px;
+  padding: 9px 16px;
   text-decoration: none;
 }
 
@@ -228,10 +246,11 @@
   position: relative;
   cursor: pointer;
   list-style: none;
-  padding: 22px 44px 22px 0;
+  padding: 24px 56px 24px 18px;
   color: var(--kcp-ink);
-  font-size: 1.08rem;
-  font-weight: 500;
+  font-size: calc(var(--kcp-body-size) + 1px);
+  font-weight: 600;
+  line-height: 1.45;
   transition: color .15s ease;
 }
 
@@ -242,11 +261,11 @@
 .kcp-faq-item summary::after {
   content: "+";
   position: absolute;
-  top: 20px;
-  right: 6px;
+  top: 24px;
+  right: 18px;
   color: var(--kcp-amber);
   font-family: var(--font-heading-family);
-  font-size: 1.5rem;
+  font-size: 22px;
   font-weight: 300;
   line-height: 1;
 }
@@ -261,8 +280,10 @@
 }
 
 .kcp-answer {
-  padding: 0 44px 24px 0;
+  padding: 0 56px 28px 18px;
   color: var(--kcp-ink-soft);
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kcp-answer ul {
@@ -412,22 +433,46 @@
 }
 
 @media screen and (min-width: 750px) {
+  .kaahu-content-page {
+    --kcp-body-size: var(--font-body-base-size-tablet);
+    --kcp-heading-1-size: var(--font-h1-size-tablet);
+    --kcp-heading-2-size: var(--font-h2-size-tablet);
+  }
+
   .kcp-wrap {
     padding-left: var(--page-margin-tablet);
     padding-right: var(--page-margin-tablet);
   }
+
+  .kcp-row__label,
+  .kcp-sign {
+    font-size: var(--font-h3-size-tablet);
+  }
 }
 
 @media screen and (min-width: 990px) {
+  .kaahu-content-page {
+    --kcp-body-size: var(--font-body-base-size-desktop);
+    --kcp-heading-1-size: var(--font-h1-size-desktop);
+    --kcp-heading-2-size: var(--font-h2-size-desktop);
+    --kcp-caption-size: var(--font-caption-size-desktop);
+    --kcp-ui-size: var(--font-ui-size-desktop);
+  }
+
   .kcp-wrap {
     padding-left: var(--page-margin-desktop);
     padding-right: var(--page-margin-desktop);
+  }
+
+  .kcp-row__label,
+  .kcp-sign {
+    font-size: var(--font-h3-size-desktop);
   }
 }
 
 @media screen and (max-width: 749px) {
   .kcp-content h1 {
-    font-size: clamp(2.15rem, 12vw, 3rem);
+    font-size: var(--font-h1-size-mobile);
   }
 
   .kcp-frame--wide {
@@ -459,7 +504,7 @@
   }
 
   .kcp-row__label {
-    font-size: 1.25rem;
+    font-size: var(--font-h4-size-mobile);
   }
 
   .kcp-close {
@@ -471,8 +516,17 @@
   }
 
   .kcp-faq-item summary {
-    padding-right: 40px;
-    font-size: 1.04rem;
+    padding: 22px 44px 22px 14px;
+    font-size: var(--kcp-body-size);
+  }
+
+  .kcp-faq-item summary::after {
+    top: 22px;
+    right: 14px;
+  }
+
+  .kcp-answer {
+    padding: 0 44px 24px 14px;
   }
 
   .kcp-story-intro {
