@@ -9,8 +9,10 @@
   --kcp-body-size: var(--font-body-base-size-mobile);
   --kcp-heading-1-size: var(--font-h1-size-mobile);
   --kcp-heading-2-size: var(--font-h2-size-mobile);
+  --kcp-heading-3-size: var(--font-h3-size-mobile);
   --kcp-caption-size: var(--font-caption-size-mobile);
   --kcp-ui-size: var(--font-ui-size-mobile);
+  --kcp-story-display-size: var(--font-h2-size-mobile);
   background: var(--kcp-ground);
   color: var(--kcp-ink);
   font-family: var(--font-body-family);
@@ -38,10 +40,14 @@
 
 .kcp-narrow {
   max-width: 660px;
+  padding-left: max(var(--page-margin-mobile), 24px);
+  padding-right: max(var(--page-margin-mobile), 24px);
 }
 
 .kcp-faq-wrap {
   max-width: 860px;
+  padding-left: max(var(--page-margin-mobile), 28px);
+  padding-right: max(var(--page-margin-mobile), 28px);
 }
 
 .kcp-eyebrow {
@@ -301,13 +307,13 @@
 
 .kcp-story-intro p {
   color: var(--kcp-ink);
-  font-size: 1.18rem;
-  line-height: 1.78;
+  font-size: calc(var(--kcp-body-size) + 2px);
+  line-height: 1.62;
 }
 
 .kcp-cue {
   color: var(--kcp-ink-soft);
-  font-size: 1.05rem;
+  font-size: var(--kcp-body-size);
 }
 
 .kcp-quote {
@@ -320,9 +326,9 @@
   margin: 0 auto;
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-size: var(--kcp-story-display-size);
   font-style: italic;
-  font-weight: 300;
+  font-weight: var(--font-heading-weight);
   line-height: 1.25;
 }
 
@@ -347,14 +353,15 @@
   margin-bottom: 16px;
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-size: 1.45rem;
+  font-size: var(--kcp-heading-3-size);
   font-style: italic;
   line-height: 1.35;
 }
 
 .kcp-split__copy p:not(.kcp-eyebrow):not(.kcp-lead) {
   color: var(--kcp-ink-soft);
-  font-size: 1.08rem;
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kcp-care-over {
@@ -363,8 +370,8 @@
 
 .kcp-care-over p {
   color: var(--kcp-ink-soft);
-  font-size: 1.12rem;
-  line-height: 1.78;
+  font-size: calc(var(--kcp-body-size) + 1px);
+  line-height: 1.62;
 }
 
 .kcp-symbol {
@@ -399,7 +406,7 @@
   margin: 0 auto 26px;
   color: #f4f1e6;
   font-family: var(--font-heading-family);
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-size: var(--kcp-heading-2-size);
   font-style: italic;
   line-height: 1.25;
 }
@@ -409,7 +416,8 @@
   margin-left: auto;
   margin-right: auto;
   color: #cbd2c2;
-  font-size: 1.08rem;
+  font-size: var(--kcp-body-size);
+  line-height: 1.55;
 }
 
 .kcp-story-close {
@@ -420,7 +428,9 @@
   margin: 0;
   color: var(--kcp-green);
   font-family: var(--font-heading-family);
-  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--kcp-heading-2-size);
   line-height: 1.3;
 }
 
@@ -437,11 +447,23 @@
     --kcp-body-size: var(--font-body-base-size-tablet);
     --kcp-heading-1-size: var(--font-h1-size-tablet);
     --kcp-heading-2-size: var(--font-h2-size-tablet);
+    --kcp-heading-3-size: var(--font-h3-size-tablet);
+    --kcp-story-display-size: var(--font-h1-size-tablet);
   }
 
   .kcp-wrap {
     padding-left: var(--page-margin-tablet);
     padding-right: var(--page-margin-tablet);
+  }
+
+  .kcp-narrow {
+    padding-left: max(var(--page-margin-tablet), 36px);
+    padding-right: max(var(--page-margin-tablet), 36px);
+  }
+
+  .kcp-faq-wrap {
+    padding-left: max(var(--page-margin-tablet), 44px);
+    padding-right: max(var(--page-margin-tablet), 44px);
   }
 
   .kcp-row__label,
@@ -455,13 +477,25 @@
     --kcp-body-size: var(--font-body-base-size-desktop);
     --kcp-heading-1-size: var(--font-h1-size-desktop);
     --kcp-heading-2-size: var(--font-h2-size-desktop);
+    --kcp-heading-3-size: var(--font-h3-size-desktop);
     --kcp-caption-size: var(--font-caption-size-desktop);
     --kcp-ui-size: var(--font-ui-size-desktop);
+    --kcp-story-display-size: var(--font-h1-size-desktop);
   }
 
   .kcp-wrap {
     padding-left: var(--page-margin-desktop);
     padding-right: var(--page-margin-desktop);
+  }
+
+  .kcp-narrow {
+    padding-left: max(var(--page-margin-desktop), 48px);
+    padding-right: max(var(--page-margin-desktop), 48px);
+  }
+
+  .kcp-faq-wrap {
+    padding-left: max(var(--page-margin-desktop), 64px);
+    padding-right: max(var(--page-margin-desktop), 64px);
   }
 
   .kcp-row__label,
@@ -516,7 +550,7 @@
   }
 
   .kcp-faq-item summary {
-    padding: 22px 44px 22px 14px;
+    padding: 22px 44px 22px 18px;
     font-size: var(--kcp-body-size);
   }
 
@@ -526,7 +560,7 @@
   }
 
   .kcp-answer {
-    padding: 0 44px 24px 14px;
+    padding: 0 44px 24px 18px;
   }
 
   .kcp-story-intro {
