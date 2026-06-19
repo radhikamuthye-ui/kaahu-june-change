@@ -6,6 +6,7 @@
 
 {%- liquid
   assign slideshow_metafield = collection.metafields[section.settings.metafield_namespace][section.settings.metafield_key]
+  assign mobile_slideshow_metafield = collection.metafields[section.settings.mobile_metafield_namespace][section.settings.mobile_metafield_key]
   assign slideshow_eyebrow_metafield = collection.metafields[section.settings.eyebrow_metafield_namespace][section.settings.eyebrow_metafield_key]
   assign slideshow_description_metafield = collection.metafields[section.settings.description_metafield_namespace][section.settings.description_metafield_key]
 
@@ -54,6 +55,7 @@
   endif
 
   assign slideshow_images = slideshow_metafield.value
+  assign mobile_slideshow_images = mobile_slideshow_metafield.value
   assign slideshow_eyebrow = slideshow_eyebrow_metafield.value | default: slideshow_eyebrow_metafield
   assign slideshow_eyebrow_type = slideshow_eyebrow_metafield.type | default: blank
   assign has_slideshow_description = false
@@ -140,13 +142,30 @@
         {%- for slideshow_image in slideshow_images -%}
           {%- liquid
             assign image_fade_class = 'cms-image--fade-in'
+            assign slide_index = forloop.index
+            assign mobile_slideshow_image = blank
+
+            if mobile_slideshow_images != blank
+              for mobile_image in mobile_slideshow_images
+                if forloop.index == slide_index
+                  assign mobile_slideshow_image = mobile_image
+                  break
+                endif
+              endfor
+            endif
+
             assign slide_remainder = forloop.index | modulo: 2
             if slide_remainder == 0
               assign image_fade_class = 'cms-image--fade-out'
             endif
           -%}
           <div class="swiper-slide cms-slide" data-index="{{ forloop.index0 }}">
-            {{ slideshow_image | image_url: width: 2400 | image_tag: loading: 'lazy', class: image_fade_class }}
+            <picture>
+              {%- if mobile_slideshow_image != blank -%}
+                <source media="(max-width: 749px)" srcset="{{ mobile_slideshow_image | image_url: width: 1100 }}">
+              {%- endif -%}
+              {{ slideshow_image | image_url: width: 2400 | image_tag: loading: 'lazy', class: image_fade_class }}
+            </picture>
           </div>
         {%- endfor -%}
       </div>
@@ -228,6 +247,18 @@
       "id": "metafield_key",
       "label": "Metafield key",
       "default": "ss1"
+    },
+    {
+      "type": "text",
+      "id": "mobile_metafield_namespace",
+      "label": "Mobile metafield namespace",
+      "default": "custom"
+    },
+    {
+      "type": "text",
+      "id": "mobile_metafield_key",
+      "label": "Mobile metafield key",
+      "default": "ssmobile"
     },
     {
       "type": "header",

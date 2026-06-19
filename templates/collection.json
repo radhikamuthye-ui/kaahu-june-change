@@ -182,6 +182,8 @@
       "settings": {
         "metafield_namespace": "custom",
         "metafield_key": "ss1",
+        "mobile_metafield_namespace": "custom",
+        "mobile_metafield_key": "ssmobile",
         "eyebrow_metafield_namespace": "custom",
         "eyebrow_metafield_key": "collection_slideshow_eyebrow",
         "description_metafield_namespace": "custom",
