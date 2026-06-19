@@ -6,6 +6,9 @@
 {% endcomment %}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+{% if settings.cart_recommendations_enable %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 {% if settings.cart_show_payment_methods %}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {% endif %}
@@ -16,21 +19,50 @@
   }
 </style>
 
+{%- liquid
+  assign cart_compare_total = 0
+  for item in cart.items
+    assign item_compare_price = item.variant.compare_at_price | default: item.original_price
+    if item_compare_price < item.original_price
+      assign item_compare_price = item.original_price
+    endif
+    assign item_compare_line = item_compare_price | times: item.quantity
+    assign cart_compare_total = cart_compare_total | plus: item_compare_line
+  endfor
+  assign cart_savings = cart_compare_total | minus: cart.total_price
+  assign cart_shipping_compare_price = settings.cart_free_shipping_compare_price | default: 800
+-%}
+
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div class="drawer__inner{% if settings.drawer_margin > 0 %} drawer_with_margin{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
       <div class="drawer__header">
-        <span class="dialog-title drawer__title">{{ 'sections.cart.title' | t }}</span>
+        <span class="dialog-title drawer__title">{{ 'sections.cart.title' | t }}{% if cart != empty %} <span class="kaahu-cart-count">({{ cart.item_count }})</span>{% endif %}</span>
         <div class="drawer-close-button-wrapper">
         <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
           </div>
       </div>
+      {% if settings.cart_show_added_message and cart != empty %}
+      <div class="kaahu-cart-added" role="status">
+        {% render 'icon-checkmark' %}
+        <span>{{ settings.cart_added_message_text | default: 'Added to your bag' }}</span>
+      </div>
+      {% endif %}
       {% if settings.cart_show_message and cart != empty %}
       <div class="cart-drawer-message text-small align-{{ settings.cart_message_alignment }}{% if settings.cart_message_border_opacity > 0 %} cart-drawer-message-with-border{% endif %}">
         {% if settings.cart_message_title != blank %}<span class="cart-drawer-message--title h4">{{ settings.cart_message_title }}</span>{% endif %}
         {% if settings.cart_message_text != blank %}<span class="cart-drawer-message--text">{{ settings.cart_message_text }}</span>{% endif %}
       </div>  
+      {% endif %}
+      {% if settings.cart_show_shipping_promise and cart != empty %}
+      <div class="kaahu-cart-shipping-promise">
+        <svg class="kaahu-cart-shipping-promise__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 7.5h10.5v8H3zM13.5 10h3.4l2.1 2.6v2.9h-5.5zM6.2 18a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4ZM17.2 18a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <span class="kaahu-cart-shipping-promise__line" aria-hidden="true"></span>
+        <span class="kaahu-cart-shipping-promise__text">{{ settings.cart_shipping_promise_text | default: 'Your order ships <strong>free</strong> — carbon-neutral, 5-8 days' }}</span>
+      </div>
       {% endif %}
 
       {% if cart == empty %}
@@ -87,7 +119,7 @@
                             </div>
                           {%- else -%}
                             <div class="product-option">
-                              {% if item.variant.compare_at_price != blank and item.variant.compare_at_price > item.original_price %}<span class="cart-item__compare_at_price">{{ item.variant.compare_at_price | money }}</span>{% endif %}<span class="{% if item.variant.compare_at_price != blank and item.variant.compare_at_price > item.original_price %}price-item--sale{% endif %}">{{ item.original_price | money }}</span>
+                              <span class="{% if item.variant.compare_at_price != blank and item.variant.compare_at_price > item.original_price %}price-item--sale{% endif %}">{{ item.original_price | money }}</span>{% if item.variant.compare_at_price != blank and item.variant.compare_at_price > item.original_price %}<span class="cart-item__compare_at_price">{{ item.variant.compare_at_price | money }}</span>{% endif %}
                             </div>
                           {%- endif -%}
                             {%- if item.variant.available and item.unit_price_measurement -%}
@@ -226,6 +258,95 @@
         </form>
       </cart-drawer-items>
 
+      {% if settings.cart_recommendations_enable and cart != empty and cart.items.first.product_id != blank %}
+      <product-recommendations
+        class="kaahu-cart-recommendations"
+        data-url="{{ routes.product_recommendations_url }}?section_id=cart-drawer&product_id={{ cart.items.first.product_id }}&limit={{ settings.cart_recommendations_limit | default: 2 }}"
+      >
+        {% if recommendations.performed? and recommendations.products_count > 0 %}
+          <div class="kaahu-cart-recommendations__header">
+            {% if settings.cart_recommendations_eyebrow != blank %}
+            <div class="kaahu-cart-recommendations__eyebrow">{{ settings.cart_recommendations_eyebrow }}</div>
+            {% endif %}
+            {% if settings.cart_recommendations_heading != blank %}
+            <h3>{{ settings.cart_recommendations_heading }}</h3>
+            {% endif %}
+          </div>
+          <div class="kaahu-cart-recommendations__grid">
+            {% for recommendation in recommendations.products limit: settings.cart_recommendations_limit %}
+              {% assign recommendation_variant = recommendation.selected_or_first_available_variant %}
+              <div class="kaahu-cart-rec-card">
+                <a class="kaahu-cart-rec-card__image" href="{{ recommendation.url }}">
+                  {% if recommendation.featured_media %}
+                    {{ recommendation.featured_media | image_url: width: 360 | image_tag: loading: 'lazy' }}
+                  {% endif %}
+                </a>
+                <div class="kaahu-cart-rec-card__body">
+                  <div class="kaahu-cart-rec-card__type">{{ recommendation.metafields.custom.bag_type | default: recommendation.type | default: recommendation.vendor }}</div>
+                  <a class="kaahu-cart-rec-card__title" href="{{ recommendation.url }}">{{ recommendation.title }}</a>
+                  <div class="kaahu-cart-rec-card__price">
+                    <span>{{ recommendation_variant.price | money }}</span>
+                    {% if recommendation_variant.compare_at_price > recommendation_variant.price %}
+                      <s>{{ recommendation_variant.compare_at_price | money }}</s>
+                    {% endif %}
+                  </div>
+                  <product-form data-section-id="cart-drawer">
+                    {% form 'product', recommendation, id: 'CartDrawerRecommendationForm-' | append: recommendation.id, class: 'form kaahu-cart-rec-card__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+                      <input
+                        type="hidden"
+                        name="id"
+                        value="{{ recommendation_variant.id }}"
+                        {% if recommendation_variant.available == false %}disabled{% endif %}
+                      >
+                      <button
+                        type="submit"
+                        name="add"
+                        class="kaahu-cart-rec-card__add"
+                        {% if recommendation_variant.available == false %}disabled{% endif %}
+                      >
+                        <span>
+                          {% if recommendation_variant.available %}
+                            {{ settings.cart_recommendations_button_text | default: 'ADD +' }}
+                          {% else %}
+                            {{ 'products.product.sold_out' | t }}
+                          {% endif %}
+                        </span>
+                        <div class="loading__spinner hidden">
+                          <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                          </svg>
+                        </div>
+                      </button>
+                    {% endform %}
+                  </product-form>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </product-recommendations>
+      {% endif %}
+
+      {% if settings.cart_show_trust_block and cart != empty %}
+      <div class="kaahu-cart-trust">
+        <div class="kaahu-cart-trust__row kaahu-cart-trust__row--primary">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m12 2.8 8 4.2v9.9l-8 4.3-8-4.3V7z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="m4.5 7.3 7.5 4 7.5-4M12 11.3v9.1" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span>{{ settings.cart_trust_primary_text | default: '90-Day Easy Returns · Free carbon-neutral shipping' }}</span>
+        </div>
+        <div class="kaahu-cart-trust__row kaahu-cart-trust__row--secondary">
+          <span class="kaahu-cart-trust__badge">{{ settings.cart_trust_badge_text | default: '1%' }}</span>
+          <span>{{ settings.cart_trust_secondary_text | default: '1% of your order goes back to the planet' }}</span>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if settings.cart_show_brand_line and cart != empty %}
+      <div class="kaahu-cart-brand-line">{{ settings.cart_brand_line_text | default: 'Be Kind · Be Pure · Be Whole' }}</div>
+      {% endif %}
+
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <div class="cart-drawer-cart-note">
@@ -288,6 +409,22 @@
 
         <!-- Drawer Footer -->
         <div class="cart-drawer__footer">
+          <div class="kaahu-cart-mobile-summary">
+            <div class="kaahu-cart-mobile-summary__row">
+              <span>{{ 'sections.cart.headings.subtotal' | t }}</span>
+              <strong>{{ cart.total_price | money }}</strong>
+            </div>
+            {% if cart_savings > 0 %}
+            <div class="kaahu-cart-mobile-summary__row kaahu-cart-mobile-summary__row--saving">
+              <span>{{ settings.cart_savings_label | default: "You’re saving" }}</span>
+              <strong>-{{ cart_savings | money }}</strong>
+            </div>
+            {% endif %}
+            <div class="kaahu-cart-mobile-summary__row">
+              <span>{{ settings.cart_shipping_label | default: 'Shipping' }}</span>
+              <strong><s>{{ cart_shipping_compare_price | money }}</s> {{ settings.cart_free_shipping_label | default: 'FREE' }}</strong>
+            </div>
+          </div>
           <div class="totals" role="status">
             <div class="totals-row">
                   <div class="totals-column">
@@ -356,8 +493,14 @@
           </noscript>
          
           <button type="submit" id="CartDrawer-Checkout" class="cart__checkout-button button" name="checkout" form="CartDrawer-Form"{% if cart == empty %} disabled{% endif %}>
-            {{ 'sections.cart.checkout' | t }}
+            <span class="cart__checkout-button-text-desktop">{{ 'sections.cart.checkout' | t }}</span>
+            <span class="cart__checkout-button-text-mobile">{{ settings.cart_checkout_button_text | default: 'CHECKOUT' }} · {{ cart.total_price | money }}</span>
           </button>
+          {% if settings.cart_continue_shopping_text != blank %}
+          <button type="button" class="kaahu-cart-continue-shopping" onclick="this.closest('cart-drawer').close()">
+            {{ settings.cart_continue_shopping_text }}
+          </button>
+          {% endif %}
           {% if settings.cart_show_payment_methods %}
           {%- capture clip_id -%}
             cart-drawer-pi-
