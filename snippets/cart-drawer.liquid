@@ -6,9 +6,9 @@
 {% endcomment %}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-{% if settings.cart_recommendations_enable %}
+{% unless settings.cart_recommendations_enable == false %}
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-{% endif %}
+{% endunless %}
 {% if settings.cart_show_payment_methods %}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {% endif %}
@@ -31,6 +31,26 @@
   endfor
   assign cart_savings = cart_compare_total | minus: cart.total_price
   assign cart_shipping_compare_price = settings.cart_free_shipping_compare_price | default: 800
+  assign cart_show_added_message = true
+  assign cart_show_shipping_promise = true
+  assign cart_recommendations_enable = true
+  assign cart_show_trust_block = true
+  assign cart_show_brand_line = true
+  if settings.cart_show_added_message == false
+    assign cart_show_added_message = false
+  endif
+  if settings.cart_show_shipping_promise == false
+    assign cart_show_shipping_promise = false
+  endif
+  if settings.cart_recommendations_enable == false
+    assign cart_recommendations_enable = false
+  endif
+  if settings.cart_show_trust_block == false
+    assign cart_show_trust_block = false
+  endif
+  if settings.cart_show_brand_line == false
+    assign cart_show_brand_line = false
+  endif
 -%}
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
@@ -43,7 +63,7 @@
         <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
           </div>
       </div>
-      {% if settings.cart_show_added_message and cart != empty %}
+      {% if cart_show_added_message and cart != empty %}
       <div class="kaahu-cart-added" role="status">
         {% render 'icon-checkmark' %}
         <span>{{ settings.cart_added_message_text | default: 'Added to your bag' }}</span>
@@ -55,7 +75,7 @@
         {% if settings.cart_message_text != blank %}<span class="cart-drawer-message--text">{{ settings.cart_message_text }}</span>{% endif %}
       </div>  
       {% endif %}
-      {% if settings.cart_show_shipping_promise and cart != empty %}
+      {% if cart_show_shipping_promise and cart != empty %}
       <div class="kaahu-cart-shipping-promise">
         <svg class="kaahu-cart-shipping-promise__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M3 7.5h10.5v8H3zM13.5 10h3.4l2.1 2.6v2.9h-5.5zM6.2 18a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4ZM17.2 18a1.7 1.7 0 1 0 0-3.4 1.7 1.7 0 0 0 0 3.4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -258,7 +278,7 @@
         </form>
       </cart-drawer-items>
 
-      {% if settings.cart_recommendations_enable and cart != empty and cart.items.first.product_id != blank %}
+      {% if cart_recommendations_enable and cart != empty and cart.items.first.product_id != blank %}
       <product-recommendations
         class="kaahu-cart-recommendations"
         data-url="{{ routes.product_recommendations_url }}?section_id=cart-drawer&product_id={{ cart.items.first.product_id }}&limit={{ settings.cart_recommendations_limit | default: 2 }}"
@@ -327,7 +347,7 @@
       </product-recommendations>
       {% endif %}
 
-      {% if settings.cart_show_trust_block and cart != empty %}
+      {% if cart_show_trust_block and cart != empty %}
       <div class="kaahu-cart-trust">
         <div class="kaahu-cart-trust__row kaahu-cart-trust__row--primary">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -343,7 +363,7 @@
       </div>
       {% endif %}
 
-      {% if settings.cart_show_brand_line and cart != empty %}
+      {% if cart_show_brand_line and cart != empty %}
       <div class="kaahu-cart-brand-line">{{ settings.cart_brand_line_text | default: 'Be Kind · Be Pure · Be Whole' }}</div>
       {% endif %}
 
