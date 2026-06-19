@@ -311,7 +311,8 @@
                     {% endif %}
                   </div>
                   <product-form data-section-id="cart-drawer">
-                    {% form 'product', recommendation, id: 'CartDrawerRecommendationForm-' | append: recommendation.id, class: 'form kaahu-cart-rec-card__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+                    {% assign recommendation_form_id = 'CartDrawerRecommendationForm-' | append: recommendation.id %}
+                    {% form 'product', recommendation, id: recommendation_form_id, class: 'form kaahu-cart-rec-card__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
                       <input
                         type="hidden"
                         name="id"
