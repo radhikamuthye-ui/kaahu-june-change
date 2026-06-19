@@ -40,6 +40,10 @@
 <div class="hdr-nav-desktop">
   <nav>
     <ul role="list" class="hdr-nav-primary-level-ul">
+        {% if section.settings.main_menu.links == blank %}
+          <li><a href="/collections/all">SHOP</a></li>
+          <li><a href="/pages/sustainability">SUSTAINABILITY</a></li>
+        {% endif %}
         {% for link in section.settings.main_menu.links %}
           <li{% if link.links != blank %} class="nav-desktop-li-dd-item{% if forloop.last %} last-item{% endif %}"{% endif %}><a href="{{ link.url }}"{% if link.links != blank %} class="nav-desktop-dd-btn{% if section.settings.menu_dropdown_function == 'click' %} nav-desktop-dd-btn-clickable{% else %} nav-desktop-dd-btn-hover{% endif %}"{% endif %}>{{ link.title }}{% if link.links != blank and section.settings.dd_icon == 'arrow' %}{% render 'icon-caret' %}{% endif %}</a>
           {% if link.links != blank %}
