@@ -696,10 +696,10 @@ cart-drawer-items {
 
   .cart-drawer .drawer__title {
     font-family: var(--font-heading-family);
-    font-size: var(--font-h2-size-mobile);
+    font-size: clamp(3.8rem, 11vw, 5.4rem);
     font-weight: var(--font-heading-weight);
-    line-height: 1.15;
-    letter-spacing: var(--font-h2-ls);
+    line-height: 1;
+    letter-spacing: 0;
     color: #211d19;
   }
 
@@ -738,8 +738,8 @@ cart-drawer-items {
     background: #eef0df;
     color: #3f4e29;
     font-family: var(--font-body-family);
-    font-size: var(--font-body-base-size-mobile);
-    font-weight: var(--font-body-weight-bold);
+    font-size: 2.5rem;
+    font-weight: 700;
     line-height: 1.15;
   }
 
@@ -781,15 +781,15 @@ cart-drawer-items {
   .kaahu-cart-shipping-promise__text {
     color: #6a655f;
     font-family: var(--font-body-family);
-    font-size: var(--font-size-cart-drawer-mobile);
-    font-weight: var(--font-body-weight);
+    font-size: 2.6rem;
+    font-weight: 500;
     line-height: 1.38;
-    letter-spacing: var(--body-letter-spacing);
+    letter-spacing: 0;
   }
 
   .kaahu-cart-shipping-promise__text strong {
     color: #3f4e29;
-    font-weight: var(--font-body-weight-bold);
+    font-weight: 800;
   }
 
   cart-drawer-items {
@@ -851,10 +851,10 @@ cart-drawer-items {
     margin: 0;
     color: #211d19;
     font-family: var(--font-heading-family);
-    font-size: var(--font-h4-size-mobile);
+    font-size: 3.6rem;
     font-weight: var(--font-heading-weight);
-    line-height: 1.2;
-    letter-spacing: var(--font-h4-ls);
+    line-height: 1.05;
+    letter-spacing: 0;
   }
 
   .cart-drawer .cart-item__details dl {
@@ -864,7 +864,7 @@ cart-drawer-items {
 
   .cart-drawer .product-option {
     color: #6a655f;
-    font-size: var(--font-size-cart-drawer-mobile);
+    font-size: 2.8rem;
     line-height: 1.25;
   }
 
@@ -888,15 +888,15 @@ cart-drawer-items {
   .cart-drawer .price,
   .cart-drawer .price-item--sale {
     color: #211d19;
-    font-size: var(--font-size-cart-drawer-mobile);
-    font-weight: var(--font-body-weight-bold);
+    font-size: 2.8rem;
+    font-weight: 800;
   }
 
   .cart-drawer .cart-item__compare_at_price {
     display: block;
     margin: 1rem 0 0 !important;
     color: #8d867d;
-    font-size: var(--font-caption-size-mobile);
+    font-size: 2.2rem;
     text-align: right;
   }
 
@@ -916,7 +916,7 @@ cart-drawer-items {
   .drawer__inner .quantity__input {
     width: 5.8rem;
     color: #211d19;
-    font-size: var(--font-size-cart-drawer-mobile);
+    font-size: 2.8rem;
   }
 
   .cart-drawer .cart-item cart-remove-button {
@@ -932,7 +932,7 @@ cart-drawer-items {
     border: 0;
     color: #6a655f;
     background: transparent;
-    font-size: var(--font-ui-size-mobile);
+    font-size: 2.5rem;
     text-decoration: underline;
     text-underline-offset: 0.25rem;
   }
@@ -962,8 +962,8 @@ cart-drawer-items {
   .kaahu-cart-recommendations__eyebrow {
     color: #b85d7c;
     font-family: var(--font-accent-family);
-    font-size: var(--font-caption-size-mobile);
-    font-weight: var(--font-accent-weight);
+    font-size: 2.1rem;
+    font-weight: 800;
     line-height: 1;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -973,10 +973,10 @@ cart-drawer-items {
     margin: 2rem 0 0;
     color: #211d19;
     font-family: var(--font-heading-family);
-    font-size: var(--font-h3-size-mobile);
+    font-size: 4.2rem;
     font-weight: var(--font-heading-weight);
-    line-height: 1.15;
-    letter-spacing: var(--font-h3-ls);
+    line-height: 1.04;
+    letter-spacing: 0;
   }
 
   .kaahu-cart-recommendations__grid {
@@ -1015,8 +1015,8 @@ cart-drawer-items {
     margin-bottom: 1.4rem;
     color: #b85d7c;
     font-family: var(--font-accent-family);
-    font-size: var(--font-caption-size-mobile);
-    font-weight: var(--font-accent-weight);
+    font-size: 1.8rem;
+    font-weight: 800;
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
@@ -1026,10 +1026,10 @@ cart-drawer-items {
     min-height: 6.6rem;
     color: #211d19;
     font-family: var(--font-heading-family);
-    font-size: var(--font-h5-size-mobile);
+    font-size: 2.9rem;
     font-weight: var(--font-heading-weight);
     line-height: 1.15;
-    letter-spacing: var(--body-letter-spacing);
+    letter-spacing: 0;
     text-decoration: none;
   }
 
@@ -1040,14 +1040,14 @@ cart-drawer-items {
     gap: 1rem;
     margin-top: 2rem;
     color: #211d19;
-    font-size: var(--font-size-cart-drawer-mobile);
-    font-weight: var(--font-body-weight-bold);
+    font-size: 2.8rem;
+    font-weight: 800;
   }
 
   .kaahu-cart-rec-card__price s {
     color: #8d867d;
-    font-size: var(--font-caption-size-mobile);
-    font-weight: var(--font-body-weight);
+    font-size: 2.1rem;
+    font-weight: 500;
   }
 
   .kaahu-cart-rec-card__add {
@@ -1062,8 +1062,8 @@ cart-drawer-items {
     color: #d46b2a;
     background: transparent;
     font-family: var(--font-accent-family);
-    font-size: var(--buttons-font-size-mobile);
-    font-weight: var(--buttons-font-weight);
+    font-size: 2.3rem;
+    font-weight: 800;
     letter-spacing: 0.08em;
     cursor: pointer;
   }
@@ -1090,8 +1090,8 @@ cart-drawer-items {
     min-height: 9.4rem;
     padding: 2.2rem 3.2rem;
     font-family: var(--font-body-family);
-    font-size: var(--font-size-cart-drawer-mobile);
-    font-weight: var(--font-body-weight-bold);
+    font-size: 2.5rem;
+    font-weight: 800;
     line-height: 1.2;
   }
 
@@ -1124,12 +1124,12 @@ cart-drawer-items {
     margin: 4.8rem auto 3.4rem;
     color: #b85d7c;
     font-family: var(--font-heading-family);
-    font-size: var(--font-h4-size-mobile);
+    font-size: 3.2rem;
     font-style: italic;
     font-weight: var(--font-heading-weight);
-    line-height: 1.2;
+    line-height: 1;
     text-align: center;
-    letter-spacing: var(--font-h4-ls);
+    letter-spacing: 0;
   }
 
   .cart-drawer .drawer__footer {
@@ -1166,7 +1166,7 @@ cart-drawer-items {
     justify-content: space-between;
     gap: 2rem;
     color: #6a655f;
-    font-size: var(--font-size-cart-drawer-mobile);
+    font-size: 2.8rem;
     line-height: 1.4;
   }
 
@@ -1176,19 +1176,19 @@ cart-drawer-items {
 
   .kaahu-cart-mobile-summary__row strong {
     color: #211d19;
-    font-weight: var(--font-body-weight-bold);
+    font-weight: 800;
   }
 
   .kaahu-cart-mobile-summary__row--saving,
   .kaahu-cart-mobile-summary__row--saving strong {
     color: #b85d7c;
-    font-weight: var(--font-body-weight-bold);
+    font-weight: 800;
   }
 
   .kaahu-cart-mobile-summary__row s {
     margin-right: 1rem;
     color: #b85d7c;
-    font-weight: var(--font-body-weight);
+    font-weight: 500;
   }
 
   .drawer__inner .cart__ctas {
@@ -1203,8 +1203,8 @@ cart-drawer-items {
     background: #d46b2a;
     box-shadow: 0 1.8rem 3.8rem rgba(35, 30, 24, 0.18);
     font-family: var(--font-accent-family);
-    font-size: var(--buttons-font-size-mobile);
-    font-weight: var(--buttons-font-weight);
+    font-size: 2.8rem;
+    font-weight: 800;
     letter-spacing: 0.08em;
   }
 
@@ -1216,8 +1216,8 @@ cart-drawer-items {
     color: #6a655f;
     background: transparent;
     font-family: var(--font-accent-family);
-    font-size: var(--buttons-font-size-mobile);
-    font-weight: var(--buttons-font-weight);
+    font-size: 2.3rem;
+    font-weight: 800;
     letter-spacing: 0.14em;
     text-align: center;
     text-transform: uppercase;
