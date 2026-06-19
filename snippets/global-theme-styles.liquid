@@ -145,6 +145,7 @@
         --color-background-rgb: {{ settings.color_body_bg.red }},{{ settings.color_body_bg.green }}, {{ settings.color_body_bg.blue }};
         --color-foreground: {{ settings.color_body_text }};
         --color-foreground-rgb: {{ settings.color_body_text.red }}, {{ settings.color_body_text.green }}, {{ settings.color_body_text.blue }};
+        --site-frame-border-color: {{ settings.announcement_bg_col }};
 
         --color-accent-one: {{ settings.color_text_accent_01 }};
         --color-accent-two: {{ settings.color_text_accent_02 }};
@@ -326,6 +327,15 @@
         box-sizing: border-box;
         font-size: calc(1 * 62.5%);
         height: 100%;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        pointer-events: none;
+        border: 1px solid var(--site-frame-border-color);
       }
       
     {% endstyle %}
