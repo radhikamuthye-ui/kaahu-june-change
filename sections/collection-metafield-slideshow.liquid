@@ -13,7 +13,16 @@
     assign slideshow_eyebrow_metafield = collection.metafields.custom.collection_slideshow_eyebrow
   endif
   if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.collection_slideshow_eyebrow_
+  endif
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.collection_slideshow_eyebrows
+  endif
+  if slideshow_eyebrow_metafield == blank
     assign slideshow_eyebrow_metafield = collection.metafields.custom.slideshow_eyebrow
+  endif
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.collection_eyebrow
   endif
   if slideshow_eyebrow_metafield == blank
     assign slideshow_eyebrow_metafield = collection.metafields.custom.eyebrow
@@ -26,7 +35,16 @@
     assign slideshow_description_metafield = collection.metafields.custom.collection_slideshow_description
   endif
   if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.collection_slideshow_description_
+  endif
+  if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.collection_slideshow_descriptions
+  endif
+  if slideshow_description_metafield == blank
     assign slideshow_description_metafield = collection.metafields.custom.slideshow_description
+  endif
+  if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.collection_description
   endif
   if slideshow_description_metafield == blank
     assign slideshow_description_metafield = collection.metafields.custom.ss1_description
@@ -37,6 +55,7 @@
 
   assign slideshow_images = slideshow_metafield.value
   assign slideshow_eyebrow = slideshow_eyebrow_metafield.value | default: slideshow_eyebrow_metafield
+  assign slideshow_eyebrow_type = slideshow_eyebrow_metafield.type | default: blank
   assign has_slideshow_description = false
   assign slide_count = 0
 
@@ -151,8 +170,12 @@
   {%- endif -%}
 
   <div class="cms-content">
-    {%- if slideshow_eyebrow != blank -%}
-      <span class="cms-eyebrow">{{ slideshow_eyebrow }}</span>
+    {%- if slideshow_eyebrow_metafield != blank -%}
+      {%- if slideshow_eyebrow_type == 'rich_text_field' -%}
+        <div class="cms-eyebrow cms-eyebrow--richtext">{{ slideshow_eyebrow_metafield | metafield_tag }}</div>
+      {%- else -%}
+        <span class="cms-eyebrow">{{ slideshow_eyebrow }}</span>
+      {%- endif -%}
     {%- endif -%}
 
     {%- if collection.title != blank -%}

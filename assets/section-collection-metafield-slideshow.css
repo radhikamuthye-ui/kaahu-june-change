@@ -82,6 +82,10 @@
   font-weight: var(--cms-eyebrow-font-weight);
 }
 
+.cms-eyebrow--richtext p {
+  margin: 0;
+}
+
 .cms-heading {
   margin: 0 0 var(--cms-heading-margin-bottom, 18px);
   color: var(--cms-heading-color, inherit);
