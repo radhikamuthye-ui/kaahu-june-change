@@ -362,7 +362,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 48,
-        "section_margins": "page-width-full",
+        "section_margins": "page-width",
         "grid_spacing_horizontal": "normal",
         "grid_spacing_vertical": "none",
         "columns_mobile": "2",
