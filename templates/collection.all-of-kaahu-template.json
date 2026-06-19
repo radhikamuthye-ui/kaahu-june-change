@@ -58,6 +58,46 @@
     "navigation": {
       "type": "main-collection-sub-navigation",
       "blocks": {
+        "collection_bestsellers": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "best-sellers",
+            "label": "Best Sellers",
+            "link": ""
+          }
+        },
+        "collection_link_pYnegJ": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "soulful-satchels-collection",
+            "label": "soulful satchels",
+            "link": ""
+          }
+        },
+        "collection_link_qkp7yj": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "fading-footprints-collection",
+            "label": "fading footprints",
+            "link": ""
+          }
+        },
+        "collection_link_yLpcih": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "golden-jute",
+            "label": "Golden Fiber",
+            "link": ""
+          }
+        },
+        "collection_link_We4w6b": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "the-marshmallow-thread",
+            "label": "Marshmallow Thread",
+            "link": ""
+          }
+        },
         "collection_totes": {
           "type": "collection_link",
           "settings": {
@@ -90,14 +130,6 @@
             "link": ""
           }
         },
-        "collection_bestsellers": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "best-sellers",
-            "label": "Best Sellers",
-            "link": ""
-          }
-        },
         "collection_all": {
           "type": "collection_link",
           "settings": {
@@ -105,28 +137,41 @@
             "label": "All Products",
             "link": ""
           }
+        },
+        "collection_link_8RX99Y": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "sale",
+            "label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
+        "collection_bestsellers",
+        "collection_link_pYnegJ",
+        "collection_link_qkp7yj",
+        "collection_link_yLpcih",
+        "collection_link_We4w6b",
         "collection_totes",
         "collection_messengers",
         "collection_shoppers",
         "collection_hobos",
-        "collection_bestsellers",
-        "collection_all"
+        "collection_all",
+        "collection_link_8RX99Y"
       ],
       "settings": {
         "menu": "",
         "alignment": "center",
         "menu_style": "images",
         "image_ratio": "circle",
-        "image_size_desktop": 92,
-        "image_size_mobile": 76,
-        "item_gap": 42,
+        "image_size_desktop": 64,
+        "image_size_mobile": 54,
+        "item_gap": 8,
         "label_color": "#6f6a62",
         "label_hover_color": "#d9a73e",
-        "padding_top": 30,
-        "padding_bottom": 30
+        "padding_top": 10,
+        "padding_bottom": 10
       }
     },
     "rich_text_9hnA4P": {
