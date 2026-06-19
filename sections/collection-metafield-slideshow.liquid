@@ -79,6 +79,8 @@
 
 {%- style -%}
   .section-{{ section.id }} {
+    --cms-height-mobile: min({{ section.settings.height_mobile_vh }}svh, {{ section.settings.height_mobile_max }}px);
+    --cms-height-desktop: min({{ section.settings.height_desktop_vh }}svh, {{ section.settings.height_desktop_max }}px);
     --cms-image-fade-duration: {{ section.settings.image_fade_duration }}ms;
     --cms-image-zoom: {{ image_zoom }};
     --cms-image-zoom-in-start: {{ image_zoom_in_start }};
@@ -303,6 +305,46 @@
     {
       "type": "header",
       "content": "Slideshow"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile_vh",
+      "min": 70,
+      "max": 100,
+      "step": 1,
+      "unit": "svh",
+      "label": "Mobile height",
+      "default": 92
+    },
+    {
+      "type": "range",
+      "id": "height_mobile_max",
+      "min": 420,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile max height",
+      "default": 760
+    },
+    {
+      "type": "range",
+      "id": "height_desktop_vh",
+      "min": 60,
+      "max": 100,
+      "step": 1,
+      "unit": "svh",
+      "label": "Desktop height",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "height_desktop_max",
+      "min": 520,
+      "max": 1100,
+      "step": 10,
+      "unit": "px",
+      "label": "Desktop max height",
+      "default": 820
     },
     {
       "type": "checkbox",

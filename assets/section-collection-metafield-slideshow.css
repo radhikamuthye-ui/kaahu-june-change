@@ -17,10 +17,8 @@
 .collection-metafield-slideshow .cms-swiper,
 .collection-metafield-slideshow .swiper-wrapper,
 .cms-slide {
-  height: 100vh;
-  height: 100svh;
-  min-height: 100vh;
-  min-height: 100svh;
+  height: var(--cms-height-mobile, min(92svh, 760px));
+  min-height: var(--cms-height-mobile, min(92svh, 760px));
 }
 
 .collection-metafield-slideshow .swiper {
@@ -265,6 +263,14 @@
 }
 
 @media only screen and (min-width: 750px) {
+  .collection-metafield-slideshow,
+  .collection-metafield-slideshow .cms-swiper,
+  .collection-metafield-slideshow .swiper-wrapper,
+  .cms-slide {
+    height: var(--cms-height-desktop, min(88svh, 820px));
+    min-height: var(--cms-height-desktop, min(88svh, 820px));
+  }
+
   .cms-slide {
     aspect-ratio: auto;
   }
