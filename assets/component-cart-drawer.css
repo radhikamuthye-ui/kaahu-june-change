@@ -519,6 +519,20 @@ cart-drawer-items {
 
 .cart-drawer .cart__checkout-button {
   max-width: none;
+  background-color: #E5722A;
+}
+
+.cart-drawer .cart-item__name,
+.cart-drawer .product-title-body {
+  font-family: var(--font-heading-family) !important;
+  font-style: var(--font-heading-style) !important;
+  font-weight: var(--font-heading-weight) !important;
+}
+
+.cart-drawer .caption-note {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
 }
 
 .drawer__footer .cart__dynamic-checkout-buttons {
