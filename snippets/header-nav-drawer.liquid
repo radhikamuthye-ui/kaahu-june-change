@@ -16,11 +16,9 @@
         {% endfor %}
       {% endfor %}
     {% endfor %}
-    {% if section.settings.main_menu.links == blank %}
-      <li><a href="/collections/all">SHOP</a></li>
-      <li><a href="/pages/sustainability">SUSTAINABILITY</a></li>
-    {% endif %}
     {% for link in section.settings.main_menu.links %}
+      {% assign link_title_handle = link.title | handleize %}
+      {% if link_title_handle == 'shop' %}
       {% if link.links != blank %}
       <li>
         {% if link.url contains '/collections/' and section.settings.images_p_level == true %}
@@ -231,7 +229,9 @@
       {% endif %}
       </li>
       {% endif %}
+      {% endif %}
     {% endfor %}
+    <li><a href="/pages/sustainability">SUSTAINABILITY</a></li>
   </ul>
 
   {% assign drawer_image_count = 0 %}
