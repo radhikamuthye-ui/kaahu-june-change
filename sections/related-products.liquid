@@ -13,16 +13,16 @@
 .section-{{ section.id }} {
   padding-top: {{ section.settings.padding_top | times: 0.8 | round: 0 }}px;
   padding-bottom: {{ section.settings.padding_bottom | times: 0.8 | round: 0 }}px;
-  --related-products-heading-size: {{ section.settings.heading_font_size_mobile }}px;
-  --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_mobile }}px;
+  --related-products-heading-size: {{ section.settings.heading_font_size_mobile | default: 26 }}px;
+  --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_mobile | default: 24 }}px;
 }
 
 @media screen and (min-width: 750px) {
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
-    --related-products-heading-size: {{ section.settings.heading_font_size_desktop }}px;
-    --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_desktop }}px;
+    --related-products-heading-size: {{ section.settings.heading_font_size_desktop | default: 32 }}px;
+    --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_desktop | default: 32 }}px;
   }
 }  
 

@@ -3,7 +3,7 @@
 }
 
 .related-products__header.section-header-std-padding {
-  padding-bottom: var(--related-products-heading-spacing, 32px);
+  margin-bottom: var(--related-products-heading-spacing, 32px);
 }
 
 .comp-products-grid-wrapper {
