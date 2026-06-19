@@ -13,12 +13,16 @@
 .section-{{ section.id }} {
   padding-top: {{ section.settings.padding_top | times: 0.8 | round: 0 }}px;
   padding-bottom: {{ section.settings.padding_bottom | times: 0.8 | round: 0 }}px;
+  --related-products-heading-size: {{ section.settings.heading_font_size_mobile }}px;
+  --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_mobile }}px;
 }
 
 @media screen and (min-width: 750px) {
   .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    --related-products-heading-size: {{ section.settings.heading_font_size_desktop }}px;
+    --related-products-heading-spacing: {{ section.settings.heading_bottom_spacing_desktop }}px;
   }
 }  
 
@@ -67,8 +71,8 @@
       <hr class="section-border section-border-color-{{ section.settings.border_color }} section-border-width-{{ section.settings.border_width }}">
       {% endif %}
         
-      <div class="page-width section-header-std-padding align-{{ section.settings.heading_alignment }}">
-      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      <div class="page-width section-header-std-padding related-products__header align-{{ section.settings.heading_alignment }}">
+      <h2 class="related-products__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
       </div>
       {%- endif -%}
       <div class="related-products-grid-wrapper{% if section.settings.heading_alignment and recommendations.products_count < 3 %} grid-justify-center{% endif %}{% if recommendations.products_count <= row_range %} grid-arrows-hide{% endif %} slider-arrows-position-{{ settings.carousel_arrow_position }}">
@@ -384,6 +388,46 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
       "default": "left",
       "label": "t:sections.all.alignment.alignment_header"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "min": 18,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size desktop",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size mobile",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading to products spacing desktop",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading to products spacing mobile",
+      "default": 24
     },
     {
       "type": "range",

@@ -2,13 +2,18 @@
   display: block;
 }
 
+.related-products__header.section-header-std-padding {
+  padding-bottom: var(--related-products-heading-spacing, 32px);
+}
+
 .comp-products-grid-wrapper {
   position: relative;
 }
 
 .related-products__heading {
-  margin: 0 0 5rem;
+  margin: 0;
   font-family: var(--font-heading-family);
+  font-size: var(--related-products-heading-size, inherit);
   text-transform: none;
   font-style: italic;
   letter-spacing: 0;
