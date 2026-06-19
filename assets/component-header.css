@@ -2605,6 +2605,10 @@ body:has(.nav-drawer--secondary-menu) .mob-drawer--market-menu {
 }
 
 .desktop-secondary-menu-list {
+  display: none; 
+}
+
+.desktop-secondary-menu-list ul ul {
   display: none;
 }
 

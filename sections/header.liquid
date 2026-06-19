@@ -750,9 +750,10 @@
   {% if section.settings.secondary_menu_desktop != blank %}
   <div class="desktop-secondary-menu-list">
     <ul role="list">
-      {% for link in section.settings.secondary_menu_desktop.links limit: 2 %}
-      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-      {% endfor %}
+      {% assign right_menu_link = section.settings.secondary_menu_desktop.links.first %}
+      {% if right_menu_link != blank %}
+      <li><a href="{{ right_menu_link.url }}">{{ right_menu_link.title }}</a></li>
+      {% endif %}
     </ul>
   </div>
   {% endif %}

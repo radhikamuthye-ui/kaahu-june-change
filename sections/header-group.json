@@ -85,7 +85,7 @@
         "header_bar_width": "full",
         "header_scroll_behaviour": "sticky",
         "desktop_nav_position": "inline",
-        "desktop_nav_breakpoint": "small",
+        "desktop_nav_breakpoint": "auto",
         "menu_dropdown_function": "hover",
         "header_hoz_width": "fit-margins",
         "nav_bar_height_mobile": 70,
