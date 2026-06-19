@@ -21,6 +21,46 @@
         "name": "single_line_text_field",
         "category": "TEXT"
       }
+    },
+    {
+      "key": "ss1",
+      "namespace": "custom",
+      "name": "ss1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "collection_eyebrow",
+      "namespace": "custom",
+      "name": "collection eyebrow",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "collection_slideshow_description",
+      "namespace": "custom",
+      "name": "collection slideshow description",
+      "description": "",
+      "type": {
+        "name": "multi_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "ssmobile",
+      "namespace": "custom",
+      "name": "ssmobile",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "company": [],
@@ -257,6 +297,36 @@
       "description": "",
       "type": {
         "name": "list.single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "bag_type",
+      "namespace": "custom",
+      "name": "bag_type",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "display_name",
+      "namespace": "custom",
+      "name": "display_name",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "display_material",
+      "namespace": "custom",
+      "name": "display_material",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
         "category": "TEXT"
       }
     }
