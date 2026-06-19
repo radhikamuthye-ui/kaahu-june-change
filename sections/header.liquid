@@ -227,6 +227,27 @@
     --site-header-cart-qty-font-size: {{ section.settings.cart_ui_font_size }}px;
     --site-header-cart-bubble-color: {{ section.settings.cart_bubble_color_text }};
     --site-header-cart-bubble-bg: {{ section.settings.cart_bubble_color_bg }};
+    --kaahu-menu-panel-width: {{ section.settings.kaahu_menu_panel_width | default: 860 }}px;
+    --kaahu-menu-panel-left: {{ section.settings.kaahu_menu_panel_left | default: 80 }}px;
+    --kaahu-story-panel-width: {{ section.settings.kaahu_story_panel_width | default: 430 }}px;
+    --kaahu-story-panel-right: {{ section.settings.kaahu_story_panel_right | default: 72 }}px;
+    --kaahu-menu-panel-top-gap: {{ section.settings.kaahu_menu_panel_top_gap | default: 0 }}px;
+    --kaahu-menu-panel-radius: {{ section.settings.kaahu_menu_panel_radius | default: 16 }}px;
+    --kaahu-menu-panel-padding-x: {{ section.settings.kaahu_menu_panel_padding_x | default: 54 }}px;
+    --kaahu-menu-panel-padding-y: {{ section.settings.kaahu_menu_panel_padding_y | default: 36 }}px;
+    --kaahu-menu-column-gap: {{ section.settings.kaahu_menu_column_gap | default: 74 }}px;
+    --kaahu-menu-row-gap: {{ section.settings.kaahu_menu_row_gap | default: 18 }}px;
+    --kaahu-menu-top-font-size: {{ section.settings.kaahu_menu_top_font_size | default: section.settings.nav_font_size_desktop }}px;
+    --kaahu-menu-top-letter-spacing: {{ section.settings.kaahu_menu_top_letter_spacing | default: 18 | divided_by: 100.0 }}em;
+    --kaahu-menu-top-font-weight: {{ section.settings.kaahu_menu_top_font_weight | default: 600 }};
+    --kaahu-menu-dropdown-font-size: {{ section.settings.kaahu_menu_dropdown_font_size | default: section.settings.font_size_dropdown }}px;
+    --kaahu-menu-dropdown-letter-spacing: {{ section.settings.kaahu_menu_dropdown_letter_spacing | default: 14 | divided_by: 100.0 }}em;
+    --kaahu-menu-dropdown-font-weight: {{ section.settings.kaahu_menu_dropdown_font_weight | default: 600 }};
+    --kaahu-menu-heading-font-size: {{ section.settings.kaahu_menu_heading_font_size | default: section.settings.font_size_dropdown_category_heading }}px;
+    --kaahu-menu-heading-letter-spacing: {{ section.settings.kaahu_menu_heading_letter_spacing | default: 16 | divided_by: 100.0 }}em;
+    --kaahu-menu-heading-font-weight: {{ section.settings.kaahu_menu_heading_font_weight | default: 600 }};
+    --kaahu-menu-heading-color: {{ section.settings.kaahu_menu_heading_color | default: '#d7b44d' }};
+    --kaahu-menu-link-color: {{ section.settings.kaahu_menu_link_color | default: settings.dd_txt_col }};
   }
 
   {% if section.settings.trans_header_color == 'inherit' %}
@@ -1934,6 +1955,290 @@ if (searchclosebutton) {
       "default": 14,
       "unit": "px",
       "label": "t:sections.header.settings.font_size_dropdown_category_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "Kaahu mega menu"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_width",
+      "min": 320,
+      "max": 1200,
+      "step": 20,
+      "default": 860,
+      "unit": "px",
+      "label": "Dropdown panel width"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_left",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 80,
+      "unit": "px",
+      "label": "Dropdown left offset"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_story_panel_width",
+      "min": 260,
+      "max": 760,
+      "step": 10,
+      "default": 430,
+      "unit": "px",
+      "label": "Our Story dropdown width"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_story_panel_right",
+      "min": 0,
+      "max": 240,
+      "step": 4,
+      "default": 72,
+      "unit": "px",
+      "label": "Our Story dropdown right offset"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_top_gap",
+      "min": -20,
+      "max": 40,
+      "step": 2,
+      "default": 0,
+      "unit": "px",
+      "label": "Dropdown top gap"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16,
+      "unit": "px",
+      "label": "Dropdown corner radius"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_padding_x",
+      "min": 20,
+      "max": 90,
+      "step": 2,
+      "default": 54,
+      "unit": "px",
+      "label": "Dropdown horizontal padding"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_panel_padding_y",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 36,
+      "unit": "px",
+      "label": "Dropdown vertical padding"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_column_gap",
+      "min": 24,
+      "max": 120,
+      "step": 2,
+      "default": 74,
+      "unit": "px",
+      "label": "Dropdown column gap"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_row_gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "default": 18,
+      "unit": "px",
+      "label": "Dropdown row gap"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_top_font_size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 13,
+      "unit": "px",
+      "label": "Top menu font size"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_top_letter_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 18,
+      "unit": "%",
+      "label": "Top menu letter spacing"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_top_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600,
+      "label": "Top menu font weight"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_dropdown_font_size",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "default": 16,
+      "unit": "px",
+      "label": "Dropdown link font size"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_dropdown_letter_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 14,
+      "unit": "%",
+      "label": "Dropdown link letter spacing"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_dropdown_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600,
+      "label": "Dropdown link font weight"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_heading_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 13,
+      "unit": "px",
+      "label": "Dropdown heading font size"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_heading_letter_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 16,
+      "unit": "%",
+      "label": "Dropdown heading letter spacing"
+    },
+    {
+      "type": "range",
+      "id": "kaahu_menu_heading_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600,
+      "label": "Dropdown heading font weight"
+    },
+    {
+      "type": "color",
+      "id": "kaahu_menu_heading_color",
+      "default": "#d7b44d",
+      "label": "Dropdown heading color"
+    },
+    {
+      "type": "color",
+      "id": "kaahu_menu_link_color",
+      "default": "#666666",
+      "label": "Dropdown link color"
+    },
+    {
+      "type": "header",
+      "content": "Our Story fallback links"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_1_label",
+      "default": "Kaahu's Story",
+      "label": "Link 1 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_2_label",
+      "default": "Philosophy & Ethos",
+      "label": "Link 2 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_3_label",
+      "default": "Blog",
+      "label": "Link 3 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_4_label",
+      "default": "Care",
+      "label": "Link 4 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_5_label",
+      "default": "FAQs",
+      "label": "Link 5 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_6_label",
+      "default": "You Are My Kaahu",
+      "label": "Link 6 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "our_story_link_7_label",
+      "default": "Contact Us",
+      "label": "Link 7 label"
+    },
+    {
+      "type": "url",
+      "id": "our_story_link_7_url",
+      "label": "Link 7 URL"
     },
     {
       "type": "header",
