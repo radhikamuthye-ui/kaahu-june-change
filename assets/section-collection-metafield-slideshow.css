@@ -252,7 +252,7 @@
 
 @media only screen and (min-width: 750px) {
   .cms-slide {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 16 / 5;
   }
 
   .cms-eyebrow {
@@ -278,25 +278,19 @@
   .cms-content {
     top: clamp(var(--cms-content-top-mobile, 34px), 4vw, var(--cms-content-top-desktop, 72px));
     right: clamp(var(--cms-content-right-mobile, 28px), 4.6vw, var(--cms-content-right-desktop, 72px));
-    bottom: clamp(var(--cms-content-bottom-mobile, 34px), 4vw, var(--cms-content-bottom-desktop, 72px));
+    bottom: clamp(96px, 7vw, max(var(--cms-content-bottom-desktop, 72px), 112px));
     left: clamp(var(--cms-content-left-mobile, 28px), 4.6vw, var(--cms-content-left-desktop, 72px));
     max-width: min(var(--cms-content-max-width, 560px), calc(100% - clamp(var(--cms-content-left-mobile, 28px), 4.6vw, var(--cms-content-left-desktop, 72px)) - clamp(var(--cms-content-right-mobile, 28px), 4.6vw, var(--cms-content-right-desktop, 72px))));
   }
 }
 
 @media only screen and (max-width: 749px) {
-  .collection-metafield-slideshow,
-  .collection-metafield-slideshow .cms-swiper,
-  .collection-metafield-slideshow .swiper-wrapper,
   .cms-slide {
-    height: 100vh;
-    height: 100svh;
-    min-height: 100vh;
-    min-height: 100svh;
+    aspect-ratio: 1 / 1;
   }
 
-  .cms-slide {
-    aspect-ratio: auto;
+  .cms-content {
+    bottom: max(var(--cms-content-bottom-mobile, 34px), 92px);
   }
 
   .cms-slide::after,
