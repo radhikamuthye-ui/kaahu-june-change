@@ -7,6 +7,9 @@
   --kaahu-cat-gap: {{ section.settings.item_gap }}px;
   --kaahu-cat-label-color: {{ section.settings.label_color }};
   --kaahu-cat-label-hover-color: {{ section.settings.label_hover_color }};
+  --kaahu-cat-label-size-mobile: {{ section.settings.label_size_mobile }}px;
+  --kaahu-cat-label-size-desktop: {{ section.settings.label_size_desktop }}px;
+  --kaahu-cat-label-weight: {{ section.settings.label_weight }};
 }
   
 @media only screen and (min-width: 750px) {
@@ -272,6 +275,50 @@ window.addEventListener('resize', positionArrows);
         "id": "label_hover_color",
         "label": "Label hover color",
         "default": "#d9a73e"
+      },
+      {
+        "type": "range",
+        "id": "label_size_mobile",
+        "min": 9,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "label": "Label size mobile",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "label_size_desktop",
+        "min": 9,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Label size desktop",
+        "default": 12
+      },
+      {
+        "type": "select",
+        "id": "label_weight",
+        "label": "Label font weight",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          }
+        ],
+        "default": "700"
       },
       {
       "type": "range",

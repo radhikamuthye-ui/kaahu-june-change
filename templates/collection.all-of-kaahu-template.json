@@ -170,6 +170,9 @@
         "item_gap": 8,
         "label_color": "#6f6a62",
         "label_hover_color": "#d9a73e",
+        "label_size_mobile": 12,
+        "label_size_desktop": 12,
+        "label_weight": "700",
         "padding_top": 10,
         "padding_bottom": 10
       }
