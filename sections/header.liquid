@@ -237,13 +237,13 @@
     --kaahu-menu-panel-padding-y: {{ section.settings.kaahu_menu_panel_padding_y | default: 36 }}px;
     --kaahu-menu-column-gap: {{ section.settings.kaahu_menu_column_gap | default: 74 }}px;
     --kaahu-menu-row-gap: {{ section.settings.kaahu_menu_row_gap | default: 18 }}px;
-    --kaahu-menu-top-font-size: {{ section.settings.kaahu_menu_top_font_size | default: section.settings.nav_font_size_desktop }}px;
+    --kaahu-menu-top-font-size: {{ section.settings.nav_font_size_desktop }}px;
     --kaahu-menu-top-letter-spacing: {{ section.settings.kaahu_menu_top_letter_spacing | default: 18 | divided_by: 100.0 }}em;
     --kaahu-menu-top-font-weight: {{ section.settings.kaahu_menu_top_font_weight | default: 600 }};
-    --kaahu-menu-dropdown-font-size: {{ section.settings.kaahu_menu_dropdown_font_size | default: section.settings.font_size_dropdown }}px;
+    --kaahu-menu-dropdown-font-size: {{ section.settings.font_size_dropdown }}px;
     --kaahu-menu-dropdown-letter-spacing: {{ section.settings.kaahu_menu_dropdown_letter_spacing | default: 14 | divided_by: 100.0 }}em;
     --kaahu-menu-dropdown-font-weight: {{ section.settings.kaahu_menu_dropdown_font_weight | default: 600 }};
-    --kaahu-menu-heading-font-size: {{ section.settings.kaahu_menu_heading_font_size | default: section.settings.font_size_dropdown_category_heading }}px;
+    --kaahu-menu-heading-font-size: {{ section.settings.font_size_dropdown_category_heading }}px;
     --kaahu-menu-heading-letter-spacing: {{ section.settings.kaahu_menu_heading_letter_spacing | default: 16 | divided_by: 100.0 }}em;
     --kaahu-menu-heading-font-weight: {{ section.settings.kaahu_menu_heading_font_weight | default: 600 }};
     --kaahu-menu-heading-color: {{ section.settings.kaahu_menu_heading_color | default: '#d7b44d' }};
@@ -2097,16 +2097,6 @@ if (searchclosebutton) {
     },
     {
       "type": "range",
-      "id": "kaahu_menu_top_font_size",
-      "min": 10,
-      "max": 22,
-      "step": 1,
-      "default": 13,
-      "unit": "px",
-      "label": "Top menu font size"
-    },
-    {
-      "type": "range",
       "id": "kaahu_menu_top_letter_spacing",
       "min": 0,
       "max": 40,
@@ -2126,16 +2116,6 @@ if (searchclosebutton) {
     },
     {
       "type": "range",
-      "id": "kaahu_menu_dropdown_font_size",
-      "min": 10,
-      "max": 26,
-      "step": 1,
-      "default": 16,
-      "unit": "px",
-      "label": "Dropdown link font size"
-    },
-    {
-      "type": "range",
       "id": "kaahu_menu_dropdown_letter_spacing",
       "min": 0,
       "max": 40,
@@ -2152,16 +2132,6 @@ if (searchclosebutton) {
       "step": 100,
       "default": 600,
       "label": "Dropdown link font weight"
-    },
-    {
-      "type": "range",
-      "id": "kaahu_menu_heading_font_size",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "default": 13,
-      "unit": "px",
-      "label": "Dropdown heading font size"
     },
     {
       "type": "range",
