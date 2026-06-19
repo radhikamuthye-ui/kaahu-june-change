@@ -747,11 +747,15 @@
 {% endif %}
 <div class="header-bar--shopping-tools{% if search_position_left %} shopping-tools--mobile-search-left{% endif %}">
 
+  {% if section.settings.secondary_menu_desktop != blank %}
   <div class="desktop-secondary-menu-list">
     <ul role="list">
-      <li><a href="/pages/our-story">OUR STORY</a></li>
+      {% for link in section.settings.secondary_menu_desktop.links limit: 2 %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
     </ul>
   </div>
+  {% endif %}
   
   {% if section.settings.enable_international and localization.available_countries.size > 1 and section.settings.logo_dt_position != 'top_center' %}
     {% # theme-check-disable %}

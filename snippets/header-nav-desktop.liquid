@@ -41,8 +41,6 @@
   <nav>
     <ul role="list" class="hdr-nav-primary-level-ul">
         {% for link in section.settings.main_menu.links %}
-          {% assign link_title_handle = link.title | handleize %}
-          {% if link_title_handle == 'shop' %}
           <li{% if link.links != blank %} class="nav-desktop-li-dd-item{% if forloop.last %} last-item{% endif %}"{% endif %}><a href="{{ link.url }}"{% if link.links != blank %} class="nav-desktop-dd-btn{% if section.settings.menu_dropdown_function == 'click' %} nav-desktop-dd-btn-clickable{% else %} nav-desktop-dd-btn-hover{% endif %}"{% endif %}>{{ link.title }}{% if link.links != blank and section.settings.dd_icon == 'arrow' %}{% render 'icon-caret' %}{% endif %}</a>
           {% if link.links != blank %}
           {% assign dropdown_exists = true %}
@@ -207,9 +205,7 @@
           </div>
           {% endif %}
           </li>
-          {% endif %}
         {% endfor %}
-        <li><a href="/pages/sustainability">SUSTAINABILITY</a></li>
    </ul>
   </nav>
 </div>
