@@ -6,6 +6,15 @@
   margin-bottom: var(--related-products-heading-spacing, 32px);
 }
 
+.related-products .related-products-grid-wrapper {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.related-products .related-products-grid {
+  padding-top: 0;
+}
+
 .comp-products-grid-wrapper {
   position: relative;
 }
