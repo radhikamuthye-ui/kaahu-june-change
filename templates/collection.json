@@ -183,7 +183,7 @@
         "metafield_namespace": "custom",
         "metafield_key": "ss1",
         "eyebrow_metafield_namespace": "custom",
-        "eyebrow_metafield_key": "slideshow_eyebrow",
+        "eyebrow_metafield_key": "eyebrow",
         "description_metafield_namespace": "custom",
         "description_metafield_key": "slideshow_description",
         "event_label": "Summer event",

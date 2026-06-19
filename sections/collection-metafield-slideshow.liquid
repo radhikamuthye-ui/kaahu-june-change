@@ -8,6 +8,27 @@
   assign slideshow_metafield = collection.metafields[section.settings.metafield_namespace][section.settings.metafield_key]
   assign slideshow_eyebrow_metafield = collection.metafields[section.settings.eyebrow_metafield_namespace][section.settings.eyebrow_metafield_key]
   assign slideshow_description_metafield = collection.metafields[section.settings.description_metafield_namespace][section.settings.description_metafield_key]
+
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.eyebrow
+  endif
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.slideshow_eyebrow
+  endif
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.ss1_eyebrow
+  endif
+
+  if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.slideshow_description
+  endif
+  if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.description
+  endif
+  if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.ss1_description
+  endif
+
   assign slideshow_images = slideshow_metafield.value
   assign slideshow_eyebrow = slideshow_eyebrow_metafield.value | default: slideshow_eyebrow_metafield
   assign has_slideshow_description = false
@@ -193,7 +214,7 @@
       "type": "text",
       "id": "eyebrow_metafield_key",
       "label": "Eyebrow metafield key",
-      "default": "slideshow_eyebrow"
+      "default": "eyebrow"
     },
     {
       "type": "text",

@@ -18,6 +18,10 @@
   overflow: hidden;
 }
 
+.collection-metafield-slideshow .swiper-wrapper {
+  align-items: stretch;
+}
+
 .cms-slide {
   position: relative;
   aspect-ratio: 1 / 1;
@@ -277,10 +281,18 @@
 }
 
 @media only screen and (max-width: 749px) {
+  .collection-metafield-slideshow,
+  .collection-metafield-slideshow .cms-swiper,
+  .collection-metafield-slideshow .swiper-wrapper,
   .cms-slide {
-    aspect-ratio: auto;
+    height: 100vh;
+    height: 100svh;
     min-height: 100vh;
     min-height: 100svh;
+  }
+
+  .cms-slide {
+    aspect-ratio: auto;
   }
 
   .cms-slide::after,
