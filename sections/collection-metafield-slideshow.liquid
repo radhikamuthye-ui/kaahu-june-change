@@ -10,23 +10,29 @@
   assign slideshow_description_metafield = collection.metafields[section.settings.description_metafield_namespace][section.settings.description_metafield_key]
 
   if slideshow_eyebrow_metafield == blank
-    assign slideshow_eyebrow_metafield = collection.metafields.custom.eyebrow
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.collection_slideshow_eyebrow
   endif
   if slideshow_eyebrow_metafield == blank
     assign slideshow_eyebrow_metafield = collection.metafields.custom.slideshow_eyebrow
+  endif
+  if slideshow_eyebrow_metafield == blank
+    assign slideshow_eyebrow_metafield = collection.metafields.custom.eyebrow
   endif
   if slideshow_eyebrow_metafield == blank
     assign slideshow_eyebrow_metafield = collection.metafields.custom.ss1_eyebrow
   endif
 
   if slideshow_description_metafield == blank
+    assign slideshow_description_metafield = collection.metafields.custom.collection_slideshow_description
+  endif
+  if slideshow_description_metafield == blank
     assign slideshow_description_metafield = collection.metafields.custom.slideshow_description
   endif
   if slideshow_description_metafield == blank
-    assign slideshow_description_metafield = collection.metafields.custom.description
+    assign slideshow_description_metafield = collection.metafields.custom.ss1_description
   endif
   if slideshow_description_metafield == blank
-    assign slideshow_description_metafield = collection.metafields.custom.ss1_description
+    assign slideshow_description_metafield = collection.metafields.custom.description
   endif
 
   assign slideshow_images = slideshow_metafield.value
@@ -214,7 +220,7 @@
       "type": "text",
       "id": "eyebrow_metafield_key",
       "label": "Eyebrow metafield key",
-      "default": "eyebrow"
+      "default": "collection_slideshow_eyebrow"
     },
     {
       "type": "text",
@@ -226,7 +232,7 @@
       "type": "text",
       "id": "description_metafield_key",
       "label": "Description metafield key",
-      "default": "slideshow_description"
+      "default": "collection_slideshow_description"
     },
     {
       "type": "text",
