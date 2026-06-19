@@ -768,13 +768,6 @@
 {% endif %}
 <div class="header-bar--shopping-tools{% if search_position_left %} shopping-tools--mobile-search-left{% endif %}">
 
-  {% if section.settings.desktop_nav_position == 'inline' and section.settings.logo_dt_position == 'center' %}
-    {% render 'header-nav-desktop',
-      ratio: section.settings.dd_image_ratio,
-      alignment: 'right'
-    %}
-  {% endif %}
-
   {% if section.settings.secondary_menu_desktop != blank %}
   <div class="desktop-secondary-menu-list">
     <ul role="list">
@@ -1966,34 +1959,6 @@ if (searchclosebutton) {
     {
       "type": "header",
       "content": "Kaahu mega menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "kaahu_desktop_split_menu",
-      "default": true,
-      "label": "Use Kaahu split desktop menu"
-    },
-    {
-      "type": "text",
-      "id": "kaahu_sustainability_label",
-      "default": "Sustainability",
-      "label": "Sustainability label"
-    },
-    {
-      "type": "url",
-      "id": "kaahu_sustainability_url",
-      "label": "Sustainability URL"
-    },
-    {
-      "type": "text",
-      "id": "kaahu_our_story_label",
-      "default": "Our Story",
-      "label": "Our Story label"
-    },
-    {
-      "type": "url",
-      "id": "kaahu_our_story_url",
-      "label": "Our Story URL"
     },
     {
       "type": "range",

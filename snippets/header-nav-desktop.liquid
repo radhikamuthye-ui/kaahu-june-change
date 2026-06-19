@@ -18,12 +18,6 @@
 {% endif %}
 
 {% assign dropdown_exists = false %}
-{% assign kaahu_sustainability_rendered = false %}
-{% assign kaahu_our_story_rendered = false %}
-{% assign kaahu_desktop_split_menu = true %}
-{% if section.settings.kaahu_desktop_split_menu == false %}
-  {% assign kaahu_desktop_split_menu = false %}
-{% endif %}
 
 {% assign show_dropdown_category_images = section.settings.images_dd_category %}
 {% assign has_sustainability_link = false %}
@@ -48,20 +42,6 @@
     <ul role="list" class="hdr-nav-primary-level-ul">
         {% for link in section.settings.main_menu.links %}
           {% assign link_handle = link.title | handleize %}
-          {% assign render_link = true %}
-          {% if kaahu_desktop_split_menu %}
-            {% assign render_link = false %}
-            {% if alignment == 'left' and link_handle == 'shop' %}
-              {% assign render_link = true %}
-            {% elsif alignment == 'left' and link_handle == 'sustainability' %}
-              {% assign render_link = true %}
-              {% assign kaahu_sustainability_rendered = true %}
-            {% elsif alignment == 'right' and link_handle == 'our-story' %}
-              {% assign render_link = true %}
-              {% assign kaahu_our_story_rendered = true %}
-            {% endif %}
-          {% endif %}
-          {% if render_link %}
           {% assign force_plain_link = false %}
           {% if link_handle == 'sustainability' %}
             {% assign force_plain_link = true %}
@@ -252,29 +232,7 @@
           </div>
           {% endif %}
           </li>
-          {% endif %}
         {% endfor %}
-        {% if kaahu_desktop_split_menu and alignment == 'left' and kaahu_sustainability_rendered == false and section.settings.kaahu_sustainability_label != blank %}
-          <li data-menu-handle="sustainability"><a href="{{ section.settings.kaahu_sustainability_url | default: '/pages/sustainability' }}">{{ section.settings.kaahu_sustainability_label }}</a></li>
-        {% endif %}
-        {% if kaahu_desktop_split_menu and alignment == 'right' and kaahu_our_story_rendered == false and section.settings.kaahu_our_story_label != blank %}
-          {% assign dropdown_exists = true %}
-          <li data-menu-handle="our-story" class="nav-desktop-li-dd-item last-item"><a href="{{ section.settings.kaahu_our_story_url | default: '/pages/our-story' }}" class="nav-desktop-dd-btn{% if section.settings.menu_dropdown_function == 'click' %} nav-desktop-dd-btn-clickable{% else %} nav-desktop-dd-btn-hover{% endif %}">{{ section.settings.kaahu_our_story_label }}{% if section.settings.dd_icon == 'arrow' %}{% render 'icon-caret' %}{% endif %}</a>
-            <div class="header-nav-desktop-dd-panel {{ section.settings.header_dropdown_panel_width }} drawer-layout--{{ section.settings.dropdown_drawer_layout }}{% if section.settings.header_dd_contents_width == 'fixed' %} dd-panel-fixed-width{% endif %}{% if section.settings.header_dd_contents_width == 'fixed-narrow' %} dd-panel-fixed-width-narrow{% endif %} header-dd-panel-justify-{{ section.settings.header_dd_contents_justify }} header-dd-panel-column-alignment-{{ section.settings.header_dd_column_alignment }} header-dd-panel-category-style-{{ section.settings.category_heading_font_style }}">
-              <div class="dd-nav-dd-contents">
-                <ul class="header-nav-desktop-dd-list-single header-nav-desktop-dd-list-fallback dd-list-link-highlight-style-{{ section.settings.dd_menu_link_rollover_style }}" role="list">
-                  {% if section.settings.our_story_link_1_label != blank and section.settings.our_story_link_1_url != blank %}<li><a href="{{ section.settings.our_story_link_1_url }}">{{ section.settings.our_story_link_1_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_2_label != blank and section.settings.our_story_link_2_url != blank %}<li><a href="{{ section.settings.our_story_link_2_url }}">{{ section.settings.our_story_link_2_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_3_label != blank and section.settings.our_story_link_3_url != blank %}<li><a href="{{ section.settings.our_story_link_3_url }}">{{ section.settings.our_story_link_3_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_4_label != blank and section.settings.our_story_link_4_url != blank %}<li><a href="{{ section.settings.our_story_link_4_url }}">{{ section.settings.our_story_link_4_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_5_label != blank and section.settings.our_story_link_5_url != blank %}<li><a href="{{ section.settings.our_story_link_5_url }}">{{ section.settings.our_story_link_5_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_6_label != blank and section.settings.our_story_link_6_url != blank %}<li><a href="{{ section.settings.our_story_link_6_url }}">{{ section.settings.our_story_link_6_label }}</a></li>{% endif %}
-                  {% if section.settings.our_story_link_7_label != blank and section.settings.our_story_link_7_url != blank %}<li><a href="{{ section.settings.our_story_link_7_url }}">{{ section.settings.our_story_link_7_label }}</a></li>{% endif %}
-                </ul>
-              </div>
-            </div>
-          </li>
-        {% endif %}
    </ul>
   </nav>
 </div>
