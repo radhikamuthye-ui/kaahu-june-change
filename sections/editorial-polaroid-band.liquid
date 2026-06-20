@@ -10,6 +10,8 @@
     --epb-polaroid-padding: {{ section.settings.polaroid_padding_px }}px;
     --epb-polaroid-bottom: {{ section.settings.polaroid_bottom_px }}px;
     --epb-video-opacity: {{ section.settings.video_opacity_percent | default: 100 | divided_by: 100.0 }};
+    --epb-mobile-margin: {{ section.settings.mobile_margin_px | default: 0 }}px;
+    --epb-mobile-aspect-ratio: {{ section.settings.mobile_media_aspect_ratio | default: '4 / 5' }};
   "
 >
   <div class="editorial-polaroid-band__inner">
@@ -86,6 +88,16 @@
               <path d="M14 6a8 8 0 1 1-7.48 5.16l1.88.68A6 6 0 1 0 14 8h-1.3l1.9 1.9-1.4 1.4L8.9 7l4.3-4.3 1.4 1.4L12.7 6H14z"></path>
             </svg>
           </button>
+          <input
+            class="editorial-polaroid-band__timeline"
+            type="range"
+            min="0"
+            max="100"
+            step="0.01"
+            value="0"
+            aria-label="Video timeline"
+            data-animation-timeline
+          >
         </div>
       {% endif %}
     </div>
@@ -237,8 +249,10 @@
     position: absolute;
     bottom: 14px;
     left: 14px;
+    right: 14px;
     z-index: 30;
     display: flex;
+    align-items: center;
     gap: 8px;
   }
 
@@ -253,6 +267,15 @@
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.18);
     color: #fff;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline {
+    flex: 1 1 auto;
+    min-width: 80px;
+    height: 28px;
+    accent-color: #fff;
     cursor: pointer;
   }
 
@@ -278,19 +301,24 @@
   }
 
   @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .editorial-polaroid-band {
+      padding: var(--epb-mobile-margin);
+    }
+
     #shopify-section-{{ section.id }} .editorial-polaroid-band__inner {
       flex-direction: column;
       min-height: 0;
     }
 
     #shopify-section-{{ section.id }} .editorial-polaroid-band__media {
-      order: 1;
+      order: 2;
       width: 100%;
-      min-height: calc(var(--epb-height) * 0.65);
+      aspect-ratio: var(--epb-mobile-aspect-ratio);
+      min-height: 0;
     }
 
     #shopify-section-{{ section.id }} .editorial-polaroid-band__content {
-      order: 2;
+      order: 1;
       width: 100%;
       min-height: auto;
       padding: 32px 24px;
@@ -352,18 +380,24 @@
       this.media = section.querySelector('.editorial-polaroid-band__media');
       this.container = section.querySelector('[data-polaroids]');
       this.polaroids = Array.from(section.querySelectorAll('[data-polaroid]'));
+      this.video = section.querySelector('video');
+      this.timeline = section.querySelector('[data-animation-timeline]');
       this.settings = readJson(section, 'data-settings', {});
       this.blocks = this.container ? readJson(this.container, 'data-blocks', []) : [];
       this.hasPlayed = false;
       this.isPaused = false;
       this.isVisible = false;
+      this.isScrubbing = false;
+      this.lastVideoTime = 0;
       this.animations = [];
       this.timers = [];
+      this.timelineFrame = null;
       this.resizeTimer = null;
       this.observer = null;
       this.onResize = this.onResize.bind(this);
 
       this.initAnimationControls();
+      this.initTimeline();
       this.layout(false);
       this.observe();
       window.addEventListener('resize', this.onResize);
@@ -377,6 +411,7 @@
       clearTimeout(this.resizeTimer);
       this.clearTimers();
       this.cancelAnimations();
+      this.stopTimelineUpdates();
     };
 
     EditorialPolaroidBand.prototype.initAnimationControls = function () {
@@ -399,6 +434,93 @@
           self.replay();
         });
       }
+    };
+
+    EditorialPolaroidBand.prototype.initTimeline = function () {
+      var self = this;
+
+      if (!this.timeline) {
+        return;
+      }
+
+      this.timeline.addEventListener('input', function () {
+        self.isScrubbing = true;
+        if (self.video && Number.isFinite(self.video.duration) && self.video.duration > 0) {
+          self.video.currentTime = toNumber(self.timeline.value, 0);
+        }
+      });
+
+      this.timeline.addEventListener('change', function () {
+        var value = toNumber(self.timeline.value, 0);
+        self.isScrubbing = false;
+
+        if (self.video && Number.isFinite(self.video.duration) && self.video.duration > 0) {
+          self.video.currentTime = value;
+          if (value <= 0.05) {
+            self.replay();
+          } else if (!self.isPaused) {
+            self.video.play();
+          }
+        }
+      });
+
+      if (this.video) {
+        this.video.addEventListener('loadedmetadata', function () {
+          self.syncTimelineBounds();
+        });
+
+        this.video.addEventListener('timeupdate', function () {
+          if (self.video.currentTime + 0.25 < self.lastVideoTime) {
+            self.play();
+          }
+          self.lastVideoTime = self.video.currentTime;
+        });
+      }
+
+      this.syncTimelineBounds();
+      this.startTimelineUpdates();
+    };
+
+    EditorialPolaroidBand.prototype.syncTimelineBounds = function () {
+      if (!this.timeline) {
+        return;
+      }
+
+      if (this.video && Number.isFinite(this.video.duration) && this.video.duration > 0) {
+        this.timeline.max = String(this.video.duration);
+        this.timeline.step = '0.01';
+        return;
+      }
+
+      this.timeline.max = String(this.getAnimationTotalDuration() / 1000);
+      this.timeline.step = '0.01';
+    };
+
+    EditorialPolaroidBand.prototype.startTimelineUpdates = function () {
+      var self = this;
+
+      if (!this.timeline || this.timelineFrame) {
+        return;
+      }
+
+      function tick() {
+        if (!self.isScrubbing) {
+          if (self.video && Number.isFinite(self.video.duration) && self.video.duration > 0) {
+            self.timeline.max = String(self.video.duration);
+            self.timeline.value = String(self.video.currentTime);
+          }
+        }
+        self.timelineFrame = window.requestAnimationFrame(tick);
+      }
+
+      this.timelineFrame = window.requestAnimationFrame(tick);
+    };
+
+    EditorialPolaroidBand.prototype.stopTimelineUpdates = function () {
+      if (this.timelineFrame) {
+        window.cancelAnimationFrame(this.timelineFrame);
+      }
+      this.timelineFrame = null;
     };
 
     EditorialPolaroidBand.prototype.setToggleState = function () {
@@ -590,12 +712,23 @@
       this.isPaused = false;
       this.setToggleState();
       this.reset();
+      if (this.video) {
+        this.video.currentTime = 0;
+        this.lastVideoTime = 0;
+        this.video.play();
+      }
+      if (this.timeline) {
+        this.timeline.value = '0';
+      }
       this.play();
     };
 
     EditorialPolaroidBand.prototype.pause = function () {
       this.isPaused = true;
       this.setToggleState();
+      if (this.video) {
+        this.video.pause();
+      }
 
       if (this.animations.length) {
         this.animations.forEach(function (animation) {
@@ -618,6 +751,9 @@
     EditorialPolaroidBand.prototype.resume = function () {
       this.isPaused = false;
       this.setToggleState();
+      if (this.video) {
+        this.video.play();
+      }
 
       if (this.animations.length) {
         this.animations.forEach(function (animation) {
@@ -631,11 +767,20 @@
       }
     };
 
+    EditorialPolaroidBand.prototype.getAnimationTotalDuration = function () {
+      var throwDuration = toNumber(this.settings.throw_duration_ms, 700);
+      var count = this.polaroids.length || 1;
+      return ((count - 1) * 80) + throwDuration;
+    };
+
     EditorialPolaroidBand.prototype.play = function () {
       this.hasPlayed = true;
       this.clearTimers();
       this.cancelAnimations();
       var self = this;
+      var throwDuration = toNumber(this.settings.throw_duration_ms, 700);
+      var appearDuration = Math.min(150, throwDuration * 0.45);
+      var appearOffset = Math.max(0.05, Math.min(0.9, appearDuration / throwDuration));
 
       this.polaroids.forEach(function (polaroid) {
         var step = parseInt(polaroid.dataset.step, 10) || 0;
@@ -653,7 +798,7 @@
             top: polaroid.dataset.throwTop + 'px',
             transform: 'rotate(' + polaroid.dataset.throwRot + 'deg) scale(' + polaroid.dataset.throwScale + ')',
             opacity: 1,
-            offset: 0.214
+            offset: appearOffset
           },
           {
             left: polaroid.dataset.finalLeft + 'px',
@@ -668,7 +813,7 @@
 
         if (polaroid.animate) {
           var animation = polaroid.animate(keyframes, {
-            duration: 700,
+            duration: throwDuration,
             delay: phaseOneDelay,
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
             fill: 'forwards'
@@ -702,12 +847,13 @@
 
         this.timers.push(window.setTimeout(function () {
           if (polaroid.closest('[data-editorial-polaroid-band]')) {
-            polaroid.style.transition = 'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+            var durationSeconds = throwDuration / 1000;
+            polaroid.style.transition = 'left ' + durationSeconds + 's cubic-bezier(0.22, 1, 0.36, 1), top ' + durationSeconds + 's cubic-bezier(0.22, 1, 0.36, 1), transform ' + durationSeconds + 's cubic-bezier(0.22, 1, 0.36, 1)';
             polaroid.style.left = polaroid.dataset.finalLeft + 'px';
             polaroid.style.top = polaroid.dataset.finalTop + 'px';
             polaroid.style.transform = 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)';
           }
-        }, phaseOneDelay + 150));
+        }, phaseOneDelay + appearDuration));
       }, this);
     };
 
@@ -825,6 +971,44 @@
       "default": 500
     },
     {
+      "type": "select",
+      "id": "mobile_media_aspect_ratio",
+      "label": "Mobile media aspect ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait 4:5"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait 3:4"
+        },
+        {
+          "value": "9 / 16",
+          "label": "Portrait 9:16"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Landscape 16:9"
+        }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_px",
+      "label": "Mobile margin",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
       "type": "range",
       "id": "desktop_polaroid_size_px",
       "label": "Desktop polaroid size",
@@ -892,6 +1076,16 @@
       "max": 100,
       "step": 5,
       "default": 60
+    },
+    {
+      "type": "range",
+      "id": "throw_duration_ms",
+      "label": "Polaroid throw speed",
+      "min": 300,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms",
+      "default": 700
     }
   ],
   "blocks": [

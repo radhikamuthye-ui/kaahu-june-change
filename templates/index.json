@@ -365,13 +365,16 @@
         "fallback_image": "shopify://shop_images/soul_of_kaahu_mobile_v1.jpg",
         "left_width_percent": 42,
         "section_height_px": 500,
+        "mobile_media_aspect_ratio": "4 / 5",
+        "mobile_margin_px": 0,
         "desktop_polaroid_size_px": 150,
         "mobile_polaroid_size_px": 90,
         "polaroid_padding_px": 9,
         "polaroid_bottom_px": 18,
         "max_rotation_deg": 30,
         "spread_radius_px": 110,
-        "throw_chaos": 80
+        "throw_chaos": 80,
+        "throw_duration_ms": 700
       }
     },
     "kaahu_bestsellers_homepage": {
