@@ -254,7 +254,7 @@
             "collection": "best-sellers",
             "label": "Best Sellers",
             "image": "shopify://shop_images/Blush_Flame_Messenger.jpg",
-            "link": ""
+            "link": "shopify://collections/our-bestsellers"
           }
         },
         "collection_link_8RX99Y": {
@@ -263,7 +263,7 @@
             "collection": "sale",
             "label": "",
             "image": "shopify://shop_images/Screenshot_2026-06-19_at_10.38.28_PM.png",
-            "link": ""
+            "link": "shopify://collections/sale"
           }
         },
         "collection_link_yLpcih": {
