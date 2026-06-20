@@ -239,27 +239,29 @@
     "navigation_after_slideshow": {
       "type": "main-collection-sub-navigation",
       "blocks": {
+        "collection_all": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "all-of-kaahu",
+            "label": "All Products",
+            "image": "shopify://shop_images/Feathered_hope_1_81366b27-4dbd-477d-b499-5a692d680529.jpg",
+            "link": ""
+          }
+        },
         "collection_bestsellers": {
           "type": "collection_link",
           "settings": {
             "collection": "best-sellers",
             "label": "Best Sellers",
+            "image": "shopify://shop_images/Kaahu_all_bags_1_without_text.jpg",
             "link": ""
           }
         },
-        "collection_link_pYnegJ": {
+        "collection_link_8RX99Y": {
           "type": "collection_link",
           "settings": {
-            "collection": "soulful-satchels-collection",
-            "label": "soulful satchels",
-            "link": ""
-          }
-        },
-        "collection_link_qkp7yj": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "fading-footprints-collection",
-            "label": "fading footprints",
+            "collection": "sale",
+            "label": "",
             "link": ""
           }
         },
@@ -276,6 +278,22 @@
           "settings": {
             "collection": "the-marshmallow-thread",
             "label": "Marshmallow Thread",
+            "link": ""
+          }
+        },
+        "collection_link_pYnegJ": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "soulful-satchels-collection",
+            "label": "soulful satchels",
+            "link": ""
+          }
+        },
+        "collection_link_qkp7yj": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "fading-footprints-collection",
+            "label": "fading footprints",
             "link": ""
           }
         },
@@ -310,36 +328,20 @@
             "label": "Hobos",
             "link": ""
           }
-        },
-        "collection_all": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "all-of-kaahu",
-            "label": "All Products",
-            "link": ""
-          }
-        },
-        "collection_link_8RX99Y": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "sale",
-            "label": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
+        "collection_all",
         "collection_bestsellers",
-        "collection_link_pYnegJ",
-        "collection_link_qkp7yj",
+        "collection_link_8RX99Y",
         "collection_link_yLpcih",
         "collection_link_We4w6b",
+        "collection_link_pYnegJ",
+        "collection_link_qkp7yj",
         "collection_totes",
         "collection_messengers",
         "collection_shoppers",
-        "collection_hobos",
-        "collection_all",
-        "collection_link_8RX99Y"
+        "collection_hobos"
       ],
       "settings": {
         "menu": "",
