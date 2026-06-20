@@ -58,12 +58,46 @@
     "navigation": {
       "type": "main-collection-sub-navigation",
       "blocks": {
+        "collection_all": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "frontpage",
+            "label": "All Products",
+            "image": "shopify://shop_images/Kaahu_all_bags_1_without_text.jpg",
+            "link": ""
+          }
+        },
         "collection_bestsellers": {
           "type": "collection_link",
           "settings": {
             "collection": "best-sellers",
             "label": "Best Sellers",
-            "image": "shopify://shop_images/Blush_flame5.jpg",
+            "image": "shopify://shop_images/Blush_Flame_Messenger.jpg",
+            "link": "shopify://collections/our-bestsellers"
+          }
+        },
+        "collection_link_8RX99Y": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "sale",
+            "label": "",
+            "image": "shopify://shop_images/Screenshot_2026-06-19_at_10.38.28_PM.png",
+            "link": "shopify://collections/sale"
+          }
+        },
+        "collection_link_yLpcih": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "golden-jute",
+            "label": "Golden Fiber",
+            "link": ""
+          }
+        },
+        "collection_link_We4w6b": {
+          "type": "collection_link",
+          "settings": {
+            "collection": "the-marshmallow-thread",
+            "label": "Marshmallow Thread",
             "link": ""
           }
         },
@@ -80,23 +114,6 @@
           "settings": {
             "collection": "fading-footprints-collection",
             "label": "fading footprints",
-            "link": ""
-          }
-        },
-        "collection_link_yLpcih": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "golden-jute",
-            "label": "Golden Fiber",
-            "link": ""
-          }
-        },
-        "collection_link_We4w6b": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "the-marshmallow-thread",
-            "label": "Marshmallow Thread",
-            "image": "shopify://shop_images/Golden_orca_3.jpg",
             "link": ""
           }
         },
@@ -131,43 +148,26 @@
             "label": "Hobos",
             "link": ""
           }
-        },
-        "collection_all": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "all-of-kaahu",
-            "label": "All Products",
-            "image": "shopify://shop_images/Flutter_butter4.jpg",
-            "link": ""
-          }
-        },
-        "collection_link_8RX99Y": {
-          "type": "collection_link",
-          "settings": {
-            "collection": "sale",
-            "label": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
+        "collection_all",
         "collection_bestsellers",
-        "collection_link_pYnegJ",
-        "collection_link_qkp7yj",
+        "collection_link_8RX99Y",
         "collection_link_yLpcih",
         "collection_link_We4w6b",
+        "collection_link_pYnegJ",
+        "collection_link_qkp7yj",
         "collection_totes",
         "collection_messengers",
         "collection_shoppers",
-        "collection_hobos",
-        "collection_all",
-        "collection_link_8RX99Y"
+        "collection_hobos"
       ],
       "settings": {
         "menu": "",
         "alignment": "center",
         "menu_style": "images",
-        "image_ratio": "circle",
+        "image_ratio": "square",
         "image_size_desktop": 64,
         "image_size_mobile": 54,
         "item_gap": 8,
@@ -177,7 +177,7 @@
         "label_size_desktop": 10,
         "label_weight": "400",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "rich_text_9hnA4P": {
