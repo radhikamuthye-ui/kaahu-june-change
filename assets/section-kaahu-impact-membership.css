@@ -137,10 +137,28 @@
   background: transparent;
 }
 
+.kaahu-impact-membership__button--link {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--kim-button-text);
+  font-family: var(--font-body-family);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-transform: none;
+}
+
 .kaahu-impact-membership__button:hover {
   border-color: var(--kim-button-hover-border);
   color: var(--kim-button-hover-text);
   background: var(--kim-button-hover-bg);
+}
+
+.kaahu-impact-membership__button--link:hover {
+  border-color: transparent;
+  background: transparent;
 }
 
 @media only screen and (min-width: 750px) {
