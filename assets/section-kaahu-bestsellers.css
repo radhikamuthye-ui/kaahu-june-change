@@ -63,7 +63,8 @@
   font-weight: var(--kb-button-font-weight);
   line-height: 1;
   letter-spacing: var(--kb-button-letter-spacing);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
   text-transform: var(--kb-button-case);
   white-space: nowrap;
   transition: color 180ms ease, background 180ms ease, border-color 180ms ease;

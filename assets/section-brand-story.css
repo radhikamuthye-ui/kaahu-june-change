@@ -183,6 +183,9 @@
 
 .brand-story__cta--underlined {
   border-bottom: 1px solid currentColor;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  border-bottom: 0;
 }
 
 .brand-story__cta-icon {
