@@ -358,15 +358,15 @@
         "eyebrow_text": "From the studio",
         "headline": "A softer kind\nof statement",
         "body_text": "Small moments, natural textures, and bags made to carry the pieces of your everyday with ease.",
-        "cta_label": "Explore the story",
-        "cta_url": "",
+        "cta_label": "Explore the Creations",
+        "cta_url": "shopify://collections/frontpage",
         "video": "shopify://files/videos/Golden pulse.mp4",
         "video_opacity_percent": 40,
         "fallback_image": "shopify://shop_images/soul_of_kaahu_mobile_v1.jpg",
         "left_width_percent": 42,
         "section_height_px": 500,
-        "mobile_media_aspect_ratio": "4 / 5",
-        "mobile_margin_px": 0,
+        "mobile_media_aspect_ratio": "3 / 4",
+        "mobile_margin_px": 20,
         "desktop_polaroid_size_px": 150,
         "mobile_polaroid_size_px": 90,
         "polaroid_padding_px": 9,
@@ -374,7 +374,7 @@
         "max_rotation_deg": 30,
         "spread_radius_px": 110,
         "throw_chaos": 80,
-        "throw_duration_ms": 700
+        "throw_duration_ms": 1800
       }
     },
     "kaahu_bestsellers_homepage": {
