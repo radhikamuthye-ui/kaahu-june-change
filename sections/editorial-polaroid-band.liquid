@@ -1,0 +1,753 @@
+<section
+  class="editorial-polaroid-band"
+  data-editorial-polaroid-band
+  data-settings='{{ section.settings | json | escape }}'
+  style="
+    --epb-left-width: {{ section.settings.left_width_percent }}%;
+    --epb-height: {{ section.settings.section_height_px }}px;
+    --epb-polaroid-desktop: {{ section.settings.desktop_polaroid_size_px }}px;
+    --epb-polaroid-mobile: {{ section.settings.mobile_polaroid_size_px }}px;
+    --epb-polaroid-padding: {{ section.settings.polaroid_padding_px }}px;
+    --epb-polaroid-bottom: {{ section.settings.polaroid_bottom_px }}px;
+  "
+>
+  <div class="editorial-polaroid-band__inner">
+    <div class="editorial-polaroid-band__media">
+      {% if section.settings.video != blank %}
+        <video
+          class="editorial-polaroid-band__video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="{{ section.settings.video }}" type="video/mp4">
+        </video>
+      {% elsif section.settings.fallback_image != blank %}
+        {{
+          section.settings.fallback_image
+          | image_url: width: 1800
+          | image_tag:
+            loading: 'lazy',
+            sizes: '(min-width: 768px) 58vw, 100vw',
+            widths: '375, 550, 750, 1100, 1500, 1800',
+            class: 'editorial-polaroid-band__fallback-image'
+        }}
+      {% endif %}
+
+      <div
+        class="editorial-polaroid-band__polaroids"
+        data-polaroids
+        data-blocks='{{ section.blocks | json | escape }}'
+      >
+        {% for block in section.blocks %}
+          {% if block.type == 'polaroid' and block.settings.image != blank %}
+            <div
+              class="editorial-polaroid-band__polaroid"
+              data-polaroid
+              data-index="{{ forloop.index0 }}"
+              style="z-index: {{ block.settings.z_index | default: forloop.index }};"
+              {{ block.shopify_attributes }}
+            >
+              {{
+                block.settings.image
+                | image_url: width: 500
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '(min-width: 768px) 220px, 150px',
+                  widths: '100, 150, 220, 300, 400, 500',
+                  class: 'editorial-polaroid-band__polaroid-image'
+              }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.video != blank %}
+        <button class="editorial-polaroid-band__video-toggle" type="button" aria-label="Pause video" data-video-toggle>
+          <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--pause" data-icon-pause aria-hidden="true">
+            <svg viewBox="0 0 28 28" focusable="false">
+              <rect x="9" y="7" width="3" height="14" rx="0.5"></rect>
+              <rect x="16" y="7" width="3" height="14" rx="0.5"></rect>
+            </svg>
+          </span>
+          <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--play" data-icon-play aria-hidden="true">
+            <svg viewBox="0 0 28 28" focusable="false">
+              <path d="M10 7.5v13l10-6.5-10-6.5z"></path>
+            </svg>
+          </span>
+        </button>
+      {% endif %}
+    </div>
+
+    <div class="editorial-polaroid-band__content">
+      <div class="editorial-polaroid-band__content-inner">
+        {% if section.settings.eyebrow_text != blank %}
+          <p class="editorial-polaroid-band__eyebrow">{{ section.settings.eyebrow_text }}</p>
+        {% endif %}
+
+        {% if section.settings.headline != blank %}
+          <h2 class="editorial-polaroid-band__headline">{{ section.settings.headline | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.body_text != blank %}
+          <div class="editorial-polaroid-band__body">{{ section.settings.body_text | newline_to_br }}</div>
+        {% endif %}
+
+        {% if section.settings.cta_label != blank and section.settings.cta_url != blank %}
+          <a class="editorial-polaroid-band__cta" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band {
+    width: 100%;
+    overflow: hidden;
+    background: var(--color-background, #fff);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__inner {
+    display: flex;
+    width: 100%;
+    min-height: var(--epb-height);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__content {
+    order: 1;
+    width: var(--epb-left-width);
+    min-height: var(--epb-height);
+    padding: 56px 48px;
+    display: flex;
+    align-items: center;
+    background: var(--color-background, #fff);
+    color: var(--color-foreground, #242424);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__eyebrow {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7a6a52;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__headline {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-foreground, #242424);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__body {
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: color-mix(in srgb, var(--color-foreground, #242424) 65%, transparent);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__body p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__cta {
+    width: fit-content;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-foreground, #242424);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__media {
+    order: 2;
+    position: relative;
+    width: calc(100% - var(--epb-left-width));
+    min-height: var(--epb-height);
+    overflow: hidden;
+    background: #1a1612;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video,
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__fallback-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroids {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid {
+    position: absolute;
+    width: var(--epb-polaroid-desktop);
+    height: calc((var(--epb-polaroid-desktop) * 1.2) + var(--epb-polaroid-bottom));
+    padding: var(--epb-polaroid-padding) var(--epb-polaroid-padding) var(--epb-polaroid-bottom);
+    background: #fff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 1px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    will-change: left, top, transform, opacity;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid-image {
+    display: block;
+    width: 100%;
+    height: calc(var(--epb-polaroid-desktop) * 1.2);
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    z-index: 30;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__icon,
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__icon--play {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle.is-paused .editorial-polaroid-band__icon--pause {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle.is-paused .editorial-polaroid-band__icon--play {
+    display: block;
+  }
+
+  @media screen and (max-width: 767px) {
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__inner {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__media {
+      order: 1;
+      width: 100%;
+      min-height: calc(var(--epb-height) * 0.65);
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__content {
+      order: 2;
+      width: 100%;
+      min-height: auto;
+      padding: 32px 24px;
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__headline {
+      font-size: 26px;
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid {
+      width: var(--epb-polaroid-mobile);
+      height: calc((var(--epb-polaroid-mobile) * 1.2) + var(--epb-polaroid-bottom));
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid-image {
+      height: calc(var(--epb-polaroid-mobile) * 1.2);
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var instances = window.editorialPolaroidBandInstances || new WeakMap();
+    window.editorialPolaroidBandInstances = instances;
+
+    function sr(seed) {
+      var x = Math.sin(seed + 1) * 10000;
+      return x - Math.floor(x);
+    }
+
+    function readJson(element, attribute, fallback) {
+      try {
+        return JSON.parse(element.getAttribute(attribute) || '');
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function toNumber(value, fallback) {
+      var parsed = parseFloat(value);
+      return Number.isFinite(parsed) ? parsed : fallback;
+    }
+
+    function getBlockSettings(blocks, index) {
+      var block = blocks[index] || {};
+      return block.settings || {};
+    }
+
+    function buildOrder(count) {
+      return Array.from({ length: count }, function (_, index) {
+        return index;
+      }).sort(function (a, b) {
+        return sr(a * 41 + 7) - sr(b * 41 + 7);
+      });
+    }
+
+    function EditorialPolaroidBand(section) {
+      this.section = section;
+      this.media = section.querySelector('.editorial-polaroid-band__media');
+      this.container = section.querySelector('[data-polaroids]');
+      this.polaroids = Array.from(section.querySelectorAll('[data-polaroid]'));
+      this.settings = readJson(section, 'data-settings', {});
+      this.blocks = this.container ? readJson(this.container, 'data-blocks', []) : [];
+      this.hasPlayed = false;
+      this.resizeTimer = null;
+      this.observer = null;
+      this.onResize = this.onResize.bind(this);
+
+      this.initVideoToggle();
+      this.layout(false);
+      this.observe();
+      window.addEventListener('resize', this.onResize);
+    }
+
+    EditorialPolaroidBand.prototype.destroy = function () {
+      window.removeEventListener('resize', this.onResize);
+      if (this.observer) {
+        this.observer.disconnect();
+      }
+      clearTimeout(this.resizeTimer);
+    };
+
+    EditorialPolaroidBand.prototype.initVideoToggle = function () {
+      var video = this.section.querySelector('video');
+      var toggle = this.section.querySelector('[data-video-toggle]');
+
+      if (!video || !toggle) {
+        return;
+      }
+
+      toggle.addEventListener('click', function () {
+        if (video.paused) {
+          video.play();
+          toggle.classList.remove('is-paused');
+          toggle.setAttribute('aria-label', 'Pause video');
+        } else {
+          video.pause();
+          toggle.classList.add('is-paused');
+          toggle.setAttribute('aria-label', 'Play video');
+        }
+      });
+    };
+
+    EditorialPolaroidBand.prototype.observe = function () {
+      var self = this;
+
+      if (!('IntersectionObserver' in window)) {
+        this.play();
+        return;
+      }
+
+      this.observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !self.hasPlayed) {
+            self.play();
+          }
+        });
+      }, { threshold: 0.2 });
+
+      this.observer.observe(this.section);
+    };
+
+    EditorialPolaroidBand.prototype.onResize = function () {
+      var self = this;
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(function () {
+        self.layout(self.hasPlayed);
+      }, 150);
+    };
+
+    EditorialPolaroidBand.prototype.layout = function (settled) {
+      if (!this.media || !this.polaroids.length) {
+        return;
+      }
+
+      var panelWidth = this.media.clientWidth;
+      var panelHeight = this.media.clientHeight;
+
+      if (!panelWidth || !panelHeight) {
+        return;
+      }
+
+      var count = this.polaroids.length;
+      var isMobile = window.matchMedia('(max-width: 767px)').matches;
+      var polW = toNumber(isMobile ? this.settings.mobile_polaroid_size_px : this.settings.desktop_polaroid_size_px, isMobile ? 75 : 115);
+      var bottom = toNumber(this.settings.polaroid_bottom_px, 26);
+      var totalH = (polW * 1.2) + bottom;
+      var maxRotation = toNumber(this.settings.max_rotation_deg, 20);
+      var radius = toNumber(this.settings.spread_radius_px, 95) * (isMobile ? 0.6 : 1);
+      var chaos = toNumber(this.settings.throw_chaos, 60) / 100;
+      var order = buildOrder(count);
+
+      this.polaroids.forEach(function (polaroid, i) {
+        var blockSettings = getBlockSettings(this.blocks, i);
+        var center = this.getFinalCenter(i, count, panelWidth, panelHeight, radius, blockSettings);
+        var finalRot = (sr(i * 7 + 1) * 2 - 1) * maxRotation;
+        var rotationOverride = toNumber(blockSettings.rotation_deg, null);
+        var zIndex = parseInt(blockSettings.z_index, 10);
+
+        if (Number.isFinite(rotationOverride)) {
+          finalRot = rotationOverride;
+        }
+
+        if (!Number.isFinite(zIndex) || zIndex < 1) {
+          zIndex = i + 1;
+        }
+
+        var finalLeft = center.x - (polW / 2);
+        var finalTop = center.y - (totalH / 2);
+        var throwPosition = this.getThrowPosition(i, panelWidth, panelHeight, maxRotation, chaos);
+        var step = order.indexOf(i);
+
+        polaroid.style.zIndex = String(zIndex);
+        polaroid.dataset.finalLeft = String(finalLeft);
+        polaroid.dataset.finalTop = String(finalTop);
+        polaroid.dataset.finalRot = String(finalRot);
+        polaroid.dataset.throwLeft = String(throwPosition.x);
+        polaroid.dataset.throwTop = String(throwPosition.y);
+        polaroid.dataset.throwRot = String(throwPosition.rotation);
+        polaroid.dataset.throwScale = String(throwPosition.scale);
+        polaroid.dataset.step = String(step);
+
+        if (settled) {
+          polaroid.style.transition = 'none';
+          polaroid.style.left = finalLeft + 'px';
+          polaroid.style.top = finalTop + 'px';
+          polaroid.style.transform = 'rotate(' + finalRot + 'deg) scale(1)';
+          polaroid.style.opacity = '1';
+        } else {
+          this.placeAtThrow(polaroid);
+        }
+      }, this);
+    };
+
+    EditorialPolaroidBand.prototype.getFinalCenter = function (i, count, panelWidth, panelHeight, radius, blockSettings) {
+      var cx = panelWidth * 0.5;
+      var cy = panelHeight * 0.5;
+      var baseAngle = (i / count) * Math.PI * 2 - Math.PI / 2;
+      var jitter = (sr(i * 17 + 3) - 0.5) * (Math.PI * 2 / count) * 0.55;
+      var angle = baseAngle + jitter;
+      var rVar = 0.55 + sr(i * 11 + 5) * 0.9;
+      var finalX = cx + Math.cos(angle) * radius * rVar;
+      var finalY = cy + Math.sin(angle) * radius * rVar;
+      var topOverride = toNumber(blockSettings.pos_top_percent, null);
+      var leftOverride = toNumber(blockSettings.pos_left_percent, null);
+
+      if (Number.isFinite(topOverride) && Number.isFinite(leftOverride)) {
+        finalX = panelWidth * (leftOverride / 100);
+        finalY = panelHeight * (topOverride / 100);
+      }
+
+      return { x: finalX, y: finalY };
+    };
+
+    EditorialPolaroidBand.prototype.getThrowPosition = function (i, panelWidth, panelHeight, maxRotation, chaos) {
+      var zone = sr(i * 13 + 9);
+      var tx;
+      var ty;
+
+      if (zone < 0.25) {
+        tx = (-0.1 + sr(i * 3) * 0.3) * panelWidth;
+        ty = (0.1 + sr(i * 5) * 0.8) * panelHeight;
+      } else if (zone < 0.50) {
+        tx = (0.7 + sr(i * 7) * 0.4) * panelWidth;
+        ty = (0.1 + sr(i * 11) * 0.8) * panelHeight;
+      } else if (zone < 0.75) {
+        tx = (0.1 + sr(i * 9) * 0.8) * panelWidth;
+        ty = (-0.1 + sr(i * 3) * 0.25) * panelHeight;
+      } else {
+        tx = (0.1 + sr(i * 11) * 0.8) * panelWidth;
+        ty = (0.75 + sr(i * 7) * 0.35) * panelHeight;
+      }
+
+      var cx2 = (0.35 + sr(i * 19) * 0.3) * panelWidth;
+      var cy2 = (0.35 + sr(i * 23) * 0.3) * panelHeight;
+
+      return {
+        x: tx * chaos + cx2 * (1 - chaos),
+        y: ty * chaos + cy2 * (1 - chaos),
+        rotation: (sr(i * 31 + 13) * 2 - 1) * (maxRotation + chaos * 35),
+        scale: 0.75 + chaos * 0.35
+      };
+    };
+
+    EditorialPolaroidBand.prototype.placeAtThrow = function (polaroid) {
+      polaroid.style.transition = 'none';
+      polaroid.style.left = polaroid.dataset.throwLeft + 'px';
+      polaroid.style.top = polaroid.dataset.throwTop + 'px';
+      polaroid.style.transform = 'rotate(' + polaroid.dataset.throwRot + 'deg) scale(' + polaroid.dataset.throwScale + ')';
+      polaroid.style.opacity = '0';
+    };
+
+    EditorialPolaroidBand.prototype.play = function () {
+      this.hasPlayed = true;
+
+      this.polaroids.forEach(function (polaroid) {
+        var step = parseInt(polaroid.dataset.step, 10) || 0;
+        var phaseOneDelay = step * 80;
+
+        this.placeAtThrow(polaroid);
+
+        window.setTimeout(function () {
+          polaroid.style.transition = 'opacity 0.15s ease';
+          polaroid.style.opacity = '1';
+        }, phaseOneDelay);
+
+        window.setTimeout(function () {
+          polaroid.style.transition = 'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+          polaroid.style.left = polaroid.dataset.finalLeft + 'px';
+          polaroid.style.top = polaroid.dataset.finalTop + 'px';
+          polaroid.style.transform = 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)';
+        }, phaseOneDelay + 150);
+      }, this);
+    };
+
+    function initSection(section) {
+      if (!section) {
+        return;
+      }
+
+      var previous = instances.get(section);
+      if (previous) {
+        previous.destroy();
+      }
+
+      instances.set(section, new EditorialPolaroidBand(section));
+    }
+
+    function initAll(root) {
+      Array.from((root || document).querySelectorAll('[data-editorial-polaroid-band]')).forEach(initSection);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        initAll(document);
+      });
+    } else {
+      initAll(document);
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      initAll(event.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Editorial Story Band",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "From the studio"
+    },
+    {
+      "type": "textarea",
+      "id": "headline",
+      "label": "Headline",
+      "default": "A softer kind\nof statement"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "Small moments, natural textures, and bags made to carry the pieces of your everyday with ease."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Explore the story"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Video MP4 URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "range",
+      "id": "left_width_percent",
+      "label": "Left width percent",
+      "min": 30,
+      "max": 60,
+      "step": 1,
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "section_height_px",
+      "label": "Section height",
+      "min": 300,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "desktop_polaroid_size_px",
+      "label": "Desktop polaroid size",
+      "min": 70,
+      "max": 220,
+      "step": 5,
+      "unit": "px",
+      "default": 115
+    },
+    {
+      "type": "range",
+      "id": "mobile_polaroid_size_px",
+      "label": "Mobile polaroid size",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "polaroid_padding_px",
+      "label": "Polaroid padding",
+      "min": 5,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "range",
+      "id": "polaroid_bottom_px",
+      "label": "Polaroid bottom border",
+      "min": 18,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "max_rotation_deg",
+      "label": "Max rotation",
+      "min": 0,
+      "max": 45,
+      "step": 1,
+      "unit": "deg",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spread_radius_px",
+      "label": "Spread radius",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "throw_chaos",
+      "label": "Throw chaos",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "polaroid",
+      "name": "Polaroid",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "number",
+          "id": "pos_top_percent",
+          "label": "Position top percent"
+        },
+        {
+          "type": "number",
+          "id": "pos_left_percent",
+          "label": "Position left percent"
+        },
+        {
+          "type": "text",
+          "id": "rotation_deg",
+          "label": "Rotation degrees"
+        },
+        {
+          "type": "number",
+          "id": "z_index",
+          "label": "Z-index",
+          "default": 1
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Story Band"
+    }
+  ]
+}
+{% endschema %}

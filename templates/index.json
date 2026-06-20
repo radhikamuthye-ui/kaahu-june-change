@@ -248,6 +248,28 @@
         "animation_style": "fade_in"
       }
     },
+    "editorial_polaroid_band_homepage": {
+      "type": "editorial-polaroid-band",
+      "name": "Editorial Story Band",
+      "settings": {
+        "eyebrow_text": "From the studio",
+        "headline": "A softer kind\nof statement",
+        "body_text": "Small moments, natural textures, and bags made to carry the pieces of your everyday with ease.",
+        "cta_label": "Explore the story",
+        "cta_url": "",
+        "video": "",
+        "fallback_image": "",
+        "left_width_percent": 42,
+        "section_height_px": 500,
+        "desktop_polaroid_size_px": 115,
+        "mobile_polaroid_size_px": 75,
+        "polaroid_padding_px": 9,
+        "polaroid_bottom_px": 26,
+        "max_rotation_deg": 20,
+        "spread_radius_px": 95,
+        "throw_chaos": 60
+      }
+    },
     "kaahu_bestsellers_homepage": {
       "type": "kaahu-bestsellers",
       "blocks": {
@@ -1678,6 +1700,7 @@
   "order": [
     "paired_product_slideshow_kaahu",
     "image_with_text_FJDkML",
+    "editorial_polaroid_band_homepage",
     "kaahu_bestsellers_homepage",
     "kaahu_value_cards_homepage",
     "kaahu_impact_membership_homepage",
