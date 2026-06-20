@@ -242,9 +242,9 @@
         "collection_all": {
           "type": "collection_link",
           "settings": {
-            "collection": "all-of-kaahu",
+            "collection": "frontpage",
             "label": "All Products",
-            "image": "shopify://shop_images/Feathered_hope_1_81366b27-4dbd-477d-b499-5a692d680529.jpg",
+            "image": "shopify://shop_images/Kaahu_all_bags_1_without_text.jpg",
             "link": ""
           }
         },
@@ -253,7 +253,7 @@
           "settings": {
             "collection": "best-sellers",
             "label": "Best Sellers",
-            "image": "shopify://shop_images/Kaahu_all_bags_1_without_text.jpg",
+            "image": "shopify://shop_images/Blush_Flame_Messenger.jpg",
             "link": ""
           }
         },
@@ -262,6 +262,7 @@
           "settings": {
             "collection": "sale",
             "label": "",
+            "image": "shopify://shop_images/Screenshot_2026-06-19_at_10.38.28_PM.png",
             "link": ""
           }
         },

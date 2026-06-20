@@ -23,7 +23,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/the-marshmallow-thread"
           }
         },
         "slide_Yttz8n": {
@@ -37,7 +37,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/shoppers"
           }
         },
         "slide_EXEGL9": {
@@ -51,7 +51,7 @@
             "event_label_override": "",
             "event_text_override": "",
             "primary_link_override": "",
-            "secondary_link_override": ""
+            "secondary_link_override": "shopify://collections/the-marshmallow-thread"
           }
         },
         "slide_tL3Kwx": {
@@ -368,7 +368,7 @@
         "mobile_media_aspect_ratio": "3 / 4",
         "mobile_margin_px": 20,
         "content_background_color": "#ffffff",
-        "eyebrow_color": "#D17535",
+        "eyebrow_color": "#d17535",
         "eyebrow_size_desktop": 11,
         "eyebrow_size_mobile": 11,
         "eyebrow_weight": "500",
@@ -386,7 +386,7 @@
         "body_weight": "400",
         "body_line_height": 165,
         "body_max_width": 300,
-        "cta_color": "#7E7D7C",
+        "cta_color": "#7e7d7c",
         "cta_size_desktop": 15,
         "cta_size_mobile": 13,
         "cta_weight": "500",
@@ -398,7 +398,7 @@
         "spread_radius_px": 110,
         "throw_chaos": 80,
         "throw_duration_ms": 1800,
-        "slider_color": "#D9CCAA",
+        "slider_color": "#d9ccaa",
         "slider_control_size_px": 25,
         "slider_icon_size_px": 17,
         "slider_control_bg_opacity": 14,
@@ -539,7 +539,7 @@
         "image_background": "#f4f1ed",
         "scrollbar_color": "#d17434",
         "swipe_hint_color": "#d17434",
-        "eyebrow_size_mobile": 10,
+        "eyebrow_size_mobile": 11,
         "eyebrow_size_desktop": 11,
         "eyebrow_letter_spacing": 16,
         "eyebrow_case": "uppercase",
@@ -566,11 +566,11 @@
         "quick_size_mobile": 11,
         "quick_size_desktop": 11,
         "button_background": "#ffffff",
-        "button_text_color": "#7E7D7C",
-        "button_border_color": "#7E7D7C",
+        "button_text_color": "#7e7d7c",
+        "button_border_color": "#7e7d7c",
         "button_hover_background": "#ffffff",
-        "button_hover_text_color": "#7E7D7C",
-        "button_hover_border_color": "#7E7D7C",
+        "button_hover_text_color": "#7e7d7c",
+        "button_hover_border_color": "#7e7d7c",
         "button_height": 38,
         "button_x_padding": 18,
         "button_radius": 0,
