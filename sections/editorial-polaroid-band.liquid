@@ -12,6 +12,37 @@
     --epb-video-opacity: {{ section.settings.video_opacity_percent | default: 100 | divided_by: 100.0 }};
     --epb-mobile-margin: {{ section.settings.mobile_margin_px | default: 0 }}px;
     --epb-mobile-aspect-ratio: {{ section.settings.mobile_media_aspect_ratio | default: '4 / 5' }};
+    --epb-content-bg: {{ section.settings.content_background_color | default: '#ffffff' }};
+    --epb-eyebrow-color: {{ section.settings.eyebrow_color | default: '#7a6a52' }};
+    --epb-eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop | default: 11 }}px;
+    --epb-eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile | default: 11 }}px;
+    --epb-eyebrow-weight: {{ section.settings.eyebrow_weight | default: '500' }};
+    --epb-eyebrow-letter-spacing: {{ section.settings.eyebrow_letter_spacing | default: 14 | divided_by: 100.0 }}em;
+    --epb-headline-color: {{ section.settings.headline_color | default: '#242424' }};
+    --epb-headline-size-desktop: {{ section.settings.headline_size_desktop | default: 34 }}px;
+    --epb-headline-size-mobile: {{ section.settings.headline_size_mobile | default: 26 }}px;
+    --epb-headline-weight: {{ section.settings.headline_weight | default: '500' }};
+    --epb-headline-line-height: {{ section.settings.headline_line_height | default: 110 | divided_by: 100.0 }};
+    --epb-headline-letter-spacing: {{ section.settings.headline_letter_spacing | default: -2 | divided_by: 100.0 }}em;
+    --epb-body-color: {{ section.settings.body_color | default: '#242424' }};
+    --epb-body-opacity: {{ section.settings.body_opacity_percent | default: 65 | divided_by: 100.0 }};
+    --epb-body-size-desktop: {{ section.settings.body_size_desktop | default: 14 }}px;
+    --epb-body-size-mobile: {{ section.settings.body_size_mobile | default: 14 }}px;
+    --epb-body-weight: {{ section.settings.body_weight | default: '400' }};
+    --epb-body-line-height: {{ section.settings.body_line_height | default: 165 | divided_by: 100.0 }};
+    --epb-body-max-width: {{ section.settings.body_max_width | default: 300 }}px;
+    --epb-cta-color: {{ section.settings.cta_color | default: '#242424' }};
+    --epb-cta-size-desktop: {{ section.settings.cta_size_desktop | default: 13 }}px;
+    --epb-cta-size-mobile: {{ section.settings.cta_size_mobile | default: 13 }}px;
+    --epb-cta-weight: {{ section.settings.cta_weight | default: '500' }};
+    --epb-control-size: {{ section.settings.slider_control_size_px | default: 24 }}px;
+    --epb-control-icon-size: {{ section.settings.slider_icon_size_px | default: 18 }}px;
+    --epb-control-bg-opacity: {{ section.settings.slider_control_bg_opacity | default: 14 | divided_by: 100.0 }};
+    --epb-control-border-opacity: {{ section.settings.slider_control_border_opacity | default: 22 | divided_by: 100.0 }};
+    --epb-slider-track-height: {{ section.settings.slider_track_height_px | default: 3 }}px;
+    --epb-slider-thumb-size: {{ section.settings.slider_thumb_size_px | default: 12 }}px;
+    --epb-slider-color: {{ section.settings.slider_color | default: '#ffffff' }};
+    --epb-slider-track-opacity: {{ section.settings.slider_track_opacity | default: 45 | divided_by: 100.0 }};
   "
 >
   <div class="editorial-polaroid-band__inner">
@@ -148,8 +179,8 @@
     padding: 56px 48px;
     display: flex;
     align-items: center;
-    background: var(--color-background, #fff);
-    color: var(--color-foreground, #242424);
+    background: var(--epb-content-bg);
+    color: var(--epb-headline-color);
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__content-inner {
@@ -161,29 +192,31 @@
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__eyebrow {
     margin: 0;
-    font-size: 11px;
+    font-size: var(--epb-eyebrow-size-desktop);
     line-height: 1.2;
-    letter-spacing: 0.14em;
+    letter-spacing: var(--epb-eyebrow-letter-spacing);
     text-transform: uppercase;
-    color: #7a6a52;
-    font-weight: 500;
+    color: var(--epb-eyebrow-color);
+    font-weight: var(--epb-eyebrow-weight);
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__headline {
     margin: 0;
     font-family: var(--font-heading-family);
-    font-size: 34px;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--color-foreground, #242424);
+    font-size: var(--epb-headline-size-desktop);
+    font-weight: var(--epb-headline-weight);
+    line-height: var(--epb-headline-line-height);
+    letter-spacing: var(--epb-headline-letter-spacing);
+    color: var(--epb-headline-color);
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__body {
-    max-width: 300px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: color-mix(in srgb, var(--color-foreground, #242424) 65%, transparent);
+    max-width: var(--epb-body-max-width);
+    font-size: var(--epb-body-size-desktop);
+    font-weight: var(--epb-body-weight);
+    line-height: var(--epb-body-line-height);
+    color: var(--epb-body-color);
+    opacity: var(--epb-body-opacity);
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__body p {
@@ -192,9 +225,9 @@
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__cta {
     width: fit-content;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--color-foreground, #242424);
+    font-size: var(--epb-cta-size-desktop);
+    font-weight: var(--epb-cta-weight);
+    color: var(--epb-cta-color);
     text-decoration: underline;
     text-underline-offset: 4px;
   }
@@ -257,16 +290,16 @@
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__control {
-    width: 28px;
-    height: 28px;
+    width: var(--epb-control-size);
+    height: var(--epb-control-size);
     padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    border: 0.5px solid rgba(255, 255, 255, var(--epb-control-border-opacity));
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.18);
-    color: #fff;
+    background: rgba(255, 255, 255, var(--epb-control-bg-opacity));
+    color: var(--epb-slider-color);
     cursor: pointer;
     flex: 0 0 auto;
   }
@@ -274,18 +307,50 @@
   #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline {
     flex: 1 1 auto;
     min-width: 80px;
-    height: 28px;
-    accent-color: #fff;
+    height: var(--epb-control-size);
+    accent-color: var(--epb-slider-color);
     cursor: pointer;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__icon,
   #shopify-section-{{ section.id }} .editorial-polaroid-band__icon svg,
   #shopify-section-{{ section.id }} .editorial-polaroid-band__control > svg {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: var(--epb-control-icon-size);
+    height: var(--epb-control-icon-size);
     fill: currentColor;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline::-webkit-slider-runnable-track {
+    height: var(--epb-slider-track-height);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, var(--epb-slider-track-opacity));
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline::-webkit-slider-thumb {
+    width: var(--epb-slider-thumb-size);
+    height: var(--epb-slider-thumb-size);
+    margin-top: calc((var(--epb-slider-track-height) - var(--epb-slider-thumb-size)) / 2);
+    border: 0;
+    border-radius: 999px;
+    background: var(--epb-slider-color);
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline::-moz-range-track {
+    height: var(--epb-slider-track-height);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, var(--epb-slider-track-opacity));
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__timeline::-moz-range-thumb {
+    width: var(--epb-slider-thumb-size);
+    height: var(--epb-slider-thumb-size);
+    border: 0;
+    border-radius: 999px;
+    background: var(--epb-slider-color);
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__icon--play {
@@ -325,7 +390,19 @@
     }
 
     #shopify-section-{{ section.id }} .editorial-polaroid-band__headline {
-      font-size: 26px;
+      font-size: var(--epb-headline-size-mobile);
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__eyebrow {
+      font-size: var(--epb-eyebrow-size-mobile);
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__body {
+      font-size: var(--epb-body-size-mobile);
+    }
+
+    #shopify-section-{{ section.id }} .editorial-polaroid-band__cta {
+      font-size: var(--epb-cta-size-mobile);
     }
 
     #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid {
@@ -1009,6 +1086,228 @@
       "default": 0
     },
     {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "content_background_color",
+      "label": "Text panel background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#7a6a52"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size_desktop",
+      "label": "Eyebrow size desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size_mobile",
+      "label": "Eyebrow size mobile",
+      "min": 8,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_weight",
+      "label": "Eyebrow weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_letter_spacing",
+      "label": "Eyebrow letter spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#242424"
+    },
+    {
+      "type": "range",
+      "id": "headline_size_desktop",
+      "label": "Headline size desktop",
+      "min": 18,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "headline_size_mobile",
+      "label": "Headline size mobile",
+      "min": 16,
+      "max": 46,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "select",
+      "id": "headline_weight",
+      "label": "Headline weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "headline_line_height",
+      "label": "Headline line height",
+      "min": 90,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "headline_letter_spacing",
+      "label": "Headline letter spacing",
+      "min": -6,
+      "max": 6,
+      "step": 1,
+      "unit": "%",
+      "default": -2
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body color",
+      "default": "#242424"
+    },
+    {
+      "type": "range",
+      "id": "body_opacity_percent",
+      "label": "Body opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "body_size_desktop",
+      "label": "Body size desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "body_size_mobile",
+      "label": "Body size mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "body_weight",
+      "label": "Body weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "body_line_height",
+      "label": "Body line height",
+      "min": 110,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "default": 165
+    },
+    {
+      "type": "range",
+      "id": "body_max_width",
+      "label": "Body max width",
+      "min": 200,
+      "max": 620,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "CTA color",
+      "default": "#242424"
+    },
+    {
+      "type": "range",
+      "id": "cta_size_desktop",
+      "label": "CTA size desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "cta_size_mobile",
+      "label": "CTA size mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "cta_weight",
+      "label": "CTA weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
       "type": "range",
       "id": "desktop_polaroid_size_px",
       "label": "Desktop polaroid size",
@@ -1086,6 +1385,86 @@
       "step": 100,
       "unit": "ms",
       "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Slider controls"
+    },
+    {
+      "type": "color",
+      "id": "slider_color",
+      "label": "Slider/icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "slider_control_size_px",
+      "label": "Button size",
+      "min": 18,
+      "max": 44,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "slider_icon_size_px",
+      "label": "Icon size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "slider_control_bg_opacity",
+      "label": "Button background opacity",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "%",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "slider_control_border_opacity",
+      "label": "Button border opacity",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "%",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "slider_track_height_px",
+      "label": "Slider track thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slider_thumb_size_px",
+      "label": "Slider thumb size",
+      "min": 6,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "slider_track_opacity",
+      "label": "Slider track opacity",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 45
     }
   ],
   "blocks": [
