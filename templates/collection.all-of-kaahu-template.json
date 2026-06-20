@@ -63,6 +63,7 @@
           "settings": {
             "collection": "best-sellers",
             "label": "Best Sellers",
+            "image": "shopify://shop_images/Blush_flame5.jpg",
             "link": ""
           }
         },
@@ -95,6 +96,7 @@
           "settings": {
             "collection": "the-marshmallow-thread",
             "label": "Marshmallow Thread",
+            "image": "shopify://shop_images/Golden_orca_3.jpg",
             "link": ""
           }
         },
@@ -135,6 +137,7 @@
           "settings": {
             "collection": "all-of-kaahu",
             "label": "All Products",
+            "image": "shopify://shop_images/Flutter_butter4.jpg",
             "link": ""
           }
         },
