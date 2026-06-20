@@ -361,14 +361,15 @@
         "cta_label": "Explore the story",
         "cta_url": "",
         "video": "",
+        "fallback_image": "shopify://shop_images/soul_of_kaahu_mobile_v1.jpg",
         "left_width_percent": 42,
         "section_height_px": 500,
         "desktop_polaroid_size_px": 115,
         "mobile_polaroid_size_px": 75,
         "polaroid_padding_px": 9,
-        "polaroid_bottom_px": 26,
-        "max_rotation_deg": 20,
-        "spread_radius_px": 95,
+        "polaroid_bottom_px": 22,
+        "max_rotation_deg": 32,
+        "spread_radius_px": 135,
         "throw_chaos": 60
       }
     },
