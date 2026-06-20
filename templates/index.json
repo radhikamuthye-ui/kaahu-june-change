@@ -361,6 +361,7 @@
         "cta_label": "Explore the story",
         "cta_url": "",
         "video": "",
+        "video_opacity_percent": 100,
         "fallback_image": "shopify://shop_images/soul_of_kaahu_mobile_v1.jpg",
         "left_width_percent": 42,
         "section_height_px": 500,

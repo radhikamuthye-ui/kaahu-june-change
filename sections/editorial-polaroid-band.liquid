@@ -9,20 +9,23 @@
     --epb-polaroid-mobile: {{ section.settings.mobile_polaroid_size_px }}px;
     --epb-polaroid-padding: {{ section.settings.polaroid_padding_px }}px;
     --epb-polaroid-bottom: {{ section.settings.polaroid_bottom_px }}px;
+    --epb-video-opacity: {{ section.settings.video_opacity_percent | default: 100 | divided_by: 100.0 }};
   "
 >
   <div class="editorial-polaroid-band__inner">
     <div class="editorial-polaroid-band__media">
       {% if section.settings.video != blank %}
-        <video
-          class="editorial-polaroid-band__video"
-          autoplay
-          muted
-          loop
-          playsinline
-        >
-          <source src="{{ section.settings.video }}" type="video/mp4">
-        </video>
+        {{
+          section.settings.video
+          | video_tag:
+            class: 'editorial-polaroid-band__video',
+            image_size: '1800x',
+            autoplay: true,
+            muted: true,
+            loop: true,
+            controls: false,
+            playsinline: true
+        }}
       {% elsif section.settings.fallback_image != blank %}
         {{
           section.settings.fallback_image
@@ -63,20 +66,27 @@
         {% endfor %}
       </div>
 
-      {% if section.settings.video != blank %}
-        <button class="editorial-polaroid-band__video-toggle" type="button" aria-label="Pause video" data-video-toggle>
-          <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--pause" data-icon-pause aria-hidden="true">
+      {% if section.blocks.size > 0 %}
+        <div class="editorial-polaroid-band__controls">
+          <button class="editorial-polaroid-band__control" type="button" aria-label="Pause animation" data-animation-toggle>
+            <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--pause" data-icon-pause aria-hidden="true">
+              <svg viewBox="0 0 28 28" focusable="false">
+                <rect x="9" y="7" width="3" height="14" rx="0.5"></rect>
+                <rect x="16" y="7" width="3" height="14" rx="0.5"></rect>
+              </svg>
+            </span>
+            <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--play" data-icon-play aria-hidden="true">
+              <svg viewBox="0 0 28 28" focusable="false">
+                <path d="M10 7.5v13l10-6.5-10-6.5z"></path>
+              </svg>
+            </span>
+          </button>
+          <button class="editorial-polaroid-band__control" type="button" aria-label="Replay animation" data-animation-replay>
             <svg viewBox="0 0 28 28" focusable="false">
-              <rect x="9" y="7" width="3" height="14" rx="0.5"></rect>
-              <rect x="16" y="7" width="3" height="14" rx="0.5"></rect>
+              <path d="M14 6a8 8 0 1 1-7.48 5.16l1.88.68A6 6 0 1 0 14 8h-1.3l1.9 1.9-1.4 1.4L8.9 7l4.3-4.3 1.4 1.4L12.7 6H14z"></path>
             </svg>
-          </span>
-          <span class="editorial-polaroid-band__icon editorial-polaroid-band__icon--play" data-icon-play aria-hidden="true">
-            <svg viewBox="0 0 28 28" focusable="false">
-              <path d="M10 7.5v13l10-6.5-10-6.5z"></path>
-            </svg>
-          </span>
-        </button>
+          </button>
+        </div>
       {% endif %}
     </div>
 
@@ -195,6 +205,10 @@
     object-fit: cover;
   }
 
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video {
+    opacity: var(--epb-video-opacity);
+  }
+
   #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroids {
     position: absolute;
     inset: 0;
@@ -219,11 +233,16 @@
     object-fit: cover;
   }
 
-  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle {
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__controls {
     position: absolute;
     bottom: 14px;
     left: 14px;
     z-index: 30;
+    display: flex;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__control {
     width: 28px;
     height: 28px;
     padding: 0;
@@ -238,7 +257,8 @@
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__icon,
-  #shopify-section-{{ section.id }} .editorial-polaroid-band__icon svg {
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__icon svg,
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__control > svg {
     display: block;
     width: 28px;
     height: 28px;
@@ -249,11 +269,11 @@
     display: none;
   }
 
-  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle.is-paused .editorial-polaroid-band__icon--pause {
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__control.is-paused .editorial-polaroid-band__icon--pause {
     display: none;
   }
 
-  #shopify-section-{{ section.id }} .editorial-polaroid-band__video-toggle.is-paused .editorial-polaroid-band__icon--play {
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__control.is-paused .editorial-polaroid-band__icon--play {
     display: block;
   }
 
@@ -335,11 +355,15 @@
       this.settings = readJson(section, 'data-settings', {});
       this.blocks = this.container ? readJson(this.container, 'data-blocks', []) : [];
       this.hasPlayed = false;
+      this.isPaused = false;
+      this.isVisible = false;
+      this.animations = [];
+      this.timers = [];
       this.resizeTimer = null;
       this.observer = null;
       this.onResize = this.onResize.bind(this);
 
-      this.initVideoToggle();
+      this.initAnimationControls();
       this.layout(false);
       this.observe();
       window.addEventListener('resize', this.onResize);
@@ -351,27 +375,41 @@
         this.observer.disconnect();
       }
       clearTimeout(this.resizeTimer);
+      this.clearTimers();
+      this.cancelAnimations();
     };
 
-    EditorialPolaroidBand.prototype.initVideoToggle = function () {
-      var video = this.section.querySelector('video');
-      var toggle = this.section.querySelector('[data-video-toggle]');
+    EditorialPolaroidBand.prototype.initAnimationControls = function () {
+      var self = this;
+      var toggle = this.section.querySelector('[data-animation-toggle]');
+      var replay = this.section.querySelector('[data-animation-replay]');
 
-      if (!video || !toggle) {
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          if (self.isPaused) {
+            self.resume();
+          } else {
+            self.pause();
+          }
+        });
+      }
+
+      if (replay) {
+        replay.addEventListener('click', function () {
+          self.replay();
+        });
+      }
+    };
+
+    EditorialPolaroidBand.prototype.setToggleState = function () {
+      var toggle = this.section.querySelector('[data-animation-toggle]');
+
+      if (!toggle) {
         return;
       }
 
-      toggle.addEventListener('click', function () {
-        if (video.paused) {
-          video.play();
-          toggle.classList.remove('is-paused');
-          toggle.setAttribute('aria-label', 'Pause video');
-        } else {
-          video.pause();
-          toggle.classList.add('is-paused');
-          toggle.setAttribute('aria-label', 'Play video');
-        }
-      });
+      toggle.classList.toggle('is-paused', this.isPaused);
+      toggle.setAttribute('aria-label', this.isPaused ? 'Play animation' : 'Pause animation');
     };
 
     EditorialPolaroidBand.prototype.observe = function () {
@@ -384,8 +422,12 @@
 
       this.observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting && !self.hasPlayed) {
-            self.play();
+          if (entry.isIntersecting) {
+            self.isVisible = true;
+            self.replay();
+          } else {
+            self.isVisible = false;
+            self.reset();
           }
         });
       }, { threshold: 0.2 });
@@ -523,26 +565,149 @@
       polaroid.style.opacity = '0';
     };
 
+    EditorialPolaroidBand.prototype.clearTimers = function () {
+      this.timers.forEach(function (timer) {
+        window.clearTimeout(timer);
+      });
+      this.timers = [];
+    };
+
+    EditorialPolaroidBand.prototype.cancelAnimations = function () {
+      this.animations.forEach(function (animation) {
+        animation.cancel();
+      });
+      this.animations = [];
+    };
+
+    EditorialPolaroidBand.prototype.reset = function () {
+      this.hasPlayed = false;
+      this.clearTimers();
+      this.cancelAnimations();
+      this.layout(false);
+    };
+
+    EditorialPolaroidBand.prototype.replay = function () {
+      this.isPaused = false;
+      this.setToggleState();
+      this.reset();
+      this.play();
+    };
+
+    EditorialPolaroidBand.prototype.pause = function () {
+      this.isPaused = true;
+      this.setToggleState();
+
+      if (this.animations.length) {
+        this.animations.forEach(function (animation) {
+          animation.pause();
+        });
+        return;
+      }
+
+      this.polaroids.forEach(function (polaroid) {
+        var computed = window.getComputedStyle(polaroid);
+        polaroid.style.transition = 'none';
+        polaroid.style.left = computed.left;
+        polaroid.style.top = computed.top;
+        polaroid.style.transform = computed.transform;
+        polaroid.style.opacity = computed.opacity;
+      });
+      this.clearTimers();
+    };
+
+    EditorialPolaroidBand.prototype.resume = function () {
+      this.isPaused = false;
+      this.setToggleState();
+
+      if (this.animations.length) {
+        this.animations.forEach(function (animation) {
+          animation.play();
+        });
+        return;
+      }
+
+      if (this.isVisible) {
+        this.replay();
+      }
+    };
+
     EditorialPolaroidBand.prototype.play = function () {
       this.hasPlayed = true;
+      this.clearTimers();
+      this.cancelAnimations();
+      var self = this;
 
       this.polaroids.forEach(function (polaroid) {
         var step = parseInt(polaroid.dataset.step, 10) || 0;
         var phaseOneDelay = step * 80;
+        var keyframes = [
+          {
+            left: polaroid.dataset.throwLeft + 'px',
+            top: polaroid.dataset.throwTop + 'px',
+            transform: 'rotate(' + polaroid.dataset.throwRot + 'deg) scale(' + polaroid.dataset.throwScale + ')',
+            opacity: 0,
+            offset: 0
+          },
+          {
+            left: polaroid.dataset.throwLeft + 'px',
+            top: polaroid.dataset.throwTop + 'px',
+            transform: 'rotate(' + polaroid.dataset.throwRot + 'deg) scale(' + polaroid.dataset.throwScale + ')',
+            opacity: 1,
+            offset: 0.214
+          },
+          {
+            left: polaroid.dataset.finalLeft + 'px',
+            top: polaroid.dataset.finalTop + 'px',
+            transform: 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)',
+            opacity: 1,
+            offset: 1
+          }
+        ];
 
         this.placeAtThrow(polaroid);
 
-        window.setTimeout(function () {
-          polaroid.style.transition = 'opacity 0.15s ease';
-          polaroid.style.opacity = '1';
-        }, phaseOneDelay);
+        if (polaroid.animate) {
+          var animation = polaroid.animate(keyframes, {
+            duration: 700,
+            delay: phaseOneDelay,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fill: 'forwards'
+          });
 
-        window.setTimeout(function () {
-          polaroid.style.transition = 'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-          polaroid.style.left = polaroid.dataset.finalLeft + 'px';
-          polaroid.style.top = polaroid.dataset.finalTop + 'px';
-          polaroid.style.transform = 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)';
-        }, phaseOneDelay + 150);
+          if (this.isPaused) {
+            animation.pause();
+          }
+
+          animation.addEventListener('finish', function () {
+            polaroid.style.left = polaroid.dataset.finalLeft + 'px';
+            polaroid.style.top = polaroid.dataset.finalTop + 'px';
+            polaroid.style.transform = 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)';
+            polaroid.style.opacity = '1';
+            animation.cancel();
+            self.animations = self.animations.filter(function (item) {
+              return item !== animation;
+            });
+          });
+
+          this.animations.push(animation);
+          return;
+        }
+
+        this.timers.push(window.setTimeout(function () {
+          if (polaroid.closest('[data-editorial-polaroid-band]')) {
+            polaroid.style.transition = 'opacity 0.15s ease';
+            polaroid.style.opacity = '1';
+          }
+        }, phaseOneDelay));
+
+        this.timers.push(window.setTimeout(function () {
+          if (polaroid.closest('[data-editorial-polaroid-band]')) {
+            polaroid.style.transition = 'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+            polaroid.style.left = polaroid.dataset.finalLeft + 'px';
+            polaroid.style.top = polaroid.dataset.finalTop + 'px';
+            polaroid.style.transform = 'rotate(' + polaroid.dataset.finalRot + 'deg) scale(1)';
+          }
+        }, phaseOneDelay + 150));
       }, this);
     };
 
@@ -573,6 +738,16 @@
 
     document.addEventListener('shopify:section:load', function (event) {
       initAll(event.target);
+    });
+
+    document.addEventListener('shopify:section:unload', function (event) {
+      Array.from(event.target.querySelectorAll('[data-editorial-polaroid-band]')).forEach(function (section) {
+        var instance = instances.get(section);
+        if (instance) {
+          instance.destroy();
+          instances.delete(section);
+        }
+      });
     });
   })();
 </script>
@@ -611,9 +786,19 @@
       "label": "CTA URL"
     },
     {
-      "type": "url",
+      "type": "video",
       "id": "video",
-      "label": "Video MP4 URL"
+      "label": "Video"
+    },
+    {
+      "type": "range",
+      "id": "video_opacity_percent",
+      "label": "Video opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "image_picker",
