@@ -360,18 +360,18 @@
         "body_text": "Small moments, natural textures, and bags made to carry the pieces of your everyday with ease.",
         "cta_label": "Explore the story",
         "cta_url": "",
-        "video": "",
-        "video_opacity_percent": 100,
+        "video": "shopify://files/videos/Golden pulse.mp4",
+        "video_opacity_percent": 40,
         "fallback_image": "shopify://shop_images/soul_of_kaahu_mobile_v1.jpg",
         "left_width_percent": 42,
         "section_height_px": 500,
-        "desktop_polaroid_size_px": 115,
-        "mobile_polaroid_size_px": 75,
+        "desktop_polaroid_size_px": 150,
+        "mobile_polaroid_size_px": 90,
         "polaroid_padding_px": 9,
-        "polaroid_bottom_px": 22,
-        "max_rotation_deg": 32,
-        "spread_radius_px": 135,
-        "throw_chaos": 60
+        "polaroid_bottom_px": 18,
+        "max_rotation_deg": 30,
+        "spread_radius_px": 110,
+        "throw_chaos": 80
       }
     },
     "kaahu_bestsellers_homepage": {
