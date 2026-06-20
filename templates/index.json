@@ -250,6 +250,109 @@
     },
     "editorial_polaroid_band_homepage": {
       "type": "editorial-polaroid-band",
+      "blocks": {
+        "polaroid_3jzVKC": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Golden_Pulse_1.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_Jcr4RU": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Flutter_Butter_0e852c44-5fbd-42fa-9b4a-514c6a40c46e.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_KUw7T4": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Elysian_woods_08411fa6-b54b-4b0a-a7db-3b4ec3016b89.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_UtmBNw": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Purely_Rose_3.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_CMjntX": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/DSC00129.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_nxtnUV": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Blush_Flame_1_small_8dca2a31-6297-4c68-8279-6185c505c976.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_7LXkJP": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Ruby_reverence_52ffa05a-71d7-43e3-b695-2070595e7a19.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_yfNJKX": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Seraph_feather_dadcf652-e466-40d1-9d28-cad7137972bc.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_nyPBpT": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Blush_flame5.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_8WBC9E": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Pocketful_of_sun_1.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        },
+        "polaroid_j6VpJD": {
+          "type": "polaroid",
+          "settings": {
+            "image": "shopify://shop_images/Flutter_butter4.jpg",
+            "rotation_deg": "",
+            "z_index": 1
+          }
+        }
+      },
+      "block_order": [
+        "polaroid_3jzVKC",
+        "polaroid_Jcr4RU",
+        "polaroid_KUw7T4",
+        "polaroid_UtmBNw",
+        "polaroid_CMjntX",
+        "polaroid_nxtnUV",
+        "polaroid_7LXkJP",
+        "polaroid_yfNJKX",
+        "polaroid_nyPBpT",
+        "polaroid_8WBC9E",
+        "polaroid_j6VpJD"
+      ],
       "name": "Editorial Story Band",
       "settings": {
         "eyebrow_text": "From the studio",
@@ -258,7 +361,6 @@
         "cta_label": "Explore the story",
         "cta_url": "",
         "video": "",
-        "fallback_image": "",
         "left_width_percent": 42,
         "section_height_px": 500,
         "desktop_polaroid_size_px": 115,
