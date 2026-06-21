@@ -6007,6 +6007,87 @@ product-info[id^="MainProduct-"] .product-why-we-love-this .accordion-panel {
   line-height: 1.65;
 }
 
+#pdp-reviews.section-apps {
+  color: #65615a;
+  font-family: var(--font-body-family);
+}
+
+#pdp-reviews :where(.jdgm-rev-widg, .jdgm-all-reviews-widget) {
+  margin: 0 auto !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #65615a !important;
+  font-family: var(--font-body-family) !important;
+}
+
+#pdp-reviews :where(.jdgm-rev-widg__header, .jdgm-rev-widg__body, .jdgm-rev-widg__reviews, .jdgm-rev) {
+  border-color: #ece8e0 !important;
+}
+
+#pdp-reviews :where(.jdgm-rev-widg__title, .jdgm-rev__title) {
+  color: #1d1b17 !important;
+  font-family: var(--font-heading-family) !important;
+  font-weight: var(--font-heading-weight) !important;
+  letter-spacing: 0 !important;
+}
+
+#pdp-reviews .jdgm-rev-widg__title {
+  margin-bottom: 24px !important;
+  font-size: clamp(34px, 2.6vw, 44px) !important;
+  line-height: 1.08 !important;
+}
+
+#pdp-reviews :where(.jdgm-rev-widg__summary-average, .jdgm-rev__rating, .jdgm-rev__timestamp, .jdgm-rev__author, .jdgm-rev__body, .jdgm-rev-widg__summary-text, .jdgm-histogram, .jdgm-sort-dropdown, .jdgm-rev-widg__sort-wrapper) {
+  color: #65615a !important;
+  font-family: var(--font-body-family) !important;
+}
+
+#pdp-reviews :where(.jdgm-star, .jdgm-prev-badge__stars, .jdgm-rev-widg__summary-stars) {
+  color: #e0a52a !important;
+}
+
+#pdp-reviews :where(.jdgm-rev__title, .jdgm-rev__author) {
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+}
+
+#pdp-reviews .jdgm-rev__title {
+  font-weight: 600 !important;
+}
+
+#pdp-reviews .jdgm-rev__author {
+  font-weight: 600 !important;
+}
+
+#pdp-reviews :where(.jdgm-rev__body, .jdgm-rev-widg__summary-text, .jdgm-rev__timestamp) {
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
+
+#pdp-reviews .jdgm-rev {
+  padding: 24px 0 !important;
+}
+
+#pdp-reviews :where(.jdgm-write-rev-link, .jdgm-btn, .jdgm-submit-rev) {
+  min-height: 48px !important;
+  border: 1px solid #1d1b17 !important;
+  border-radius: 999px !important;
+  background: #1d1b17 !important;
+  color: #ffffff !important;
+  font-family: var(--font-body-family) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.2 !important;
+  padding: 14px 24px !important;
+}
+
+#pdp-reviews :where(.jdgm-write-rev-link:hover, .jdgm-btn:hover, .jdgm-submit-rev:hover) {
+  background: #414a29 !important;
+  border-color: #414a29 !important;
+  color: #ffffff !important;
+}
+
 @media only screen and (max-width: 949px) {
   product-info[id^="MainProduct-"] .product-main-info-section {
     padding: 24px 20px 36px;
@@ -6020,6 +6101,35 @@ product-info[id^="MainProduct-"] .product-why-we-love-this .accordion-panel {
   product-info[id^="MainProduct-"] .product-media-image img,
   product-info[id^="MainProduct-"] .product-media-image video {
     border-radius: 18px;
+  }
+
+  #pdp-reviews.section-apps {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  #pdp-reviews .jdgm-rev-widg__title {
+    margin-bottom: 18px !important;
+    font-size: 32px !important;
+  }
+
+  #pdp-reviews :where(.jdgm-rev__title, .jdgm-rev__author) {
+    font-size: 15px !important;
+  }
+
+  #pdp-reviews :where(.jdgm-rev__body, .jdgm-rev-widg__summary-text, .jdgm-rev__timestamp) {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  #pdp-reviews .jdgm-rev {
+    padding: 20px 0 !important;
+  }
+
+  #pdp-reviews :where(.jdgm-write-rev-link, .jdgm-btn, .jdgm-submit-rev) {
+    width: 100% !important;
+    min-height: 52px !important;
+    font-size: 15px !important;
   }
 
 }
