@@ -228,7 +228,7 @@
         "body_max_width": 560,
         "show_cta": true,
         "button_text": "READ MORE →",
-        "button_link": "shopify://blogs/the-kaahu-blog/what-if-your-bag-had-a-passport-the-quiet-journey-of-a-sustainable-handbag",
+        "button_link": "shopify://pages/sustainability",
         "button_style": "link",
         "button_size_mobile": 13,
         "button_size_desktop": 15,
@@ -1690,6 +1690,8 @@
         "arrow_position": "bottom-center",
         "grid_columns": 2,
         "grid_column_gap": 100,
+        "show_swipe_hint": false,
+        "swipe_hint_text": "Swipe to explore",
         "keylines_show": true,
         "keylines_show_mobile": false,
         "keylines_mobile_width": "small",
@@ -1800,6 +1802,8 @@
         "arrow_position": "auto",
         "grid_columns": 2,
         "grid_column_gap": 12,
+        "show_swipe_hint": false,
+        "swipe_hint_text": "Swipe to explore",
         "keylines_show": false,
         "keylines_show_mobile": false,
         "keylines_mobile_width": "small",
@@ -1991,6 +1995,7 @@
         "customer_testimonials_slider_app_embeded_xKDtmC"
       ],
       "settings": {
+        "anchor_id": "",
         "include_margins": true
       }
     },
@@ -2007,6 +2012,7 @@
         "judge_me_reviews_preview_badge_XLAy8D"
       ],
       "settings": {
+        "anchor_id": "",
         "include_margins": true
       }
     },
