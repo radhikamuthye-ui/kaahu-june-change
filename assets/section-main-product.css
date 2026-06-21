@@ -4194,6 +4194,10 @@ a.product__text {
     line-height: 1.2;
   }
 
+  .pdp-rating-link.pdp-rating-new .rating-text {
+    color: rgb(var(--color-price-sale));
+  }
+
   .pdp-rating-link .rating-count span[aria-hidden="true"] {
     border-bottom: 1px solid var(--pdp-rating-link-line-color, var(--pdp-mobile-line, #ece8e0));
     padding-bottom: 1px;
@@ -4591,6 +4595,10 @@ a.product__text {
   color: var(--pdp-rating-text-color, var(--pdp-mobile-text, #65615a));
   font-size: var(--pdp-rating-text-size-mobile, 21px);
   font-weight: 500;
+}
+
+.pdp-rating-link.pdp-rating-new .rating-text {
+  color: rgb(var(--color-price-sale));
 }
 
 .pdp-rating-link .rating-star {
