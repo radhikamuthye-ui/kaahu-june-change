@@ -1097,6 +1097,10 @@
                       --pdp-rating-text-color: {{ block.settings.text_color }};
                       --pdp-rating-star-color: {{ block.settings.star_color }};
                       --pdp-rating-link-line-color: {{ block.settings.link_underline_color }};
+                      --pdp-rating-new-color: {{ block.settings.new_label_color | default: 'rgb(var(--color-price-sale))' }};
+                      --pdp-rating-new-size-mobile: {{ block.settings.new_label_size_mobile | default: block.settings.text_size_mobile }}px;
+                      --pdp-rating-new-size-desktop: {{ block.settings.new_label_size_desktop | default: block.settings.text_size_desktop }}px;
+                      --pdp-rating-new-weight: {{ block.settings.new_label_weight | default: 500 }};
                     "
                     {{ block.shopify_attributes }}
                   >
@@ -1143,9 +1147,9 @@
                         {%- else -%}
                           <span aria-hidden="true">
                             {%- if block.settings.show_count_separator -%}&middot; {% endif -%}
-                            New
+                            {{ block.settings.new_label_text | default: 'New' }}
                           </span>
-                          <span class="visually-hidden">New product</span>
+                          <span class="visually-hidden">{{ block.settings.new_label_text | default: 'New' }}</span>
                         {%- endif -%}
                       </p>
                     {%- endif -%}
@@ -4777,6 +4781,51 @@ document.addEventListener('DOMContentLoaded', function () {
           "id": "link_anchor",
           "label": "Review link anchor",
           "default": "#pdp-reviews"
+        },
+        {
+          "type": "header",
+          "content": "New label"
+        },
+        {
+          "type": "text",
+          "id": "new_label_text",
+          "label": "New label text",
+          "default": "New"
+        },
+        {
+          "type": "color",
+          "id": "new_label_color",
+          "label": "New label color",
+          "default": "#b43a3a"
+        },
+        {
+          "type": "range",
+          "id": "new_label_size_mobile",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "New label size mobile",
+          "default": 21
+        },
+        {
+          "type": "range",
+          "id": "new_label_size_desktop",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "New label size desktop",
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "new_label_weight",
+          "min": 300,
+          "max": 900,
+          "step": 100,
+          "label": "New label font weight",
+          "default": 500
         },
         {
           "type": "header",

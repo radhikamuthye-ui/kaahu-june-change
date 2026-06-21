@@ -4195,7 +4195,9 @@ a.product__text {
   }
 
   .pdp-rating-link.pdp-rating-new .rating-count {
-    color: rgb(var(--color-price-sale));
+    color: var(--pdp-rating-new-color, rgb(var(--color-price-sale)));
+    font-size: var(--pdp-rating-new-size-desktop, var(--pdp-rating-text-size-desktop, 13px));
+    font-weight: var(--pdp-rating-new-weight, 500);
   }
 
   .pdp-rating-link .rating-count span[aria-hidden="true"] {
@@ -4598,7 +4600,9 @@ a.product__text {
 }
 
 .pdp-rating-link.pdp-rating-new .rating-count {
-  color: rgb(var(--color-price-sale));
+  color: var(--pdp-rating-new-color, rgb(var(--color-price-sale)));
+  font-size: var(--pdp-rating-new-size-mobile, var(--pdp-rating-text-size-mobile, 21px));
+  font-weight: var(--pdp-rating-new-weight, 500);
 }
 
 .pdp-rating-link .rating-star {
