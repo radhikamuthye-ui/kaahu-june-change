@@ -46,6 +46,26 @@
   margin-top: 2rem;
 }
 
+.multicolumn-swipe-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  color: var(--mc-card-link-color, currentColor);
+  font-family: var(--font-accent-family);
+  font-size: var(--mc-card-link-size-mobile, var(--font-caption-size-mobile));
+  font-style: var(--font-accent-style);
+  font-weight: var(--mc-card-link-weight, var(--font-accent-weight));
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.multicolumn-swipe-hint svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
 .footer-shopping-info-section .multicolumn-grid-item {
   margin-bottom: 25px;
 }
@@ -444,6 +464,10 @@
   .align-center .shopping-info-item span {
     padding: 0 3rem;
   }  
+
+  .multicolumn-swipe-hint {
+    font-size: var(--mc-card-link-size-desktop, var(--font-caption-size-desktop));
+  }
 }
 
 @media only screen and (min-width: 1400px) {

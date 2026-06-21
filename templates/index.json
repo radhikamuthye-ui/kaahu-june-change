@@ -844,6 +844,8 @@
         "arrow_position": "auto",
         "grid_columns": 3,
         "grid_column_gap": 32,
+        "show_swipe_hint": true,
+        "swipe_hint_text": "Swipe to explore",
         "keylines_show": false,
         "keylines_show_mobile": false,
         "keylines_mobile_width": "small",

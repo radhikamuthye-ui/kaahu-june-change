@@ -421,6 +421,15 @@
 {% endif %}
   
 {% render 'scrolltrack' %}
+
+{% if section.settings.show_swipe_hint and section.settings.swipe_hint_text != blank %}
+  <p class="multicolumn-swipe-hint">
+    <span>{{ section.settings.swipe_hint_text }}</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </p>
+{% endif %}
   
 </div>
 {% endif %}
@@ -1216,6 +1225,18 @@ document.addEventListener("DOMContentLoaded", function() {
       "default": 20,
       "label": "t:sections.multicolumn.settings.column_spacing.label",
       "info": "t:sections.multicolumn.settings.column_spacing.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swipe_hint",
+      "default": false,
+      "label": "Show swipe hint"
+    },
+    {
+      "type": "text",
+      "id": "swipe_hint_text",
+      "label": "Swipe hint text",
+      "default": "Swipe to explore"
     },
     {
       "type": "checkbox",
