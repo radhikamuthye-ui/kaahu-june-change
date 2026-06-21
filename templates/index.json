@@ -355,7 +355,7 @@
       ],
       "name": "Editorial Story Band",
       "settings": {
-        "eyebrow_text": "From the studio",
+        "eyebrow_text": "From the kaahu studio",
         "headline": "Kaahu makes a softer kind\nof statement",
         "body_text": "Small moments, natural textures, and bags made to carry the pieces of your everyday with ease.",
         "cta_label": "EXPLORE ALL THE CREATIONS  →",
@@ -397,7 +397,7 @@
         "max_rotation_deg": 35,
         "spread_radius_px": 110,
         "throw_chaos": 80,
-        "throw_duration_ms": 1800,
+        "throw_duration_ms": 2000,
         "slider_color": "#d9ccaa",
         "slider_control_size_px": 25,
         "slider_icon_size_px": 17,
