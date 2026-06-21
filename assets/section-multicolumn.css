@@ -50,7 +50,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin: 8px 0 0;
+  margin: 10px var(--page-margin-mobile) 0;
   color: var(--mc-card-link-color, currentColor);
   font-family: var(--font-accent-family);
   font-size: var(--mc-card-link-size-mobile, var(--font-caption-size-mobile));
@@ -466,6 +466,8 @@
   }  
 
   .multicolumn-swipe-hint {
+    margin-right: var(--page-margin-desktop);
+    margin-left: var(--page-margin-desktop);
     font-size: var(--mc-card-link-size-desktop, var(--font-caption-size-desktop));
   }
 }

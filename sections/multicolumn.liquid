@@ -413,15 +413,6 @@
 {% endfor %}
 </ul>
 
-{% if section.blocks.size > section.settings.grid_columns %}
-<div class="slider-arrows arrow-style-{{ section.settings.arrow_style }}">
-  <button class="slider-arrow-left" aria-label="{{ 'accessibility.left' | t }}">{% render 'icon-arrow-slider' %}</button>
-  <button class="slider-arrow-right" aria-label="{{ 'accessibility.right' | t }}">{% render 'icon-arrow-slider' %}</button>
-</div>
-{% endif %}
-  
-{% render 'scrolltrack' %}
-
 {% if section.settings.show_swipe_hint and section.settings.swipe_hint_text != blank %}
   <p class="multicolumn-swipe-hint">
     <span>{{ section.settings.swipe_hint_text }}</span>
@@ -430,6 +421,15 @@
     </svg>
   </p>
 {% endif %}
+
+{% if section.blocks.size > section.settings.grid_columns %}
+<div class="slider-arrows arrow-style-{{ section.settings.arrow_style }}">
+  <button class="slider-arrow-left" aria-label="{{ 'accessibility.left' | t }}">{% render 'icon-arrow-slider' %}</button>
+  <button class="slider-arrow-right" aria-label="{{ 'accessibility.right' | t }}">{% render 'icon-arrow-slider' %}</button>
+</div>
+{% endif %}
+  
+{% render 'scrolltrack' %}
   
 </div>
 {% endif %}
