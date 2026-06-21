@@ -168,9 +168,10 @@
                 class="grid product-grid grid--{{ section.settings.columns_mobile }}-col-mobile grid--{{ section.settings.columns_tablet }}-col-tablet grid--{{ section.settings.columns_desktop }}-col-desktop"
                 role="list"
               >
+                {%- assign eager_result_limit = section.settings.columns_desktop | at_least: section.settings.columns_mobile -%}
                 {%- for item in search.results -%}
                   {% assign lazy_load = false %}
-                  {%- if forloop.index > 2 -%}
+                  {%- if forloop.index > eager_result_limit -%}
                     {%- assign lazy_load = true -%}
                   {%- endif -%}
                   <li class="grid__item">

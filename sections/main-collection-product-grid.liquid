@@ -164,9 +164,10 @@
               data-id="{{ section.id }}"
               class="grid product-grid{% if section.settings.grid_spacing_horizontal == 'none' %} product-grid-no-column-gap{% endif %}{% if section.settings.grid_spacing_vertical == 'none' %} product-grid-no-vertical-gap{% endif %} grid--{{ section.settings.columns_mobile }}-col-mobile grid--{{ section.settings.columns_tablet }}-col-tablet grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.enable_creative_layouts and no_filters_applied %} collection-creative-layout{% endif %}"
             >
+              {%- assign eager_product_limit = section.settings.columns_desktop | at_least: section.settings.columns_mobile -%}
               {%- for product in collection.products -%}
                 {% assign lazy_load = false %}
-                {%- if forloop.index > 2 -%}
+                {%- if forloop.index > eager_product_limit -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
                 {% if product.tags contains 'product-card-full-width' or product.tags contains 'product-card-double-width' and section.settings.enable_creative_layouts and no_filters_applied %}
@@ -213,7 +214,8 @@
                                 autoplay: true,
                                 loop: true,
                                 controls: false,
-                                muted: true
+                                muted: true,
+                                preload: 'metadata'
                             }}
                           {% endif %}
                           {% if block.settings.url != blank %}</a>{% endif %}

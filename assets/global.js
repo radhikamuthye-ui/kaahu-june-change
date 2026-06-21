@@ -677,10 +677,35 @@ class ProductRecommendations extends HTMLElement {
     super();
   }
 
+  loadDeferredAssets() {
+    const styles = (this.dataset.deferredStyles || '').split(',').filter(Boolean);
+    const scripts = (this.dataset.deferredScripts || '').split(',').filter(Boolean);
+
+    styles.forEach((href) => {
+      if (document.querySelector(`link[href="${href}"]`)) return;
+
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    });
+
+    scripts.forEach((src) => {
+      if (document.querySelector(`script[src="${src}"]`)) return;
+
+      const script = document.createElement('script');
+      script.src = src;
+      script.defer = true;
+      document.head.appendChild(script);
+    });
+  }
+
   connectedCallback() {
     const handleIntersection = (entries, observer) => {
       if (!entries[0].isIntersecting) return;
       observer.unobserve(this);
+
+      this.loadDeferredAssets();
 
       fetch(this.dataset.url)
         .then(response => response.text())
@@ -1247,4 +1272,3 @@ function initializeSwipeFunctionality(container = document) {
 
 // Call the function on page load
 initializeSwipeFunctionality();
-

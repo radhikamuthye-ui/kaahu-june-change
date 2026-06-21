@@ -1,5 +1,3 @@
-{{ 'section-kaahu-judgeme-reviews-carousel.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign review_block_count = 0
   for block in section.blocks
@@ -8,6 +6,9 @@
     endif
   endfor
 -%}
+
+{%- if section.settings.show_section -%}
+{{ 'section-kaahu-judgeme-reviews-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }} {
@@ -60,7 +61,6 @@
   }
 {%- endstyle -%}
 
-{%- if section.settings.show_section -%}
   <section class="kaahu-judgeme-reviews collection-template-{{ template.suffix | default: template.name | handle }} section-{{ section.id }}" aria-labelledby="KaahuReviewsHeading-{{ section.id }}">
     <div class="kaahu-judgeme-reviews__inner">
       <div class="kaahu-judgeme-reviews__header">

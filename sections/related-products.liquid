@@ -4,9 +4,11 @@
 {{ 'section-related-products.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.enable_quick_add -%}
-{{ 'quick-add.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- assign quick_add_style = 'quick-add.css' | asset_url -%}
+{%- assign quick_add_script = 'quick-add.js' | asset_url -%}
+{%- assign product_form_script = 'product-form.js' | asset_url -%}
+{%- assign deferred_styles = quick_add_style -%}
+{%- assign deferred_scripts = quick_add_script | append: ',' | append: product_form_script -%}
 {%- endif -%}
 
 {%- style -%}
@@ -64,6 +66,8 @@
   <product-recommendations
     id="productRecommendations" class="related-products section-{{ section.id }} isolate color-scheme-{{ section.settings.text_color }} color-scheme-{{ section.settings.bg_color }}"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ prod_limit }}"
+    {% if deferred_styles != blank %}data-deferred-styles="{{ deferred_styles }}"{% endif %}
+    {% if deferred_scripts != blank %}data-deferred-scripts="{{ deferred_scripts }}"{% endif %}
   > 
       {%- if recommendations.performed? and recommendations.products_count > 0 -%}
 

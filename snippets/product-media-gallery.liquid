@@ -186,7 +186,7 @@
           {% render 'icon-play' %}
         </div>
         {% endif %}
-      {{ media | video_tag: image_size: '1200x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls }}
+      {{ media | video_tag: image_size: '1200x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
     </div>
 
     {% when 'external_video' %}
@@ -364,7 +364,7 @@
         {% render 'icon-play' %}
       </div>
       {% endif %}
-      {{ featured_media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls }}
+      {{ featured_media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
     </div>
 
     {% when 'external_video' %}
@@ -410,7 +410,7 @@
           {% render 'icon-play' %}
         </div>
         {% endif %}
-        {{ media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls }}
+        {{ media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
       </div>
 
       {% when 'external_video' %}
