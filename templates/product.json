@@ -47,6 +47,7 @@
             "show_rating_value": true,
             "show_review_count": true,
             "show_count_separator": true,
+            "minimum_review_count": 5,
             "review_count_label": "Reviews",
             "link_anchor": "#pdp-reviews",
             "enable_metafield_visibility": true,
