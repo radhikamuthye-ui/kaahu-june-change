@@ -4188,6 +4188,7 @@ a.product__text {
   .pdp-rating-link .rating-count {
     margin: 0;
     color: var(--pdp-rating-text-color, var(--pdp-mobile-text, #65615a));
+    font-family: var(--font-body-family);
     font-size: var(--pdp-rating-text-size-desktop, 13px);
     font-style: normal;
     font-weight: 500;
@@ -4196,7 +4197,9 @@ a.product__text {
 
   .pdp-rating-link.pdp-rating-new .rating-count {
     color: var(--pdp-rating-new-color, rgb(var(--color-price-sale)));
+    font-family: var(--font-body-family);
     font-size: var(--pdp-rating-new-size-desktop, var(--pdp-rating-text-size-desktop, 13px));
+    font-style: normal;
     font-weight: var(--pdp-rating-new-weight, 500);
   }
 
@@ -4595,13 +4598,17 @@ a.product__text {
 .pdp-rating-link .rating-count,
 .product-block-rating-wrapper .jdgm-prev-badge__text {
   color: var(--pdp-rating-text-color, var(--pdp-mobile-text, #65615a));
+  font-family: var(--font-body-family);
   font-size: var(--pdp-rating-text-size-mobile, 21px);
+  font-style: normal;
   font-weight: 500;
 }
 
 .pdp-rating-link.pdp-rating-new .rating-count {
   color: var(--pdp-rating-new-color, rgb(var(--color-price-sale)));
+  font-family: var(--font-body-family);
   font-size: var(--pdp-rating-new-size-mobile, var(--pdp-rating-text-size-mobile, 21px));
+  font-style: normal;
   font-weight: var(--pdp-rating-new-weight, 500);
 }
 
