@@ -58,6 +58,88 @@
   padding-top: {{ section.settings.top_padding | times: 0.8 }}px;
   padding-bottom: {{ section.settings.bottom_padding | times: 0.8 }}px;
 }  
+
+{% if section.settings.enable_custom_typography %}
+.section-{{ section.id }} {
+  --mc-label-color: {{ section.settings.section_label_color }};
+  --mc-label-size-mobile: {{ section.settings.section_label_size_mobile }}px;
+  --mc-label-size-desktop: {{ section.settings.section_label_size_desktop }}px;
+  --mc-label-weight: {{ section.settings.section_label_weight }};
+  --mc-label-letter-spacing: {{ section.settings.section_label_letter_spacing | divided_by: 100.0 }}em;
+  --mc-heading-color: {{ section.settings.heading_color }};
+  --mc-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+  --mc-heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+  --mc-heading-weight: {{ section.settings.heading_weight }};
+  --mc-heading-line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+  --mc-subheading-color: {{ section.settings.subheading_color }};
+  --mc-subheading-size-mobile: {{ section.settings.subheading_size_mobile }}px;
+  --mc-subheading-size-desktop: {{ section.settings.subheading_size_desktop }}px;
+  --mc-subheading-weight: {{ section.settings.subheading_weight }};
+  --mc-subheading-line-height: {{ section.settings.subheading_line_height | divided_by: 100.0 }};
+  --mc-card-title-color: {{ section.settings.card_title_color }};
+  --mc-card-title-size-mobile: {{ section.settings.card_title_size_mobile }}px;
+  --mc-card-title-size-desktop: {{ section.settings.card_title_size_desktop }}px;
+  --mc-card-title-weight: {{ section.settings.card_title_weight }};
+  --mc-card-title-line-height: {{ section.settings.card_title_line_height | divided_by: 100.0 }};
+  --mc-card-body-color: {{ section.settings.card_body_color }};
+  --mc-card-body-size-mobile: {{ section.settings.card_body_size_mobile }}px;
+  --mc-card-body-size-desktop: {{ section.settings.card_body_size_desktop }}px;
+  --mc-card-body-weight: {{ section.settings.card_body_weight }};
+  --mc-card-body-line-height: {{ section.settings.card_body_line_height | divided_by: 100.0 }};
+  --mc-card-link-color: {{ section.settings.card_link_color }};
+  --mc-card-link-size-mobile: {{ section.settings.card_link_size_mobile }}px;
+  --mc-card-link-size-desktop: {{ section.settings.card_link_size_desktop }}px;
+  --mc-card-link-weight: {{ section.settings.card_link_weight }};
+  --mc-card-link-letter-spacing: {{ section.settings.card_link_letter_spacing | divided_by: 100.0 }}em;
+}
+
+.section-{{ section.id }} .section-label {
+  color: var(--mc-label-color);
+  font-size: var(--mc-label-size-mobile);
+  font-weight: var(--mc-label-weight);
+  letter-spacing: var(--mc-label-letter-spacing);
+}
+
+.section-{{ section.id }} .section-header h1,
+.section-{{ section.id }} .section-header h2 {
+  color: var(--mc-heading-color);
+  font-size: var(--mc-heading-size-mobile);
+  font-weight: var(--mc-heading-weight);
+  line-height: var(--mc-heading-line-height);
+}
+
+.section-{{ section.id }} .section-header-paragraph {
+  color: var(--mc-subheading-color);
+  font-size: var(--mc-subheading-size-mobile);
+  font-weight: var(--mc-subheading-weight);
+  line-height: var(--mc-subheading-line-height);
+}
+
+.section-{{ section.id }} .multicolumn-grid-item h3 {
+  color: var(--mc-card-title-color);
+  font-size: var(--mc-card-title-size-mobile);
+  font-weight: var(--mc-card-title-weight);
+  line-height: var(--mc-card-title-line-height);
+}
+
+.section-{{ section.id }} .multicolumn-grid-item .rte,
+.section-{{ section.id }} .multicolumn-grid-item .rte p,
+.section-{{ section.id }} .multicolumn-grid-item--text > p {
+  color: var(--mc-card-body-color);
+  font-size: var(--mc-card-body-size-mobile);
+  font-weight: var(--mc-card-body-weight);
+  line-height: var(--mc-card-body-line-height);
+}
+
+.section-{{ section.id }} .multicolumn-grid-item a.link--underlined,
+.section-{{ section.id }} .multicolumn-grid-item a.link--unstyled {
+  color: var(--mc-card-link-color);
+  font-size: var(--mc-card-link-size-mobile);
+  font-weight: var(--mc-card-link-weight);
+  letter-spacing: var(--mc-card-link-letter-spacing);
+  text-underline-offset: 4px;
+}
+{% endif %}
   
 {% if section.settings.grid_layout == 'stacked' %}
 .section-{{ section.id }} .multicolumn-grid-item {
@@ -108,6 +190,35 @@
     padding-top: {{ section.settings.top_padding }}px;
     padding-bottom: {{ section.settings.bottom_padding }}px;
   } 
+  {% if section.settings.enable_custom_typography %}
+  .section-{{ section.id }} .section-label {
+    font-size: var(--mc-label-size-desktop);
+  }
+
+  .section-{{ section.id }} .section-header h1,
+  .section-{{ section.id }} .section-header h2 {
+    font-size: var(--mc-heading-size-desktop);
+  }
+
+  .section-{{ section.id }} .section-header-paragraph {
+    font-size: var(--mc-subheading-size-desktop);
+  }
+
+  .section-{{ section.id }} .multicolumn-grid-item h3 {
+    font-size: var(--mc-card-title-size-desktop);
+  }
+
+  .section-{{ section.id }} .multicolumn-grid-item .rte,
+  .section-{{ section.id }} .multicolumn-grid-item .rte p,
+  .section-{{ section.id }} .multicolumn-grid-item--text > p {
+    font-size: var(--mc-card-body-size-desktop);
+  }
+
+  .section-{{ section.id }} .multicolumn-grid-item a.link--underlined,
+  .section-{{ section.id }} .multicolumn-grid-item a.link--unstyled {
+    font-size: var(--mc-card-link-size-desktop);
+  }
+  {% endif %}
   .section-{{ section.id }} .grid-two-col, .section-{{ section.id }} .grid-three-col, .section-{{ section.id }} .grid-four-col {
     grid-column-gap: {{ section.settings.grid_column_gap }}px;    
   }
@@ -625,7 +736,305 @@ document.addEventListener("DOMContentLoaded", function() {
       "type": "richtext",
       "id": "subheading",
       "label": "t:sections.all.sub_heading"
-    }, 
+    },
+    {
+      "type": "header",
+      "content": "Typography controls"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_custom_typography",
+      "label": "Enable custom typography",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_label_color",
+      "label": "Label color",
+      "default": "#b46483"
+    },
+    {
+      "type": "range",
+      "id": "section_label_size_mobile",
+      "label": "Label size mobile",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "section_label_size_desktop",
+      "label": "Label size desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "section_label_weight",
+      "label": "Label weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "section_label_letter_spacing",
+      "label": "Label letter spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size mobile",
+      "min": 16,
+      "max": 54,
+      "step": 1,
+      "unit": "px",
+      "default": 29
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading size desktop",
+      "min": 18,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading line height",
+      "min": 90,
+      "max": 160,
+      "step": 5,
+      "unit": "%",
+      "default": 105
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#77716b"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "label": "Subheading size mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_desktop",
+      "label": "Subheading size desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "subheading_weight",
+      "label": "Subheading weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "subheading_line_height",
+      "label": "Subheading line height",
+      "min": 110,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "default": 145
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Card title color",
+      "default": "#444444"
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_mobile",
+      "label": "Card title size mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "card_title_size_desktop",
+      "label": "Card title size desktop",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "card_title_weight",
+      "label": "Card title weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "card_title_line_height",
+      "label": "Card title line height",
+      "min": 90,
+      "max": 170,
+      "step": 5,
+      "unit": "%",
+      "default": 110
+    },
+    {
+      "type": "color",
+      "id": "card_body_color",
+      "label": "Card body color",
+      "default": "#6f6962"
+    },
+    {
+      "type": "range",
+      "id": "card_body_size_mobile",
+      "label": "Card body size mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_body_size_desktop",
+      "label": "Card body size desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "card_body_weight",
+      "label": "Card body weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "card_body_line_height",
+      "label": "Card body line height",
+      "min": 110,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "default": 145
+    },
+    {
+      "type": "color",
+      "id": "card_link_color",
+      "label": "Card link color",
+      "default": "#7e7d7c"
+    },
+    {
+      "type": "range",
+      "id": "card_link_size_mobile",
+      "label": "Card link size mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "card_link_size_desktop",
+      "label": "Card link size desktop",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "card_link_weight",
+      "label": "Card link weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "card_link_letter_spacing",
+      "label": "Card link letter spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
     {
       "type": "checkbox",
       "id": "btn_enable",
