@@ -4706,38 +4706,40 @@ a.product__text {
 }
 
 .product-price-promo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--pdp-price-row-gap, 2px);
+  display: block;
   width: 100%;
-  margin-top: 0;
+  margin-top: 2px;
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid var(--pdp-price-promo-text, #b95d7b);
+  background: var(--pdp-price-promo-bg, transparent);
   color: var(--pdp-price-text, var(--pdp-mobile-text, #65615a));
   font-size: var(--pdp-price-body-size-mobile, 20px);
   font-weight: var(--pdp-price-promo-details-weight, 600);
-  line-height: 1.25;
+  line-height: 1.35;
+  text-align: left;
 }
 
-.product-price-promo__message {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  gap: var(--pdp-price-row-gap, 2px) 10px;
-  text-align: left;
+.product-price-promo__label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--pdp-price-promo-text, #d2672c);
+  font-family: var(--font-accent-family);
+  font-size: max(11px, calc(var(--pdp-price-body-size-mobile, 20px) - 5px));
+  font-style: var(--font-accent-style);
+  font-weight: var(--pdp-price-promo-weight, 800);
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .product-price-promo__text {
   display: block;
-  width: 100%;
-  background: var(--pdp-price-promo-bg, #f7f6eb);
-  color: var(--pdp-price-promo-text, #d2672c);
+  color: var(--pdp-price-text, var(--pdp-mobile-text, #65615a));
+  font-family: var(--font-accent-family);
   font-size: inherit;
+  font-style: var(--font-accent-style);
   font-weight: var(--pdp-price-promo-weight, 800);
-  letter-spacing: 0.02em;
-  line-height: 1.1;
-  text-align: left;
+  line-height: 1.35;
 }
 
 .product-price-promo__helper,
@@ -4746,18 +4748,18 @@ a.product__text {
 }
 
 .product-price-promo__details {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   width: 100%;
+  margin-top: 3px;
   text-align: left;
 }
 
 .product-price-promo__helper,
 .product-price-promo__estimate {
-  display: inline;
-}
-
-.product-price-promo__helper + .product-price-promo__estimate::before {
-  content: " ";
+  display: block;
+  line-height: 1.35;
 }
 
 .product-price-promo__estimate strong {
@@ -4782,6 +4784,14 @@ a.product__text {
 
   .pdp-price-summary__badge {
     font-size: max(12px, calc(var(--pdp-price-body-size-desktop, 20px) - 3px));
+  }
+
+  .product-price-promo {
+    padding-left: 18px;
+  }
+
+  .product-price-promo__label {
+    font-size: max(11px, calc(var(--pdp-price-body-size-desktop, 20px) - 5px));
   }
 }
 

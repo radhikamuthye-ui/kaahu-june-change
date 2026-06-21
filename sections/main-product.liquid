@@ -913,10 +913,14 @@
               {% assign promo_estimate = product_base_price | times: promo_multiplier | divided_by: 100 %}
             {% endif %}
             {% assign default_promo_text = 'Sitewide Sale is Live. Get additional 20% off.' %}
-            {% capture dynamic_default_promo_text %}Sitewide Sale is Live. Get additional {{ block.settings.promo_percent }}% off.{% endcapture %}
+            {% assign old_promo_text = 'Summer Sale is Live - Get additional 20% off.' %}
+            {% capture dynamic_event_promo_text %}{{ block.settings.promo_percent }}% off your entire order{% endcapture %}
+            {% assign promo_event_label = block.settings.promo_event_label | default: 'Summer event' %}
             {% assign promo_text = block.settings.promo_text %}
             {% if promo_text == blank or promo_text == default_promo_text %}
-              {% assign promo_text = dynamic_default_promo_text %}
+              {% assign promo_text = dynamic_event_promo_text %}
+            {% elsif promo_text == old_promo_text %}
+              {% assign promo_text = dynamic_event_promo_text %}
             {% endif %}
             {% assign show_promo_details = false %}
             {% if block.settings.promo_helper_text != blank %}
@@ -969,10 +973,20 @@
                   hide_trailing_zeros: true
                 -%}
                 {% if block.settings.show_promo_message and promo_text != blank %}
-                  <div class="product-price-promo" aria-label="{{ promo_text | escape }}">
-                    <div class="product-price-promo__message">
-                      <span class="product-price-promo__text">{{ promo_text | escape }}</span>
-                    </div>
+                  {% capture promo_aria_label %}
+                    {{ promo_event_label }}. {{ promo_text }}.
+                    {%- if block.settings.promo_helper_text != blank -%}
+                      {{ block.settings.promo_helper_text }}.
+                    {%- endif -%}
+                    {%- if block.settings.show_promo_estimate and block.settings.promo_percent > 0 -%}
+                      {{ block.settings.promo_estimate_label }}: {{ promo_estimate | money_without_trailing_zeros }}.
+                    {%- endif -%}
+                  {% endcapture %}
+                  <div class="product-price-promo" aria-label="{{ promo_aria_label | strip | escape }}">
+                    {% if promo_event_label != blank %}
+                      <span class="product-price-promo__label">{{ promo_event_label | escape }}</span>
+                    {% endif %}
+                    <span class="product-price-promo__text">{{ promo_text | escape }}</span>
                     {% if show_promo_details %}
                       <div class="product-price-promo__details">
                         {% if block.settings.promo_helper_text != blank %}
@@ -3944,8 +3958,14 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           "type": "text",
+          "id": "promo_event_label",
+          "default": "Summer event",
+          "label": "Promo event label"
+        },
+        {
+          "type": "text",
           "id": "promo_text",
-          "default": "Summer Sale - Get additional 20% off.",
+          "default": "20% off your entire order",
           "label": "Promo text"
         },
         {
