@@ -185,7 +185,7 @@
         "image_aspect_ratio": "16 / 9",
         "image_height_desktop": 0,
         "image_height_mobile": 340,
-        "image_border_radius": 0,
+        "image_border_radius": 18,
         "image_object_fit": "cover",
         "image_position": "center center",
         "image_shadow": false,
@@ -421,7 +421,7 @@
             "image_object_position": "center center",
             "image_object_fit": "cover",
             "image_aspect_ratio": "default",
-            "image_border_radius": 0
+            "image_border_radius": 10
           }
         },
         "bestseller_image_override_2": {
@@ -434,7 +434,7 @@
             "image_object_position": "center center",
             "image_object_fit": "cover",
             "image_aspect_ratio": "default",
-            "image_border_radius": 0
+            "image_border_radius": 10
           }
         },
         "bestseller_image_override_3": {
@@ -447,7 +447,7 @@
             "image_object_position": "center center",
             "image_object_fit": "cover",
             "image_aspect_ratio": "default",
-            "image_border_radius": 0
+            "image_border_radius": 10
           }
         },
         "bestseller_image_override_4": {
@@ -460,7 +460,7 @@
             "image_object_position": "center center",
             "image_object_fit": "cover",
             "image_aspect_ratio": "default",
-            "image_border_radius": 0
+            "image_border_radius": 10
           }
         }
       },
@@ -517,7 +517,7 @@
         "image_ratio": "4 / 5",
         "image_object_fit": "cover",
         "image_object_position": "center center",
-        "image_radius": 0,
+        "image_radius": 10,
         "image_zoom": 100,
         "image_hover_zoom": 100,
         "card_text_gap": 8,
@@ -582,7 +582,7 @@
         "badge_offset": 8,
         "badge_height": 22,
         "badge_x_padding": 10,
-        "badge_radius": 0,
+        "badge_radius": 4,
         "badge_letter_spacing": 4,
         "badge_case": "uppercase",
         "quick_background": "#ffffff",
@@ -687,7 +687,7 @@
         "card_padding_y_desktop": 10,
         "card_column_gap_mobile": 14,
         "card_column_gap_desktop": 14,
-        "card_radius": 0,
+        "card_radius": 12,
         "card_border_width": 2,
         "icon_size_mobile": 82,
         "icon_size_desktop": 106,
@@ -893,8 +893,8 @@
         "container_padding_desktop": 24,
         "gap_mobile": 28,
         "gap_desktop": 24,
-        "border_radius": 0,
-        "media_border_radius": 0,
+        "border_radius": 18,
+        "media_border_radius": 18,
         "media_width": 35,
         "content_width": 60,
         "desktop_alignment": "center",
