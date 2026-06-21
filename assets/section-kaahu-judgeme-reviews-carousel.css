@@ -39,49 +39,19 @@
   letter-spacing: 0;
 }
 
-.kaahu-judgeme-reviews__app {
-  padding: var(--kjrc-app-padding-mobile);
-  border: 1px solid var(--kjrc-card-border);
-  border-radius: min(var(--kjrc-card-radius), 20px);
-  background: var(--kjrc-card-bg);
-  box-shadow: 0 16px 36px rgba(45, 38, 28, calc(var(--kjrc-card-shadow) * 0.7));
-}
-
-.kaahu-judgeme-reviews__app :where(.jdgm-rev-widg, .jdgm-all-reviews-widget, .jdgm-carousel-wrapper) {
-  margin: 0 !important;
-  padding: var(--kjrc-widget-inner-padding-mobile) !important;
-  background: transparent !important;
-}
-
-.kaahu-judgeme-reviews__app :where(.jdgm-rev-widg__body, .jdgm-rev-widg__reviews, .jdgm-carousel, .jdgm-carousel__item-container) {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.kaahu-judgeme-reviews__carousel-wrap {
-  position: relative;
+.kaahu-judgeme-reviews__ticker {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
 }
 
 .kaahu-judgeme-reviews__track {
   display: flex;
+  flex: 0 0 auto;
   gap: var(--kjrc-gap);
-  overflow-x: auto;
-  overflow-y: hidden;
   padding: 4px 0 18px;
-  scroll-behavior: auto;
-  scroll-snap-type: none;
-  scrollbar-width: none;
-  cursor: grab;
-}
-
-.kaahu-judgeme-reviews__track::-webkit-scrollbar {
-  display: none;
-}
-
-.kaahu-judgeme-reviews__track.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-  user-select: none;
+  padding-right: var(--kjrc-gap);
+  animation: kaahu-reviews-ticker-scroll var(--kjrc-ticker-speed) linear infinite;
 }
 
 .kaahu-judgeme-reviews__card {
@@ -217,56 +187,14 @@
   line-height: 1.25;
 }
 
-.kaahu-judgeme-reviews__arrow {
-  position: absolute;
-  top: calc(50% - 28px);
-  z-index: 2;
-  display: none;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(70, 85, 58, 0.18);
-  border-radius: 50%;
-  color: #414a29;
-  background: rgba(255, 253, 249, 0.94);
-  box-shadow: 0 12px 28px rgba(45, 38, 28, 0.12);
-  cursor: pointer;
-}
+@keyframes kaahu-reviews-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
 
-.kaahu-judgeme-reviews__arrow svg {
-  width: 18px;
-  height: 18px;
-}
-
-.kaahu-judgeme-reviews__arrow--prev {
-  left: -14px;
-  transform: rotate(180deg);
-}
-
-.kaahu-judgeme-reviews__arrow--next {
-  right: -14px;
-}
-
-.kaahu-judgeme-reviews__dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 2px;
-}
-
-.kaahu-judgeme-reviews__dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(70, 85, 58, 0.24);
-  cursor: pointer;
-}
-
-.kaahu-judgeme-reviews__dots button.is-active {
-  background: #414a29;
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @media only screen and (min-width: 750px) {
@@ -293,14 +221,6 @@
     font-size: var(--kjrc-heading-size-desktop);
   }
 
-  .kaahu-judgeme-reviews__app {
-    padding: var(--kjrc-app-padding-desktop);
-  }
-
-  .kaahu-judgeme-reviews__app :where(.jdgm-rev-widg, .jdgm-all-reviews-widget, .jdgm-carousel-wrapper) {
-    padding: var(--kjrc-widget-inner-padding-desktop) !important;
-  }
-
   .kaahu-judgeme-reviews__card {
     flex-basis: var(--kjrc-card-width-desktop);
   }
@@ -316,14 +236,10 @@
   .kaahu-judgeme-reviews__quote {
     font-size: var(--kjrc-quote-size-desktop);
   }
-
-  .kaahu-judgeme-reviews__arrow {
-    display: inline-flex;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kaahu-judgeme-reviews__track {
-    scroll-behavior: auto;
+    animation: none;
   }
 }
