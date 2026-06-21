@@ -4194,7 +4194,7 @@ a.product__text {
     line-height: 1.2;
   }
 
-  .pdp-rating-link.pdp-rating-new .rating-text {
+  .pdp-rating-link.pdp-rating-new .rating-count {
     color: rgb(var(--color-price-sale));
   }
 
@@ -4597,7 +4597,7 @@ a.product__text {
   font-weight: 500;
 }
 
-.pdp-rating-link.pdp-rating-new .rating-text {
+.pdp-rating-link.pdp-rating-new .rating-count {
   color: rgb(var(--color-price-sale));
 }
 
