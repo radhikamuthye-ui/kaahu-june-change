@@ -2,13 +2,22 @@
 <script src="{{ 'component-header.js' | asset_url }}" defer="defer"></script>
 
 {%- if settings.cart_type == 'drawer' -%}
-{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
-{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-{{ 'component-cart.css' | asset_url | stylesheet_tag }}
-{{ 'component-totals.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
-{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  {{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+  {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+  {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+  {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+  {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+</noscript>
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
@@ -913,8 +922,39 @@ var searchbutton = document.getElementById('searchButton');
 var searchclosebutton = document.getElementById('SearchDropdownCloseButton');
 var searchbg = document.getElementById('searchBg');
 var searchInput = document.getElementById('Search-In-Header');
+{% if settings.predictive_search_enabled %}
+var predictiveSearchLoadPromise;
+
+function loadPredictiveSearch() {
+  if (window.customElements && customElements.get('predictive-search')) {
+    return Promise.resolve();
+  }
+
+  if (predictiveSearchLoadPromise) {
+    return predictiveSearchLoadPromise;
+  }
+
+  predictiveSearchLoadPromise = new Promise(function(resolve, reject) {
+    var script = document.createElement('script');
+    script.src = "{{ 'predictive-search.js' | asset_url }}";
+    script.defer = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+
+  return predictiveSearchLoadPromise;
+}
+{% endif %}
 
 function toggleSearchDrawer() {
+  {% if settings.predictive_search_enabled %}
+  loadPredictiveSearch().then(function() {
+    if (searchInput.value.trim()) {
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }).catch(function() {});
+  {% endif %}
   searchdrawer.classList.toggle('open');
   searchbg.classList.toggle('open');
   navbar.classList.toggle('hovered');
@@ -950,6 +990,14 @@ if (searchbutton && searchInput) {
 
   searchbutton.addEventListener('keydown', handleSearchButtonKeyPress);
 }
+
+{% if settings.predictive_search_enabled %}
+if (searchInput) {
+  searchInput.addEventListener('focus', function() {
+    loadPredictiveSearch().catch(function() {});
+  }, { once: true });
+}
+{% endif %}
 
 if (searchclosebutton) {
   searchclosebutton.addEventListener('click', function() {
