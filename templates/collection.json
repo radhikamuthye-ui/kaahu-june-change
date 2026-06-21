@@ -261,7 +261,7 @@
           "type": "collection_link",
           "settings": {
             "collection": "sale",
-            "label": "",
+            "label": "Sale",
             "image": "shopify://shop_images/Screenshot_2026-06-20_at_4.32.34_PM.png",
             "link": "shopify://collections/sale"
           }
@@ -286,7 +286,7 @@
           "type": "collection_link",
           "settings": {
             "collection": "soulful-satchels-collection",
-            "label": "soulful satchels",
+            "label": "Soulful Satchels",
             "link": ""
           }
         },
@@ -294,7 +294,7 @@
           "type": "collection_link",
           "settings": {
             "collection": "fading-footprints-collection",
-            "label": "fading footprints",
+            "label": "Fading Footprints",
             "link": ""
           }
         },
@@ -384,10 +384,10 @@
         "enable_quick_add": true,
         "collection_background_color": "#fbfaf7",
         "collection_max_width": 1440,
-        "grid_column_gap_desktop": 8,
-        "grid_row_gap_desktop": 16,
-        "grid_column_gap_mobile": 8,
-        "grid_row_gap_mobile": 14,
+        "grid_column_gap_desktop": 16,
+        "grid_row_gap_desktop": 28,
+        "grid_column_gap_mobile": 10,
+        "grid_row_gap_mobile": 22,
         "card_image_radius": 0,
         "card_image_background_color": "#f4efe8",
         "product_title_size_desktop": 16,
