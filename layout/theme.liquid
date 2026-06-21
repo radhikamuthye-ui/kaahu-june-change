@@ -142,45 +142,45 @@
       }
     </script>
 
-<!-- FONT DEBUG - REMOVE AFTER TESTING -->
-<div id="font-debug-tooltip" style="
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  font-family: monospace;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  pointer-events: none;
-  z-index: 999999;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.15s;
-"></div>
-<script>
-(function() {
-  var tip = document.getElementById('font-debug-tooltip');
-  var hideTimer;
-  document.addEventListener('mouseover', function(e) {
-    clearTimeout(hideTimer);
-    var el = e.target;
-    if (el === tip) return;
-    var style = window.getComputedStyle(el);
-    var family = style.fontFamily;
-    var weight = style.fontWeight;
-    var size = style.fontSize;
-    var tag = el.tagName.toLowerCase();
-    tip.textContent = tag + ' → ' + family + '  |  ' + weight + '  |  ' + size;
-    tip.style.opacity = '1';
-  });
-  document.addEventListener('mouseout', function() {
-    hideTimer = setTimeout(function() { tip.style.opacity = '0'; }, 200);
-  });
-})();
-</script>
-<!-- END FONT DEBUG -->
+{% if settings.enable_font_debug_tooltip %}
+  <div id="font-debug-tooltip" style="
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 999999;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s;
+  "></div>
+  <script>
+    (function() {
+      var tip = document.getElementById('font-debug-tooltip');
+      var hideTimer;
+      document.addEventListener('mouseover', function(e) {
+        clearTimeout(hideTimer);
+        var el = e.target;
+        if (el === tip) return;
+        var style = window.getComputedStyle(el);
+        var family = style.fontFamily;
+        var weight = style.fontWeight;
+        var size = style.fontSize;
+        var tag = el.tagName.toLowerCase();
+        tip.textContent = tag + ' -> ' + family + '  |  ' + weight + '  |  ' + size;
+        tip.style.opacity = '1';
+      });
+      document.addEventListener('mouseout', function() {
+        hideTimer = setTimeout(function() { tip.style.opacity = '0'; }, 200);
+      });
+    })();
+  </script>
+{% endif %}
 </body>
 </html>
