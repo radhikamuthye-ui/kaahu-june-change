@@ -714,6 +714,129 @@
         "icon_color": "#414a29"
       }
     },
+    "multicolumn_y3VFiH": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_qbzhKn": {
+          "type": "column",
+          "settings": {
+            "column_span": "1",
+            "image": "shopify://shop_images/Echo_of_the_orca1.jpg",
+            "title": "The Marshmallow Thread",
+            "heading_top_margin": 10,
+            "heading_margin": 10,
+            "text": "<p>Soft, comforting Organic Cotton. Made for everyday moments.</p>",
+            "block_btn_style": "link--underlined",
+            "link_label": "Explore",
+            "link": "shopify://collections/the-marshmallow-thread"
+          }
+        },
+        "column_3xD7Jq": {
+          "type": "column",
+          "settings": {
+            "column_span": "1",
+            "image": "shopify://shop_images/Elysian_woods_1.jpg",
+            "title": "The Soulful Satchels",
+            "heading_top_margin": 10,
+            "heading_margin": 10,
+            "text": "<p>Thoughtful designs that carry stories, not just belongings</p>",
+            "block_btn_style": "link--underlined",
+            "link_label": "Explore",
+            "link": "shopify://collections/soulful-satchels-collection"
+          }
+        },
+        "column_UJx4gz": {
+          "type": "column",
+          "settings": {
+            "column_span": "1",
+            "image": "shopify://shop_images/Flutter_butter4.jpg",
+            "title": "The Fading Footprints Collection",
+            "heading_top_margin": 10,
+            "heading_margin": 10,
+            "text": "<p>A tribute to nature’s disappearing wonders.</p>",
+            "block_btn_style": "link--underlined",
+            "link_label": "Explore",
+            "link": "shopify://collections/fading-footprints-collection"
+          }
+        },
+        "column_BK7JVP": {
+          "type": "column",
+          "settings": {
+            "column_span": "1",
+            "image": "shopify://shop_images/Pocketful_of_sun_1.jpg",
+            "title": "The Yolo Collection",
+            "heading_top_margin": 10,
+            "heading_margin": 10,
+            "text": "<p>For spontaneous plans, open roads, and unexpected adventures.  </p>",
+            "block_btn_style": "link--underlined",
+            "link_label": "Explore",
+            "link": "shopify://collections/yolo-collection"
+          }
+        },
+        "column_jg8Ebj": {
+          "type": "column",
+          "settings": {
+            "column_span": "1",
+            "image": "shopify://shop_images/Radiant_voyager_3.jpg",
+            "title": "The Golden Fiber Collection",
+            "heading_top_margin": 10,
+            "heading_margin": 10,
+            "text": "<p>The golden fiber finds a new expression. Elevating jute beyond expectation</p>",
+            "block_btn_style": "link--underlined",
+            "link_label": "Explore",
+            "link": "shopify://collections/golden-jute"
+          }
+        }
+      },
+      "block_order": [
+        "column_qbzhKn",
+        "column_3xD7Jq",
+        "column_UJx4gz",
+        "column_BK7JVP",
+        "column_jg8Ebj"
+      ],
+      "name": "Discover all collections",
+      "settings": {
+        "section_label": "Discover All Collections",
+        "heading": "Find the One That Feels Like You",
+        "heading_size": "h2",
+        "hdr_alignment": "center",
+        "subheading": "<p>Every collection begins with an idea, a feeling, or a reminder worth carrying. Find the one that speaks to you.</p>",
+        "btn_enable": false,
+        "btn_txt": "",
+        "btn_link": "",
+        "btn_style": "solid",
+        "btn_position_mobile": "bottom",
+        "btn_position_desktop": "bottom",
+        "grid_layout": "carousel",
+        "arrow_style": "solid-inverted",
+        "arrow_position": "auto",
+        "grid_columns": 3,
+        "grid_column_gap": 32,
+        "keylines_show": false,
+        "keylines_show_mobile": false,
+        "keylines_mobile_width": "small",
+        "keyline_opacity": 20,
+        "column_layout": "stacked",
+        "column_vertical_alignment": "top",
+        "card_image_alignment": "center",
+        "image_size": "full-width",
+        "image_ratio": "portrait",
+        "text_alignment": "center",
+        "column_heading_size": "h3",
+        "block_button_width": "auto",
+        "link_opening": "page",
+        "text_color": "fg-body",
+        "bg_color": "bg-body",
+        "btn_color_scheme": "default",
+        "top_padding": 20,
+        "bottom_padding": 20,
+        "top_border": false,
+        "bottom_border": false,
+        "border_width": "normal",
+        "border_color": "dark"
+      }
+    },
     "kaahu_impact_membership_homepage": {
       "type": "kaahu-impact-membership",
       "settings": {
@@ -1841,6 +1964,7 @@
     "editorial_polaroid_band_homepage",
     "kaahu_bestsellers_homepage",
     "kaahu_value_cards_homepage",
+    "multicolumn_y3VFiH",
     "kaahu_impact_membership_homepage",
     "image_with_text_D3XD4e",
     "image_banner_n4JQM3",
