@@ -94,50 +94,51 @@
 }
 
 .section-{{ section.id }} .section-label {
-  color: var(--mc-label-color);
-  font-size: var(--mc-label-size-mobile);
-  font-weight: var(--mc-label-weight);
-  letter-spacing: var(--mc-label-letter-spacing);
+  color: var(--mc-label-color) !important;
+  font-size: var(--mc-label-size-mobile) !important;
+  font-weight: var(--mc-label-weight) !important;
+  letter-spacing: var(--mc-label-letter-spacing) !important;
 }
 
 .section-{{ section.id }} .section-header h1,
 .section-{{ section.id }} .section-header h2 {
-  color: var(--mc-heading-color);
-  font-size: var(--mc-heading-size-mobile);
-  font-weight: var(--mc-heading-weight);
-  line-height: var(--mc-heading-line-height);
+  color: var(--mc-heading-color) !important;
+  font-size: var(--mc-heading-size-mobile) !important;
+  font-weight: var(--mc-heading-weight) !important;
+  line-height: var(--mc-heading-line-height) !important;
 }
 
-.section-{{ section.id }} .section-header-paragraph {
-  color: var(--mc-subheading-color);
-  font-size: var(--mc-subheading-size-mobile);
-  font-weight: var(--mc-subheading-weight);
-  line-height: var(--mc-subheading-line-height);
+.section-{{ section.id }} .section-header-paragraph,
+.section-{{ section.id }} .section-header-paragraph p {
+  color: var(--mc-subheading-color) !important;
+  font-size: var(--mc-subheading-size-mobile) !important;
+  font-weight: var(--mc-subheading-weight) !important;
+  line-height: var(--mc-subheading-line-height) !important;
 }
 
 .section-{{ section.id }} .multicolumn-grid-item h3 {
-  color: var(--mc-card-title-color);
-  font-size: var(--mc-card-title-size-mobile);
-  font-weight: var(--mc-card-title-weight);
-  line-height: var(--mc-card-title-line-height);
+  color: var(--mc-card-title-color) !important;
+  font-size: var(--mc-card-title-size-mobile) !important;
+  font-weight: var(--mc-card-title-weight) !important;
+  line-height: var(--mc-card-title-line-height) !important;
 }
 
 .section-{{ section.id }} .multicolumn-grid-item .rte,
 .section-{{ section.id }} .multicolumn-grid-item .rte p,
 .section-{{ section.id }} .multicolumn-grid-item--text > p {
-  color: var(--mc-card-body-color);
-  font-size: var(--mc-card-body-size-mobile);
-  font-weight: var(--mc-card-body-weight);
-  line-height: var(--mc-card-body-line-height);
+  color: var(--mc-card-body-color) !important;
+  font-size: var(--mc-card-body-size-mobile) !important;
+  font-weight: var(--mc-card-body-weight) !important;
+  line-height: var(--mc-card-body-line-height) !important;
 }
 
 .section-{{ section.id }} .multicolumn-grid-item a.link--underlined,
 .section-{{ section.id }} .multicolumn-grid-item a.link--unstyled {
-  color: var(--mc-card-link-color);
-  font-size: var(--mc-card-link-size-mobile);
-  font-weight: var(--mc-card-link-weight);
-  letter-spacing: var(--mc-card-link-letter-spacing);
-  text-underline-offset: 4px;
+  color: var(--mc-card-link-color) !important;
+  font-size: var(--mc-card-link-size-mobile) !important;
+  font-weight: var(--mc-card-link-weight) !important;
+  letter-spacing: var(--mc-card-link-letter-spacing) !important;
+  text-underline-offset: 4px !important;
 }
 {% endif %}
   
@@ -192,31 +193,32 @@
   } 
   {% if section.settings.enable_custom_typography %}
   .section-{{ section.id }} .section-label {
-    font-size: var(--mc-label-size-desktop);
+    font-size: var(--mc-label-size-desktop) !important;
   }
 
   .section-{{ section.id }} .section-header h1,
   .section-{{ section.id }} .section-header h2 {
-    font-size: var(--mc-heading-size-desktop);
+    font-size: var(--mc-heading-size-desktop) !important;
   }
 
-  .section-{{ section.id }} .section-header-paragraph {
-    font-size: var(--mc-subheading-size-desktop);
+  .section-{{ section.id }} .section-header-paragraph,
+  .section-{{ section.id }} .section-header-paragraph p {
+    font-size: var(--mc-subheading-size-desktop) !important;
   }
 
   .section-{{ section.id }} .multicolumn-grid-item h3 {
-    font-size: var(--mc-card-title-size-desktop);
+    font-size: var(--mc-card-title-size-desktop) !important;
   }
 
   .section-{{ section.id }} .multicolumn-grid-item .rte,
   .section-{{ section.id }} .multicolumn-grid-item .rte p,
   .section-{{ section.id }} .multicolumn-grid-item--text > p {
-    font-size: var(--mc-card-body-size-desktop);
+    font-size: var(--mc-card-body-size-desktop) !important;
   }
 
   .section-{{ section.id }} .multicolumn-grid-item a.link--underlined,
   .section-{{ section.id }} .multicolumn-grid-item a.link--unstyled {
-    font-size: var(--mc-card-link-size-desktop);
+    font-size: var(--mc-card-link-size-desktop) !important;
   }
   {% endif %}
   .section-{{ section.id }} .grid-two-col, .section-{{ section.id }} .grid-three-col, .section-{{ section.id }} .grid-four-col {
