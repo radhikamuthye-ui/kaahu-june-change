@@ -129,10 +129,12 @@ class PairedProductSlideshow {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.paired-product-slideshow').forEach(section => {
-    if (section.dataset.ppsInitialized === 'true') return;
-    section.dataset.ppsInitialized = 'true';
-    new PairedProductSlideshow(section);
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.paired-product-slideshow').forEach(section => {
+      if (section.dataset.ppsInitialized === 'true') return;
+      section.dataset.ppsInitialized = 'true';
+      new PairedProductSlideshow(section);
+    });
   });
 });
 
