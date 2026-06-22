@@ -102,19 +102,19 @@
         {% if tag contains 'Badge:' %}
           {% assign badge_label = tag | remove: 'Badge: ' | strip %}
           {% assign badge_label_downcase = badge_label | downcase %}
-          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+          <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endif %}
         {% endfor %}
         {% if has_featured_badge_tag %}
           {% assign badge_label = block.settings.featured_badge_label | default: featured_badge_tag | strip %}
           {% assign badge_label_downcase = badge_label | downcase %}
-          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+          <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endif %}
         {% if metafield_badges != blank %}
         {% for badge in metafield_badges.value %}
           {% assign badge_label = badge | strip %}
           {% assign badge_label_downcase = badge_label | downcase %}
-          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+          <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endfor %}
         {% endif %}
         </div>

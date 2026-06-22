@@ -76,7 +76,7 @@
             {% if tag contains 'Badge:' %}
             {% assign badge_label = tag | remove: 'Badge: ' | strip %}
             {% assign badge_label_downcase = badge_label | downcase %}
-            <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+            <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
           {% endif %}
           {% endfor %}
 
@@ -85,7 +85,7 @@
             {% for badge in badges.value %}
               {% assign badge_label = badge | strip %}
               {% assign badge_label_downcase = badge_label | downcase %}
-              <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+              <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
             {% endfor %}
           {% endif %}
 
@@ -104,7 +104,7 @@
             {% if tag contains 'Badge:' %}
             {% assign badge_label = tag | remove: 'Badge: ' | strip %}
             {% assign badge_label_downcase = badge_label | downcase %}
-            <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+            <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
           {% endif %}
           {% endfor %}
 
@@ -113,7 +113,7 @@
             {% for badge in badges.value %}
               {% assign badge_label = badge | strip %}
               {% assign badge_label_downcase = badge_label | downcase %}
-              <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+              <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
             {% endfor %}
           {% endif %}
 
@@ -137,7 +137,7 @@
             {% if tag contains 'Badge:' %}
             {% assign badge_label = tag | remove: 'Badge: ' | strip %}
             {% assign badge_label_downcase = badge_label | downcase %}
-            <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+            <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
           {% endif %}
           {% endfor %}
 
@@ -146,7 +146,7 @@
             {% for badge in badges.value %}
               {% assign badge_label = badge | strip %}
               {% assign badge_label_downcase = badge_label | downcase %}
-              <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
+              <span{% if badge_label_downcase contains 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
             {% endfor %}
           {% endif %}
 
