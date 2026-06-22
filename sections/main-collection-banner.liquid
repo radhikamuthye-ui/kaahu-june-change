@@ -1,229 +1,252 @@
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign banner_image = section.settings.custom_banner_image | default: collection.image
   assign banner_mobile_image = section.settings.custom_mobile_banner_image | default: banner_image
   assign banner_title = section.settings.custom_heading | default: collection.title
   assign banner_description = section.settings.custom_description | default: collection.description
   assign banner_image_alt = section.settings.custom_image_alt | default: banner_title | escape
+  assign is_split = false
+  if section.settings.banner_layout == 'split_banner' and banner_image != blank
+    assign is_split = true
+  endif
+  assign is_overlay = false
+  if banner_image != blank and section.settings.banner_layout != 'text-only' and is_split == false
+    assign is_overlay = true
+  endif
+  assign image_render_size = 1800
+  if banner_image != blank and banner_image.width < 1800
+    assign image_render_size = banner_image.width
+  endif
 -%}
 
 {% style %}
-.collection-banner-wrapper {
+.section-{{ section.id }} {
+  --collection-banner-bg: {{ section.settings.bg_col }};
+  --collection-banner-text: {{ section.settings.txt_col }};
+  --collection-banner-overlay: {{ section.settings.kaahu_overlay_opacity | divided_by: 100.0 }};
+  --collection-banner-content-max: {{ section.settings.kaahu_content_max_width }}px;
+  --collection-banner-content-left: {{ section.settings.kaahu_content_left_desktop }}%;
+  --collection-banner-offset-y: {{ section.settings.kaahu_content_offset_y }}px;
+  --collection-banner-gap: {{ section.settings.kaahu_description_gap }}px;
+  --collection-banner-title-mobile: {{ section.settings.kaahu_title_size_mobile }}px;
+  --collection-banner-title-desktop: {{ section.settings.kaahu_title_size_desktop }}px;
+  --collection-banner-body-mobile: {{ section.settings.kaahu_description_size_mobile }}px;
+  --collection-banner-body-desktop: {{ section.settings.kaahu_description_size_desktop }}px;
+  --collection-banner-eyebrow: {{ section.settings.kaahu_eyebrow_color }};
+  --collection-banner-image-position-mobile: {{ section.settings.custom_image_position_mobile }};
+  --collection-banner-image-position-desktop: {{ section.settings.custom_image_position_desktop }};
   padding-top: {{ section.settings.top_padding }}px;
   padding-bottom: {{ section.settings.bottom_padding }}px;
-}
-  
-.collection-banner-card-banner {
-  color: {{ section.settings.txt_col }};
-  background: {{ section.settings.bg_col }};
-}
-.collection-banner-card-banner h1 {
-  color: {{ section.settings.txt_col }};
+  background: var(--collection-banner-bg);
+  color: var(--collection-banner-text);
 }
 
-.collection-std-description-below, .collection-title-bb {
-  padding-top: {{ section.settings.description_padding }}px;
+.section-{{ section.id }} .collection-banner-simple {
+  position: relative;
+  overflow: hidden;
+  background: var(--collection-banner-bg);
 }
 
-.collection-title-ab {
-  padding-bottom: {{ section.settings.description_padding }}px;
+.section-{{ section.id }} .collection-banner-simple__media,
+.section-{{ section.id }} .collection-banner-simple__media picture,
+.section-{{ section.id }} .collection-banner-simple__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.collection-banner h1 {
-  margin-bottom: {{ section.settings.title_margin }}px;
+.section-{{ section.id }} .collection-banner-simple__media img {
+  object-fit: cover;
+  object-position: var(--collection-banner-image-position-mobile);
 }
 
-.section-{{ section.id }} {
-  --kaahu-collection-hero-title-size-mobile: {{ section.settings.kaahu_title_size_mobile }}px;
-  --kaahu-collection-hero-title-size-desktop: {{ section.settings.kaahu_title_size_desktop }}px;
-  --kaahu-collection-hero-description-size-mobile: {{ section.settings.kaahu_description_size_mobile }}px;
-  --kaahu-collection-hero-description-size-desktop: {{ section.settings.kaahu_description_size_desktop }}px;
-  --kaahu-collection-hero-overlay-opacity: {{ section.settings.kaahu_overlay_opacity | divided_by: 100.0 }};
-  --kaahu-collection-hero-content-max-width: {{ section.settings.kaahu_content_max_width }}px;
-  --kaahu-collection-hero-content-left: {{ section.settings.kaahu_content_left_desktop }}%;
-  --kaahu-collection-hero-content-offset-y: {{ section.settings.kaahu_content_offset_y }}px;
-  --kaahu-collection-hero-description-gap: {{ section.settings.kaahu_description_gap }}px;
-  --kaahu-collection-hero-image-position-desktop: {{ section.settings.custom_image_position_desktop }};
-  --kaahu-collection-hero-image-position-mobile: {{ section.settings.custom_image_position_mobile }};
-  --kaahu-collection-hero-eyebrow-color: {{ section.settings.kaahu_eyebrow_color }};
-  --kaahu-collection-hero-breadcrumb-color: {{ section.settings.kaahu_breadcrumb_color }};
+.section-{{ section.id }} .collection-banner-simple__content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--collection-banner-content-max);
+  color: var(--collection-banner-text);
+  text-align: {{ section.settings.txt_alignment }};
 }
 
-.section-{{ section.id }} .collection-banner-title {
-  top: calc(50% + {{ section.settings.kaahu_content_offset_y }}px);
+.section-{{ section.id }} .collection-banner-simple__eyebrow {
+  margin: 0 0 20px;
+  color: var(--collection-banner-eyebrow);
+  font-family: var(--font-body-family);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
+}
+
+.section-{{ section.id }} .collection-banner-simple__heading {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-heading-family);
+  font-size: var(--collection-banner-title-mobile);
+  font-weight: var(--font-heading-weight);
+  line-height: .95;
+  letter-spacing: 0;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, .38);
+}
+
+.section-{{ section.id }} .collection-banner-simple__body {
+  margin-top: var(--collection-banner-gap);
+  color: inherit;
+  font-size: var(--collection-banner-body-mobile);
+  line-height: 1.55;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .36);
+}
+
+.section-{{ section.id }} .collection-banner-simple__body > *:first-child {
+  margin-top: 0;
+}
+
+.section-{{ section.id }} .collection-banner-simple__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.section-{{ section.id }} .collection-banner-simple--overlay {
+  min-height: 480px;
+}
+
+.section-{{ section.id }} .collection-banner-simple--overlay .collection-banner-simple__media {
+  position: absolute;
+  inset: 0;
+}
+
+.section-{{ section.id }} .collection-banner-simple--overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(21, 18, 13, var(--collection-banner-overlay));
+  pointer-events: none;
+}
+
+.section-{{ section.id }} .collection-banner-simple--overlay .collection-banner-simple__content {
+  position: relative;
+  z-index: 1;
+  top: calc(50% + var(--collection-banner-offset-y));
+  margin-left: max(var(--page-margin-mobile), 24px);
+  margin-right: max(var(--page-margin-mobile), 24px);
   transform: translateY(-50%);
 }
 
-.section-{{ section.id }} .collection-banner-description {
-  margin-top: {{ section.settings.kaahu_description_gap }}px;
+.section-{{ section.id }} .collection-banner-simple--split {
+  display: grid;
+  color: var(--collection-banner-text);
 }
 
-.section-{{ section.id }} .collection-card-banner--text-card > div {
-  transform: translateY({{ section.settings.kaahu_content_offset_y }}px);
+.section-{{ section.id }} .collection-banner-simple--split .collection-banner-simple__media {
+  min-height: 260px;
 }
 
-.section-{{ section.id }} .collection-card-banner--text-card h1 {
-  margin-bottom: {{ section.settings.kaahu_description_gap }}px;
+.section-{{ section.id }} .collection-banner-simple--split .collection-banner-simple__content {
+  padding: var(--page-margin-mobile);
+  transform: translateY(var(--collection-banner-offset-y));
 }
 
-{% if section.settings.cards_img_position == 'left' %}
+.section-{{ section.id }} .collection-banner-simple--text {
+  padding: 60px var(--page-margin-mobile);
+}
+
+.section-{{ section.id }} .collection-banner-simple--text .collection-banner-simple__content,
+.section-{{ section.id }} .align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 750px) {
+  .section-{{ section.id }} .collection-banner-simple--overlay {
+    min-height: 500px;
+  }
+}
+
 @media only screen and (min-width: 900px) {
-  .collection-card-banner--image-card {
-    order: 1
+  .section-{{ section.id }} .collection-banner-simple--split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
   }
-  .collection-card-banner--text-card {
-    order: 2
+
+  .section-{{ section.id }} .collection-banner-simple--split .collection-banner-simple__media {
+    min-height: 34vw;
+    order: {% if section.settings.cards_img_position == 'left' %}1{% else %}2{% endif %};
+  }
+
+  .section-{{ section.id }} .collection-banner-simple--split .collection-banner-simple__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    order: {% if section.settings.cards_img_position == 'left' %}2{% else %}1{% endif %};
+    padding: 3rem var(--page-margin-desktop);
   }
 }
-{% endif %}
 
-{% if section.settings.image_padding == 'page_margin' %}
-  .collection-card-banner--image-card {
-    padding: var(--page-margin-mobile);
+@media only screen and (min-width: 1025px) {
+  .section-{{ section.id }} .collection-banner-simple--overlay {
+    min-height: 500px;
   }
-  .collection-card-banner--image-card img {
-    border-radius: var(--media-radius);
-  }
-  @media only screen and (min-width: 1025px) {
-    .collection-card-banner--image-card {
-      padding: var(--page-margin-desktop) calc(var(--grid-desktop-horizontal-spacing) * 0.5) var(--page-margin-desktop) var(--page-margin-desktop);
-    }    
-  }
-  {% if section.settings.cards_img_position == 'right' %}
-  @media only screen and (min-width: 1025px) {
-    .collection-card-banner--image-card {
-      padding: var(--page-margin-desktop) var(--page-margin-desktop) var(--page-margin-desktop) calc(var(--grid-desktop-horizontal-spacing) * 0.5);
-    }
-    .collection-card-banner--text-card {
-      padding: var(--page-margin-desktop) calc(var(--grid-desktop-horizontal-spacing) * 0.5) var(--page-margin-desktop) var(--page-margin-desktop);
-    }
-  }
-  {% endif %}    
-{% endif %}
 
+  .section-{{ section.id }} .collection-banner-simple--overlay .collection-banner-simple__content {
+    margin-left: var(--collection-banner-content-left);
+    margin-right: auto;
+  }
+
+  .section-{{ section.id }} .collection-banner-simple__heading {
+    font-size: var(--collection-banner-title-desktop);
+  }
+
+  .section-{{ section.id }} .collection-banner-simple__body {
+    font-size: var(--collection-banner-body-desktop);
+  }
+
+  .section-{{ section.id }} .collection-banner-simple__media img {
+    object-position: var(--collection-banner-image-position-desktop);
+  }
+}
+
+@media only screen and (min-width: 1350px) {
+  .section-{{ section.id }} .collection-banner-simple--overlay {
+    min-height: 550px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .section-{{ section.id }} .collection-banner-simple--overlay {
+    min-height: 600px;
+  }
+}
 {% endstyle %}
 
 <div class="collection-banner-wrapper section-{{ section.id }} collection-template-{{ template.suffix | default: template.name | handle }} collection-banner-{{ section.settings.banner_layout }} cbw-image-ratio--{{ section.settings.stacked_img_ratio }} text-width--{{ section.settings.text_width }}">
-
-{% if section.settings.banner_layout == 'split_banner' and banner_image %}
-
-<div class="collection-banner-card-banner{% if section.settings.image_padding == 'page_margin' %} collection-banner-card-banner--inset{% else %} collection-banner-card-banner--fb{% endif %} banner-grid-spacing--{{ section.settings.grid_spacing }}">
-<div class="collection-card-banner--image-card ccbi-{{ section.settings.cards_img_ratio }}">
-{% if banner_image %}{{ banner_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: banner_image_alt }}{% endif %}
-</div>
-<div class="collection-card-banner--text-card">
-<div class="align-{{ section.settings.txt_alignment }}">
-  {%- if section.settings.kaahu_eyebrow != blank -%}<div class="collection-banner-eyebrow">{{ section.settings.kaahu_eyebrow }}</div>{%- endif -%}
-  <h1 class="{{ section.settings.title_size }}">{{ banner_title }}</h1>
-  {% if section.settings.description_enable and banner_description != blank %}
-  <span class="{{ section.settings.description_size }} cd-indent-{{ section.settings.text_indent }}">{{ banner_description }}</span>
-  {% endif %}
-</div>
-</div>
-</div>
-
-{% endif %}
-
-{% if section.settings.banner_layout == 'stacked-image-last' and banner_image %}
-<div class="collection-title-ab align-{{ section.settings.txt_alignment }} page-width">
-  {%- if section.settings.kaahu_eyebrow != blank -%}<div class="collection-banner-eyebrow">{{ section.settings.kaahu_eyebrow }}</div>{%- endif -%}
-  <h1 class="{{ section.settings.title_size }}">{{ banner_title }}</h1>
-  {% if section.settings.description_enable and banner_description != blank %}
-  <div class="collection-title-ab-description cd-indent-{{ section.settings.text_indent }}">{{ banner_description }}</div>
-  {% endif %}
-</div>
-{% endif %}
-
-{% if section.settings.banner_layout != 'split_banner' and section.settings.banner_layout != 'text-only' and banner_image %}
-<div class="collection-banner {{ section.settings.banner_width }} cb-height-mobile--{{ section.settings.banner_height_mobile }} collection-banner-{{ section.settings.banner_height }}">
-{% if section.settings.banner_layout contains 'overlay' %}
-<div class="collection-banner-title page-width align-{{ section.settings.txt_alignment }}">
-{%- if section.settings.show_kaahu_breadcrumbs -%}
-  <nav class="collection-banner-breadcrumb" aria-label="Breadcrumb">
-    {%- if section.settings.breadcrumb_home_text != blank -%}
-      <a href="{{ routes.root_url }}">{{ section.settings.breadcrumb_home_text }}</a>
+  <div class="collection-banner-simple{% if is_split %} collection-banner-simple--split{% elsif is_overlay %} collection-banner-simple--overlay{% else %} collection-banner-simple--text{% endif %}">
+    {%- if banner_image != blank -%}
+      <div class="collection-banner-simple__media">
+        <picture>
+          {%- if banner_mobile_image != blank -%}
+            <source media="(max-width: 749px)" srcset="{{ banner_mobile_image | image_url: width: 900 }}">
+          {%- endif -%}
+          {{ banner_image | image_url: width: image_render_size | image_tag: loading: 'eager', fetchpriority: 'high', alt: banner_image_alt }}
+        </picture>
+      </div>
     {%- endif -%}
-    {%- if section.settings.breadcrumb_middle_text != blank -%}
-      <span aria-hidden="true">/</span>
-      {%- if section.settings.breadcrumb_middle_link != blank -%}
-        <a href="{{ section.settings.breadcrumb_middle_link }}">{{ section.settings.breadcrumb_middle_text }}</a>
-      {%- else -%}
-        <span>{{ section.settings.breadcrumb_middle_text }}</span>
+
+    <div class="collection-banner-simple__content align-{{ section.settings.txt_alignment }}">
+      {%- if section.settings.kaahu_eyebrow != blank -%}
+        <div class="collection-banner-simple__eyebrow">{{ section.settings.kaahu_eyebrow }}</div>
       {%- endif -%}
-    {%- endif -%}
-    {%- if section.settings.breadcrumb_current_text != blank -%}
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">{{ section.settings.breadcrumb_current_text }}</span>
-    {%- endif -%}
-  </nav>
-{%- endif -%}
-{%- if section.settings.kaahu_eyebrow != blank -%}<div class="collection-banner-eyebrow">{{ section.settings.kaahu_eyebrow }}</div>{%- endif -%}
-<h1 class="{{ section.settings.title_size }}">{{ banner_title | escape }}</h1>
 
-{% if section.settings.description_enable and banner_description != blank %}
-{% unless section.settings.banner_layout == 'overlay-db' %}
-<div class="collection-banner-description {{ section.settings.description_size }} align-{{ section.settings.txt_alignment }} cd-indent-{{ section.settings.text_indent }}">
-{{ banner_description }}
-</div>
-{% endunless %}
-{% endif %}
-  
-</div>
-{% endif %}
-{% if banner_image %}
+      {%- if banner_title != blank -%}
+        <h1 class="collection-banner-simple__heading {{ section.settings.title_size }}">{{ banner_title | escape }}</h1>
+      {%- endif -%}
 
-{% if banner_image.width > 2777 %}
-{% assign image_render_size = 2800 %}
-{% else %}
-{% assign image_render_size = banner_image.width %}
-{% endif %}
-
-<div class="collection-banner-bg-img">
-  <picture>
-    {%- if banner_mobile_image != blank -%}
-      <source media="(max-width: 749px)" srcset="{{ banner_mobile_image | image_url: width: 900 }}">
-    {%- endif -%}
-    {{ banner_image | image_url: width: image_render_size | image_tag: loading: 'eager', fetchpriority: 'high', alt: banner_image_alt }}
-  </picture>
-</div>
-{% endif %}
-</div>
-{% endif %}
-
-{% if section.settings.banner_layout == 'overlay-db' and banner_image and section.settings.description_enable and banner_description != blank %}
-<div class="collection-std-description {{ section.settings.description_size }} collection-std-description-below align-{{ section.settings.txt_alignment }} page-width cd-indent-{{ section.settings.text_indent }}">
-{{ banner_description }}
-</div> 
-{% endif %}
-
-{% if section.settings.banner_layout == 'stacked-image-first' and banner_image %}
-<div class="collection-title-bb page-width align-{{ section.settings.txt_alignment }}">
-{%- if section.settings.kaahu_eyebrow != blank -%}<div class="collection-banner-eyebrow">{{ section.settings.kaahu_eyebrow }}</div>{%- endif -%}
-<h1>{{ banner_title | escape }}</h1>
-
-{% if banner_description != blank and section.settings.description_enable %}
-<div class="collection-std-description {{ section.settings.description_size }} align-{{ section.settings.txt_alignment }} cd-indent-{{ section.settings.text_indent }}">
-{{ banner_description }}
-</div>  
-{% endif %}
-</div>
-{% endif %}
-
-{% if section.settings.banner_layout == 'text-only' or banner_image == blank  %} 
-<div class="collection-banner-std page-width{% if section.settings.banner_layout != 'text-only' and banner_image == blank %} collection-banner-no-image{% endif %}">
-<div class="collection-banner-std-title align-{{ section.settings.txt_alignment }}">
-{%- if section.settings.kaahu_eyebrow != blank -%}<div class="collection-banner-eyebrow">{{ section.settings.kaahu_eyebrow }}</div>{%- endif -%}
-<h1 class="{{ section.settings.title_size }}">{{ banner_title | escape }}</h1>
-</div>
-{% if section.settings.description_enable and banner_description != blank %}
-<div class="collection-std-description {{ section.settings.description_size }} align-{{ section.settings.txt_alignment }} cd-indent-{{ section.settings.text_indent }}">
-{{ banner_description }}
-</div>
-{% endif %}
-</div>
-{% endif %}
-
+      {%- if section.settings.description_enable and banner_description != blank -%}
+        <div class="collection-banner-simple__body {{ section.settings.description_size }} cd-indent-{{ section.settings.text_indent }}">
+          {{ banner_description }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
 </div>
 
 {% schema %}
