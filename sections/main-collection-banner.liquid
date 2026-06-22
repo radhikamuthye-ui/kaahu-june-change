@@ -42,6 +42,8 @@
   --kaahu-collection-hero-overlay-opacity: {{ section.settings.kaahu_overlay_opacity | divided_by: 100.0 }};
   --kaahu-collection-hero-content-max-width: {{ section.settings.kaahu_content_max_width }}px;
   --kaahu-collection-hero-content-left: {{ section.settings.kaahu_content_left_desktop }}%;
+  --kaahu-collection-hero-content-offset-y: {{ section.settings.kaahu_content_offset_y }}px;
+  --kaahu-collection-hero-description-gap: {{ section.settings.kaahu_description_gap }}px;
   --kaahu-collection-hero-image-position-desktop: {{ section.settings.custom_image_position_desktop }};
   --kaahu-collection-hero-image-position-mobile: {{ section.settings.custom_image_position_mobile }};
   --kaahu-collection-hero-eyebrow-color: {{ section.settings.kaahu_eyebrow_color }};
@@ -683,6 +685,26 @@
       "unit": "%",
       "label": "Content left position desktop",
       "default": 16
+    },
+    {
+      "type": "range",
+      "id": "kaahu_content_offset_y",
+      "min": -120,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Content vertical offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "kaahu_description_gap",
+      "min": 0,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading to description spacing",
+      "default": 14
     },
     {
       "type": "range",

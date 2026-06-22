@@ -682,6 +682,7 @@
 
 .collection-template-all-of-kaahu-template .collection-banner-title {
   max-width: 1440px;
+  transform: translateY(calc(-50% + var(--kaahu-collection-hero-content-offset-y, 0px)));
 }
 
 .collection-template-all-of-kaahu-template .collection-banner-title.align-left {
@@ -755,6 +756,7 @@
 }
 
 .collection-template-all-of-kaahu-template .collection-banner-title.align-left .collection-banner-description {
+  margin-top: var(--kaahu-collection-hero-description-gap, 14px);
   margin-left: 0;
   margin-right: auto;
 }
