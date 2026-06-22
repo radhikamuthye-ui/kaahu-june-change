@@ -157,10 +157,12 @@
     {%- if section.settings.show_badges -%}
       <span class="kaahu-bestseller-card__badges">
         {%- if show_bestseller_badge -%}
-          <span class="kaahu-bestseller-card__badge">{{ section.settings.bestseller_tag }}</span>
+          {%- assign badge_label = section.settings.bestseller_tag | strip -%}
+          {%- assign badge_label_downcase = badge_label | downcase -%}
+          <span class="kaahu-bestseller-card__badge{% if badge_label_downcase contains 'sale' %} kaahu-bestseller-card__badge--sale{% endif %}">{{ badge_label }}</span>
         {%- endif -%}
         {%- if has_compare_discount -%}
-          <span class="kaahu-bestseller-card__badge">{{ section.settings.sale_badge_label }}</span>
+          <span class="kaahu-bestseller-card__badge kaahu-bestseller-card__badge--sale">{{ section.settings.sale_badge_label }}</span>
         {%- endif -%}
       </span>
     {%- endif -%}

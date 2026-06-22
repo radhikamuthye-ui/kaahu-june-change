@@ -141,14 +141,18 @@
 
 {% for tag in section.settings.product.tags %}
 {% if tag contains 'Badge:' %}
-<span class="fp-tag">{{ tag | remove: 'Badge: '}}</span>
+{% assign badge_label = tag | remove: 'Badge: ' | strip %}
+{% assign badge_label_downcase = badge_label | downcase %}
+<span class="fp-tag{% if badge_label_downcase contains 'sale' %} fp-tag--sale{% endif %}">{{ badge_label }}</span>
 {% endif %}
 {% endfor %}
 
 {% assign badges = section.settings.product.metafields.custom.badges %}
 {% if badges != blank %}
   {% for badge in badges.value %}
-    <span class="fp-tag">{{ badge }}</span>
+    {% assign badge_label = badge | strip %}
+    {% assign badge_label_downcase = badge_label | downcase %}
+    <span class="fp-tag{% if badge_label_downcase contains 'sale' %} fp-tag--sale{% endif %}">{{ badge_label }}</span>
   {% endfor %}
 {% endif %}
 

@@ -216,6 +216,11 @@
   text-transform: var(--kb-badge-case);
 }
 
+.kaahu-bestseller-card__badge--sale {
+  color: #ffffff;
+  background: rgb(var(--color-price-sale));
+}
+
 .kaahu-bestseller-card__quick-view {
   position: absolute;
   right: var(--kb-quick-offset);

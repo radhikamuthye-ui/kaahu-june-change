@@ -230,6 +230,11 @@
   margin-right: 2px;
 }
 
+.fp-tag--sale {
+  color: #ffffff;
+  background: rgb(var(--color-price-sale));
+}
+
 .align-center .fp-tag {
   margin-left: 1px;
   margin-right: 1px;
