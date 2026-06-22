@@ -48,18 +48,6 @@
   <div class="editorial-polaroid-band__inner">
     <div class="editorial-polaroid-band__media">
       {% if section.settings.video != blank %}
-        {% if section.settings.fallback_image != blank %}
-          {{
-            section.settings.fallback_image
-            | image_url: width: 1800
-            | image_tag:
-              loading: 'eager',
-              fetchpriority: 'low',
-              sizes: '(min-width: 768px) 58vw, 100vw',
-              widths: '375, 550, 750, 1100, 1500, 1800',
-              class: 'editorial-polaroid-band__fallback-image editorial-polaroid-band__fallback-image--poster'
-          }}
-        {% endif %}
         {{
           section.settings.video
           | video_tag:
@@ -266,16 +254,6 @@
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__video {
     opacity: var(--epb-video-opacity);
-  }
-
-  #shopify-section-{{ section.id }} .editorial-polaroid-band__fallback-image--poster {
-    z-index: 0;
-    opacity: 1;
-    transition: opacity 0.25s ease;
-  }
-
-  #shopify-section-{{ section.id }} .editorial-polaroid-band.is-video-active .editorial-polaroid-band__fallback-image--poster {
-    opacity: 0;
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__video {
@@ -553,13 +531,6 @@
 
       this.video.addEventListener('playing', function () {
         self.videoRetryCount = 0;
-        self.section.classList.add('is-video-active');
-      });
-
-      this.video.addEventListener('pause', function () {
-        if (!self.video.currentTime) {
-          self.section.classList.remove('is-video-active');
-        }
       });
 
       this.video.addEventListener('stalled', function () {
@@ -710,11 +681,16 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             self.isVisible = true;
-            self.replay();
+            if (self.hasPlayed) {
+              if (self.video && !self.isPaused) {
+                self.playVideo();
+              }
+            } else {
+              self.replay();
+            }
           } else {
             self.isVisible = false;
             if (self.video) self.video.pause();
-            self.reset();
           }
         });
       }, { rootMargin: '150px 0px', threshold: 0.05 });
@@ -881,7 +857,6 @@
     EditorialPolaroidBand.prototype.reset = function () {
       this.hasPlayed = false;
       this.videoRetryCount = 0;
-      this.section.classList.remove('is-video-active');
       this.clearTimers();
       this.cancelAnimations();
       this.layout(false);
