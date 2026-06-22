@@ -48,6 +48,18 @@
   <div class="editorial-polaroid-band__inner">
     <div class="editorial-polaroid-band__media">
       {% if section.settings.video != blank %}
+        {% if section.settings.fallback_image != blank %}
+          {{
+            section.settings.fallback_image
+            | image_url: width: 1800
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'low',
+              sizes: '(min-width: 768px) 58vw, 100vw',
+              widths: '375, 550, 750, 1100, 1500, 1800',
+              class: 'editorial-polaroid-band__fallback-image editorial-polaroid-band__fallback-image--poster'
+          }}
+        {% endif %}
         {{
           section.settings.video
           | video_tag:
@@ -58,7 +70,7 @@
             loop: true,
             controls: false,
             playsinline: true,
-            preload: 'metadata'
+            preload: 'auto'
         }}
       {% elsif section.settings.fallback_image != blank %}
         {{
@@ -256,10 +268,25 @@
     opacity: var(--epb-video-opacity);
   }
 
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__fallback-image--poster {
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band.is-video-active .editorial-polaroid-band__fallback-image--poster {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .editorial-polaroid-band__video {
+    z-index: 1;
+  }
+
   #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroids {
     position: absolute;
     inset: 0;
     pointer-events: none;
+    z-index: 2;
   }
 
   #shopify-section-{{ section.id }} .editorial-polaroid-band__polaroid {
@@ -468,6 +495,8 @@
       this.isVisible = false;
       this.isScrubbing = false;
       this.lastVideoTime = 0;
+      this.videoRetryTimer = null;
+      this.videoRetryCount = 0;
       this.animations = [];
       this.timers = [];
       this.timelineFrame = null;
@@ -475,23 +504,69 @@
       this.observer = null;
       this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.onResize = this.onResize.bind(this);
+      this.onPageVisible = this.onPageVisible.bind(this);
+      this.onWindowFocus = this.onWindowFocus.bind(this);
 
       this.initAnimationControls();
       this.initTimeline();
+      this.initVideo();
       this.layout(false);
       this.observe();
       window.addEventListener('resize', this.onResize);
+      document.addEventListener('visibilitychange', this.onPageVisible);
+      window.addEventListener('focus', this.onWindowFocus);
     }
 
     EditorialPolaroidBand.prototype.destroy = function () {
       window.removeEventListener('resize', this.onResize);
+      document.removeEventListener('visibilitychange', this.onPageVisible);
+      window.removeEventListener('focus', this.onWindowFocus);
       if (this.observer) {
         this.observer.disconnect();
       }
       clearTimeout(this.resizeTimer);
+      clearTimeout(this.videoRetryTimer);
       this.clearTimers();
       this.cancelAnimations();
       this.stopTimelineUpdates();
+    };
+
+    EditorialPolaroidBand.prototype.initVideo = function () {
+      var self = this;
+
+      if (!this.video) {
+        return;
+      }
+
+      this.video.muted = true;
+      this.video.defaultMuted = true;
+      this.video.playsInline = true;
+      this.video.setAttribute('muted', '');
+      this.video.setAttribute('playsinline', '');
+      this.video.setAttribute('webkit-playsinline', '');
+
+      this.video.addEventListener('canplay', function () {
+        if (self.isVisible && !self.isPaused) {
+          self.playVideo();
+        }
+      });
+
+      this.video.addEventListener('playing', function () {
+        self.videoRetryCount = 0;
+        self.section.classList.add('is-video-active');
+      });
+
+      this.video.addEventListener('pause', function () {
+        if (!self.video.currentTime) {
+          self.section.classList.remove('is-video-active');
+        }
+      });
+
+      this.video.addEventListener('stalled', function () {
+        if (self.isVisible && !self.isPaused) {
+          self.scheduleVideoRetry(250);
+        }
+      });
     };
 
     EditorialPolaroidBand.prototype.initAnimationControls = function () {
@@ -655,6 +730,18 @@
       }, 150);
     };
 
+    EditorialPolaroidBand.prototype.onPageVisible = function () {
+      if (!document.hidden && this.isVisible && !this.isPaused) {
+        this.playVideo();
+      }
+    };
+
+    EditorialPolaroidBand.prototype.onWindowFocus = function () {
+      if (this.isVisible && !this.isPaused) {
+        this.playVideo();
+      }
+    };
+
     EditorialPolaroidBand.prototype.layout = function (settled) {
       if (!this.media || !this.polaroids.length) {
         return;
@@ -793,6 +880,8 @@
 
     EditorialPolaroidBand.prototype.reset = function () {
       this.hasPlayed = false;
+      this.videoRetryCount = 0;
+      this.section.classList.remove('is-video-active');
       this.clearTimers();
       this.cancelAnimations();
       this.layout(false);
@@ -868,8 +957,13 @@
         return;
       }
 
+      var self = this;
       this.video.muted = true;
+      this.video.defaultMuted = true;
       this.video.playsInline = true;
+      this.video.setAttribute('muted', '');
+      this.video.setAttribute('playsinline', '');
+      this.video.setAttribute('webkit-playsinline', '');
 
       if (this.video.networkState === HTMLMediaElement.NETWORK_EMPTY) {
         this.video.load();
@@ -878,10 +972,26 @@
       var playPromise = this.video.play();
       if (playPromise && typeof playPromise.catch === 'function') {
         playPromise.catch(function () {
-          // Keep the poster visible if a browser temporarily denies autoplay.
-          // The viewport observer and explicit play control will retry playback.
+          self.scheduleVideoRetry(600);
         });
       }
+    };
+
+    EditorialPolaroidBand.prototype.scheduleVideoRetry = function (delay) {
+      var self = this;
+
+      clearTimeout(this.videoRetryTimer);
+
+      if (this.isPaused || !this.isVisible || document.hidden || this.videoRetryCount >= 5) {
+        return;
+      }
+
+      this.videoRetryCount += 1;
+      this.videoRetryTimer = window.setTimeout(function () {
+        if (self.video && self.video.paused && self.isVisible && !self.isPaused && !document.hidden) {
+          self.playVideo();
+        }
+      }, delay);
     };
 
     EditorialPolaroidBand.prototype.play = function () {
