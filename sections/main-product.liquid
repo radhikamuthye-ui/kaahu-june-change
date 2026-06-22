@@ -1359,7 +1359,7 @@
                     {% if block.settings.desktop_image_width < 42 %}
                       {% assign sustain_desktop_image_width = 900 %}
                     {% endif %}
-                    {{ block.settings.desktop_image | image_url: width: sustain_desktop_image_width | image_tag: loading: 'lazy' }}
+                    {{ block.settings.desktop_image | image_url: width: sustain_desktop_image_width | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200', sizes: '(min-width: 950px) 30vw, 100vw' }}
                   </div>
                 {% endif %}
               </div>

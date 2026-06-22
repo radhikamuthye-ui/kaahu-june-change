@@ -62,16 +62,17 @@
     | video_tag:
       id: video_id,
       image_size: '1600x',
-      autoplay: true,
+      autoplay: false,
       loop: true,
       controls: false,
-      muted: true
+      muted: true,
+      preload: 'none'
   }}
 </div>
 {% endif %}
 {% if block.settings.image and block.settings.video == blank %}
 <div class="tabpanel-image">
-{{ block.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy' }}
+{{ block.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 750px) 50vw, 100vw' }}
 </div>
 {% endif %}
 <div class="tabpanel-text flex-align-{{ section.settings.text_position_vertical }}">

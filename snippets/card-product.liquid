@@ -59,6 +59,8 @@
 {% assign size_names = 'Size,Größe,Maat,Rozmiar,Taille,Tamaño,Dimensión,Dimensione,Misurare,Tamanho,Størrelse,Veličina,Размер' | split: ',' %}
 
 {% assign media_size = 800 %}
+{% assign card_image_widths = '240, 360, 480, 600, 800, 1000, 1280' %}
+{% assign card_image_sizes = '(min-width: 1200px) 25vw, (min-width: 750px) 33vw, 50vw' %}
 
 {% assign static_images = true %}
 {% if show_swiping_images or show_secondary_image %}
@@ -154,7 +156,7 @@
       {% if value.variant.featured_media %}
         {% if forloop.index < 5 %}
       <div data-variant-index="{{ forloop.index }}" class="card-product--variant-main-image{% unless available %} card-product--variant-unavailable{% endunless %}">
-      {{ value.variant.featured_media | image_url: width: media_size | image_tag: loading: 'lazy' }}
+      {{ value.variant.featured_media | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
       </div>
       {% endif %}
     {% endif %}
@@ -183,9 +185,9 @@
           <div class="card-product--image card-product--image-slide" data-value="{{ forloop.index }}">
             <div class="card-product--image-wrapper">
               {% if lazy_load %}
-                {{ image | image_url: width: media_size | image_tag: loading: 'lazy' }}
+                {{ image | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
               {% else %}
-                {{ image | image_url: width: media_size | image_tag }}
+                {{ image | image_url: width: media_size | image_tag: widths: card_image_widths, sizes: card_image_sizes }}
               {% endif %}
             </div>
           </div>
@@ -201,15 +203,15 @@
   <div class="card-product--image-wrapper">
     <div class="product-card-default-image product-card-fade-out-image">
     {% if lazy_load %}
-    {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy' }}
+    {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
     {% else %}
-    {{ card_product.featured_media | image_url: width: media_size | image_tag }}
+    {{ card_product.featured_media | image_url: width: media_size | image_tag: widths: card_image_widths, sizes: card_image_sizes }}
     {% endif %}
     </div>
     <div class="product-card-reveal-image">
     {% for image in images %}
       {% if image != card_product.featured_media %}
-        {{ image | image_url: width: media_size | image_tag: loading: 'lazy' }}
+        {{ image | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
         {% break %}
       {% endif %}
     {% endfor %}
@@ -225,9 +227,9 @@
   <div class="card-product--image-wrapper card-product--single-image-wrapper">
   {% if card_product.featured_media %}
   {% if lazy_load %}
-  {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy' }}
+  {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
   {% else %}
-  {{ card_product.featured_media | image_url: width: media_size | image_tag }}
+  {{ card_product.featured_media | image_url: width: media_size | image_tag: widths: card_image_widths, sizes: card_image_sizes }}
   {% endif %}
   {% endif %}
 

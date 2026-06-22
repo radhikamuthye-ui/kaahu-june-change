@@ -125,7 +125,7 @@
 {% if section.settings.dt_image_width < 60 %}
   {% assign image_render_size = 2000 %}
 {% endif %}
-{{ section.settings.image | image_url: width: image_render_size | image_tag: loading: 'lazy' }}
+{{ section.settings.image | image_url: width: image_render_size | image_tag: loading: 'lazy', widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 750px) 50vw, 100vw' }}
 {% elsif section.settings.image_asset_filename != blank %}
 {{ section.settings.image_asset_filename | asset_url | image_tag: loading: 'lazy' }}
 {% else %}
@@ -147,7 +147,7 @@
 {% assign image_width = 800 %}
 {% endif %}
 <div class="image-with-text--inset-image inset-image-{{ section.settings.secondary_image_scale }}">
-{{ section.settings.secondary_image | image_url: width: image_width | image_tag: loading: 'lazy' }}
+{{ section.settings.secondary_image | image_url: width: image_width | image_tag: loading: 'lazy', widths: '180, 280, 400, 600, 800', sizes: '(min-width: 750px) 400px, 60vw' }}
 </div> 
 {% endif %}
 

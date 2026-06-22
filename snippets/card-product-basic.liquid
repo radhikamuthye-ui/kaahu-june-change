@@ -18,6 +18,8 @@
 {% endcomment %}
 
 {% assign media_size = 280 %}
+{% assign card_image_widths = '160, 220, 280' %}
+{% assign card_image_sizes = '140px' %}
 
 <div class="card card-product card-ratio-{{ media_aspect_ratio }}">
 <div class="card-media">
@@ -28,9 +30,9 @@
   <div class="card-product--image-wrapper card-product--single-image-wrapper">
   {% if card_product.featured_media %}
   {% if lazy_load %}
-  {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy' }}
+  {{ card_product.featured_media | image_url: width: media_size | image_tag: loading: 'lazy', widths: card_image_widths, sizes: card_image_sizes }}
   {% else %}
-  {{ card_product.featured_media | image_url: width: media_size | image_tag }}
+  {{ card_product.featured_media | image_url: width: media_size | image_tag: widths: card_image_widths, sizes: card_image_sizes }}
   {% endif %}
   {% endif %}
   </div>

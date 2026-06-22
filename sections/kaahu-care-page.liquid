@@ -11,9 +11,9 @@
     <div class="kcp-wrap kcp-hero__image">
       <div class="kcp-frame kcp-frame--wide">
         {%- if section.settings.hero_image != blank -%}
-          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 1180px) 1140px, calc(100vw - 40px)', alt: section.settings.hero_alt }}
         {%- else -%}
-          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=1200" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=990 990w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=1200 1200w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00133.jpg?v=1775156033&amp;width=1800 1800w" sizes="(min-width: 1180px) 1140px, calc(100vw - 40px)" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
         {%- endif -%}
       </div>
     </div>

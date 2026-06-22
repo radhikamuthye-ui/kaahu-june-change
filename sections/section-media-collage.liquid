@@ -80,7 +80,7 @@
   <div class="ci-{{ block.id }} collage-image collage-image-half-width ratio-{{ block.settings.image_ratio }}" {{ block.shopify_attributes }}>
   <div class="collage-image-wrapper ci-image-padding-mobile-{{ block.settings.image_padding_mobile }} ci-image-padding-{{ block.settings.image_padding }}">
     {% if block.settings.image %}
-    {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: image_loading }}
+    {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: image_loading, widths: '320, 480, 640, 750, 900, 1080, 1400', sizes: '(min-width: 990px) 50vw, 100vw' }}
     {% else %}
     {% render 'media-placeholder-lifestyle', style: 3 %}
     {% endif %}
@@ -102,7 +102,7 @@
   <div class="ci-{{ block.id }} collage-image collage-image-full-width ratio-{{ block.settings.image_ratio }}" {{ block.shopify_attributes }}>
   <div class="collage-image-wrapper ci-image-padding-mobile-{{ block.settings.image_padding_mobile }} ci-image-padding-{{ block.settings.image_padding }}">
     {% if block.settings.image %}
-    {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: image_loading }}
+    {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: image_loading, widths: '375, 550, 750, 990, 1200, 1500, 1800, 2200, 2800', sizes: '100vw' }}
     {% else %}
     {% render 'media-placeholder-lifestyle', style: 3 %}
     {% endif %}
@@ -134,10 +134,11 @@
         | video_tag:
           id: video_id,
           image_size: '1400x',
-          autoplay: true,
+          autoplay: false,
           loop: true,
           controls: false,
-          muted: true
+          muted: true,
+          preload: 'none'
       }}
     {% else %}
     {% render 'media-placeholder-lifestyle', style: 3 %}
@@ -155,10 +156,11 @@
         | video_tag:
           id: video_id,
           image_size: '2400x',
-          autoplay: true,
+          autoplay: false,
           loop: true,
           controls: false,
-          muted: true
+          muted: true,
+          preload: 'none'
       }}
     {% else %}
     {% render 'media-placeholder-lifestyle', style: 3 %}

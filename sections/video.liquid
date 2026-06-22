@@ -56,7 +56,7 @@
 
 {% if section.settings.video == null and section.settings.video_url == blank and section.settings.cover_image != blank %}
 <div class="video-player-sh player-ratio-{{ section.settings.video_aspect_ratio }} video-poster-only">
-{{ section.settings.cover_image | image_url: width: 2400 | image_tag: loading: 'lazy' }}
+{{ section.settings.cover_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1500, 1800, 2100, 2400', sizes: '100vw' }}
 </div>
 {% endif %}
   
@@ -65,11 +65,9 @@
 {% assign video_id = 'video-id-' | append: section.id %}
 
 {% assign mute_setting = false %}
-{% assign autoplay = false %}
 {% assign video_class = 'no-class-video' %}
   
 {% if section.settings.autoplay %}
-{% assign autoplay = true %}
 {% assign mute_setting = true %}
 {% assign video_class = 'autoplaying-video' %}
 {% endif %}
@@ -80,9 +78,9 @@
 <button id="play-button-{{ video_id }}" class="video-player-sh--poster play-button-color-scheme--{{ section.settings.play_button_color }}" id="video-poster-id-{{ section.id }}" aria-label="{{ 'accessibility.play' | t }}">
 {% render 'icon-play' %}
 {% if section.settings.cover_image %}
-{{ section.settings.cover_image | image_url: width: 2400 | image_tag: loading: 'lazy' }}
+{{ section.settings.cover_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1500, 1800, 2100, 2400', sizes: '100vw' }}
 {% else %}
-{{ section.settings.video.preview_image | image_url: width: 2400 | image_tag: loading: 'lazy' }}
+{{ section.settings.video.preview_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1500, 1800, 2100, 2400', sizes: '100vw' }}
 {% endif %}
 </button>
 {% endunless %}
@@ -91,11 +89,12 @@
     | video_tag:
       image_size: '1800x',
       fetchpriority: fetch_priority,
-      autoplay: autoplay,
+      autoplay: false,
       loop: section.settings.enable_video_looping,
       controls: false,
       muted: mute_setting,
-      id: video_id
+      id: video_id,
+      preload: 'none'
   }}
 </div>
   

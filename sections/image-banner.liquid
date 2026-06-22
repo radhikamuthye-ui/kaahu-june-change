@@ -225,9 +225,9 @@
 {% if section.settings.image %}
 <div class="banner-primary-image {{ section.settings.primary_image_size }} image-animation-{{ section.settings.main_image_animation }}">
 {% if section.settings.primary_image_size == 'dt-full-bleed' %}
-{{ section.settings.image | image_url: width: 2800 | image_tag: class: primary_image_class, fetchpriority: fetch_priority, loading: image_loading }}
+{{ section.settings.image | image_url: width: 2800 | image_tag: class: primary_image_class, fetchpriority: fetch_priority, loading: image_loading, widths: '750, 1100, 1500, 1800, 2200, 2600, 2800', sizes: '100vw' }}
 {% else %}
-{{ section.settings.image | image_url: width: 1800 | image_tag: class: primary_image_class, fetchpriority: fetch_priority, loading: image_loading }}
+{{ section.settings.image | image_url: width: 1800 | image_tag: class: primary_image_class, fetchpriority: fetch_priority, loading: image_loading, widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 750px) 50vw, 100vw' }}
 {% endif %}
 </div>
 {% endif %}
@@ -236,9 +236,9 @@
 {% if section.settings.image_secondary %}
 <div class="banner-secondary-image {{ section.settings.secondary_image_size }} image-animation-{{ section.settings.secondary_image_animation }}">
 {% if section.settings.secondary_image_size == 'dt-full-bleed' %}
-{{ section.settings.image_secondary | image_url: width: 2800 | image_tag: class: secondary_image_class, fetchpriority: fetch_priority, loading: image_loading }}
+{{ section.settings.image_secondary | image_url: width: 2800 | image_tag: class: secondary_image_class, fetchpriority: fetch_priority, loading: image_loading, widths: '750, 1100, 1500, 1800, 2200, 2600, 2800', sizes: '100vw' }}
 {% else %}
-{{ section.settings.image_secondary | image_url: width: 1800 | image_tag: class: secondary_image_class, fetchpriority: fetch_priority, loading: image_loading }}
+{{ section.settings.image_secondary | image_url: width: 1800 | image_tag: class: secondary_image_class, fetchpriority: fetch_priority, loading: image_loading, widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 750px) 50vw, 100vw' }}
 {% endif %}  
 </div>
 {% endif %}

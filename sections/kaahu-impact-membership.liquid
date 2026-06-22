@@ -1,7 +1,7 @@
 {{ 'section-kaahu-impact-membership.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign image_width = section.settings.media_width | times: 20
+  assign image_width = section.settings.media_width | times: 40
   assign heading_tag = 'h2'
   if section.index == 1
     assign heading_tag = 'h1'
@@ -59,23 +59,24 @@
 <section class="kaahu-impact-membership section-{{ section.id }}">
   <div class="kaahu-impact-membership__inner">
     <div class="kaahu-impact-membership__container kaahu-impact-membership__container--desktop-{{ section.settings.desktop_alignment }} kaahu-impact-membership__container--mobile-{{ section.settings.mobile_alignment }}">
-      <div class="kaahu-impact-membership__media" style="aspect-ratio: {{ section.settings.media_aspect_ratio }};">
+      <div class="kaahu-impact-membership__media{% if section.settings.media_type == 'video' and section.settings.video_autoplay %} autoplaying-video{% endif %}" style="aspect-ratio: {{ section.settings.media_aspect_ratio }};">
         {%- if section.settings.media_type == 'video' -%}
           {%- if section.settings.video != blank -%}
             {{
               section.settings.video
               | video_tag:
                 image_size: '1400x',
-                autoplay: section.settings.video_autoplay,
+                autoplay: false,
                 loop: section.settings.video_loop,
                 muted: section.settings.video_muted,
                 controls: section.settings.video_controls,
-                class: 'kaahu-impact-membership__video'
+                class: 'kaahu-impact-membership__video',
+                preload: 'none'
             }}
           {%- elsif section.settings.mp4_url != blank -%}
             <video
               class="kaahu-impact-membership__video"
-              {% if section.settings.video_autoplay %}autoplay{% endif %}
+              preload="none"
               {% if section.settings.video_loop %}loop{% endif %}
               {% if section.settings.video_muted %}muted{% endif %}
               {% if section.settings.video_controls %}controls{% endif %}
@@ -85,14 +86,14 @@
               <source src="{{ section.settings.mp4_url }}" type="video/mp4">
             </video>
           {%- elsif section.settings.poster_image != blank -%}
-            {{ section.settings.poster_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'kaahu-impact-membership__image' }}
+            {{ section.settings.poster_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '360, 550, 700, 900, 1100, 1400', sizes: '(min-width: 1200px) 620px, (min-width: 750px) 35vw, calc(100vw - 44px)', class: 'kaahu-impact-membership__image' }}
           {%- else -%}
             <div class="kaahu-impact-membership__placeholder">
               {% render 'media-placeholder-lifestyle', style: 3 %}
             </div>
           {%- endif -%}
         {%- elsif section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: image_width | image_tag: loading: 'lazy', class: 'kaahu-impact-membership__image' }}
+          {{ section.settings.image | image_url: width: image_width | image_tag: loading: 'lazy', widths: '360, 550, 700, 900, 1100, 1400', sizes: '(min-width: 1200px) 620px, (min-width: 750px) 35vw, calc(100vw - 44px)', class: 'kaahu-impact-membership__image' }}
         {%- else -%}
           <div class="kaahu-impact-membership__placeholder">
             {% render 'media-placeholder-lifestyle', style: 3 %}

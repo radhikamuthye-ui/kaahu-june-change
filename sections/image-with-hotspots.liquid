@@ -106,7 +106,7 @@
   
 <div class="image-hotspots--image-wrapper">
 {% if section.settings.image %}
-{{ section.settings.image | image_url: width: 2800 | image_tag: loading: 'lazy' }}
+{{ section.settings.image | image_url: width: 2800 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 1800, 2200, 2600, 2800', sizes: '100vw' }}
 {% else %}
 {% render 'media-placeholder-lifestyle', style: 9 %}
 {% endif %}  

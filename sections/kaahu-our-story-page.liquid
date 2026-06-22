@@ -11,9 +11,9 @@
     <div class="kcp-wrap kcp-hero__image">
       <div class="kcp-frame kcp-frame--wide">
         {%- if section.settings.hero_image != blank -%}
-          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_alt }}
+          {{ section.settings.hero_image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 1180px) 1140px, calc(100vw - 40px)', alt: section.settings.hero_alt }}
         {%- else -%}
-          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=1200" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=990 990w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=1200 1200w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20250106-DSC00568_ceb9c118-cf44-4116-b425-e72d28642bc3.jpg?v=1781672580&amp;width=1800 1800w" sizes="(min-width: 1180px) 1140px, calc(100vw - 40px)" alt="{{ section.settings.hero_alt | escape }}" width="1800" height="900" loading="eager" fetchpriority="high">
         {%- endif -%}
       </div>
     </div>
@@ -39,9 +39,9 @@
       <div class="kcp-split">
         <div class="kcp-frame kcp-frame--portrait">
           {%- if section.settings.material_image != blank -%}
-            {{ section.settings.material_image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.material_alt }}
+            {{ section.settings.material_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200', sizes: '(min-width: 750px) 520px, calc(100vw - 40px)', alt: section.settings.material_alt }}
           {%- else -%}
-            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="{{ section.settings.material_alt | escape }}" width="900" height="1125" loading="lazy">
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=750" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=360 360w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=900 900w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097&amp;width=1200 1200w" sizes="(min-width: 750px) 520px, calc(100vw - 40px)" alt="{{ section.settings.material_alt | escape }}" width="900" height="1125" loading="lazy">
           {%- endif -%}
         </div>
         <div class="kcp-split__copy kcp-rich">
@@ -62,9 +62,9 @@
       <p class="kcp-eyebrow">{{ section.settings.symbol_eyebrow }}</p>
       <div class="kcp-frame kcp-symbol__image">
         {%- if section.settings.symbol_image != blank -%}
-          {{ section.settings.symbol_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.symbol_alt }}
+          {{ section.settings.symbol_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '240, 360, 550, 750, 900', sizes: '(min-width: 750px) 520px, calc(100vw - 40px)', alt: section.settings.symbol_alt }}
         {%- else -%}
-          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696" alt="{{ section.settings.symbol_alt | escape }}" width="900" height="620" loading="lazy">
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696&amp;width=750" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696&amp;width=360 360w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Huia_Birds_Drawing.png?v=1771010696&amp;width=900 900w" sizes="(min-width: 750px) 520px, calc(100vw - 40px)" alt="{{ section.settings.symbol_alt | escape }}" width="900" height="620" loading="lazy">
         {%- endif -%}
       </div>
       <p class="kcp-symbol__lead">{{ section.settings.symbol_heading }}</p>
@@ -80,9 +80,9 @@
   <div class="kcp-wrap kcp-close-img">
     <div class="kcp-frame kcp-frame--wide">
       {%- if section.settings.close_image != blank -%}
-        {{ section.settings.close_image | image_url: width: 1800 | image_tag: loading: 'lazy', alt: section.settings.close_alt }}
+        {{ section.settings.close_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 1180px) 1140px, calc(100vw - 40px)', alt: section.settings.close_alt }}
       {%- else -%}
-        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901" alt="{{ section.settings.close_alt | escape }}" width="1800" height="900" loading="lazy">
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=1200" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=990 990w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=1200 1200w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/DSC00080.jpg?v=1776720901&amp;width=1800 1800w" sizes="(min-width: 1180px) 1140px, calc(100vw - 40px)" alt="{{ section.settings.close_alt | escape }}" width="1800" height="900" loading="lazy">
       {%- endif -%}
     </div>
   </div>

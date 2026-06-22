@@ -170,7 +170,7 @@
 
 <div class="{{ section.id }}-video-banner-poster-only video-banner-poster-only">
 {% if section.settings.video_poster %}
-  {{ section.settings.video_poster | image_url: width: 1080 | image_tag: loading: 'lazy' }}
+  {{ section.settings.video_poster | image_url: width: 1080 | image_tag: loading: 'lazy', widths: '375, 550, 750, 900, 1080', sizes: '100vw' }}
 {% endif %}
 </div>
 
@@ -183,10 +183,11 @@
       id: video_id,
       image_size: '1080x',
       fetchpriority: fetch_priority,
-      autoplay: true,
+      autoplay: false,
       loop: true,
       controls: false,
-      muted: true
+      muted: true,
+      preload: 'none'
   }} 
 </div>
 {% endif %}
@@ -197,10 +198,11 @@
     | video_tag:
       image_size: '1800x',
       fetchpriority: fetch_priority,
-      autoplay: true,
+      autoplay: false,
       loop: true,
       controls: false,
-      muted: true
+      muted: true,
+      preload: 'none'
   }}  
 </div>
 
@@ -215,31 +217,6 @@
   
 </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var videoElement = document.getElementById('vid-mob-{{ section.id }}');
-    var posterOnlyDiv = document.querySelector('.{{ section.id }}-video-banner-poster-only');
-
-    if (videoElement) {
-      var videoPromise = videoElement.play();
-      if (videoPromise) {
-        videoPromise
-          .then(function () {
-            // Function
-          })
-          .catch(function (error) {
-            if (error.name === 'NotAllowedError') {
-              // Handle "NotAllowedError"
-              posterOnlyDiv.classList.add('poster-visible');
-            } else {
-              // Handle other errors if needed
-            }
-          });
-      }
-    }
-  });
-</script>
 
 {% if section.settings.scroll_fade_effect and section.index == 1 %}
 <script>

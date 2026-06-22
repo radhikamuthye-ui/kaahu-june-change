@@ -198,6 +198,10 @@
   display: none;
 }
 
+.swipe-slide--image-with-mobile-image picture .desktop-image {
+  display: block;
+}
+
 @media only screen and (min-width: 750px) {
   .swipe-slide--image-with-mobile-image .mobile-image {
     display: none;

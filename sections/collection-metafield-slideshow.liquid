@@ -171,9 +171,13 @@
           <div class="swiper-slide cms-slide" data-index="{{ forloop.index0 }}">
             <picture>
               {%- if mobile_slideshow_image != blank -%}
-                <source media="(max-width: 749px)" srcset="{{ mobile_slideshow_image | image_url: width: 1100 }}">
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ mobile_slideshow_image | image_url: width: 375 }} 375w, {{ mobile_slideshow_image | image_url: width: 550 }} 550w, {{ mobile_slideshow_image | image_url: width: 750 }} 750w, {{ mobile_slideshow_image | image_url: width: 900 }} 900w, {{ mobile_slideshow_image | image_url: width: 1100 }} 1100w"
+                  sizes="100vw"
+                >
               {%- endif -%}
-              {{ slideshow_image | image_url: width: 2400 | image_tag: loading: image_loading, fetchpriority: image_fetchpriority, class: image_fade_class }}
+              {{ slideshow_image | image_url: width: 2400 | image_tag: loading: image_loading, fetchpriority: image_fetchpriority, widths: '750, 1100, 1500, 1800, 2100, 2400', sizes: '100vw', class: image_fade_class }}
             </picture>
           </div>
         {%- endfor -%}

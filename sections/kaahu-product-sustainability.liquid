@@ -68,7 +68,7 @@
       </div>
       <div class="kaahu-product-sustainability__media">
         {%- if panel_image != blank -%}
-          {{ panel_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', alt: panel_alt }}
+          {{ panel_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200, 1400', sizes: '(min-width: 950px) 50vw, 100vw', alt: panel_alt }}
         {%- endif -%}
       </div>
     </div>

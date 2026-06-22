@@ -236,7 +236,7 @@
 {% if section.settings.bg_image != blank %}
 <div class="rich-text-section-bg-image">
 <div class="rich-text-section-bg-image-overlay"></div>
-{{ section.settings.bg_image | image_url: width: 2400 | image_tag: loading: 'lazy' }}  
+{{ section.settings.bg_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 1800, 2100, 2400', sizes: '100vw' }}  
 </div>  
 {% endif %}
   

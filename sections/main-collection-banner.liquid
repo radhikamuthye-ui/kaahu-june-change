@@ -234,9 +234,13 @@
       <div class="collection-banner-simple__media">
         <picture>
           {%- if banner_mobile_image != blank -%}
-            <source media="(max-width: 749px)" srcset="{{ banner_mobile_image | image_url: width: 900 }}">
+            <source
+              media="(max-width: 749px)"
+              srcset="{{ banner_mobile_image | image_url: width: 375 }} 375w, {{ banner_mobile_image | image_url: width: 550 }} 550w, {{ banner_mobile_image | image_url: width: 750 }} 750w, {{ banner_mobile_image | image_url: width: 900 }} 900w"
+              sizes="100vw"
+            >
           {%- endif -%}
-          {{ banner_image | image_url: width: image_render_size | image_tag: loading: 'eager', fetchpriority: 'high', alt: banner_image_alt }}
+          {{ banner_image | image_url: width: image_render_size | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1420, 1800, 2200, 2600', sizes: '100vw', alt: banner_image_alt }}
         </picture>
       </div>
     {%- endif -%}

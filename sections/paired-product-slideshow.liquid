@@ -175,14 +175,12 @@
             assign slide_remainder = forloop.index | modulo: 2
             assign slide_image_loading = 'lazy'
             assign slide_fetch_priority = 'auto'
-            assign slide_image_preload = false
             if slide_remainder == 0
               assign image_fade_class = 'pps-image--fade-out'
             endif
             if forloop.first
               assign slide_image_loading = 'eager'
               assign slide_fetch_priority = 'high'
-              assign slide_image_preload = true
             endif
           -%}
 
@@ -190,9 +188,9 @@
             <div class="pps-panel pps-lifestyle">
               <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: slide_heading | escape }}">
                 {%- if block.settings.lifestyle_image != blank -%}
-                  {{ block.settings.lifestyle_image | image_url: width: 1800 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, preload: slide_image_preload, class: image_fade_class }}
+                  {{ block.settings.lifestyle_image | image_url: width: 1800 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, widths: '375, 550, 750, 832, 1100, 1400, 1800', sizes: '(min-width: 750px) 50vw, 100vw', class: image_fade_class }}
                 {%- elsif lifestyle_media != blank and lifestyle_media.preview_image != blank -%}
-                  {{ lifestyle_media.preview_image | image_url: width: 1800 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, preload: slide_image_preload, alt: lifestyle_media.alt, class: image_fade_class }}
+                  {{ lifestyle_media.preview_image | image_url: width: 1800 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, widths: '375, 550, 750, 832, 1100, 1400, 1800', sizes: '(min-width: 750px) 50vw, 100vw', alt: lifestyle_media.alt, class: image_fade_class }}
                 {%- else -%}
                   <span class="pps-placeholder">{% render 'media-placeholder-lifestyle', style: 7 %}</span>
                 {%- endif -%}
@@ -260,9 +258,9 @@
             <div class="pps-panel pps-product">
               <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: slide_heading | escape }}">
                 {%- if block.settings.product_image != blank -%}
-                  {{ block.settings.product_image | image_url: width: 1600 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, preload: slide_image_preload, class: image_fade_class }}
+                  {{ block.settings.product_image | image_url: width: 1600 | image_tag: loading: 'lazy', fetchpriority: 'auto', widths: '375, 550, 750, 832, 1100, 1400, 1600', sizes: '(min-width: 750px) 50vw, 1px', class: image_fade_class }}
                 {%- elsif product_media != blank and product_media.preview_image != blank -%}
-                  {{ product_media.preview_image | image_url: width: 1600 | image_tag: loading: slide_image_loading, fetchpriority: slide_fetch_priority, preload: slide_image_preload, alt: product_media.alt, class: image_fade_class }}
+                  {{ product_media.preview_image | image_url: width: 1600 | image_tag: loading: 'lazy', fetchpriority: 'auto', widths: '375, 550, 750, 832, 1100, 1400, 1600', sizes: '(min-width: 750px) 50vw, 1px', alt: product_media.alt, class: image_fade_class }}
                 {%- else -%}
                   <span class="pps-placeholder">{% render 'media-placeholder-product', sequence_number: 2 %}</span>
                 {%- endif -%}

@@ -187,11 +187,15 @@
       {% assign image_loading = 'eager' %}
       {% endif %}
 
-      {% if block.settings.image %}
-      {{ block.settings.image | image_url: width: 2600 | image_tag: class: 'desktop-image', fetchpriority: fetch_priority, loading: image_loading }}
-      {% endif %}
-      {% if block.settings.image_mobile %}
-      {{ block.settings.image_mobile | image_url: width: 1600 | image_tag: class: 'mobile-image', fetchpriority: fetch_priority, loading: image_loading }}
+      {% if block.settings.image and block.settings.image_mobile %}
+        <picture>
+          <source media="(max-width: 749px)" srcset="{{ block.settings.image_mobile | image_url: width: 375 }} 375w, {{ block.settings.image_mobile | image_url: width: 550 }} 550w, {{ block.settings.image_mobile | image_url: width: 750 }} 750w, {{ block.settings.image_mobile | image_url: width: 990 }} 990w, {{ block.settings.image_mobile | image_url: width: 1200 }} 1200w, {{ block.settings.image_mobile | image_url: width: 1600 }} 1600w" sizes="100vw">
+          {{ block.settings.image | image_url: width: 2600 | image_tag: class: 'desktop-image', fetchpriority: fetch_priority, loading: image_loading, widths: '750, 1100, 1500, 1800, 2200, 2600', sizes: '100vw' }}
+        </picture>
+      {% elsif block.settings.image %}
+        {{ block.settings.image | image_url: width: 2600 | image_tag: class: 'desktop-image', fetchpriority: fetch_priority, loading: image_loading, widths: '750, 1100, 1500, 1800, 2200, 2600', sizes: '100vw' }}
+      {% elsif block.settings.image_mobile %}
+        {{ block.settings.image_mobile | image_url: width: 1600 | image_tag: class: 'mobile-image', fetchpriority: fetch_priority, loading: image_loading, widths: '375, 550, 750, 990, 1200, 1600', sizes: '100vw' }}
       {% endif %}
       {% if block.settings.image == blank and block.settings.image_mobile == blank %}
       {% render 'media-placeholder-lifestyle', style: 7 %}
@@ -232,7 +236,8 @@
           autoplay: false,
           loop: true,
           controls: false,
-          muted: true
+          muted: true,
+          preload: 'none'
       }} 
     </div>
     {% endif %}
@@ -247,7 +252,8 @@
           autoplay: false,
           loop: true,
           controls: false,
-          muted: true
+          muted: true,
+          preload: 'none'
       }} 
     </div>
     {% endif %}
@@ -257,29 +263,6 @@
     </div>
     </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var videoElement = document.getElementById('vid-mobile-{{ block.id }}');
-        var posterDiv = document.querySelector('.{{ block.id }}-video-backup-poster');
-    
-        if (videoElement) {
-          var videoPromise = videoElement.play();
-          if (videoPromise) {
-            videoPromise
-              .then(function () {
-                // Function
-              })
-              .catch(function (error) {
-                if (error.name === 'NotAllowedError') {
-                  // Handle "NotAllowedError"
-                  posterDiv.classList.add('poster-visible');
-                }
-              });
-          }
-        }
-      });
-    </script>
-      
     {% endcase %}
 
     {% endfor %}

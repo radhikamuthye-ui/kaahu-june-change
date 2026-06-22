@@ -74,7 +74,7 @@
 {% for block in section.blocks %}
 {% if forloop.first and block.settings.image %}
 <div class="ctc-mobile-image">
-{{ block.settings.image | image_url: width: 1024 | image_tag: loading: 'lazy' }}
+{{ block.settings.image | image_url: width: 1024 | image_tag: loading: 'lazy', widths: '320, 480, 640, 750, 900, 1024', sizes: '100vw' }}
 </div>
 {% endif %}
 {% endfor %}
@@ -95,7 +95,7 @@
       <div class="collection-typographic-card">
         {% if block.settings.image and section.settings.section_layout == 'vertical' and section.settings.images_enable and section.settings.rollover_image_position contains 'inline' %}
         <div class="collection-typographic-card-inline-image{% if section.settings.rollover_image_position contains 'inline-hover' %} tci-visibility-hover{% endif %} tci-position--{{ section.settings.rollover_image_position }} tci-image-ratio-{{ section.settings.image_ratio }} tci-image-size-{{ section.settings.image_size }}">
-          {{ block.settings.image | image_url: width: inline_image_size | image_tag: loading: 'lazy' }}
+          {{ block.settings.image | image_url: width: inline_image_size | image_tag: loading: 'lazy', widths: '120, 160, 240', sizes: '240px' }}
         </div>
         {% endif %}
         <div class="collection-typographic-card-title">
@@ -117,7 +117,7 @@
 {% for block in section.blocks %}
 {% if forloop.first and block.settings.image %}
 <div class="ctc-mobile-image">
-{{ block.settings.image | image_url: width: 1024 | image_tag: loading: 'lazy' }}
+{{ block.settings.image | image_url: width: 1024 | image_tag: loading: 'lazy', widths: '320, 480, 640, 750, 900, 1024', sizes: '100vw' }}
 </div>
 {% endif %}
 {% endfor %}
@@ -138,7 +138,7 @@
           {% for block in section.blocks %}
         <div class="collection-typographic-card-image{% unless forloop.index == 1 and section.settings.show_first_image %} ci-hidden{% endunless %} collection-teaser-image-{{ forloop.index }} ctc-image-ratio-{{ section.settings.image_ratio }}--size-{{ section.settings.image_size }}">
           {% if block.settings.image %}
-          {{ block.settings.image | image_url: width: rollover_image_size | image_tag: loading: 'lazy' }}
+          {{ block.settings.image | image_url: width: rollover_image_size | image_tag: loading: 'lazy', widths: '320, 480, 640, 800, 900', sizes: '(min-width: 990px) 40vw, 100vw' }}
           {% endif %}
         </div>
         {% endfor %}
@@ -185,7 +185,7 @@
 
 {% if section.settings.bg_image %}
 <div class="collection-typographic-list-background-image">
-  {{ section.settings.bg_image | image_url: width: 2400 | image_tag: loading: 'lazy' }}
+  {{ section.settings.bg_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 1800, 2100, 2400', sizes: '100vw' }}
 </div>
 {% endif %}
 

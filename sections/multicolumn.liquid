@@ -368,17 +368,18 @@
       | video_tag:
         id: video_id,
         image_size: '900x',
-        autoplay: true,
+        autoplay: false,
         loop: true,
         controls: false,
-        muted: true
+        muted: true,
+        preload: 'none'
     }} 
   </div>  
   {% endif %}
   {% if block.settings.image != blank and block.settings.video == blank %}
 
   <div class="multicolumn-grid-item-image">
-  {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading }}
+  {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading, widths: '320, 480, 640, 750, 900, 1080, 1200', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, calc(100vw - 40px)' }}
   </div>
   {% endif %}
   <div class="multicolumn-grid-item--text mt-{{ block.id }}">
@@ -461,16 +462,17 @@
       | video_tag:
         id: video_id,
         image_size: '900x',
-        autoplay: true,
+        autoplay: false,
         loop: true,
         controls: false,
-        muted: true
+        muted: true,
+        preload: 'none'
     }} 
   </div>  
   {% endif %}
   {% if block.settings.image != blank and block.settings.video == blank %}
   <div class="multicolumn-grid-item-image">
-  {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading }}
+  {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading, widths: '320, 480, 640, 750, 900, 1080, 1200', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, calc(100vw - 40px)' }}
   </div>
   {% endif %}
   <div class="multicolumn-grid-item--text mt-{{ block.id }}">
@@ -533,16 +535,17 @@
         | video_tag:
           id: video_id,
           image_size: '900x',
-          autoplay: true,
+          autoplay: false,
           loop: true,
           controls: false,
-          muted: true
+          muted: true,
+          preload: 'none'
       }} 
     </div>  
     {% endif %}
     {% if block.settings.image != blank and block.settings.video == blank %}
     <div class="multicolumn-grid-item-image">
-    {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading }}
+    {{ block.settings.image | image_url: width: image_render_size | image_tag: fetchpriority: fetch_priority, loading: image_loading, widths: '320, 480, 640, 750, 900, 1080, 1200', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, calc(100vw - 40px)' }}
     </div>
     {% endif %}
     <div class="multicolumn-grid-item--text mt-{{ block.id }}">

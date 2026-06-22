@@ -3,6 +3,9 @@
 
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_media = current_variant.featured_media %}
+{% assign gallery_image_widths = '375, 550, 750, 832, 990, 1200, 1440, 1600, 1920, 2000' %}
+{% assign gallery_image_sizes = '(min-width: 950px) 58vw, 100vw' %}
+{% assign modal_image_widths = '550, 750, 990, 1200, 1440, 1600, 1920, 2048' %}
 
 {% if video_autoplay %}
   {% assign autoplay = true %}
@@ -138,7 +141,7 @@
     {% if featured_media.alt contains 'PDP label:' %}
       <span class="pdp-gallery-label">{{ featured_media.alt | split: 'PDP label:' | last | strip }}</span>
     {% endif %}
-    {{ featured_media | image_url: width: featimagerendersize | image_tag: loading: 'eager', fetchpriority: 'high' }}
+    {{ featured_media | image_url: width: featimagerendersize | image_tag: loading: 'eager', fetchpriority: 'high', widths: gallery_image_widths, sizes: gallery_image_sizes }}
   </div>
   {% when 'video' %}
   {% assign accessibility_index = 1 %}
@@ -147,7 +150,7 @@
     {% if featured_media.alt contains 'PDP label:' %}
       <span class="pdp-gallery-label">{{ featured_media.alt | split: 'PDP label:' | last | strip }}</span>
     {% endif %}
-    {{ featured_media.preview_image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high' }}
+    {{ featured_media.preview_image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', widths: gallery_image_widths, sizes: gallery_image_sizes }}
   </div>
     
   {% endcase %}
@@ -175,9 +178,9 @@
         <span class="pdp-gallery-label">{{ media.alt | split: 'PDP label:' | last | strip }}</span>
       {% endif %}
       {% if forloop.first and plus == 0 %}
-      {{ media | image_url: width: imagerendersize | image_tag: loading: 'eager', fetchpriority: 'high' }}
+      {{ media | image_url: width: imagerendersize | image_tag: loading: 'eager', fetchpriority: 'high', widths: gallery_image_widths, sizes: gallery_image_sizes }}
       {% else %}
-      {{ media | image_url: width: imagerendersize | image_tag: loading: 'lazy' }}
+      {{ media | image_url: width: imagerendersize | image_tag: loading: 'lazy', widths: gallery_image_widths, sizes: gallery_image_sizes }}
       {% endif %}
     </div>
    
@@ -192,7 +195,7 @@
           {% render 'icon-play' %}
         </div>
         {% endif %}
-      {{ media | video_tag: image_size: '1200x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
+      {{ media | video_tag: image_size: '1200x', autoplay: false, loop: autoplay, muted: autoplay, controls: controls, preload: 'none' }}
     </div>
 
     {% when 'external_video' %}
@@ -360,7 +363,7 @@
         {% assign imagerendersize = featured_media.preview_image.width %}
       {% endif %}       
     <div class="product-media-image product-media--image galSlides" data-slide-index="{{ forloop.index | plus: plus }}">
-      {{ featured_media | image_url: width: imagerendersize | image_tag: loading: 'lazy' }}
+      {{ featured_media | image_url: width: imagerendersize | image_tag: loading: 'lazy', widths: modal_image_widths, sizes: '100vw' }}
     </div>
     
     {% when 'video' %}
@@ -370,7 +373,7 @@
         {% render 'icon-play' %}
       </div>
       {% endif %}
-      {{ featured_media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
+      {{ featured_media | video_tag: image_size: '1600x', autoplay: false, loop: autoplay, muted: autoplay, controls: controls, preload: 'none' }}
     </div>
 
     {% when 'external_video' %}
@@ -407,7 +410,7 @@
       {% else %}
         {% assign imagerendersize = media.preview_image.width %}
       {% endif %}        
-      <div class="product-media-image product-media--image galSlides" data-media-id="{{ media.id }}" data-slide-index="{{ forloop.index | plus: plus }}">{{ media | image_url: width: imagerendersize | image_tag: loading: 'lazy' }}</div>
+      <div class="product-media-image product-media--image galSlides" data-media-id="{{ media.id }}" data-slide-index="{{ forloop.index | plus: plus }}">{{ media | image_url: width: imagerendersize | image_tag: loading: 'lazy', widths: modal_image_widths, sizes: '100vw' }}</div>
       
       {% when 'video' %}
       <div class="product-media-image product-media-image-video galSlides{% if autoplay == true %} autoplaying-video product-video-is-autoplay{% endif %}{% if autoplay == false %} product-video-not-autoplay{% endif %}" data-media-id="{{ media.id }}" data-slide-index="{{ forloop.index | plus: plus }}">
@@ -416,7 +419,7 @@
           {% render 'icon-play' %}
         </div>
         {% endif %}
-        {{ media | video_tag: image_size: '1600x', autoplay: autoplay, loop: autoplay, muted: autoplay, controls: controls, preload: 'metadata' }}
+        {{ media | video_tag: image_size: '1600x', autoplay: false, loop: autoplay, muted: autoplay, controls: controls, preload: 'none' }}
       </div>
 
       {% when 'external_video' %}

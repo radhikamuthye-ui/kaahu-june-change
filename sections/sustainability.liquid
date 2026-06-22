@@ -381,6 +381,11 @@
 {%- assign hero_eyebrow = section.settings.hero_eyebrow | default: 'Sustainability at Kaahu' -%}
 {%- assign hero_heading = section.settings.hero_heading | default: 'What you carry should reflect what you value.' -%}
 {%- assign hero_text = section.settings.hero_text | default: 'So we account for it at every stage. Here is what that means, in plain terms, including the parts we have not finished yet.' -%}
+{%- assign hero_image_alt = section.settings.hero_image.alt | default: 'A Kaahu bag in everyday life' -%}
+{%- assign cotton_image_alt = section.settings.cotton_image.alt | default: 'Cotton boll on the plant' -%}
+{%- assign jute_image_alt = section.settings.jute_image.alt | default: 'Bengal jute fiber' -%}
+{%- assign craft_image_alt = section.settings.craft_image.alt | default: 'Artisan craft and heritage textile work' -%}
+{%- assign closing_image_alt = section.settings.closing_image.alt | default: 'Kaahu bag on a walk in nature' -%}
 
 <div class="kaahu-sus">
   <header class="sus-hero sus-block">
@@ -394,9 +399,9 @@
       <div class="sus-hero-media sus-reveal">
         <div class="sus-frame sus-frame-wide">
           {% if section.settings.hero_image %}
-            <img src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="{{ section.settings.hero_image.alt | default: 'A Kaahu bag in everyday life' }}" width="{{ section.settings.hero_image.width }}" height="{{ section.settings.hero_image.height }}">
+            {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 750, 990, 1200, 1400, 1600', sizes: '(min-width: 1150px) 1100px, calc(100vw - 40px)', alt: hero_image_alt }}
           {% else %}
-            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547" alt="A Kaahu bag in everyday life" width="1600" height="800">
+            <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=1200" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=990 990w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=1200 1200w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/20241021-DSC01765.jpg?v=1781672547&amp;width=1600 1600w" sizes="(min-width: 1150px) 1100px, calc(100vw - 40px)" alt="A Kaahu bag in everyday life" width="1600" height="800" loading="eager" fetchpriority="high">
           {% endif %}
         </div>
       </div>
@@ -427,7 +432,7 @@
           <article>
             <div class="sus-frame sus-frame-tile">
               {% if section.settings.cotton_image %}
-                <img src="{{ section.settings.cotton_image | image_url: width: 1200 }}" alt="{{ section.settings.cotton_image.alt | default: 'Cotton boll on the plant' }}" width="{{ section.settings.cotton_image.width }}" height="{{ section.settings.cotton_image.height }}" loading="lazy">
+                {{ section.settings.cotton_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200', sizes: '(min-width: 750px) 520px, calc(100vw - 40px)', alt: cotton_image_alt }}
               {% else %}
                 <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/cotton_flower.png?v=1781663097" alt="Cotton boll on the plant" width="1200" height="1500" loading="lazy">
               {% endif %}
@@ -447,7 +452,7 @@
           <article>
             <div class="sus-frame sus-frame-tile sus-illus{% if section.settings.jute_image %} sus-has-custom-image{% endif %}">
               {% if section.settings.jute_image %}
-                <img src="{{ section.settings.jute_image | image_url: width: 1200 }}" alt="{{ section.settings.jute_image.alt | default: 'Bengal jute fiber' }}" width="{{ section.settings.jute_image.width }}" height="{{ section.settings.jute_image.height }}" loading="lazy">
+                {{ section.settings.jute_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200', sizes: '(min-width: 750px) 520px, calc(100vw - 40px)', alt: jute_image_alt }}
               {% else %}
                 <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Jute.svg?v=1778783129" alt="Bengal jute fiber" width="512" height="512" loading="lazy">
               {% endif %}
@@ -474,7 +479,7 @@
       <div>
         <div class="sus-frame sus-frame-port">
           {% if section.settings.craft_image %}
-            <img src="{{ section.settings.craft_image | image_url: width: 1200 }}" alt="{{ section.settings.craft_image.alt | default: 'Artisan craft and heritage textile work' }}" width="{{ section.settings.craft_image.width }}" height="{{ section.settings.craft_image.height }}" loading="lazy">
+            {{ section.settings.craft_image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '360, 550, 750, 900, 1200', sizes: '(min-width: 750px) 520px, calc(100vw - 40px)', alt: craft_image_alt }}
           {% else %}
             <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Heritage.jpg?v=1778784669" alt="Artisan craft and heritage textile work" width="1200" height="1500" loading="lazy">
           {% endif %}
@@ -534,7 +539,7 @@
   <section class="sus-block sus-give">
     <div class="page-width-narrow sus-narrow">
       <div class="sus-mark">
-        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png?v=1781041085" alt="1% for the Planet" width="84" height="84">
+        <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/1_white_small_f9740041-dc0f-40c0-86f3-ca1ff3c9be95.png?v=1781041085&amp;width=168" alt="1% for the Planet" width="84" height="84" loading="lazy">
       </div>
       <p class="sus-eyebrow">{{ section.settings.giving_eyebrow | default: 'Giving back' }}</p>
       <h2>{{ section.settings.giving_heading | default: 'One percent of revenue. Not profit.' }}</h2>
@@ -587,9 +592,9 @@
     <div class="page-width sus-wrap">
       <div class="sus-frame sus-frame-wide">
         {% if section.settings.closing_image %}
-          <img src="{{ section.settings.closing_image | image_url: width: 1600 }}" alt="{{ section.settings.closing_image.alt | default: 'Kaahu bag on a walk in nature' }}" width="{{ section.settings.closing_image.width }}" height="{{ section.settings.closing_image.height }}" loading="lazy">
+          {{ section.settings.closing_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1400, 1600', sizes: '(min-width: 1150px) 1100px, calc(100vw - 40px)', alt: closing_image_alt }}
         {% else %}
-          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927" alt="Kaahu bag on a walk in nature" width="1600" height="800" loading="lazy">
+          <img src="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=1200" srcset="https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=550 550w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=750 750w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=990 990w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=1200 1200w, https://cdn.shopify.com/s/files/1/0709/9046/3195/files/Seraph_feather_75640f40-c730-471d-abae-3fb1ddfd5318.jpg?v=1777861927&amp;width=1600 1600w" sizes="(min-width: 1150px) 1100px, calc(100vw - 40px)" alt="Kaahu bag on a walk in nature" width="1600" height="800" loading="lazy">
         {% endif %}
       </div>
     </div>

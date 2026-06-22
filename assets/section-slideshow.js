@@ -122,12 +122,15 @@ function getAnimationClass(element) {
 
 function PlayPauseVideos() {
     let allVideos = document.querySelectorAll('.swiper-slide--video video');
+    let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     allVideos.forEach(video => {
         let slide = video.closest('.swiper-slide');
         let isActiveSlide = slide.classList.contains('swiper-slide-visible') || slide.classList.contains('swiper-slide-active') || slide.classList.contains('swiper-slide-duplicate-active');
+        let bounds = video.getBoundingClientRect();
+        let isNearViewport = bounds.bottom >= -200 && bounds.top <= window.innerHeight + 200;
         
-        if (isActiveSlide) {
+        if (isActiveSlide && isNearViewport && !reducedMotion) {
             // Play the video immediately if the slide is active
             if (video.paused) {
                 video.play();

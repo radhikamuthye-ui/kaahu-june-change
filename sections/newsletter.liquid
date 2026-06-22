@@ -113,7 +113,7 @@
 </div>
 {% if section.settings.bg_image != null %}
 <div class="newsletter-bg-image">
-  {{ section.settings.bg_image | image_url: width: 2600 | image_tag: loading: 'lazy' }}
+  {{ section.settings.bg_image | image_url: width: 2600 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 1800, 2200, 2600', sizes: '100vw' }}
 </div>
 {% endif %}
 

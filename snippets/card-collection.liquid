@@ -33,14 +33,15 @@
   collection_video
   | video_tag:
     image_size: '1080x',
-    autoplay: true,
+    autoplay: false,
     loop: true,
     controls: false,
-    muted: true
+    muted: true,
+    preload: 'none'
 }}
 {% endif %}
 {% if collection_image and collection_video == blank %}
-{{ collection_image | image_url: width: media_size | image_tag: loading: 'lazy' }}
+{{ collection_image | image_url: width: media_size | image_tag: loading: 'lazy', widths: '320, 480, 640, 750, 900, 1100, 1400', sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw' }}
 {% endif %}
 
 {% unless collection_video or collection_image %}

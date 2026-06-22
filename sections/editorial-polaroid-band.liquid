@@ -53,12 +53,12 @@
           | video_tag:
             class: 'editorial-polaroid-band__video',
             image_size: '1800x',
-            autoplay: true,
+            autoplay: false,
             muted: true,
             loop: true,
             controls: false,
             playsinline: true,
-            preload: 'metadata'
+            preload: 'none'
         }}
       {% elsif section.settings.fallback_image != blank %}
         {{
@@ -472,6 +472,7 @@
       this.timelineFrame = null;
       this.resizeTimer = null;
       this.observer = null;
+      this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.onResize = this.onResize.bind(this);
 
       this.initAnimationControls();
@@ -615,8 +616,15 @@
     EditorialPolaroidBand.prototype.observe = function () {
       var self = this;
 
+      if (this.reducedMotion.matches) {
+        this.isPaused = true;
+        this.setToggleState();
+        if (this.video) this.video.pause();
+        return;
+      }
+
       if (!('IntersectionObserver' in window)) {
-        this.play();
+        this.replay();
         return;
       }
 
@@ -627,6 +635,7 @@
             self.replay();
           } else {
             self.isVisible = false;
+            if (self.video) self.video.pause();
             self.reset();
           }
         });

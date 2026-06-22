@@ -107,12 +107,10 @@
 {% assign video_class = 'standard-video' %}
 
 {% assign mute_setting = false %}
-{% assign autoplay = false %}
 {% assign controls_setting = true %}
 {% assign loop_setting = section.settings.enable_video_looping %}
   
 {% if section.settings.autoplay %}
-  {% assign autoplay = true %}
   {% assign mute_setting = true %}
   {% assign controls_setting = false %}
   {% assign video_class = 'autoplaying-video' %}
@@ -137,10 +135,11 @@
     | video_tag:
       id: video_id,
       image_size: '1600x',
-      autoplay: autoplay,
+      autoplay: false,
       loop: loop_setting,
       controls: controls_setting,
-      muted: mute_setting
+      muted: mute_setting,
+      preload: 'none'
   }} 
 </div>
 </div>  
@@ -157,7 +156,7 @@
 <div class="image-with-text--content">
 {% if section.settings.secondary_image %}
 <div class="image-with-text--inset-image inset-image-{{ section.settings.secondary_image_scale }}">
-{{ section.settings.secondary_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+{{ section.settings.secondary_image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '180, 280, 400, 600, 800', sizes: '(min-width: 750px) 400px, 60vw' }}
 </div> 
 {% endif %}
 

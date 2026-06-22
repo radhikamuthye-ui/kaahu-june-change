@@ -1013,6 +1013,72 @@ document.addEventListener('DOMContentLoaded', function() {
   }, true); // Use capture phase to ensure event is caught before bubbling
 });
 
+function initViewportAutoplayVideos(root = document) {
+  const containers = root.querySelectorAll('.autoplaying-video');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  containers.forEach((container) => {
+    if (container.dataset.viewportAutoplayInitialized === 'true') return;
+
+    const videos = Array.from(container.querySelectorAll('video'));
+    if (!videos.length) return;
+
+    container.dataset.viewportAutoplayInitialized = 'true';
+    videos.forEach((video) => {
+      video.removeAttribute('autoplay');
+      video.preload = 'none';
+    });
+
+    const syncPlayback = () => {
+      const slide = container.closest('.swiper-slide');
+      const activeSlide = !slide ||
+        slide.classList.contains('swiper-slide-active') ||
+        slide.classList.contains('swiper-slide-visible') ||
+        slide.classList.contains('swiper-slide-duplicate-active');
+      const shouldPlay = container.dataset.viewportVisible === 'true' &&
+        container.offsetParent !== null &&
+        activeSlide &&
+        !document.hidden &&
+        !reducedMotion.matches;
+
+      videos.forEach((video) => {
+        if (shouldPlay) {
+          if (video.paused) video.play().catch(() => {});
+        } else if (!video.paused) {
+          video.pause();
+        }
+      });
+    };
+
+    container.viewportVideoSync = syncPlayback;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        container.dataset.viewportVisible = entry.isIntersecting ? 'true' : 'false';
+        syncPlayback();
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.15 });
+
+    observer.observe(container);
+
+    const slide = container.closest('.swiper-slide');
+    if (slide) {
+      new MutationObserver(syncPlayback).observe(slide, {
+        attributes: true,
+        attributeFilter: ['class', 'style']
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => initViewportAutoplayVideos());
+document.addEventListener('shopify:section:load', (event) => initViewportAutoplayVideos(event.target));
+document.addEventListener('visibilitychange', () => {
+  document.querySelectorAll('.autoplaying-video').forEach((container) => {
+    if (container.viewportVideoSync) container.viewportVideoSync();
+  });
+});
+
 
 // Video banners play and pause controls
 
@@ -1024,7 +1090,7 @@ if (playbackButtons.length > 0) {
       const section = button.closest('.section-inner');
       if (!section) return;
 
-      const videos = section.querySelectorAll('video');
+      const videos = Array.from(section.querySelectorAll('video')).filter((video) => video.offsetParent !== null);
 
       let anyPaused = false;
 

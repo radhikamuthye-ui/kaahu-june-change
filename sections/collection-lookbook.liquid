@@ -126,16 +126,17 @@
     | video_tag:
       id: video_id,
       image_size: '1800x',
-      autoplay: true,
+      autoplay: false,
       loop: true,
       controls: false,
-      muted: true
+      muted: true,
+      preload: 'none'
   }} 
 {% endif %}
 
 {% if section.settings.video_url == blank %}
 {% if section.settings.image %}
-{{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy' }}
+{{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '550, 750, 990, 1200, 1500, 1800', sizes: '100vw' }}
 {% else %}
 {% render 'media-placeholder-lifestyle', style: 1 %}
 {% endif %}

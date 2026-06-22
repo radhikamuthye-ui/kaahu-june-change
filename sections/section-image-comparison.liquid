@@ -107,7 +107,7 @@
   <div class="before-after-container">
   <div class="image-before">
     {% if section.settings.main_image %}
-    {{ section.settings.main_image | image_url: width: image_size | image_tag: loading: 'lazy' }}
+    {{ section.settings.main_image | image_url: width: image_size | image_tag: loading: 'lazy', widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '100vw' }}
     {% else %}
       {% render 'media-placeholder-scenic', style: 1 %}
     {% endif %}
@@ -115,7 +115,7 @@
   <div class="image-after">
     <div class="image-caption-before text-{{ section.settings.caption_size }} ba-caption-color--{{ section.settings.caption_fg_col }} ba-caption-bg--{{ section.settings.caption_bg_col }}{% if section.settings.caption_corner_radius > 10 %} lbr{% endif %}">{{ section.settings.secondary_image_caption }}</div>
     {% if section.settings.secondary_image %}
-    {{ section.settings.secondary_image | image_url: width: image_size | image_tag: loading: 'lazy' }}
+    {{ section.settings.secondary_image | image_url: width: image_size | image_tag: loading: 'lazy', widths: '375, 550, 750, 990, 1200, 1500, 1800', sizes: '100vw' }}
     {% else %}
       {% render 'media-placeholder-scenic', style: 2 %}
     {% endif %}

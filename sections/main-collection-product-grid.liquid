@@ -202,7 +202,7 @@
                             {% if block.settings.grid_colspan == '1' %}
                               {% assign image_render_size = 1200 %}
                             {% endif %}
-                          {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: 'lazy' }}
+                          {{ block.settings.image | image_url: width: image_render_size | image_tag: loading: 'lazy', widths: '375, 550, 750, 990, 1200, 1500, 1800, 2100, 2400', sizes: '100vw' }}
                           {% endif %}
                           {% if block.settings.video %}
                           {% assign video_id = 'vid-civ-' | append: block.id %}
@@ -211,11 +211,11 @@
                               | video_tag:
                                 id: video_id,
                                 image_size: '900x',
-                                autoplay: true,
+                                autoplay: false,
                                 loop: true,
                                 controls: false,
                                 muted: true,
-                                preload: 'metadata'
+                                preload: 'none'
                             }}
                           {% endif %}
                           {% if block.settings.url != blank %}</a>{% endif %}

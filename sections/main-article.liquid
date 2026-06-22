@@ -64,7 +64,7 @@
         </div>
         {%- if article.image -%}
         <div class="article-header-banner--bg-img">
-        {{ article.image | image_url: width: 2800 | image_tag: fetchpriority: 'high' }}
+        {{ article.image | image_url: width: 2800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 1800, 2200, 2600, 2800', sizes: '100vw' }}
         </div>
         {%- endif -%}
         </div>
@@ -106,7 +106,7 @@
           {%- if article.image -%}
           <div class="article-template--hero-image article-hero-image-stacked page-width article-hero-image-{{ block.settings.header_img_ratio }}">
             <div class="image-wrapper">
-            {{ article.image | image_url: width: 2400 | image_tag: fetchpriority: 'high' }}
+            {{ article.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 1800, 2100, 2400', sizes: '100vw' }}
             </div>
           </div>
           {%- endif -%}
@@ -118,7 +118,7 @@
         <div class="article-header-horizontal image-position-{{ block.settings.hoz_image_position }} color-scheme-{{ block.settings.text_color }} color-scheme-{{ block.settings.bg_color }} align-{{ block.settings.txt_alignment }}" {{ block.shopify_attributes }}>
           <div class="article-header-horizontal--image ratio-{{ block.settings.header_img_ratio }}">
           {% if article.image %}
-            {{ article.image | image_url: width: 1800 | image_tag: fetchpriority: 'high' }}
+            {{ article.image | image_url: width: 1800 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '550, 750, 990, 1200, 1500, 1800', sizes: '(min-width: 990px) 50vw, 100vw' }}
           {% endif %}
           </div>
           <div class="article-header-horizontal--text">
@@ -145,7 +145,7 @@
           {%- if article.image -%}
           <div class="article-template--hero-image article-hero-image-stacked page-width article-hero-image-{{ block.settings.header_img_ratio }}">
             <div class="image-wrapper">
-            {{ article.image | image_url: width: 2400 | image_tag: fetchpriority: 'high' }}
+            {{ article.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '750, 1100, 1500, 1800, 2100, 2400', sizes: '100vw' }}
             </div>
           </div>
           {%- endif -%}
