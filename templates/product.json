@@ -245,8 +245,10 @@
           "type": "materials",
           "settings": {
             "heading": "MATERIALS",
-            "body": "<p>Woven from organic cotton and sustainably sourced jute — one of Earth’s most carbon-negative fibres — using Bengali textile craft passed down through generations.</p>",
+            "body": "<p>Woven from GOTS-certified organic cotton using Bengali textile craft passed down through generations.</p>",
             "bullets": "GOTS-certified organic cotton body\nLow-impact, azo-free dyes\nRecyclable, plastic-free packaging\nProud 1% for the Planet member — 1% of all sales donated to environmental nonprofits",
+            "jute_body": "<p>Woven from sustainably sourced jute - one of Earth's most carbon-negative fibres - using Bengali textile craft passed down through generations.</p>",
+            "jute_bullets": "Sustainably sourced jute body\nLow-impact, azo-free dyes\nRecyclable, plastic-free packaging\nProud 1% for the Planet member - 1% of all sales donated to environmental nonprofits",
             "open_by_default": false
           }
         },

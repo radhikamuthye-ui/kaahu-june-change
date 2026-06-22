@@ -49,21 +49,8 @@
             {% endif %}
 
           {% when 'materials' %}
-            {% assign material_bullets = block.settings.bullets | newline_to_br | split: '<br />' %}
             {% capture materials_content %}
-              {% if block.settings.body != blank %}
-                <div class="product-materials-block__body">{{ block.settings.body }}</div>
-              {% endif %}
-              {% if block.settings.bullets != blank %}
-                <ul class="product-materials-block__list">
-                  {% for bullet in material_bullets %}
-                    {% assign bullet_text = bullet | strip %}
-                    {% if bullet_text != blank %}
-                      <li>{{ bullet_text | escape }}</li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              {% endif %}
+              {% render 'product-materials-content', product: product, block: block %}
             {% endcapture %}
             {% render 'product-detail-accordion',
               block: block,

@@ -1,0 +1,26 @@
+{% liquid
+  assign display_material = product.metafields.custom.display_material.value | default: product.metafields.custom.display_material | downcase
+  assign materials_body = block.settings.body
+  assign materials_bullets = block.settings.bullets
+
+  if display_material contains 'jute'
+    assign materials_body = block.settings.jute_body
+    assign materials_bullets = block.settings.jute_bullets
+  endif
+
+  assign material_bullets = materials_bullets | newline_to_br | split: '<br />'
+%}
+
+{% if materials_body != blank %}
+  <div class="product-materials-block__body">{{ materials_body }}</div>
+{% endif %}
+{% if materials_bullets != blank %}
+  <ul class="product-materials-block__list">
+    {% for bullet in material_bullets %}
+      {% assign bullet_text = bullet | strip %}
+      {% if bullet_text != blank %}
+        <li>{{ bullet_text | escape }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
