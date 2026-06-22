@@ -178,13 +178,13 @@
             if slide_remainder == 0
               assign image_fade_class = 'pps-image--fade-out'
             endif
-            if section.index == 1 and forloop.first
+            if forloop.first
               assign slide_image_loading = 'eager'
               assign slide_fetch_priority = 'high'
             endif
           -%}
 
-          <div class="swiper-slide pps-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="swiper-slide pps-slide{% if forloop.first %} pps-slide--initial{% endif %}" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
             <div class="pps-panel pps-lifestyle">
               <a class="pps-media-link" href="{{ product_url }}" aria-label="{{ slide_product.title | default: slide_heading | escape }}">
                 {%- if block.settings.lifestyle_image != blank -%}

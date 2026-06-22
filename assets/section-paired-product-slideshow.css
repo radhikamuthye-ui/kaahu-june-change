@@ -98,6 +98,20 @@
   animation: pps-product-image-fade-out var(--pps-image-fade-duration, 1600ms) ease both;
 }
 
+.pps-slide--initial.swiper-slide-active .pps-lifestyle .pps-image--fade-in,
+.pps-slide--initial.swiper-slide-active .pps-lifestyle .pps-image--fade-out {
+  opacity: 1;
+  transform: scale(var(--pps-lifestyle-zoom, 1.04));
+  animation: none;
+}
+
+.pps-slide--initial.swiper-slide-active .pps-product .pps-image--fade-in,
+.pps-slide--initial.swiper-slide-active .pps-product .pps-image--fade-out {
+  opacity: 1;
+  transform: scale(var(--pps-product-zoom, 1.12));
+  animation: none;
+}
+
 .pps-placeholder {
   display: flex;
   align-items: center;

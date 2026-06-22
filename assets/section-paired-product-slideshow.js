@@ -6,6 +6,7 @@ class PairedProductSlideshow {
     this.toggle = element.querySelector('.pps-toggle');
     this.swiper = null;
     this.mobileQuery = window.matchMedia('(max-width: 749px)');
+    this.initialSlide = element.querySelector('.pps-slide--initial');
 
     if (!this.swiperElement) return;
 
@@ -40,7 +41,10 @@ class PairedProductSlideshow {
       },
       on: {
         init: () => this.restartProgress(),
-        slideChangeTransitionStart: () => this.restartProgress()
+        slideChangeTransitionStart: () => {
+          this.clearInitialSlideState();
+          this.restartProgress();
+        }
       }
     };
 
@@ -114,6 +118,13 @@ class PairedProductSlideshow {
     this.progress.style.animation = 'none';
     this.progress.offsetHeight;
     this.progress.style.animation = '';
+  }
+
+  clearInitialSlideState() {
+    if (!this.initialSlide) return;
+
+    this.initialSlide.classList.remove('pps-slide--initial');
+    this.initialSlide = null;
   }
 }
 
