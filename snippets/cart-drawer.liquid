@@ -12,7 +12,23 @@
 
 <style>
   .drawer {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100vw;
+    height: 100%;
     visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .drawer.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 </style>
 
