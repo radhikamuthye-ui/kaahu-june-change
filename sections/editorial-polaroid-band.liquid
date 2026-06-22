@@ -53,12 +53,12 @@
           | video_tag:
             class: 'editorial-polaroid-band__video',
             image_size: '1800x',
-            autoplay: false,
+            autoplay: true,
             muted: true,
             loop: true,
             controls: false,
             playsinline: true,
-            preload: 'none'
+            preload: 'metadata'
         }}
       {% elsif section.settings.fallback_image != blank %}
         {{
@@ -90,7 +90,8 @@
                 block.settings.image
                 | image_url: width: 500
                 | image_tag:
-                  loading: 'lazy',
+                  loading: 'eager',
+                  fetchpriority: 'low',
                   sizes: '(min-width: 768px) 220px, 150px',
                   widths: '100, 150, 220, 300, 400, 500',
                   class: 'editorial-polaroid-band__polaroid-image'
@@ -618,6 +619,8 @@
 
       if (this.reducedMotion.matches) {
         this.isPaused = true;
+        this.hasPlayed = true;
+        this.layout(true);
         this.setToggleState();
         if (this.video) this.video.pause();
         return;
@@ -639,7 +642,7 @@
             self.reset();
           }
         });
-      }, { threshold: 0.2 });
+      }, { rootMargin: '150px 0px', threshold: 0.05 });
 
       this.observer.observe(this.section);
     };
@@ -802,7 +805,7 @@
       if (this.video) {
         this.video.currentTime = 0;
         this.lastVideoTime = 0;
-        this.video.play();
+        this.playVideo();
       }
       if (this.timeline) {
         this.timeline.value = '0';
@@ -839,7 +842,7 @@
       this.isPaused = false;
       this.setToggleState();
       if (this.video) {
-        this.video.play();
+        this.playVideo();
       }
 
       if (this.animations.length) {
@@ -858,6 +861,27 @@
       var throwDuration = toNumber(this.settings.throw_duration_ms, 700);
       var count = this.polaroids.length || 1;
       return ((count - 1) * 80) + throwDuration;
+    };
+
+    EditorialPolaroidBand.prototype.playVideo = function () {
+      if (!this.video) {
+        return;
+      }
+
+      this.video.muted = true;
+      this.video.playsInline = true;
+
+      if (this.video.networkState === HTMLMediaElement.NETWORK_EMPTY) {
+        this.video.load();
+      }
+
+      var playPromise = this.video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function () {
+          // Keep the poster visible if a browser temporarily denies autoplay.
+          // The viewport observer and explicit play control will retry playback.
+        });
+      }
     };
 
     EditorialPolaroidBand.prototype.play = function () {
