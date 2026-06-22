@@ -4,6 +4,15 @@
   assign banner_title = section.settings.custom_heading | default: collection.title
   assign banner_description = section.settings.custom_description | default: collection.description
   assign banner_image_alt = section.settings.custom_image_alt | default: banner_title | escape
+  assign content_max_width = section.settings.kaahu_content_max_width | default: 620
+  assign content_left_desktop = section.settings.kaahu_content_left_desktop | default: 16
+  assign content_offset_y = section.settings.kaahu_content_offset_y | default: 0
+  assign description_gap = section.settings.kaahu_description_gap | default: section.settings.title_margin | default: 14
+  assign title_size_mobile = section.settings.kaahu_title_size_mobile | default: 42
+  assign title_size_desktop = section.settings.kaahu_title_size_desktop | default: 68
+  assign description_size_mobile = section.settings.kaahu_description_size_mobile | default: 16
+  assign description_size_desktop = section.settings.kaahu_description_size_desktop | default: 18
+  assign overlay_opacity = section.settings.kaahu_overlay_opacity | default: 35
   assign is_split = false
   if section.settings.banner_layout == 'split_banner' and banner_image != blank
     assign is_split = true
@@ -22,15 +31,15 @@
 .section-{{ section.id }} {
   --collection-banner-bg: {{ section.settings.bg_col }};
   --collection-banner-text: {{ section.settings.txt_col }};
-  --collection-banner-overlay: {{ section.settings.kaahu_overlay_opacity | divided_by: 100.0 }};
-  --collection-banner-content-max: {{ section.settings.kaahu_content_max_width }}px;
-  --collection-banner-content-left: {{ section.settings.kaahu_content_left_desktop }}%;
-  --collection-banner-offset-y: {{ section.settings.kaahu_content_offset_y }}px;
-  --collection-banner-gap: {{ section.settings.kaahu_description_gap }}px;
-  --collection-banner-title-mobile: {{ section.settings.kaahu_title_size_mobile }}px;
-  --collection-banner-title-desktop: {{ section.settings.kaahu_title_size_desktop }}px;
-  --collection-banner-body-mobile: {{ section.settings.kaahu_description_size_mobile }}px;
-  --collection-banner-body-desktop: {{ section.settings.kaahu_description_size_desktop }}px;
+  --collection-banner-overlay: {{ overlay_opacity | divided_by: 100.0 }};
+  --collection-banner-content-max: {{ content_max_width }}px;
+  --collection-banner-content-left: {{ content_left_desktop }}%;
+  --collection-banner-offset-y: {{ content_offset_y }}px;
+  --collection-banner-gap: {{ description_gap }}px;
+  --collection-banner-title-mobile: {{ title_size_mobile }}px;
+  --collection-banner-title-desktop: {{ title_size_desktop }}px;
+  --collection-banner-body-mobile: {{ description_size_mobile }}px;
+  --collection-banner-body-desktop: {{ description_size_desktop }}px;
   --collection-banner-eyebrow: {{ section.settings.kaahu_eyebrow_color }};
   --collection-banner-image-position-mobile: {{ section.settings.custom_image_position_mobile }};
   --collection-banner-image-position-desktop: {{ section.settings.custom_image_position_desktop }};
