@@ -55,6 +55,12 @@
   height: 100%;
 }
 
+.pps-lifestyle .pps-media-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .pps-panel img {
   object-fit: cover;
   transform: scale(var(--pps-lifestyle-zoom, 1.04));
@@ -136,6 +142,7 @@
   justify-content: flex-end;
   box-sizing: border-box;
   overflow: visible;
+  pointer-events: none;
 }
 
 .pps-breadcrumb,
@@ -215,6 +222,7 @@
 }
 
 .pps-buttons .button {
+  pointer-events: auto;
   min-width: min(180px, 100%);
   justify-content: center;
   font-family: var(--pps-button-font-family) !important;
