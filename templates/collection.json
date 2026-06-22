@@ -271,6 +271,7 @@
           "settings": {
             "collection": "golden-jute",
             "label": "Golden Fiber",
+            "image": "shopify://shop_images/Feathered_hope_35dd5379-a677-4b30-8865-60884a56f14a.jpg",
             "link": ""
           }
         },
@@ -279,6 +280,7 @@
           "settings": {
             "collection": "the-marshmallow-thread",
             "label": "Marshmallow Thread",
+            "image": "shopify://shop_images/Flutter_butter_1_b7365130-9695-41cd-8ded-bb2b2cde0467.jpg",
             "link": ""
           }
         },
@@ -303,6 +305,7 @@
           "settings": {
             "collection": "totes",
             "label": "Totes",
+            "image": "shopify://shop_images/orbit_tote_web.jpg",
             "link": ""
           }
         },
@@ -311,6 +314,7 @@
           "settings": {
             "collection": "messengers",
             "label": "Messengers",
+            "image": "shopify://shop_images/Blush_flame5.jpg",
             "link": ""
           }
         },
@@ -319,6 +323,7 @@
           "settings": {
             "collection": "shoppers",
             "label": "Shoppers",
+            "image": "shopify://shop_images/Pep_in_your_step_534822eb-75c7-4690-ac7a-1ac8d63c56d1.jpg",
             "link": ""
           }
         },

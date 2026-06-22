@@ -98,6 +98,7 @@
           "settings": {
             "collection": "the-marshmallow-thread",
             "label": "Marshmallow Thread",
+            "image": "shopify://shop_images/Pocketful_of_sun_1.jpg",
             "link": ""
           }
         },
@@ -122,6 +123,7 @@
           "settings": {
             "collection": "totes",
             "label": "Totes",
+            "image": "shopify://shop_images/Ash_Amber_2_4774ed0d-b9b7-4f91-af01-5e06924ed12b.jpg",
             "link": ""
           }
         },
@@ -130,6 +132,7 @@
           "settings": {
             "collection": "messengers",
             "label": "Messengers",
+            "image": "shopify://shop_images/Blush_flame5.jpg",
             "link": ""
           }
         },
@@ -138,6 +141,7 @@
           "settings": {
             "collection": "shoppers",
             "label": "Shoppers",
+            "image": "shopify://shop_images/Pep_in_your_step_534822eb-75c7-4690-ac7a-1ac8d63c56d1.jpg",
             "link": ""
           }
         },
