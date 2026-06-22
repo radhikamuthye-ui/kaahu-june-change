@@ -239,6 +239,11 @@ predictive-search[loading] .predictive-search {
   line-height: 1.0;
 }
 
+.predictive-search-product-card .card-product--badges > span.badge--sale {
+  background-color: rgb(var(--color-price-sale));
+  color: #ffffff;
+}
+
 .predictive-search-product-card .pc-badges-top-center.card-product--badges > span, 
 .predictive-search-product-card .pc-badges-bottom-center.card-product--badges > span {
   text-align: center;

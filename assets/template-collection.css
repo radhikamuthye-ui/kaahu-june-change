@@ -1013,6 +1013,11 @@
   box-shadow: 0 4px 12px -4px rgba(0, 0, 0, .3);
 }
 
+.mcpg.collection-template-all-of-kaahu-template .card-product--badges > span.badge--sale,
+.mcpg.collection-template-collection .card-product--badges > span.badge--sale {
+  background-color: var(--kaahu-collection-sale-color, rgb(var(--color-price-sale)));
+}
+
 .mcpg.collection-template-all-of-kaahu-template .product-card-quick-add,
 .mcpg.collection-template-collection .product-card-quick-add {
   --kaahu-card-quick-add-inset: 13px;

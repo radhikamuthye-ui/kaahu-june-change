@@ -205,6 +205,11 @@
   line-height: 1.0;
 }
 
+.card-product--badges > span.badge--sale {
+  background-color: rgb(var(--color-price-sale));
+  color: #ffffff;
+}
+
 .pc-badges-top-center.card-product--badges > span, 
 .pc-badges-bottom-center.card-product--badges > span {
   text-align: center;

@@ -3487,6 +3487,11 @@ a.product__text {
   margin-right: 2px;
 }
 
+.main-product--badge > span.badge--sale {
+  background: rgb(var(--color-price-sale));
+  color: #ffffff;
+}
+
 .main-product--badge.mpb--media {
   position: absolute;
   right: var(--page-margin-mobile);
@@ -5939,7 +5944,7 @@ product-info[id^="MainProduct-"] .price__badge-sale,
 product-info[id^="MainProduct-"] .badge--sale {
   min-height: 24px;
   border-radius: 999px;
-  background: #b15c79;
+  background: var(--pdp-mobile-sale, rgb(var(--color-price-sale)));
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;

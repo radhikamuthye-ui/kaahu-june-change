@@ -96,19 +96,24 @@
 {% unless settings.card_badge_position == 'text-top' or settings.card_badge_position == 'text-bottom' %}
 <div class="card-product--badges pc-badges-{{ settings.card_badge_position }}{% if settings.badge_corner_radius > 16 %} pc-badges-rounded-radius{% endif %}">  
 {% for tag in card_product.tags %}  
-{% if tag contains 'Badge:' %}<span>{{ tag | remove: 'Badge: '}}</span>
+{% if tag contains 'Badge:' %}
+{% assign badge_label = tag | remove: 'Badge: ' | strip %}
+{% assign badge_label_downcase = badge_label | downcase %}
+<span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
 {% endif %}
 {% endfor %}
 
 {% assign badges = card_product.metafields.custom.badges %}
 {% if badges != blank %}
   {% for badge in badges.value %}
-    <span>{{ badge }}</span>
+    {% assign badge_label = badge | strip %}
+    {% assign badge_label_downcase = badge_label | downcase %}
+    <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
   {% endfor %}
 {% endif %}
 
 {% if show_sale_badges %}
-  {% if card_product.compare_at_price %}<span>{{ 'products.product.on_sale' | t }}</span>{% endif %}  
+  {% if card_product.compare_at_price %}<span class="badge--sale">{{ 'products.product.on_sale' | t }}</span>{% endif %}  
 {% endif %}
 {% if card_product.available == false and settings.card_show_inventory_status and settings.card_inventory_style == 'badge' %}
 <span>{{- 'products.product.sold_out' | t -}}</span>
@@ -462,19 +467,24 @@
 {% if settings.card_badge_position == 'text-top' %}
   <div class="card-product--badges card-badges--within-text-top{% if settings.badge_corner_radius > 16 %} pc-badges-rounded-radius{% endif %}">  
   {% for tag in card_product.tags %}  
-  {% if tag contains 'Badge:' %}<span>{{ tag | remove: 'Badge: '}}</span>
+  {% if tag contains 'Badge:' %}
+  {% assign badge_label = tag | remove: 'Badge: ' | strip %}
+  {% assign badge_label_downcase = badge_label | downcase %}
+  <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
   {% endif %}
   {% endfor %}
 
   {% assign badges = card_product.metafields.custom.badges %}
   {% if badges != blank %}
     {% for badge in badges.value %}
-      <span>{{ badge }}</span>
+      {% assign badge_label = badge | strip %}
+      {% assign badge_label_downcase = badge_label | downcase %}
+      <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
     {% endfor %}
   {% endif %}
 
   {% if show_sale_badges %}
-    {% if card_product.compare_at_price %}<span>{{ 'products.product.on_sale' | t }}</span>{% endif %}  
+    {% if card_product.compare_at_price %}<span class="badge--sale">{{ 'products.product.on_sale' | t }}</span>{% endif %}  
   {% endif %}
   {% if card_product.available == false and settings.card_show_inventory_status and settings.card_inventory_style == 'badge' %}
   <span>{{- 'products.product.sold_out' | t -}}</span>
@@ -559,19 +569,24 @@
 {% if settings.card_badge_position == 'text-bottom' %}
   <div class="card-product--badges card-badges--within-text-bottom{% if settings.badge_corner_radius > 16 %} pc-badges-rounded-radius{% endif %}">  
   {% for tag in card_product.tags %}  
-  {% if tag contains 'Badge:' %}<span>{{ tag | remove: 'Badge: '}}</span>
+  {% if tag contains 'Badge:' %}
+  {% assign badge_label = tag | remove: 'Badge: ' | strip %}
+  {% assign badge_label_downcase = badge_label | downcase %}
+  <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
   {% endif %}
   {% endfor %}
 
   {% assign badges = card_product.metafields.custom.badges %}
   {% if badges != blank %}
     {% for badge in badges.value %}
-      <span>{{ badge }}</span>
+      {% assign badge_label = badge | strip %}
+      {% assign badge_label_downcase = badge_label | downcase %}
+      <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
     {% endfor %}
   {% endif %}
 
   {% if show_sale_badges %}
-    {% if card_product.compare_at_price %}<span>{{ 'products.product.on_sale' | t }}</span>{% endif %}  
+    {% if card_product.compare_at_price %}<span class="badge--sale">{{ 'products.product.on_sale' | t }}</span>{% endif %}  
   {% endif %}
   {% if card_product.available == false and settings.card_show_inventory_status and settings.card_inventory_style == 'badge' %}
   <span>{{- 'products.product.sold_out' | t -}}</span>

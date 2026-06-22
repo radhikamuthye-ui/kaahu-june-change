@@ -100,15 +100,21 @@
         <div class="main-product--badge mpb--media mpb-media-alignment--{{ block.settings.badge_media_alignment }}" {{ block.shopify_attributes }}>
         {% for tag in product.tags %}
         {% if tag contains 'Badge:' %}
-          <span>{{ tag | remove: 'Badge: ' }}</span>
+          {% assign badge_label = tag | remove: 'Badge: ' | strip %}
+          {% assign badge_label_downcase = badge_label | downcase %}
+          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endif %}
         {% endfor %}
         {% if has_featured_badge_tag %}
-          <span>{{ block.settings.featured_badge_label | default: featured_badge_tag }}</span>
+          {% assign badge_label = block.settings.featured_badge_label | default: featured_badge_tag | strip %}
+          {% assign badge_label_downcase = badge_label | downcase %}
+          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endif %}
         {% if metafield_badges != blank %}
         {% for badge in metafield_badges.value %}
-          <span>{{ badge }}</span>
+          {% assign badge_label = badge | strip %}
+          {% assign badge_label_downcase = badge_label | downcase %}
+          <span{% if badge_label_downcase == 'sale' %} class="badge--sale"{% endif %}>{{ badge_label }}</span>
         {% endfor %}
         {% endif %}
         </div>
