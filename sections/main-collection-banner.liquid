@@ -87,7 +87,7 @@
 
 {% endstyle %}
 
-<div class="collection-banner-wrapper collection-template-{{ template.suffix | default: template.name | handle }} collection-banner-{{ section.settings.banner_layout }} cbw-image-ratio--{{ section.settings.stacked_img_ratio }} text-width--{{ section.settings.text_width }}">
+<div class="collection-banner-wrapper section-{{ section.id }} collection-template-{{ template.suffix | default: template.name | handle }} collection-banner-{{ section.settings.banner_layout }} cbw-image-ratio--{{ section.settings.stacked_img_ratio }} text-width--{{ section.settings.text_width }}">
 
 {% if section.settings.banner_layout == 'split_banner' and banner_image %}
 
