@@ -50,6 +50,23 @@
   --kaahu-collection-hero-breadcrumb-color: {{ section.settings.kaahu_breadcrumb_color }};
 }
 
+.section-{{ section.id }} .collection-banner-title {
+  top: calc(50% + {{ section.settings.kaahu_content_offset_y }}px);
+  transform: translateY(-50%);
+}
+
+.section-{{ section.id }} .collection-banner-description {
+  margin-top: {{ section.settings.kaahu_description_gap }}px;
+}
+
+.section-{{ section.id }} .collection-card-banner--text-card > div {
+  transform: translateY({{ section.settings.kaahu_content_offset_y }}px);
+}
+
+.section-{{ section.id }} .collection-card-banner--text-card h1 {
+  margin-bottom: {{ section.settings.kaahu_description_gap }}px;
+}
+
 {% if section.settings.cards_img_position == 'left' %}
 @media only screen and (min-width: 900px) {
   .collection-card-banner--image-card {
